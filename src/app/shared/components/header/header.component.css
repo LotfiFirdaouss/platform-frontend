@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web");
+
+* {
+  font-family: "Titillium Web", sans-serif;
+}
+
+.navbar {
+    background-color:#002244;
+}
+
+.navbar .navbar-brand {
+  font-size: 30px;
+}
+
+.navbar .nav-item {
+  padding: 5px 5px;
+}
+
+.nav-item a:hover {
+    color:orange;   
+}
+.nav-item .active:hover {
+    color:#002244;
+}
+
+.navbar .nav-link {
+  font-size: 20px;
+  margin-left: 10px;
+  color:white;
+}
+.active {
+    background-color: orange;
+    border-radius: 30px;
+}
+
+
+.fa-bars {
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 900px) {
+
+  .navbar .nav-link {
+    font-size: 20px;
+    margin-left: 10px;
+    padding-left: 15px;
+    color:white;
+    align-self: right;
+  }
+
+}
+
+@media only screen and (max-width: 383px) {
+
+  .navbar a img {
+    font-size: 20px;
+    margin-left: 10px;
+    padding-left: 15px;
+    color:white;
+    align-self: right;
+  }
+
+  .navbar #button{
+    width: 100%;
+    text-align: center;
+    color:white;
+  }
+
+}
+
