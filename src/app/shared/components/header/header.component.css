@@ -16,22 +16,28 @@
   padding: 5px 5px;
 }
 
-.nav-item a:hover {
-    color:orange;   
-}
-.nav-item .active:hover {
-    color:#002244;
-}
-
 .navbar .nav-link {
   font-size: 20px;
   margin-left: 10px;
   color:white;
 }
+
 .active {
-    background-color: orange;
-    border-radius: 30px;
+  background-color: orange;
+  border-radius: 30px;
+  color:white;
 }
+.inactive {
+  background-color: #002244;
+  color:white;
+}
+.nav-item .active:hover {
+  color:#002244;
+}
+.nav-item .inactive:hover {
+  color:orange;   
+}
+
 
 
 .fa-bars {
@@ -59,7 +65,7 @@
     color:white;
     align-self: right;
   }
-
+  /* to center element horizontally*/
   .navbar #button{
     width: 100%;
     text-align: center;

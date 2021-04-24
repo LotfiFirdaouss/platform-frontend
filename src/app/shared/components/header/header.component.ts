@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
-
+declare var switchActive:any;
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
+
 export class HeaderComponent implements OnInit {
+  accueilBtnID="accueilBtnID"
+  AproposBtnID="AproposBtnID"
+  contactBtnID="contactBtnID"
+  signupBtnID="signupBtnID"
+  signinBtnID="signinBtnID"
 
   constructor() { }
 
@@ -15,8 +22,10 @@ export class HeaderComponent implements OnInit {
     //this.myFunction();
   }
 
-  myFunction() {
-    alert('heeeey');
+  switchActive(id : string){
+    switchActive(id);
   }
+
+  
 
 }
