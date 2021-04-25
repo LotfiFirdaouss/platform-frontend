@@ -9,7 +9,14 @@ export class WelcomePageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {  
+    this.loadJsFile("../../../../assets/js/welcome.js");  
+  }  
+  public loadJsFile(url) {  
+    let node = document.createElement('script');  
+    node.src = url;  
+    node.type = 'text/javascript';  
+    document.getElementsByTagName('head')[0].appendChild(node);  
   }
 
 }
