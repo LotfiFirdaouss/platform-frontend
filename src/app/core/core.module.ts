@@ -14,6 +14,11 @@ import { LoginPageComponent } from './components/login-page/login-page.component
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    WelcomePageComponent,
+    BannerComponent,
+    LoginPageComponent
   ]
 })
 export class CoreModule { 
