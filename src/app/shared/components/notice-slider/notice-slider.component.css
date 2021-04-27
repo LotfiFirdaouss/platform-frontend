@@ -1,3 +1,7 @@
+.full-width { padding-left: 0; padding-right: 0; }
+.full-width .row { margin-right: 0; margin-left: 0; }
+.full-width .col-md-12 { padding-left: 0; padding-right: 0; }
+
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web");
 
 * {
