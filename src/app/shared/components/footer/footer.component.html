@@ -40,24 +40,26 @@
 
     <div class="container">
         <ul class="foote_bottom_ul_amrc font-weight-bold footer_menu">
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">A propos</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">S'inscrire</a></li>
-            <li><a href="#">Se connecter</a></li>
+            <li><a routerLink="/" >Accueil</a></li>
+            <li><a routerLink="/" >A propos</a></li>
+            <li><a routerLink="/" >Contact</a></li>
+            <li><a routerLink="/" >S'inscrire</a></li>
+            <li><a routerLink="/login" >Se connecter</a></li>
         </ul>
         <!--foote_bottom_ul_amrc ends here-->
-        <div class="footer_copyRights"><p class="text-center"> © 2021 ENSAM - CASABLANCA | Conçu par <a href="#">LOTFI & GERRAR</a></p></div>
+        <div class="footer_copyRights"><p class="text-center"> © 2021 ENSAM - CASABLANCA | Conçu par <a href="linkedin.com/in/firdaouss-lotfi/">LOTFI Firdaouss</a> & <a href="https://www.linkedin.com/in/gerrar-assmaa/">GERRAR Assmaa</a></p></div>
 
         <div class="footer_social">
         <ul class="social_footer_ul ">
-            <li style="padding-left: 0px; margin-left: 0px;"><a href="#"><i class="fab fa-facebook-f" ></i></a></li>
-            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            <li ><a href="#"><i class="fab fa-youtube"></i></a></li>
+            <li style="padding-left: 0px; margin-left: 0px;"><a href="https://www.facebook.com/ENSAM.univ/"><i class="fab fa-facebook-f" ></i></a></li>
+            <li><a href="https://twitter.com/ensamcasa2019"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/school/ensam-casablanca/about/"><i class="fab fa-linkedin"></i></a></li>
+            <li ><a href="https://www.youtube.com/channel/UCeQB_nDJYbY6T5n7SsxkdAw"><i class="fab fa-youtube"></i></a></li>
         </ul>
         </div>
         <!--social_footer_ul ends here-->
     </div>
 
 </footer>
+
+<router-outlet></router-outlet>
