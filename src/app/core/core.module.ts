@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 
 
@@ -10,7 +11,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
   declarations: [
     WelcomePageComponent,
     BannerComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
   exports: [
     WelcomePageComponent,
     BannerComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterPageComponent
   ]
 })
 export class CoreModule { 
