@@ -1,5 +1,3 @@
-
-/*
 function switchActive(ID){
     document.getElementsByClassName('active')[0].classList.add('inactive');
     document.getElementsByClassName('active')[0].classList.remove('active');
@@ -10,4 +8,4 @@ function switchActive(ID){
 
 var myFunction = function () {
     alert('hello world')
-}*/
+}
