@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { InsertionsListComponent } from './components/insertions-list/insertions-list.component';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -9,7 +8,7 @@ import { InsertionsListComponent } from './components/insertions-list/insertions
     InsertionsListComponent
   ],
   imports: [
-    CommonModule
+    SharedModule
   ]
 })
 export class InsertionModule { }

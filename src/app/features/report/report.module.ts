@@ -3,7 +3,6 @@ import { ReportsListComponent } from './components/reports-list/reports-list.com
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
-
 @NgModule({
   declarations: [
     ReportsListComponent

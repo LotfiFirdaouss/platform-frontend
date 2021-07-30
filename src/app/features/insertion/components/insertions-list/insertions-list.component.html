@@ -1,1 +1,126 @@
-<p>insertions-list works!</p>
+<!--<div class="list row">
+    
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div> -->
+<!--
+    <div class="col-md-6">
+      <h4>Insertions List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let insertion of insertions; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveInsertion(insertion, i)"
+        >
+          {{ insertion.id }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllInsertions()">
+        Remove All
+      </button>
+    </div>
+
+    <div class="col-md-6">
+      <div *ngIf="currentInsertion">
+        <h4>Insertion</h4>
+        <div>
+          <label><strong>Id:</strong></label>
+          {{ currentInsertion.id }}
+        </div>
+        <div>
+          <label><strong>Cursus post Ensam:</strong></label>
+          {{ currentInsertion.cursus_post_ensam }}
+        </div>
+        <div>
+          <label><strong>Etudiant id:</strong></label>
+          {{ currentInsertion.fk_etudiant }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/insertions/{{ currentInsertion.id }}">
+          Edit
+        </a>
+      </div>
+  
+      <div *ngIf="!currentInsertion">
+        <br />
+        <p>Please click on an insertion...</p>
+      </div>
+    </div>
+  </div>-->
+
+<h4>Insertions</h4> <hr>
+<div  
+class="list-group-item"
+*ngFor="let insertion of insertions; let i = index"
+[class.active]="i == currentIndex"
+(click)="setActiveInsertion(insertion, i)"
+>
+  <div class="courses-container">
+    <div class="course">
+
+      <div class="course-preview">
+        <h7>{{ insertion.cursus_post_ensam }}</h7>
+        <h3> {{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }} </h3>
+        <a routerLink="/insertions">plus de détails <i class="fas fa-chevron-right"></i></a>
+      </div>
+
+      <div class="course-info">
+        <span>dddd</span>
+
+        <div *ngIf="!insertion.intit_formation">
+          <div>
+            <label><strong>Société :</strong></label>
+            {{ insertion.societe }}
+          </div>
+          <div>
+            <label><strong>Date intégration :</strong></label>
+            {{ insertion.date_integration }}
+          </div>
+        </div>
+
+        <div *ngIf="insertion.intit_formation">
+          <div>
+            <label><strong>Nature formation :</strong></label>
+            {{ insertion.nature_formation }}
+          </div>
+          <div>
+            <label><strong>Intitulé formation :</strong></label>
+            {{ insertion.intit_formation }}
+          </div>
+        </div>
+
+        <div>
+          <label><strong>Id étudiant :</strong></label>
+          {{ insertion.fk_etudiant }}
+        </div>
+
+        <a class="btn1" routerLink="/insertions">Supprimer</a>
+        <a class="btn2" routerLink="/insertions">Modifier </a>
+        <!--
+        
+        <button class="btn">Supprimer</button>
+        -->
+
+      </div>
+    </div>
+  </div> 
+  
+</div>

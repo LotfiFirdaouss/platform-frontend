@@ -6,9 +6,11 @@ import { LoginPageComponent } from './core/components/login-page/login-page.comp
 import { RegisterPageComponent } from './core/components/register-page/register-page.component';
 
 import { ReportsListComponent } from './features/report/components/reports-list/reports-list.component';
+import {InsertionsListComponent  } from './features/insertion/components/insertions-list/insertions-list.component';
 
 import { NoticeSliderComponent } from './shared/components/notice-slider/notice-slider.component';
 import { MenuComponent } from './shared/components/menu/menu.component';
+
 
 const routes: Routes = [
   { path : '' , component : WelcomePageComponent},
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path : 'register' , component : RegisterPageComponent},
 
   { path: 'list' , component: ReportsListComponent},
+  { path: 'insertions' , component: InsertionsListComponent},
 
   { path: 'notice-slider' , component: NoticeSliderComponent},
   { path: 'menu' , component: MenuComponent}

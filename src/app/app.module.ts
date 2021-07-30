@@ -6,12 +6,10 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReportsListComponent } from './features/report/components/reports-list/reports-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ReportsListComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
