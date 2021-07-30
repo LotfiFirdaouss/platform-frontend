@@ -1,0 +1,227 @@
+<div class="container contact-form">
+
+    <div *ngIf="!submitted">
+        <form method="post">
+            <h3>Veuillez renseigner les informations relatives à votre insertion :</h3>
+            
+            <hr>
+            <span style="font-size:large;"> <I>Selectionnez le cursus post Ensam :</I> </span>
+            <div class="row" style="margin-top: 25px; ">
+              <div class="col">
+                  <select 
+                    class="form-control" 
+                    id="cursus_post_ensam"
+                    required
+                    [(ngModel)]="insertion.cursus_post_ensam"
+                    name="cursus_post_ensam"
+                    placeholder="cursus_post_ensam*"
+                    >
+                      <option value="travail" selected>Travail</option>
+                      <option value="etude">Etude</option>
+                  </select>
+
+              </div>
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Poursuite d'étude :</I> </span>
+            <div class="row" style="margin-top: 25px; ">
+              <div class="col">
+                  <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="univ"
+                        required
+                        [(ngModel)]="insertion.univ"
+                        name="univ"
+                        placeholder="Université*"
+                      />
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="intit_formation"
+                          required
+                          [(ngModel)]="insertion.intit_formation"
+                          name="intit_formation"
+                          placeholder="Intitulé de formation*"
+                        />
+                    </div>
+                </div>
+                <div class="col">
+
+                  <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nature_formation"
+                        required
+                        [(ngModel)]="insertion.nature_formation"
+                        name="nature_formation"
+                        placeholder="Nature de formation*"
+                      />
+                  </div>
+              </div>
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Insertion professionnelle :</I> </span>
+            <div class="row" style="margin-top: 25px;">
+                <div class="col">
+                    <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="intit_poste"
+                          required
+                          [(ngModel)]="insertion.intit_poste"
+                          name="intit_poste"
+                          placeholder="Intitulé de poste*"
+                        />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="societe"
+                          required
+                          [(ngModel)]="insertion.societe"
+                          name="societe"
+                          placeholder="Nom de société*"
+                        />
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Date d'intégration*</label>
+                <div class="col-sm-9">
+                  <input 
+                        type="date"
+                        class="form-control"
+                        id="date_integration"
+                        required
+                        [(ngModel)]="insertion.date_integration"
+                        name="date_integration"
+                        placeholder="Date d'intégration*"
+                  >
+                </div>
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Informations supplémentaires :</I> </span>
+            <div class="row" style="margin-top: 25px;">
+              <div class="col">
+                  <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="ville"
+                        required
+                        [(ngModel)]="insertion.ville"
+                        name="ville"
+                        placeholder="Ville d'étude/boulot*"
+                      />
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="pays"
+                        required
+                        [(ngModel)]="insertion.pays"
+                        name="pays"
+                        placeholder="Pays d'étude/boulot*"
+                      />
+                  </div>
+              </div>
+              
+            </div>
+
+            <div class="row" style="margin-top: 25px;">
+              <div class="col">
+                  <label for="fk_etudiant"> Id étudiant* </label>
+                  <div class="form-group">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="fk_etudiant"
+                        required
+                        [(ngModel)]="insertion.fk_etudiant"
+                        name="fk_etudiant"
+                        placeholder="Id étudiant*"
+                      />
+                  </div>
+              </div>
+
+              
+            </div>
+
+            <button (click)="saveInsertion()" class="btnSend" style="margin-top: 25px;">Envoyer</button>
+
+            <!--
+            <select class="selectpicker countrypicker"
+                    data-live-search="true"
+                    data-default="United States"
+                    data-flag="true">
+            </select>
+            -->
+            
+        </form>
+    </div>
+
+    <div *ngIf="submitted">
+        <h4>Tutorial was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newTutorial()">Add</button>
+    </div>
+
+</div>
+<!--
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            [(ngModel)]="tutorial.title"
+            name="title"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="tutorial.description"
+            name="description"
+          />
+        </div>
+  
+        <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Tutorial was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newTutorial()">Add</button>
+      </div>
+    </div>
+  </div>
+  -->

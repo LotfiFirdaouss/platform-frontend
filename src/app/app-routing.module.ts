@@ -10,6 +10,7 @@ import {InsertionsListComponent  } from './features/insertion/components/inserti
 
 import { NoticeSliderComponent } from './shared/components/notice-slider/notice-slider.component';
 import { MenuComponent } from './shared/components/menu/menu.component';
+import { AddInsertionComponent } from './features/insertion/components/add-insertion/add-insertion.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
 
   { path: 'list' , component: ReportsListComponent},
   { path: 'insertions' , component: InsertionsListComponent},
+  { path: 'add-insertion' , component: AddInsertionComponent},
 
   { path: 'notice-slider' , component: NoticeSliderComponent},
   { path: 'menu' , component: MenuComponent}

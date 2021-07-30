@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { InsertionsListComponent } from '../features/insertion/components/insertions-list/insertions-list.component';
 import { ReportsListComponent } from '../features/report/components/reports-list/reports-list.component';
+import { AddInsertionComponent } from '../features/insertion/components/add-insertion/add-insertion.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ReportsListComponent } from '../features/report/components/reports-list
     NoticeSliderComponent,
     InsertionsListComponent,
     ReportsListComponent,
+    AddInsertionComponent,
   ],
   imports: [
     CommonModule,
