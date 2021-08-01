@@ -22,6 +22,8 @@ export class InsertionDetailsComponent implements OnInit {
     fk_etudiant : 0,
   }
   message = '';
+  updated=false;
+  deleted=false;
 
   constructor(
     private insertionService: InsertionService,
@@ -53,6 +55,7 @@ export class InsertionDetailsComponent implements OnInit {
         response => {
           console.log(response);
           this.message = response.message;
+          this.updated = true;
         },
         error => {
           console.log(error);
@@ -64,7 +67,8 @@ export class InsertionDetailsComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/insertions']);
+          //this.router.navigate(['/insertions']);
+          this.deleted = true;
         },
         error => {
           console.log(error);

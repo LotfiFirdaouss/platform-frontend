@@ -1,7 +1,8 @@
 <div class="container contact-form">
 
-    <div *ngIf="currentInsertion.id">
-        <form method="post">
+    <div *ngIf="!updated && !deleted">
+      <div *ngIf="currentInsertion.id">
+        <form >
           
             <h3>Modifier les informations relatives à votre insertion :</h3>
             
@@ -214,6 +215,17 @@
     <div *ngIf="!currentInsertion.id">
         <br />
         <p>L'insertion spécifié n'est pas accessible ...</p>
-      </div>
+    </div>
+    </div>
+
+
+
+    <div *ngIf="updated">
+      <h4> L'insertion est modifié avec succès ! </h4>
+    </div>
+
+    <div *ngIf="deleted">
+      <h4> L'insertion est supprimé avec succès ! </h4>
+    </div>
 
 </div>
