@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Insertion } from 'src/app/features/insertion/models/insertion.model';
 import { InsertionService } from 'src/app/features/insertion/services/insertion.service';
-import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-insertion',

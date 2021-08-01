@@ -1,9 +1,9 @@
 <div class="container contact-form">
 
-    <div *ngIf="!submitted">
+    <div *ngIf="currentInsertion.id">
         <form method="post">
           
-            <h3>Veuillez renseigner les informations relatives à votre insertion :</h3>
+            <h3>Modifier les informations relatives à votre insertion :</h3>
             
             <hr>
             <span style="font-size:large;"> <I>Selectionnez le cursus post Ensam :</I> </span>
@@ -13,7 +13,7 @@
                     class="form-control" 
                     id="cursus_post_ensam"
                     required
-                    [(ngModel)]="insertion.cursus_post_ensam"
+                    [(ngModel)]="currentInsertion.cursus_post_ensam"
                     name="cursus_post_ensam"
                     placeholder="cursus_post_ensam*"
                     >
@@ -34,7 +34,7 @@
                         class="form-control etudeClass"
                         id="univ"
                         required
-                        [(ngModel)]="insertion.univ"
+                        [(ngModel)]="currentInsertion.univ"
                         name="univ"
                         placeholder=" nom univ*"
                       />
@@ -51,7 +51,7 @@
                           class="form-control etudeClass"
                           id="intit_formation"
                           required
-                          [(ngModel)]="insertion.intit_formation"
+                          [(ngModel)]="currentInsertion.intit_formation"
                           name="intit_formation"
                           placeholder="intitulé*"
                         />
@@ -66,7 +66,7 @@
                         class="form-control etudeClass"
                         id="nature_formation"
                         required
-                        [(ngModel)]="insertion.nature_formation"
+                        [(ngModel)]="currentInsertion.nature_formation"
                         name="nature_formation"
                         placeholder="nature*"
                       />
@@ -86,7 +86,7 @@
                           class="form-control travailClass"
                           id="intit_poste"
                           required
-                          [(ngModel)]="insertion.intit_poste"
+                          [(ngModel)]="currentInsertion.intit_poste"
                           name="intit_poste"
                           placeholder="intitulé*"
                         />
@@ -101,7 +101,7 @@
                           class="form-control travailClass"
                           id="societe"
                           required
-                          [(ngModel)]="insertion.societe"
+                          [(ngModel)]="currentInsertion.societe"
                           name="societe"
                           placeholder="société*"
                         />
@@ -121,7 +121,7 @@
                           class="form-control travailClass"
                           id="date_integration"
                           required
-                          [(ngModel)]="insertion.date_integration"
+                          [(ngModel)]="currentInsertion.date_integration"
                           name="date_integration"
                     >
                     <span class="unit">Date d'intégration : </span>
@@ -140,7 +140,7 @@
                         class="form-control"
                         id="ville"
                         required
-                        [(ngModel)]="insertion.ville"
+                        [(ngModel)]="currentInsertion.ville"
                         name="ville"
                         placeholder="ville*"
                       />
@@ -155,7 +155,7 @@
                         class="form-control"
                         id="pays"
                         required
-                        [(ngModel)]="insertion.pays"
+                        [(ngModel)]="currentInsertion.pays"
                         name="pays"
                         placeholder="pays*"
                       />
@@ -175,7 +175,7 @@
                         class="form-control"
                         id="fk_etudiant"
                         required
-                        [(ngModel)]="insertion.fk_etudiant"
+                        [(ngModel)]="currentInsertion.fk_etudiant"
                         name="fk_etudiant"
                         placeholder="id*"
                       />
@@ -187,18 +187,33 @@
               
             </div>
 
+            <!--
             <div class="row" style="margin-top: 30px;">
               <div class="col-6"></div>
               <div class="col-6 "><button (click)="saveInsertion()" class="btnContact">Envoyer</button>
               </div>
+            </div>-->
+
+            <div class="row" style="margin-top: 30px;">
+              <div class="col-4"></div>
+              <div class="col-4 "><button class="btnContact" (click)="deleteInsertion()">Delete</button></div>
+              <div class="col-4">         <button
+                type="submit"
+                class="btnContact"
+                (click)="updateInsertion()"
+              >Update</button></div>
             </div>
             
-        </form>
+            <p>{{ message }}</p>
+        
+          </form>
+
+
     </div>
 
-    <div *ngIf="submitted">
-      <h4> L'insertion est ajoutée avec succès ! </h4>
-      <!--<button class="btnSuccess" (click)="newInsertion()">Ajouter</button>-->
-    </div>
+    <div *ngIf="!currentInsertion.id">
+        <br />
+        <p>L'insertion spécifié n'est pas accessible ...</p>
+      </div>
 
 </div>

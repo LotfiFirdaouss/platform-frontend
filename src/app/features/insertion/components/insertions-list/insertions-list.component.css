@@ -12,7 +12,7 @@
 	max-width: 100%;
 	margin: 20px;
 	overflow: hidden;
-	width: 700px;
+	width: 1000px;
 }
 
 .course h7 {
@@ -30,8 +30,9 @@
 .course-preview {
 	background-color: #2A265F;
 	color: #fff;
-	padding: 30px;
+	padding: 20px;
 	max-width: 250px;
+	min-width: 250px;
 }
 
 .course-preview a {
@@ -39,14 +40,25 @@
 	display: inline-block;
 	font-size: 12px;
 	opacity: 0.6;
-	margin-top: 30px;
+	margin-top: 20px;
 	text-decoration: none;
 }
 
 .course-info {
-	padding: 30px;
+	padding: 20px;
 	position: relative;
 	width: 100%;
+	background-color: #ffffff;
+	color: #001F61;
+}
+
+.course-info a:hover {
+	background-color: #ffffff;
+	color: #001F61;
+}
+
+.course-info a:focus {
+	outline: none;
 }
 
 .btn1 {
@@ -77,11 +89,14 @@
 	letter-spacing: 1px;
 }
 
-.course-info a:hover {
-	background-color: #ffffff;
-	color: #001F61;
-}
-
-.course-info a:focus {
-	outline: none;
+.contact-form .btnContact {
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+	box-shadow: 0 2px 2px #5397f8;
+    padding: 1.5%;
+    background: #002245;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
 }

@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { InsertionsListComponent } from '../features/insertion/components/insertions-list/insertions-list.component';
 import { ReportsListComponent } from '../features/report/components/reports-list/reports-list.component';
 import { AddInsertionComponent } from '../features/insertion/components/add-insertion/add-insertion.component';
+import { InsertionDetailsComponent } from '../features/insertion/components/insertion-details/insertion-details.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AddInsertionComponent } from '../features/insertion/components/add-inse
     InsertionsListComponent,
     ReportsListComponent,
     AddInsertionComponent,
+    InsertionDetailsComponent,
   ],
   imports: [
     CommonModule,
