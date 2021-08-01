@@ -21,16 +21,6 @@
     margin-top: -10%;
     text-align: center;
 }
-.contact-form .btnContact {
-    width: 50%;
-    border: none;
-    border-radius: 1rem;
-    padding: 1.5%;
-    background: #2A265F;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-}
 .btnContactSubmit
 {
     width: 50%;
@@ -42,16 +32,26 @@
     cursor: pointer;
 }
 
-.btnSend {
-	background-color: #2A265F;
-	border: 0;
-	border-radius: 50px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	color: #fff;
-	font-size: 20px;
-	padding: 12px 25px;
-	letter-spacing: 1px;
-    position: absolute;
-    right: 330px;
-    width: 200px;
+.contact-form .btnContact {
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+	box-shadow: 0 2px 2px #5397f8;
+    padding: 1.5%;
+    background: #002245;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btnSuccess {
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+	box-shadow: 0 2px 2px #5397f8;
+    padding: 1.5%;
+    background: #002245;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
 }

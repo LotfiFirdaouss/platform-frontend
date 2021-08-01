@@ -2,6 +2,7 @@
 
     <div *ngIf="!submitted">
         <form method="post">
+          
             <h3>Veuillez renseigner les informations relatives à votre insertion :</h3>
             
             <hr>
@@ -34,7 +35,7 @@
                         id="univ"
                         required
                         [(ngModel)]="insertion.univ"
-                        name="univ"
+                        name="etude"
                         placeholder="Université*"
                       />
                   </div>
@@ -50,7 +51,7 @@
                           id="intit_formation"
                           required
                           [(ngModel)]="insertion.intit_formation"
-                          name="intit_formation"
+                          name="etude"
                           placeholder="Intitulé de formation*"
                         />
                     </div>
@@ -64,7 +65,7 @@
                         id="nature_formation"
                         required
                         [(ngModel)]="insertion.nature_formation"
-                        name="nature_formation"
+                        name="etude"
                         placeholder="Nature de formation*"
                       />
                   </div>
@@ -82,7 +83,7 @@
                           id="intit_poste"
                           required
                           [(ngModel)]="insertion.intit_poste"
-                          name="intit_poste"
+                          name="travail"
                           placeholder="Intitulé de poste*"
                         />
                     </div>
@@ -95,7 +96,7 @@
                           id="societe"
                           required
                           [(ngModel)]="insertion.societe"
-                          name="societe"
+                          name="travail"
                           placeholder="Nom de société*"
                         />
                     </div>
@@ -104,7 +105,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Date d'intégration*</label>
+                <label for="date_integration" class="col-sm-3 col-form-label">Date d'intégration*</label>
                 <div class="col-sm-9">
                   <input 
                         type="date"
@@ -112,7 +113,7 @@
                         id="date_integration"
                         required
                         [(ngModel)]="insertion.date_integration"
-                        name="date_integration"
+                        name="travail"
                         placeholder="Date d'intégration*"
                   >
                 </div>
@@ -169,22 +170,18 @@
               
             </div>
 
-            <button (click)="saveInsertion()" class="btnSend" style="margin-top: 25px;">Envoyer</button>
-
-            <!--
-            <select class="selectpicker countrypicker"
-                    data-live-search="true"
-                    data-default="United States"
-                    data-flag="true">
-            </select>
-            -->
+            <div class="row" style="margin-top: 30px;">
+              <div class="col-6"></div>
+              <div class="col-6 "><button (click)="saveInsertion()" class="btnContact">Envoyer</button>
+              </div>
+            </div>
             
         </form>
     </div>
 
     <div *ngIf="submitted">
-        <h4>Tutorial was submitted successfully!</h4>
-        <button class="btn btn-success" (click)="newTutorial()">Add</button>
+        <h4> L'insertion est ajoutée avec succès ! </h4>
+        <button class="btnSuccess" (click)="newInsertion()">Ajouter</button>
     </div>
 
 </div>

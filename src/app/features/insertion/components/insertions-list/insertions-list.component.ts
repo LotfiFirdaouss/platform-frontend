@@ -16,15 +16,8 @@ export class InsertionsListComponent implements OnInit {
   constructor(private insertionService: InsertionService) { }
 
   ngOnInit(): void {
-    this.loadJsFile("../../../../assets/js/welcome.js");  
+    this.loadJsFile("../../../../assets/js/insertions/insertions-list.js");  
     this.retrieveInsertions();
-  }
-
-  public loadJsFile(url) {  
-    let node = document.createElement('script');  
-    node.src = url;  
-    node.type = 'text/javascript';  
-    document.getElementsByTagName('head')[0].appendChild(node);  
   }
 
   retrieveInsertions(): void {
@@ -62,4 +55,11 @@ export class InsertionsListComponent implements OnInit {
         });
   }
 
+  public loadJsFile(url) {  
+    let node = document.createElement('script');  
+    node.src = url;  
+    node.type = 'text/javascript';  
+    document.getElementsByTagName('head')[0].appendChild(node);  
+  }
+  
 }

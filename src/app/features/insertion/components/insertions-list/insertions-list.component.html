@@ -79,11 +79,11 @@ class="list-group-item"
       <div class="course-preview">
         <h7>{{ insertion.cursus_post_ensam }}</h7>
         <h3> {{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }} </h3>
+        <!--<p> {{ insertion.date_integration }} </p>-->
         <a routerLink="/insertions">plus de détails <i class="fas fa-chevron-right"></i></a>
       </div>
 
       <div class="course-info">
-        <span>dddd</span>
 
         <div *ngIf="!insertion.intit_formation">
           <div>
