@@ -1,0 +1,102 @@
+<div class="content">
+    
+    <div class="container">     
+      <div *ngIf="currentInsertion.id">
+        <div class="table-responsive custom-table-responsive" >
+
+          <table class="table custom-table" >
+            <thead>
+              <tr>                
+                <th scope="col"><h4>Détails relatives à l'insertion</h4></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr scope="row">
+                <td>
+                  <B>Cursus post ENSAM</B>
+                  <small class="d-block">poursuite d'étude ou insertion professionnelle</small>
+                </td>
+                <td> {{ currentInsertion.cursus_post_ensam }} </td>
+              </tr>
+
+              <tr scope="row" *ngIf="!currentInsertion.intit_formation">
+                <td>
+                  <B>Société d'insertion</B>
+                </td>
+                <td> {{ currentInsertion.societe }} </td>
+              </tr>
+              <tr scope="row" *ngIf="!currentInsertion.intit_formation">
+                <td>
+                  <B>Intitulé du poste occupé</B>
+                </td>
+                <td> {{ currentInsertion.intit_poste }} </td>
+              </tr>
+              <tr scope="row" *ngIf="!currentInsertion.intit_formation">
+                <td>
+                  <B>Date d'insertion professionnelle</B>
+                </td>
+                <td> {{ currentInsertion.date_integration }} </td>
+              </tr>
+
+              
+              <tr scope="row" *ngIf="currentInsertion.intit_formation">
+                <td>
+                  <B>Nature formation</B>
+                </td>
+                <td> {{ currentInsertion.nature_formation }} </td>
+              </tr>
+              <tr scope="row" *ngIf="currentInsertion.intit_formation">
+                <td>
+                  <B>Intitulé de formation</B>
+                </td>
+                <td> {{ currentInsertion.intit_formation }} </td>
+              </tr>
+              <tr scope="row" *ngIf="currentInsertion.intit_formation">
+                <td>
+                  <B>Date d'intégration</B>
+                </td>
+                <td> {{ currentInsertion.date_integration }} </td>
+              </tr>
+              
+
+              <tr scope="row">
+                <td>
+                  <B>Ville d'insertion</B>
+                </td>
+                <td> {{ currentInsertion.ville }} </td>
+              </tr>
+
+              <tr scope="row">
+                <td>
+                  <B>Pays d'insertion</B>
+                </td>
+                <td> {{ currentInsertion.pays }} </td>
+              </tr>
+
+              <tr scope="row">
+                <td>
+                  <B>Etudiant concerné</B>
+                </td>
+                <td> {{ currentInsertion.fk_etudiant }} </td>
+              </tr>
+
+
+              
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <div *ngIf="!currentInsertion">
+        <br />
+        <p >L'insertion spécifié n'est pas accessible ...</p>
+      </div>
+
+    </div>
+
+  </div>
+    

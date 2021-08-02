@@ -10,8 +10,10 @@ import {InsertionsListComponent  } from './features/insertion/components/inserti
 
 import { NoticeSliderComponent } from './shared/components/notice-slider/notice-slider.component';
 import { MenuComponent } from './shared/components/menu/menu.component';
+
 import { AddInsertionComponent } from './features/insertion/components/add-insertion/add-insertion.component';
 import { InsertionDetailsComponent } from './features/insertion/components/insertion-details/insertion-details.component';
+import { InsertionInfoComponent } from './features/insertion/components/insertion-info/insertion-info.component';
 
 
 const routes: Routes = [
@@ -26,6 +28,8 @@ const routes: Routes = [
   { path: 'insertions' , component: InsertionsListComponent},
   { path: 'add-insertion' , component: AddInsertionComponent},
   { path: 'insertions/:id', component: InsertionDetailsComponent },
+  { path: 'insertions/insertion-info/:id', component: InsertionInfoComponent },
+
 
   { path: 'notice-slider' , component: NoticeSliderComponent},
   { path: 'menu' , component: MenuComponent}

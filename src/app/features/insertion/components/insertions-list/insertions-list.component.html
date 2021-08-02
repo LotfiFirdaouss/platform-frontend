@@ -20,7 +20,7 @@
           <h7>{{ insertion.cursus_post_ensam }}</h7>
           <h3> {{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }} </h3>
           <div *ngIf="currentInsertion && currentInsertion==insertion">
-            <a routerLink="/insertions/{{ insertion.id }}" style="margin-top: 0%;"><u>plus de détails</u></a>
+            <a routerLink="/insertions/insertion-info/{{ currentInsertion.id }}" style="margin-top: 0%;"><u>plus de détails</u></a>
           </div>
         </div>
 
@@ -30,10 +30,6 @@
             <div>
               <label><strong>Société :</strong></label>
               {{ insertion.societe }}
-            </div>
-            <div>
-              <label><strong>Date intégration :</strong></label>
-              {{ insertion.date_integration }}
             </div>
           </div>
 
