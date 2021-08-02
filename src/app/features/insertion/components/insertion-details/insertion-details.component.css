@@ -103,3 +103,7 @@ color: gray;
 	right: 130px;
 	letter-spacing: 1px;
 }
+
+.disabled{
+    pointer-events: none;
+}

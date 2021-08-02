@@ -1,13 +1,15 @@
 //initialization : disabling all fiels for etude (travail is active)
-var index;
-var elements = document.getElementsByClassName('etudeClass');
-console.log(elements)
-var count = elements.length;
-for(index = 0; index < count; index++){
-    elements[index].disabled = true;
-}
 
-var cursus=document.getElementById("cursus_post_ensam");
+// Shorthand for $( document ).ready()
+
+/*
+var cursus=document.querySelector("#cursus_post_ensam");
+console.log(cursus);
+*/
+
+
+
+/*
 cursus.addEventListener('click', () => {
 	cursus_value=cursus.value;
     console.log(cursus_value);
@@ -41,4 +43,8 @@ cursus.addEventListener('click', () => {
             elements[index].disabled = false;
         }
     }
-});
+});*/
+
+
+
+

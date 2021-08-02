@@ -1,9 +1,7 @@
-<div class="container contact-form">
+<div class="container contact-form ">
 
-    <div *ngIf="!updated && !deleted">
-      <div *ngIf="currentInsertion.id">
-        <form >
-          
+  <div *ngIf="currentInsertion.id">
+        <form class="yes">
             <h3>Modifier les informations relatives à votre insertion :</h3>
             
             <hr>
@@ -11,12 +9,14 @@
             <div class="row" style="margin-top: 25px; ">
               <div class="col">
                   <select 
+                    #cursus
                     class="form-control" 
                     id="cursus_post_ensam"
                     required
                     [(ngModel)]="currentInsertion.cursus_post_ensam"
                     name="cursus_post_ensam"
                     placeholder="cursus_post_ensam*"
+                    (click)="onCursus()"
                     >
                       <option value="travail" selected>Travail</option>
                       <option value="etude">Etude</option>
@@ -38,6 +38,7 @@
                         [(ngModel)]="currentInsertion.univ"
                         name="univ"
                         placeholder=" nom univ*"
+                        (click)="onCursus()"
                       />
                       <span class="unit">Université : </span>
                   </div>
@@ -55,6 +56,7 @@
                           [(ngModel)]="currentInsertion.intit_formation"
                           name="intit_formation"
                           placeholder="intitulé*"
+                          (click)="onCursus()"
                         />
                         <span class="unit">Intitulé de formation : </span>
                     </div>
@@ -70,6 +72,7 @@
                         [(ngModel)]="currentInsertion.nature_formation"
                         name="nature_formation"
                         placeholder="nature*"
+                        (click)="onCursus()"
                       />
                       <span class="unit">Nature de formation : </span>
 
@@ -90,6 +93,7 @@
                           [(ngModel)]="currentInsertion.intit_poste"
                           name="intit_poste"
                           placeholder="intitulé*"
+                          (click)="onCursus()"
                         />
                         <span class="unit">Intitulé de poste : </span>
 
@@ -105,6 +109,7 @@
                           [(ngModel)]="currentInsertion.societe"
                           name="societe"
                           placeholder="société*"
+                          (click)="onCursus()"
                         />
                         <span class="unit">Nom de société : </span>
 
@@ -113,27 +118,28 @@
                 
             </div>
 
-            <div class="form-group row ">
-                <label for="date_integration" class="col-sm-3 col-form-label">Date d'intégration*</label>
-                <div class="col-sm-9 ">
-                  <div class="input-box ">
-                    <input 
-                          type="date"
-                          class="form-control travailClass"
-                          id="date_integration"
-                          required
-                          [(ngModel)]="currentInsertion.date_integration"
-                          name="date_integration"
-                    >
-                    <span class="unit">Date d'intégration : </span>
-                </div>
 
-                </div>
-            </div>
 
             <hr>
             <span style="font-size:large;"> <I>Informations supplémentaires :</I> </span>
-            <div class="row" style="margin-top: 25px;">
+            <div class="form-group row " style="margin-top: 25px;">
+              <label for="date_integration" class="col-sm-3 col-form-label">Date d'intégration*</label>
+              <div class="col-sm-9 ">
+                <div class="input-box ">
+                  <input 
+                        type="date"
+                        class="form-control"
+                        id="date_integration"
+                        required
+                        [(ngModel)]="currentInsertion.date_integration"
+                        name="date_integration"
+                  >
+                  <span class="unit">Date d'intégration : </span>
+              </div>
+
+              </div>
+          </div>
+            <div class="row" >
               <div class="col">
                   <div class="form-group input-box">
                       <input
@@ -214,18 +220,16 @@
 
     <div *ngIf="!currentInsertion.id">
         <br />
-        <p>L'insertion spécifié n'est pas accessible ...</p>
-    </div>
-    </div>
-
+        <p >L'insertion spécifié n'est pas accessible ...</p>
+  </div>
 
 
     <div *ngIf="updated">
-      <h4> L'insertion est modifié avec succès ! </h4>
+      <h4 > L'insertion est modifié avec succès ! </h4>
     </div>
 
     <div *ngIf="deleted">
-      <h4> L'insertion est supprimé avec succès ! </h4>
+      <h4 > L'insertion est supprimé avec succès ! </h4>
     </div>
 
 </div>

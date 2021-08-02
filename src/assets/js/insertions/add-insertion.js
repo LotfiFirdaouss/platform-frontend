@@ -1,3 +1,6 @@
+// Shorthand for $( document ).ready()
+$(function() {
+    
 //initialization : disabling all fiels for etude (travail is active)
 var index;
 var elements = document.getElementsByClassName('etudeClass');
@@ -8,7 +11,7 @@ for(index = 0; index < count; index++){
 }
 
 var cursus=document.getElementById("cursus_post_ensam");
-console.log(cursus);
+//console.log(cursus);
 cursus.addEventListener('click', () => {
 	cursus_value=cursus.value;
     console.log(cursus_value);
@@ -42,4 +45,6 @@ cursus.addEventListener('click', () => {
             elements[index].disabled = false;
         }
     }
+});
+
 });

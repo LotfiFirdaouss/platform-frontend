@@ -54,7 +54,7 @@ export class InsertionsListComponent implements OnInit {
           console.log(error);
         });
   }
-
+  
   public loadJsFile(url) {  
     let node = document.createElement('script');  
     node.src = url;  

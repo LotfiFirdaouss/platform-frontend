@@ -112,27 +112,27 @@
                 
             </div>
 
-            <div class="form-group row ">
-                <label for="date_integration" class="col-sm-3 col-form-label">Date d'intégration*</label>
-                <div class="col-sm-9 ">
-                  <div class="input-box ">
-                    <input 
-                          type="date"
-                          class="form-control travailClass"
-                          id="date_integration"
-                          required
-                          [(ngModel)]="insertion.date_integration"
-                          name="date_integration"
-                    >
-                    <span class="unit">Date d'intégration : </span>
-                </div>
-
-                </div>
-            </div>
-
             <hr>
             <span style="font-size:large;"> <I>Informations supplémentaires :</I> </span>
-            <div class="row" style="margin-top: 25px;">
+            <div class="form-group row " style="margin-top: 25px;">
+              <label for="date_integration" class="col-sm-3 col-form-label">Date d'intégration*</label>
+              <div class="col-sm-9 ">
+                <div class="input-box ">
+                  <input 
+                        type="date"
+                        class="form-control"
+                        id="date_integration"
+                        required
+                        [(ngModel)]="insertion.date_integration"
+                        name="date_integration"
+                  >
+                  <span class="unit">Date d'intégration : </span>
+              </div>
+
+              </div>
+          </div>
+            
+            <div class="row" >
               <div class="col">
                   <div class="form-group input-box">
                       <input
