@@ -1,1 +1,66 @@
 <p>insertion-student works!</p>
+<div class="container">
+    <h4 style="margin-top: 5%;">Mon insertion</h4>
+  
+    <div *ngIf="!currentInsertion">
+      <br />
+      <p>Veuillez selectionnez l'insertion pour toute modification ou plus de détails...</p>
+    </div>
+  
+    <div  
+    class="list-group-item"
+    *ngFor="let insertion of insertions; let i = index"
+    [class.active]="i == currentIndex"
+    (click)="setActiveInsertion(insertion, i)"
+    >
+      <div class="courses-container">
+      
+        <div class="course">
+  
+          <div class="course-preview">
+            <h7>{{ insertion.cursus_post_ensam }}</h7>
+            <h3> {{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }} </h3>
+            <div *ngIf="currentInsertion && currentInsertion==insertion">
+              <a routerLink="/insertions/insertion-info/{{ currentInsertion.id }}" style="margin-top: 0%;"><u>plus de détails</u></a>
+            </div>
+          </div>
+  
+          <div class="course-info">
+  
+            <div *ngIf="!insertion.intit_formation">
+              <div>
+                <label><strong>Société :</strong></label>
+                {{ insertion.societe }}
+              </div>
+            </div>
+  
+            <div *ngIf="insertion.intit_formation">
+              <div>
+                <label><strong>Nature formation :</strong></label>
+                {{ insertion.nature_formation }}
+              </div>
+              <div>
+                <label><strong>Intitulé formation :</strong></label>
+                {{ insertion.intit_formation }}
+              </div>
+            </div>
+  
+            <div>
+              <label><strong>Id étudiant :</strong></label>
+              {{ insertion.fk_etudiant }}
+            </div>
+  
+            <div *ngIf="currentInsertion && currentInsertion==insertion">
+              <a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}" >Modifier </a>  
+            </div>
+  
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  

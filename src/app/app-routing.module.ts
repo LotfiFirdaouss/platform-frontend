@@ -14,6 +14,7 @@ import { MenuComponent } from './shared/components/menu/menu.component';
 import { AddInsertionComponent } from './features/insertion/components/add-insertion/add-insertion.component';
 import { InsertionDetailsComponent } from './features/insertion/components/insertion-details/insertion-details.component';
 import { InsertionInfoComponent } from './features/insertion/components/insertion-info/insertion-info.component';
+import { InsertionStudentComponent } from './features/insertion/components/insertion-student/insertion-student.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'add-insertion' , component: AddInsertionComponent},
   { path: 'insertions/:id', component: InsertionDetailsComponent },
   { path: 'insertions/insertion-info/:id', component: InsertionInfoComponent },
+  { path: 'insertions/insertion-etudiant/:etudiant', component: InsertionStudentComponent },
 
 
   { path: 'notice-slider' , component: NoticeSliderComponent},

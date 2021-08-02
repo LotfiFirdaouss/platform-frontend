@@ -16,6 +16,7 @@ import { ReportsListComponent } from '../features/report/components/reports-list
 import { AddInsertionComponent } from '../features/insertion/components/add-insertion/add-insertion.component';
 import { InsertionDetailsComponent } from '../features/insertion/components/insertion-details/insertion-details.component';
 import { InsertionInfoComponent } from '../features/insertion/components/insertion-info/insertion-info.component';
+import { InsertionStudentComponent } from '../features/insertion/components/insertion-student/insertion-student.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { InsertionInfoComponent } from '../features/insertion/components/inserti
     AddInsertionComponent,
     InsertionDetailsComponent,
     InsertionInfoComponent,
+    InsertionStudentComponent,
   ],
   imports: [
     CommonModule,

@@ -35,4 +35,9 @@ export class InsertionService {
   deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
   }
+
+  findByStudent(fk_etudiant: any): Observable<Insertion[]> {
+    return this.http.get<Insertion[]>(`${baseUrl}?etudiant=${fk_etudiant}`);
+  }
+
 }

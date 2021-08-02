@@ -42,7 +42,7 @@ export class InsertionsListComponent implements OnInit {
     this.currentInsertion = insertion;
     this.currentIndex = index;
   }
-
+  /*
   removeAllInsertions(): void {
     this.insertionService.deleteAll()
       .subscribe(
@@ -53,7 +53,7 @@ export class InsertionsListComponent implements OnInit {
         error => {
           console.log(error);
         });
-  }
+  }*/
   
   public loadJsFile(url) {  
     let node = document.createElement('script');  
