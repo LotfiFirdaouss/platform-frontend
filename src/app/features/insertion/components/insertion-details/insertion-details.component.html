@@ -1,6 +1,6 @@
 <div class="container contact-form ">
 
-  <div *ngIf="currentInsertion.id">
+  <div *ngIf="currentInsertion.id && !updated && !deleted">
         <form class="yes">
             <h3>Modifier les informations relatives à votre insertion :</h3>
             
@@ -224,11 +224,11 @@
   </div>
 
 
-    <div *ngIf="updated">
+    <div *ngIf="updated" class="container">
       <h4 > L'insertion est modifié avec succès ! </h4>
     </div>
 
-    <div *ngIf="deleted">
+    <div *ngIf="deleted" class="container">
       <h4 > L'insertion est supprimé avec succès ! </h4>
     </div>
 
