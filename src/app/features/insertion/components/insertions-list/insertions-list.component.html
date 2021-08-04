@@ -11,6 +11,7 @@
   *ngFor="let insertion of insertions; let i = index"
   [class.active]="i == currentIndex"
   (click)="setActiveInsertion(insertion, i)"
+  style="padding: 0.4%;"
   >
     <div class="courses-container">
     
@@ -28,18 +29,22 @@
 
           <div *ngIf="!insertion.intit_formation">
             <div>
-              <label><strong>Société :</strong></label>
+              <label><strong>Nom de société :</strong></label>
               {{ insertion.societe }}
+            </div>
+            <div>
+              <label><strong>Intitulé de poste :</strong></label>
+              {{ insertion.intit_poste }}
             </div>
           </div>
 
           <div *ngIf="insertion.intit_formation">
             <div>
-              <label><strong>Nature formation :</strong></label>
+              <label><strong>Nature de formation :</strong></label>
               {{ insertion.nature_formation }}
             </div>
             <div>
-              <label><strong>Intitulé formation :</strong></label>
+              <label><strong>Intitulé de formation :</strong></label>
               {{ insertion.intit_formation }}
             </div>
           </div>
@@ -62,10 +67,10 @@
 
   </div>
 
-  <!--  
+  
   <button class="m-3 btn btn-sm btn-danger" (click)="removeAllInsertions()">
     Supprimer tout les insertions !!
   </button> 
-  -->
+  
 
 </div>

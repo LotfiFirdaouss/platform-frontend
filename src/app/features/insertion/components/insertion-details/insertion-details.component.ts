@@ -24,6 +24,8 @@ export class InsertionDetailsComponent implements OnInit {
   message = '';
   updated=false;
   deleted=false;
+  etudeDisabled=true;
+  travailDisabled=false;
 
   constructor(
     private insertionService: InsertionService,
@@ -83,59 +85,52 @@ export class InsertionDetailsComponent implements OnInit {
     document.getElementsByTagName('head')[0].appendChild(node);  
   }
 
+
+  myFunction(){
+    this.onCursus();
+    var cursus= <HTMLInputElement> document.getElementById("cursus_post_ensam");
+    var cursus_value=cursus.value;
+    if(cursus_value=="travail"){
+      this.etudeDisabled=true;
+      this.travailDisabled=false;
+    }else{
+      this.etudeDisabled=false;
+      this.travailDisabled=true;
+    }
+  }
+
   onCursus(){
     //recuperer la valeur de cursus
     var cursus= <HTMLInputElement> document.getElementById("cursus_post_ensam");
     var cursus_value=cursus.value;
 
-    var index;
-    var elements;
-    var count;
-    var Element;
-    //griller les champs correspondants
+    var index,elements,count,Element;
+    //renitialiser les valeurs
     if(cursus_value=="travail"){
       elements = document.getElementsByClassName('etudeClass');
       count = elements.length;
       for(index = 0; index < count; index++){
         Element = <HTMLInputElement> elements[index];
         Element.value="";
-        Element.disabled = true;
       }
-
-      elements = document.getElementsByClassName('travailClass');
-      count = elements.length;
-      for(index = 0; index < count; index++){
-        Element = <HTMLInputElement> elements[index];
-        Element.disabled = false;
-      }
-
   }else{
       elements = document.getElementsByClassName('travailClass');
       count = elements.length;
       for(index = 0; index < count; index++){
         Element = <HTMLInputElement> elements[index];
         Element.value="";
-        Element.disabled = true;
       }
-
-      elements = document.getElementsByClassName('etudeClass');
-      count = elements.length;
-      for(index = 0; index < count; index++){
-        Element = <HTMLInputElement> elements[index];
-        Element.disabled = false;
-      }
+    }
   }
 
-
-/*    var index;
-    var elements = document.getElementsByClassName('etudeClass');
-    console.log(elements)
-    var count = elements.length;
-    var Element;
-  for(index = 0; index < count; index++){
-    Element = <HTMLInputElement> elements[index];
-    Element.disabled = true;
-  }*/
-
+  ValidityWarn(){
+    var submitBtn= <HTMLInputElement> document.getElementById("submitBtn");
+    var ValidityFormWarn= <HTMLInputElement> document.getElementById("ValidityFormWarn");
+    if( submitBtn.disabled == true ){
+      ValidityFormWarn.style.display="block";
+  }else{
+      ValidityFormWarn.style.display="none";
   }
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Insertion } from 'src/app/features/insertion/models/insertion.model';
 import { InsertionService } from 'src/app/features/insertion/services/insertion.service';
 
@@ -18,15 +19,19 @@ export class AddInsertionComponent implements OnInit {
     intit_poste : '',
     societe : '',
     ville : '',
-    date_integration: new Date(), //YYYY-MM-DD
+    date_integration: null, //YYYY-MM-DD
     fk_etudiant : 0,
   }
   submitted = false;
+  clicked=false;
+  etudeDisabled=true;
+  travailDisabled=false;
 
   constructor(private insertionService : InsertionService) { }
 
   ngOnInit(): void {
     this.loadJsFile("../../../../assets/js/insertions/add-insertion.js");  
+    
   }
 
   saveInsertion(): void {
@@ -65,7 +70,7 @@ export class AddInsertionComponent implements OnInit {
       intit_poste : '',
       societe : '',
       ville : '',
-      date_integration: new Date(), 
+      date_integration: null, 
       fk_etudiant : 0,
     };
   }
@@ -75,6 +80,65 @@ export class AddInsertionComponent implements OnInit {
     node.src = url;  
     node.type = 'text/javascript';  
     document.getElementsByTagName('head')[0].appendChild(node);  
+  }
+
+  onSubmitClick(){/*
+      this.clicked=true; 
+      @ViewChild('frm', { static: true })userFrm: NgForm;
+      if(!insertionForm.form.valid){ 
+          
+          var button = <HTMLInputElement> document.getElementById("submitBtn");
+          button.disabled=true; 
+      }else{
+          saveInsertion();
+      }*/
+  }
+
+  myFunction(){
+    this.onCursus();
+    var cursus= <HTMLInputElement> document.getElementById("cursus_post_ensam");
+    var cursus_value=cursus.value;
+    if(cursus_value=="travail"){
+      this.etudeDisabled=true;
+      this.travailDisabled=false;
+    }else{
+      this.etudeDisabled=false;
+      this.travailDisabled=true;
+    }
+  }
+
+  onCursus(){
+    //recuperer la valeur de cursus
+    var cursus= <HTMLInputElement> document.getElementById("cursus_post_ensam");
+    var cursus_value=cursus.value;
+
+    var index,elements,count,Element;
+    //renitialiser les valeurs
+    if(cursus_value=="travail"){
+      elements = document.getElementsByClassName('etudeClass');
+      count = elements.length;
+      for(index = 0; index < count; index++){
+        Element = <HTMLInputElement> elements[index];
+        Element.value="";
+      }
+  }else{
+      elements = document.getElementsByClassName('travailClass');
+      count = elements.length;
+      for(index = 0; index < count; index++){
+        Element = <HTMLInputElement> elements[index];
+        Element.value="";
+      }
+    }
+  }
+
+  ValidityWarn(){
+    var submitBtn= <HTMLInputElement> document.getElementById("submitBtn");
+    var ValidityFormWarn= <HTMLInputElement> document.getElementById("ValidityFormWarn");
+    if( submitBtn.disabled == true ){
+      ValidityFormWarn.style.display="block";
+  }else{
+      ValidityFormWarn.style.display="none";
+  }
   }
 
 }

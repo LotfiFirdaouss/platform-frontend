@@ -104,6 +104,19 @@ color: gray;
 	letter-spacing: 1px;
 }
 
-.disabled{
-    pointer-events: none;
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+.ng-invalid:not(form)  {
+border-left: 5px solid #a94442; /* red */
 }
+
+.contact-form #submitBtnDiv :disabled{
+	box-shadow: 0 2px 2px #737577;
+    background: #787b7e;
+    color: rgb(146, 143, 153);
+    cursor: pointer;
+}
+
+button[disabled] {pointer-events:none}

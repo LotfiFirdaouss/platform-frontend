@@ -1,16 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-
-* {
-	box-sizing: border-box;
-}
-
 .course {
 	background-color: #fff;
 	border-radius: 10px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 	display: flex;
 	max-width: 100%;
-	margin: 20px;
+	margin: 0px;
 	overflow: hidden;
 	width: 1000px;
 }
@@ -24,15 +18,15 @@
 
 .course h3 {
 	letter-spacing: 1px;
-	margin: 10px 0;
+	margin: 0px 0;
 }
 
 .course-preview {
 	background-color: #2A265F;
 	color: #fff;
-	padding: 20px;
+	padding: 15px;
+	width: 250px;
 	max-width: 250px;
-	min-width: 250px;
 }
 
 .course-preview a {
@@ -40,12 +34,12 @@
 	display: inline-block;
 	font-size: 12px;
 	opacity: 0.6;
-	margin-top: 20px;
+	margin-top: 2px;
 	text-decoration: none;
 }
 
 .course-info {
-	padding: 20px;
+	padding: 15px;
 	position: relative;
 	width: 100%;
 	background-color: #ffffff;
@@ -89,14 +83,3 @@
 	letter-spacing: 1px;
 }
 
-.contact-form .btnContact {
-    width: 100%;
-    border: none;
-    border-radius: 50px;
-	box-shadow: 0 2px 2px #5397f8;
-    padding: 1.5%;
-    background: #002245;
-    font-weight: 600;
-    color: #fff;
-    cursor: pointer;
-}
