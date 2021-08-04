@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReportsListComponent } from './features/report/components/reports-list/reports-list.component';
+
+import {DatePipe} from '@angular/common';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ReportsListComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +21,7 @@ import { ReportsListComponent } from './features/report/components/reports-list/
     CoreModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
