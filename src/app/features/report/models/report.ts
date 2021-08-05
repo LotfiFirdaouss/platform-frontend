@@ -11,7 +11,6 @@ export class Report {
     details_add_societe?:String;
     encadrant?:String;
     email_encadrant?:any;
-    phoneNumberRegex?:any;
     telephone_encadrant?:any;
     lien_rapport?:any;
     rapport_confidentiel?:boolean;

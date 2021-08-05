@@ -36,7 +36,7 @@ export class ReportService {
     return this.http.delete(baseUrl);
   }
 
-  findByTitle(title: any): Observable<Report[]> {
-    return this.http.get<Report[]>(`${baseUrl}?title=${title}`);
+  findByStudent(fk_etudiant: any): Observable<Report[]> {
+    return this.http.get<Report[]>(`${baseUrl}?etudiant=${fk_etudiant}`);
   }
 }
