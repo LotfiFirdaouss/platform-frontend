@@ -17,6 +17,10 @@ import { AddInsertionComponent } from '../features/insertion/components/add-inse
 import { InsertionDetailsComponent } from '../features/insertion/components/insertion-details/insertion-details.component';
 import { InsertionInfoComponent } from '../features/insertion/components/insertion-info/insertion-info.component';
 import { InsertionStudentComponent } from '../features/insertion/components/insertion-student/insertion-student.component';
+import { AddReportComponent } from '../features/report/components/add-report/add-report.component';
+import { ReportInfoComponent } from '../features/report/components/report-info/report-info.component';
+import { ReportDetailsComponent } from '../features/report/components/report-details/report-details.component';
+import { ReportStudentComponent } from '../features/report/components/report-student/report-student.component';
 
 
 @NgModule({
@@ -27,6 +31,10 @@ import { InsertionStudentComponent } from '../features/insertion/components/inse
     NoticeSliderComponent,
     InsertionsListComponent,
     ReportsListComponent,
+    AddReportComponent,
+    ReportDetailsComponent,
+    ReportInfoComponent,
+    ReportStudentComponent,
     AddInsertionComponent,
     InsertionDetailsComponent,
     InsertionInfoComponent,
