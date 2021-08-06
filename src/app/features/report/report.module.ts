@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
-import { ReportsListComponent } from './components/reports-list/reports-list.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [
-    ReportsListComponent
-  ],
+  declarations: [],
   imports: [
-    SharedModule,
+    CommonModule
   ]
 })
 export class ReportModule { }
