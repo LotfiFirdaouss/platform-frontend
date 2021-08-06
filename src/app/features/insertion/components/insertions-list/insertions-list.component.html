@@ -1,0 +1,76 @@
+<div class="container">
+  <h4 style="margin-top: 5%;">Liste des insertions</h4>
+
+  <div *ngIf="!currentInsertion">
+    <br />
+    <p>Veuillez selectionnez une insertion...</p>
+  </div>
+
+  <div  
+  class="list-group-item"
+  *ngFor="let insertion of insertions; let i = index"
+  [class.active]="i == currentIndex"
+  (click)="setActiveInsertion(insertion, i)"
+  style="padding: 0.4%;"
+  >
+    <div class="courses-container">
+    
+      <div class="course">
+
+        <div class="course-preview">
+          <h7>{{ insertion.cursus_post_ensam }}</h7>
+          <h3> {{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }} </h3>
+          <div *ngIf="currentInsertion && currentInsertion==insertion">
+            <a routerLink="/insertions/insertion-info/{{ currentInsertion.id }}" style="margin-top: 0%;"><u>plus de détails</u></a>
+          </div>
+        </div>
+
+        <div class="course-info">
+
+          <div *ngIf="!insertion.intit_formation">
+            <div>
+              <label><strong>Nom de société :</strong></label>
+              {{ insertion.societe }}
+            </div>
+            <div>
+              <label><strong>Intitulé de poste :</strong></label>
+              {{ insertion.intit_poste }}
+            </div>
+          </div>
+
+          <div *ngIf="insertion.intit_formation">
+            <div>
+              <label><strong>Nature de formation :</strong></label>
+              {{ insertion.nature_formation }}
+            </div>
+            <div>
+              <label><strong>Intitulé de formation :</strong></label>
+              {{ insertion.intit_formation }}
+            </div>
+          </div>
+
+          <div>
+            <label><strong>Id étudiant :</strong></label>
+            {{ insertion.fk_etudiant }}
+          </div>
+
+          <div *ngIf="currentInsertion && currentInsertion==insertion">
+            <!--<a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}">Supprimer</a>-->
+            <a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}" >Modifier </a>  
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  
+  <button class="m-3 btn btn-sm btn-danger" (click)="removeAllInsertions()">
+    Supprimer tout les insertions !!
+  </button> 
+  
+
+</div>

@@ -1,0 +1,528 @@
+<div class="container contact-form ">
+
+  <div *ngIf="currentInsertion.id && !updated && !deleted">
+    <!--old form
+        <form class="yes">
+            <h3>Modifier les informations relatives à votre insertion :</h3>
+            
+            <hr>
+            <span style="font-size:large;"> <I>Selectionnez le cursus post Ensam :</I> </span>
+            <div class="row" style="margin-top: 25px; ">
+              <div class="col">
+                  <select 
+                    #cursus
+                    class="form-control" 
+                    id="cursus_post_ensam"
+                    required
+                    [(ngModel)]="currentInsertion.cursus_post_ensam"
+                    name="cursus_post_ensam"
+                    placeholder="cursus_post_ensam*"
+                    (click)="onCursus()"
+                    >
+                      <option value="travail" selected>Travail</option>
+                      <option value="etude">Etude</option>
+                  </select>
+
+              </div>
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Poursuite d'étude :</I> </span>
+            <div class="row" style="margin-top: 25px; ">
+              <div class="col">
+                  <div class="form-group input-box ">
+                      <input
+                        type="text"
+                        class="form-control etudeClass"
+                        id="univ"
+                        required
+                        [(ngModel)]="currentInsertion.univ"
+                        name="univ"
+                        placeholder=" nom univ*"
+                        (click)="onCursus()"
+                      />
+                      <span class="unit">Université : </span>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group input-box ">
+                        <input
+                          type="text"
+                          class="form-control etudeClass"
+                          id="intit_formation"
+                          required
+                          [(ngModel)]="currentInsertion.intit_formation"
+                          name="intit_formation"
+                          placeholder="intitulé*"
+                          (click)="onCursus()"
+                        />
+                        <span class="unit">Intitulé de formation : </span>
+                    </div>
+                </div>
+                <div class="col">
+
+                  <div class="form-group input-box ">
+                      <input
+                        type="text"
+                        class="form-control etudeClass"
+                        id="nature_formation"
+                        required
+                        [(ngModel)]="currentInsertion.nature_formation"
+                        name="nature_formation"
+                        placeholder="nature*"
+                        (click)="onCursus()"
+                      />
+                      <span class="unit">Nature de formation : </span>
+
+                  </div>
+              </div>
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Insertion professionnelle :</I> </span>
+            <div class="row" style="margin-top: 25px;">
+                <div class="col">
+                    <div class="form-group input-box ">
+                        <input
+                          type="text"
+                          class="form-control travailClass"
+                          id="intit_poste"
+                          required
+                          [(ngModel)]="currentInsertion.intit_poste"
+                          name="intit_poste"
+                          placeholder="intitulé*"
+                          (click)="onCursus()"
+                        />
+                        <span class="unit">Intitulé de poste : </span>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group input-box ">
+                        <input
+                          type="text"
+                          class="form-control travailClass"
+                          id="societe"
+                          required
+                          [(ngModel)]="currentInsertion.societe"
+                          name="societe"
+                          placeholder="société*"
+                          (click)="onCursus()"
+                        />
+                        <span class="unit">Nom de société : </span>
+
+                    </div>
+                </div>
+                
+            </div>
+
+
+
+            <hr>
+            <span style="font-size:large;"> <I>Informations supplémentaires :</I> </span>
+            <div class="form-group row " style="margin-top: 25px;">
+              <label for="date_integration" class="col-sm-3 col-form-label">Date d'intégration*</label>
+              <div class="col-sm-9 ">
+                <div class="input-box ">
+                  <input 
+                        type="date"
+                        class="form-control"
+                        id="date_integration"
+                        required
+                        [(ngModel)]="currentInsertion.date_integration"
+                        name="date_integration"
+                  >
+                  <span class="unit">Date d'intégration : </span>
+              </div>
+
+              </div>
+          </div>
+            <div class="row" >
+              <div class="col">
+                  <div class="form-group input-box">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="ville"
+                        required
+                        [(ngModel)]="currentInsertion.ville"
+                        name="ville"
+                        placeholder="ville*"
+                      />
+                      <span class="unit">Ville d'étude/boulot : </span>
+
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-group input-box">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="pays"
+                        required
+                        [(ngModel)]="currentInsertion.pays"
+                        name="pays"
+                        placeholder="pays*"
+                      />
+                      <span class="unit">Pays d'étude/boulot : </span>
+
+                  </div>
+              </div>
+              
+            </div>
+
+            <div class="row" style="margin-top: 25px;">
+              <div class="col">
+                  <label for="fk_etudiant"> Id étudiant* </label>
+                  <div class="form-group input-box">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="fk_etudiant"
+                        required
+                        [(ngModel)]="currentInsertion.fk_etudiant"
+                        name="fk_etudiant"
+                        placeholder="id*"
+                      />
+                      <span class="unit">Id étudiant : </span>
+
+                  </div>
+              </div>
+
+              
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+              <div class="col-4"></div>
+              <div class="col-4 "><button class="btnContact" (click)="deleteInsertion()">Delete</button></div>
+              <div class="col-4">         <button
+                type="submit"
+                class="btnContact"
+                (click)="updateInsertion()"
+              >Update</button></div>
+            </div>
+            
+            <p>{{ message }}</p>
+        
+          </form>
+        -->
+          <form #insertionForm="ngForm" (ngSubmit)="updateInsertion()">
+          
+            <h3>Veuillez renseigner les informations relatives à votre insertion :</h3>
+            
+            <hr>
+            <span style="font-size:large;"> <I>Selectionnez le cursus post Ensam :</I> </span>
+            <div class="row" style="margin-top: 25px; ">
+              <div class="col">
+                  <select 
+                    class="form-control" 
+                    id="cursus_post_ensam"
+                    required #cursus_post_ensam="ngModel"
+                    [(ngModel)]="currentInsertion.cursus_post_ensam"
+                    name="cursus_post_ensam"
+                    placeholder="cursus_post_ensam*"
+                    (click)="myFunction()"
+                    >
+                      <option value="travail" selected>Travail</option>
+                      <option value="etude">Etude</option>
+                  </select>
+                  <div *ngIf="cursus_post_ensam.errors && (cursus_post_ensam.dirty || cursus_post_ensam.touched) " 
+                  class="alert alert-danger">
+                  <div [hidden]="!cursus_post_ensam.errors.required">
+                    Ce champs est requis*
+                  </div>
+
+              </div>
+
+              </div>
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Poursuite d'étude :</I> </span>
+            <div class="row" style="margin-top: 25px; ">
+              <div class="col">
+                  <div class="form-group input-box " >
+
+                      <input
+                        type="text"
+                        class="form-control etudeClass"
+                        id="univ"
+                        [(ngModel)]="currentInsertion.univ"
+                        name="univ" #univ="ngModel"
+                        placeholder=" nom univ*"
+                        (click)="myFunction()"
+                        [disabled]="etudeDisabled"
+                        [required]="!etudeDisabled" [maxlength]="etudeDisabled ? false : 200"
+                      /> <!-- [disabled]="true"  ng-disabled="disable"  ng-required="!disable" -->
+                      <span class="unit">Université : </span>
+                      <!-- || (button.clicked && button.disabled) -->
+                      <div *ngIf="univ.errors && (univ.dirty || univ.touched) " 
+                          class="alert alert-danger">
+                          <div [hidden]="!univ.errors.required">
+                            Ce champs est requis*
+                          </div>
+                          <div [hidden]="!univ.errors.maxlength">
+                            Ce champs ne peut dépasser 200 caractères.
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group input-box ">
+                        <input
+                          type="text"
+                          class="form-control etudeClass"
+                          id="intit_formation"
+                          [(ngModel)]="currentInsertion.intit_formation"
+                          name="intit_formation" #intit_formation="ngModel"
+                          placeholder="intitulé*"
+                          (click)="myFunction()"
+                          [disabled]="etudeDisabled"
+                          [required]="!intit_formation.disabled" [maxlength]="intit_formation.disabled ? false : 200"
+                        />
+                        <span class="unit">Intitulé de formation : </span>
+                        <div *ngIf="intit_formation.errors && (intit_formation.dirty || intit_formation.touched) " 
+                        class="alert alert-danger">
+                          <div [hidden]="!intit_formation.errors.required">
+                            Ce champs est requis*
+                          </div>
+                          <div [hidden]="!intit_formation.errors.maxlength">
+                            Ce champs ne peut dépasser 200 caractères.
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+
+                  <div class="form-group input-box ">
+                      <input
+                        type="text"
+                        class="form-control etudeClass"
+                        id="nature_formation"
+                        [(ngModel)]="currentInsertion.nature_formation"
+                        name="nature_formation" #nature_formation="ngModel"
+                        placeholder="nature*"
+                        (click)="myFunction()"
+                        [disabled]="etudeDisabled"
+                        [required]="!nature_formation.disabled" [maxlength]="nature_formation.disabled ? false : 200"
+                      />
+                      <span class="unit">Nature de formation : </span>
+                      <div *ngIf="nature_formation.errors && (nature_formation.dirty || nature_formation.touched) " 
+                        class="alert alert-danger">
+                          <div [hidden]="!nature_formation.errors.required">
+                            Ce champs est requis*
+                          </div>
+                          <div [hidden]="!nature_formation.errors.maxlength">
+                            Ce champs ne peut dépasser 200 caractères.
+                          </div>
+                        </div>
+                  </div>
+              </div>
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Insertion professionnelle :</I> </span>
+            <div class="row" style="margin-top: 25px;">
+                <div class="col">
+                    <div class="form-group input-box ">
+                        <input
+                          type="text"
+                          class="form-control travailClass"
+                          id="intit_poste"
+                          [(ngModel)]="currentInsertion.intit_poste"
+                          name="intit_poste" #intit_poste="ngModel"
+                          placeholder="intitulé*"
+                          (click)="myFunction()"
+                          [disabled]="travailDisabled"
+                          [required]="!intit_poste.disabled" [maxlength]="intit_poste.disabled ? false : 200"
+                        />
+                        <span class="unit">Intitulé de poste : </span>
+                        <div *ngIf="intit_poste.errors && (intit_poste.dirty || intit_poste.touched) " 
+                        class="alert alert-danger">
+                          <div [hidden]="!intit_poste.errors.required">
+                            Ce champs est requis*
+                          </div>
+                          <div [hidden]="!intit_poste.errors.maxlength">
+                            Ce champs ne peut dépasser 200 caractères.
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group input-box ">
+                        <input
+                          type="text"
+                          class="form-control travailClass"
+                          id="societe"
+                          [(ngModel)]="currentInsertion.societe"
+                          name="societe" #societe="ngModel"
+                          placeholder="société*"
+                          (click)="myFunction()"
+                          [disabled]="travailDisabled"
+                          [required]="!societe.disabled" [maxlength]="societe.disabled ? false : 200"
+                        />
+                        <span class="unit">Nom de société : </span>
+
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Informations supplémentaires :</I> </span>
+            <div class="form-group row " style="margin-top: 25px;">
+              <label for="date_integration" class="col-sm-3 col-form-label">Date d'intégration*</label>
+              <div class="col-sm-9 ">
+                <div class="input-box ">
+                  <input 
+                    type="date"
+                    class="form-control datepicker"
+                    id="date_integration"
+                    required maxlength="200" 
+                    pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                    [(ngModel)]="currentInsertion.date_integration"
+                    name="date_integration" #date_integration="ngModel"
+                  >
+                  <span class="unit">Date d'intégration : </span>
+                  <div *ngIf="date_integration.errors && (date_integration.dirty || date_integration.touched) " 
+                  class="alert alert-danger">
+                    <div [hidden]="!date_integration.errors.required">
+                      Ce champs est requis*
+                    </div>
+                    <div [hidden]="!date_integration.errors.maxlength">
+                      Ce champs ne peut dépasser 200 caractères.
+                    </div>
+                    <div [hidden]="!date_integration.errors.pattern">
+                      Veuillez entrer une date valide !
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+          </div>
+            
+            <div class="row" >
+              <div class="col">
+                  <div class="form-group input-box">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="ville"
+                        required maxlength="200"
+                        [(ngModel)]="currentInsertion.ville"
+                        name="ville" #ville="ngModel"
+                        placeholder="ville*"
+                        (click)="myFunction()"
+                      />
+                      <span class="unit">Ville d'étude/boulot : </span>
+                      <div *ngIf="ville.errors && (ville.dirty || ville.touched) " 
+                      class="alert alert-danger">
+                        <div [hidden]="!ville.errors.required">
+                          Ce champs est requis*
+                        </div>
+                        <div [hidden]="!ville.errors.maxlength">
+                          Ce champs ne peut dépasser 200 caractères.
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-group input-box">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="pays"
+                        required maxlength="200"
+                        [(ngModel)]="currentInsertion.pays"
+                        name="pays" #pays="ngModel"
+                        placeholder="pays*"
+                        (click)="myFunction()"
+                      />
+                      <span class="unit">Pays d'étude/boulot : </span>
+                      <div *ngIf="pays.errors && (pays.dirty || pays.touched) " 
+                      class="alert alert-danger">
+                        <div [hidden]="!pays.errors.required">
+                          Ce champs est requis*
+                        </div>
+                        <div [hidden]="!pays.errors.maxlength">
+                          Ce champs ne peut dépasser 200 caractères.
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              
+            </div>
+
+            <div class="row" style="margin-top: 25px;">
+              <div class="col">
+                  <label for="fk_etudiant"> Id étudiant* </label>
+                  <div class="form-group input-box">
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="fk_etudiant"
+                        required 
+                        [(ngModel)]="currentInsertion.fk_etudiant"
+                        name="fk_etudiant" #fk_etudiant="ngModel"
+                        placeholder="id*"
+                        (click)="myFunction()"
+                      />
+                      <span class="unit">Id étudiant : </span>
+                      <div *ngIf="fk_etudiant.errors && (fk_etudiant.dirty || fk_etudiant.touched) " 
+                      class="alert alert-danger">
+                        <div [hidden]="!fk_etudiant.errors.required">
+                          Ce champs est requis*
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+              
+            </div>
+
+            <div style="display: none; color:red;" id="ValidityFormWarn" class="alert "> Veuillez vérifier que tt les champs sont bien remplies ! </div> 
+
+            <div class="row" style="margin-top: 30px;">
+              <div class="col-4"></div>
+              <div class="col-4 "><button class="btnContact" (click)="deleteInsertion()">Delete</button></div>
+              <div class="col-4 " id="submitBtnDiv" 
+              style="display:inline-block; position:relative; padding-bottom: 0%;"
+              (click)="ValidityWarn()" >
+                <button 
+                  id="submitBtn"
+                  type="submit"
+                  [disabled]="!insertionForm.form.valid"
+                  (click)="updateInsertion()" 
+                  class="btnContact "
+                  >
+                  Update</button></div>
+            </div>
+            <p>{{ message }}</p>            
+            
+        </form> 
+
+
+    </div>
+
+    <div *ngIf="!currentInsertion.id">
+        <br />
+        <p >L'insertion spécifié n'est pas accessible ...</p>
+  </div>
+
+
+    <div *ngIf="updated" class="container">
+      <h4 > L'insertion est modifié avec succès ! </h4>
+    </div>
+
+    <div *ngIf="deleted" class="container">
+      <h4 > L'insertion est supprimé avec succès ! </h4>
+    </div>
+
+</div>

@@ -11,6 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { InsertionsListComponent } from '../features/insertion/components/insertions-list/insertions-list.component';
+import { ReportsListComponent } from '../features/report/components/reports-list/reports-list.component';
+import { AddInsertionComponent } from '../features/insertion/components/add-insertion/add-insertion.component';
+import { InsertionDetailsComponent } from '../features/insertion/components/insertion-details/insertion-details.component';
+import { InsertionInfoComponent } from '../features/insertion/components/insertion-info/insertion-info.component';
+import { InsertionStudentComponent } from '../features/insertion/components/insertion-student/insertion-student.component';
 
 
 @NgModule({
@@ -18,7 +24,13 @@ import { BrowserModule } from '@angular/platform-browser';
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NoticeSliderComponent
+    NoticeSliderComponent,
+    InsertionsListComponent,
+    ReportsListComponent,
+    AddInsertionComponent,
+    InsertionDetailsComponent,
+    InsertionInfoComponent,
+    InsertionStudentComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +46,7 @@ import { BrowserModule } from '@angular/platform-browser';
     MenuComponent,
     NoticeSliderComponent,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
   ]
 })
 export class SharedModule { }
