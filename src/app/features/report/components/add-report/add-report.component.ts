@@ -4,9 +4,9 @@ import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
 
 @Component({
-  selector: 'appaddreport',
-  templateUrl: './addreport.component.html',
-  styleUrls: ['./addreport.component.css']
+  selector: 'app-add-report',
+  templateUrl: './add-report.component.html',
+  styleUrls: ['./add-report.component.css']
 })
 export class AddReportComponent implements OnInit {
   
@@ -68,7 +68,6 @@ export class AddReportComponent implements OnInit {
 
   myFunction(){
     var nat= <HTMLInputElement> document.getElementById("nature");
-    var index,elements,count,Element;
     if(nat.value[0]=='1'){
       this.report.societe_stage='';
       this.report.secteur_societe='';
@@ -78,6 +77,7 @@ export class AddReportComponent implements OnInit {
       this.report.encadrant='';
       this.report.email_encadrant='';
       this.report.telephone_encadrant='';
+      this.stageDisabled=true;
     }else{
       this.stageDisabled=false;
     }

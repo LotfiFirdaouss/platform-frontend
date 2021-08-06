@@ -35,26 +35,12 @@ export class ReportDetailsComponent implements OnInit {
 
  constructor(private reportService: ReportService,
    private route: ActivatedRoute,
-   private router: Router) {
-     this.router.events.subscribe((e) => {
-         if (e instanceof NavigationEnd) {
-           var nat= <HTMLInputElement> document.getElementById("nature");
-           console.log(nat)
-           this.myFunction();
-         }
-      });}
+   private router: Router) { }
       
  ngOnInit(): void {
    this.getReport(this.route.snapshot.params.id); 
  }
 
- ngAfterContentInit():void {
-   window.onload = function() {
-     var nat= <HTMLInputElement> document.getElementById("nature");
-     console.log(nat)
-     this.myFunction(); 
-   };
- }
 
  getReport(id: string): void {
    this.reportService.get(id)

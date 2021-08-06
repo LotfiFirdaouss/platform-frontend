@@ -6,7 +6,7 @@
            <div class="row">
                <div class="col">
                    <div class="form-group">
-                       <select class="custom-select form-control"  (click)="myFunction()" name="nature" required
+                       <select class="custom-select form-control"  (click)="myFunction()" name="nature" id="nature" required
                        [(ngModel)]="currentReport.stage_ou_projet">
                            <option *ngFor="let nature of natures" [ngValue]="nature.nature" selected>
                             {{ nature.name }}
@@ -21,11 +21,11 @@
                        <input type="text" [(ngModel)]="currentReport.intitule_stage" required #intitule="ngModel" 
                        class="form-control" name="intitule" placeholder="Intitulé*" id="nature" maxlength="200"  />
                        <span class="unit">Intitulé : </span>
-                       <div *ngIf="!intitule.valid && (intitule.dirty || intitule.touched)" class="alert alert-danger">
-                           <div [hidden]="!intitule.errors.required">
+                       <div *ngIf="intitule.errors && (intitule.dirty || intitule.touched)" class="alert alert-danger">
+                           <div [hidden]="!intitule.errors?.required">
                                L'intitulé du stage/projet est requis.
                            </div>
-                           <div [hidden]="!intitule.errors.maxlength">
+                           <div [hidden]="!intitule.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 200 caractères.
                            </div>
                        </div>
@@ -40,11 +40,11 @@
                        <input type="date" class="form-control" name="dateDebut" required #dateDebut="ngModel"
                         pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
                        [(ngModel)]="currentReport.date_debut_stage" placeholder="Date de début*" >
-                       <div *ngIf="!dateDebut.valid && (dateDebut.dirty || dateDebut.touched)" class="alert alert-danger">
-                           <div [hidden]="!dateDebut.errors.required">
+                       <div *ngIf="dateDebut.errors && (dateDebut.dirty || dateDebut.touched)" class="alert alert-danger">
+                           <div [hidden]="!dateDebut.errors?.required">
                                La date de début du stage/projet est requise.
                            </div>
-                           <div [hidden]="!dateDebut.errors.pattern">
+                           <div [hidden]="!dateDebut.errors?.pattern">
                                Veuillez entrer une date valide !
                            </div>
                        </div>
@@ -60,11 +60,11 @@
                        <input type="date" class="form-control" name="dateFin" required #dateFin="ngModel"
                         pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
                        [(ngModel)]="currentReport.date_fin_stage" placeholder="Date de fin*" >
-                       <div *ngIf="!dateFin.valid && (dateFin.dirty || dateFin.touched)" class="alert alert-danger">
-                           <div [hidden]="!dateFin.errors.required">
+                       <div *ngIf="dateFin.errors && (dateFin.dirty || dateFin.touched)" class="alert alert-danger">
+                           <div [hidden]="!dateFin.errors?.required">
                                La date de fin du stage/projet est requise.
                            </div>
-                           <div [hidden]="!dateFin.errors.pattern">
+                           <div [hidden]="!dateFin.errors?.pattern">
                                Veuillez entrer une date valide !
                            </div>
                        </div>
@@ -81,11 +81,11 @@
                        class="form-control nature" placeholder="Société*" [required]="!stageDisabled" 
                        [maxlength]="stageDisabled ? false : 200" [disabled]="stageDisabled" />
                        <span class="unit">Société : </span>
-                       <div *ngIf="!societe.valid && (societe.dirty || societe.touched)" class="alert alert-danger">
-                           <div [hidden]="!societe.errors.required">
+                       <div *ngIf="societe.errors && (societe.dirty || societe.touched)" class="alert alert-danger">
+                           <div [hidden]="!societe.errors?.required">
                                La société du stage est requise.
                            </div>
-                           <div [hidden]="!societe.errors.maxlength">
+                           <div [hidden]="!societe.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 200 caractères.
                            </div>
                        </div>
@@ -97,11 +97,11 @@
                        class="form-control nature" placeholder="Secteur*" [required]="!stageDisabled" 
                        [maxlength]="stageDisabled ? false : 200" [disabled]="stageDisabled"/>
                        <span class="unit">Secteur : </span>
-                       <div *ngIf="!secteur.valid && (secteur.dirty || secteur.touched)" class="alert alert-danger">
-                           <div [hidden]="!secteur.errors.required">
+                       <div *ngIf="secteur.errors && (secteur.dirty || secteur.touched)" class="alert alert-danger">
+                           <div [hidden]="!secteur.errors?.required">
                                Le secteur du stage est requis.
                            </div>
-                           <div [hidden]="!secteur.errors.maxlength">
+                           <div [hidden]="!secteur.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 200 caractères.
                            </div>
                        </div>
@@ -115,11 +115,11 @@
                        class="form-control nature" name="pays" placeholder="Pays*" [required]="!stageDisabled" 
                        [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
                        <span class="unit">Pays : </span>
-                       <div *ngIf="!pays.valid && (pays.dirty || pays.touched)" class="alert alert-danger">
-                           <div [hidden]="!pays.errors.required">
+                       <div *ngIf="pays.errors && (pays.dirty || pays.touched)" class="alert alert-danger">
+                           <div [hidden]="!pays.errors?.required">
                                Le pays du stage est requis.
                            </div>
-                           <div [hidden]="!pays.errors.maxlength">
+                           <div [hidden]="!pays.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 20 caractères.
                            </div>
                        </div>
@@ -131,11 +131,11 @@
                        class="form-control nature" name="ville" placeholder="Ville*" [required]="!stageDisabled" 
                        [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
                        <span class="unit">Ville : </span>
-                       <div *ngIf="!ville.valid && (ville.dirty || ville.touched)" class="alert alert-danger">
-                           <div [hidden]="!ville.errors.required">
+                       <div *ngIf="ville.errors && (ville.dirty || ville.touched)" class="alert alert-danger">
+                           <div [hidden]="!ville.errors?.required">
                                La ville du stage est requise.
                            </div>
-                           <div [hidden]="!ville.errors.maxlength">
+                           <div [hidden]="!ville.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 20 caractères.
                            </div>
                        </div>
@@ -158,11 +158,11 @@
                        class="form-control nature" placeholder="Nom d'encadrant*" [required]="!stageDisabled" 
                        [maxlength]="stageDisabled ? false : 200" [disabled]="stageDisabled" />
                        <span class="unit">Nom d'encadrant: </span>
-                       <div *ngIf="!nom.valid && (nom.dirty || nom.touched)" class="alert alert-danger">
-                           <div [hidden]="!nom.errors.required">
+                       <div *ngIf="nom.errors && (nom.dirty || nom.touched)" class="alert alert-danger">
+                           <div [hidden]="!nom.errors?.required">
                                Le nom d'encadrant est requis.
                            </div>
-                           <div [hidden]="!nom.errors.maxlength">
+                           <div [hidden]="!nom.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 200 caractères.
                            </div>
                        </div>
@@ -175,11 +175,11 @@
                        pattern="[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" 
                        [disabled]="stageDisabled" />
                        <span class="unit">Email d'encadrant: </span>
-                       <div *ngIf="!email.valid && (email.dirty || email.touched)" class="alert alert-danger">
-                           <div [hidden]="!email.errors.required">
+                       <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                           <div [hidden]="!email.errors?.required">
                                L'email d'encadrant est requis.
                            </div>
-                           <div [hidden]="!email.errors.pattern">
+                           <div [hidden]="!email.errors?.pattern">
                                Veuillez entrer un email valide !
                            </div>
                        </div>
@@ -193,11 +193,11 @@
                        class="form-control nature" placeholder="Tél° d'encadrant*" [required]="!stageDisabled" 
                        [disabled]="stageDisabled" pattern="^\+[1-9]{1}[0-9]{3,14}$" />
                        <span class="unit">Télephone d'encadrant: </span>
-                       <div *ngIf="!tel.valid && (tel.dirty || tel.touched)" class="alert alert-danger">
-                           <div [hidden]="!tel.errors.required">
+                       <div *ngIf="tel.errors && (tel.dirty || tel.touched)" class="alert alert-danger">
+                           <div [hidden]="!tel.errors?.required">
                                Le numéro de téléphone d'encadrant est requis.
                            </div>
-                           <div [hidden]="!tel.errors.pattern">
+                           <div [hidden]="!tel.errors?.pattern">
                                Veuillez entrer un numéro de téléphone valide (Format: +...) !
                            </div>
                        </div>
@@ -212,11 +212,11 @@
                        <input type="text" [(ngModel)]="currentReport.lien_rapport" #lien="ngModel" maxlength="200"
                        class="form-control" name="lien" placeholder="lien du rapport*" required/>
                        <span class="unit">Télephone d'encadrant: </span>
-                       <div *ngIf="!lien.valid && (lien.dirty || lien.touched)" class="alert alert-danger">
-                           <div [hidden]="!lien.errors.required">
+                       <div *ngIf="lien.errors && (lien.dirty || lien.touched)" class="alert alert-danger">
+                           <div [hidden]="!lien.errors?.required">
                                Le lien du rapport est requis.
                            </div>
-                           <div [hidden]="!lien.errors.maxlength">
+                           <div [hidden]="!lien.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 200 caractères.
                            </div>
                        </div>

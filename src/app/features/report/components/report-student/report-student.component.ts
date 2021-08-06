@@ -17,7 +17,6 @@ export class ReportStudentComponent implements OnInit {
    constructor(private reportService: ReportService,private route: ActivatedRoute) { }
    
    ngOnInit(): void {
-     console.log(this.route.snapshot.params.etudiant);
      this.getReport(this.route.snapshot.params.etudiant);
    }
    
