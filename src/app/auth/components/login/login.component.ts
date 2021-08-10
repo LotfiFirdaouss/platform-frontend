@@ -15,11 +15,13 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  isFormFull = false;
   //roles: string[] = [];
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.loadJsFile("../../../../assets/js/Login.js");  
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       //this.roles = this.tokenStorage.getUser().roles;
@@ -28,6 +30,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.form;
+    if( username && password){
+      this.isFormFull = true;
+    }
 
     this.authService.login({'username': username, 'password': password}).subscribe(
       data => {
@@ -50,6 +55,13 @@ export class LoginComponent implements OnInit {
   reloadPage(): void {
     window.location.reload();
     console.log(this.tokenStorage.getUser())
+  }
+
+  public loadJsFile(url) {  
+    let node = document.createElement('script');  
+    node.src = url;  
+    node.type = 'text/javascript';  
+    document.getElementsByTagName('head')[0].appendChild(node);  
   }
 
 }

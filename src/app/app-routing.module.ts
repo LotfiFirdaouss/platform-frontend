@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomePageComponent } from './core/components/welcome-page/welcome-page.component';
 
-import { LoginPageComponent } from './core/components/login-page/login-page.component';
-import { RegisterPageComponent } from './core/components/register-page/register-page.component';
-
 import {InsertionsListComponent  } from './features/insertion/components/insertions-list/insertions-list.component';
 
 import { NoticeSliderComponent } from './shared/components/notice-slider/notice-slider.component';
@@ -20,11 +17,16 @@ import { AddReportComponent } from './features/report/components/add-report/add-
 import { ReportDetailsComponent } from './features/report/components/report-details/report-details.component';
 import { ReportInfoComponent } from './features/report/components/report-info/report-info.component';
 import { ReportStudentComponent } from './features/report/components/report-student/report-student.component';
+import { RegisterComponent } from './auth/components/register/register.component';
+import { LoginComponent } from './auth/components/login/login.component';
 const routes: Routes = [
 
-  //reports
+  
   { path : '' , component : WelcomePageComponent},
-  { path :'login' , component : LoginPageComponent},
+  { path :'login' , component : LoginComponent},
+  { path :'register' , component : RegisterComponent},
+  
+  //reports
   { path: 'rapports' , component: ReportsListComponent},
   { path: 'add-rapport' , component: AddReportComponent},
   { path: 'rapport-details/:id' , component: ReportDetailsComponent},

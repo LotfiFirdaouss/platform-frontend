@@ -1,108 +1,63 @@
-<p>register works!</p>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form class="login100-form validate-form" name="form">
+        <span class="login100-form-title p-b-26"> Bienvenue</span>
+        <span class="login100-form-title">
+          <img class="img" src="assets/Img/iconLibrairieOrange.png" width="35%">
+        </span><br>
 
-<div class="col-md-12">
-    <div class="card card-container">
-      <img
-        id="profile-img" width="200px" height="200px"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
-      <form
-        *ngIf="!isSuccessful"
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-      <div class="form-group">
-        <label for="group">Professor or Student</label>
-        <fieldset class="form-control">
+        <div class="wrap-input100 validate-input" data-validate="Choisir ce qui vous corresponds">
           <input type="radio" value=2 id="groupType" 
-          
-          name="groupType"
-          [(ngModel)]="form.groupType"
-          required
-          #groupType="ngModel"> Professor
-          <input type="radio" value=3 id="groupType" 
-          
-          name="groupType"
-          [(ngModel)]="form.groupType"
-          required
-          #groupType="ngModel"> Student
-        </fieldset>  
-        <div class="alert-danger" *ngIf="groupType.errors && f.submitted">
-          <div *ngIf="groupType.errors.required">groupType is required</div>
+            name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;">Professeur</span> 
+          <input type="radio" value=3 id="groupType"
+          name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;">Etudiant</span>  
         </div>
-      </div>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            name="username"
-            [(ngModel)]="form.username"
-            required
-            minlength="3"
-            maxlength="20"
-            #username="ngModel"
-          />
-          <div class="alert-danger" *ngIf="username.errors && f.submitted">
-            <div *ngIf="username.errors.required">Username is required</div>
-            <div *ngIf="username.errors.minlength">
-              Username must be at least 3 characters
-            </div>
-            <div *ngIf="username.errors.maxlength">
-              Username must be at most 20 characters
-            </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer votre email insit">
+          <input class="input100" type="email" name="email" [(ngModel)]="form.email">
+          <span class="focus-input100" data-placeholder="Email"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer le username">
+          <input class="input100" type="text" name="username" [(ngModel)]="form.username">
+          <span class="focus-input100" data-placeholder="Username"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer le mot de passe">
+          <span class="btn-show-pass">
+            <i class="zmdi zmdi-eye"></i>
+          </span>
+          <input class="input100" type="password" name="password" [(ngModel)]="form.password">
+          <span class="focus-input100" data-placeholder="mot de passe"></span>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn" (click)="onSubmit()">
+              s'inscrire
+            </button>
+                        
           </div>
         </div>
+
         <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            [(ngModel)]="form.email"
-            required
-            email
-            #email="ngModel"
-          />
-          <div class="alert-danger" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.errors.required">Email is required</div>
-            <div *ngIf="email.errors.email">
-              Email must be a valid email address
-            </div>
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="isFormFull && isSignUpFailed"
+          >
+            Sign up failed: {{ errorMessage }}
           </div>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            [(ngModel)]="form.password"
-            required
-            minlength="6"
-            #password="ngModel"
-          />
-          <div class="alert-danger" *ngIf="password.errors && f.submitted">
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">
-              Password must be at least 6 characters
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Sign Up</button>
-        </div>
-  
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-          Signup failed!<br />{{ errorMessage }}
-        </div>
+
       </form>
-  
+
       <div class="alert alert-success" *ngIf="isSuccessful">
         Your registration is successful!
       </div>
+
     </div>
   </div>
+</div>  

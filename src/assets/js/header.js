@@ -1,4 +1,4 @@
-function switchActive(ID){
+function JSswitchActive(ID){ 
     document.getElementsByClassName('active')[0].classList.add('inactive');
     document.getElementsByClassName('active')[0].classList.remove('active');
 
