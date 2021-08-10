@@ -1,4 +1,4 @@
-<div class="limiter">
+<div class="limiter" *ngIf="!isSuccessful || isSignUpFailed">
   <div class="container-login100">
     <div class="wrap-login100">
       <form class="login100-form validate-form" name="form">
@@ -53,11 +53,26 @@
         </div>
 
       </form>
-
-      <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful!
-      </div>
-
     </div>
   </div>
 </div>  
+
+
+<div class="container-login100" *ngIf="isSuccessful && !isSignUpFailed">
+  <div class="wrap-login100">
+    <div class="login100-form">
+      <span class="login100-form-title p-b-26"> Votre inscription est réussi!</span>
+
+      <div class="container-login100-form-btn">
+        <div class="wrap-login100-form-btn">
+          <div class="login100-form-bgbtn"></div>
+          <a class="login100-form-btn" routerLink="/login">
+            Se connecter ->
+          </a>
+                      
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

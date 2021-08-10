@@ -2,6 +2,8 @@ import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
 import { DOCUMENT } from '@angular/common';
+import {Router} from '@angular/router';
+
 
 declare function JSswitchActive(id : string):any;
 
@@ -25,8 +27,10 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   //showModeratorBoard = false;
   currentUser!: ReturnedUser; 
 
-  constructor(private token: TokenStorageService,
-    @Inject(DOCUMENT) private document: Document) { }
+  constructor(
+    private token: TokenStorageService,
+    @Inject(DOCUMENT) private document: Document,
+    private route:Router) { }
 
   ngOnInit(): void {
     this.loadJsFile("../../../../assets/js/header.js"); 
@@ -67,7 +71,8 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
   logout(): void {
     this.token.signOut();
-    window.location.reload();
+    window.location.reload(); 
+    //this.route.navigate(['/']);
   }
 
 

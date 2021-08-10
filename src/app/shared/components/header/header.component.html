@@ -17,10 +17,10 @@
               <a class="nav-link active" [id]="accueilBtnID" routerLink="/" (click)="switchActive(accueilBtnID)" *ngIf="!isLoggedIn">Accueil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link inactive" [id]="AproposBtnID" routerLink="/" (click)="switchActive(AproposBtnID)" *ngIf="!isLoggedIn">A propos</a>
+              <a class="nav-link inactive" [id]="AproposBtnID" routerLink="/à-propos" (click)="switchActive(AproposBtnID)" *ngIf="!isLoggedIn">A propos</a>
             </li>  
             <li class="nav-item">
-              <a class="nav-link inactive" [id]="contactBtnID" routerLink="/" (click)="switchActive(contactBtnID)" *ngIf="!isLoggedIn">Contact</a>
+              <a class="nav-link inactive" [id]="contactBtnID" routerLink="/contact" (click)="switchActive(contactBtnID)" *ngIf="!isLoggedIn">Contact</a>
             </li>
 
             <!-- shown in case not connected == !isLoggedIn -->

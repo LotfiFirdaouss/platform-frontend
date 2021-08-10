@@ -19,12 +19,24 @@ import { ReportInfoComponent } from './features/report/components/report-info/re
 import { ReportStudentComponent } from './features/report/components/report-student/report-student.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { LoginComponent } from './auth/components/login/login.component';
+import { HomeComponent } from './auth/components/home/home.component';
+import { ProfileComponent } from './auth/components/profile/profile.component';
+import { ContactPageComponent } from './core/components/contact-page/contact-page.component';
+import { AProposPageComponent } from './core/components/a-propos-page/a-propos-page.component';
+
+
 const routes: Routes = [
 
-  
+  //not connected 
   { path : '' , component : WelcomePageComponent},
   { path :'login' , component : LoginComponent},
   { path :'register' , component : RegisterComponent},
+  { path :'contact' , component : ContactPageComponent},
+  { path :'à-propos' , component : AProposPageComponent},
+
+  //protected routes: connected
+  { path :'home' , component : HomeComponent}, 
+  { path :'profile' , component : ProfileComponent},
   
   //reports
   { path: 'rapports' , component: ReportsListComponent},
@@ -41,6 +53,7 @@ const routes: Routes = [
   { path: 'insertions/insertion-etudiant/:etudiant', component: InsertionStudentComponent },
 
 
+  //temporary routes (just to visualize the components)
   { path: 'notice-slider' , component: NoticeSliderComponent},
   { path: 'menu' , component: MenuComponent}
 ];
