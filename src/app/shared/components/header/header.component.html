@@ -12,18 +12,18 @@
   
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto w-100 justify-content-end">
-            <!-- always shown -->
-            <li class="nav-item ">
-              <a class="nav-link active" [id]="accueilBtnID" routerLink="/" (click)="switchActive(accueilBtnID)" *ngIf="!isLoggedIn">Accueil <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link inactive" [id]="AproposBtnID" routerLink="/à-propos" (click)="switchActive(AproposBtnID)" *ngIf="!isLoggedIn">A propos</a>
-            </li>  
-            <li class="nav-item">
-              <a class="nav-link inactive" [id]="contactBtnID" routerLink="/contact" (click)="switchActive(contactBtnID)" *ngIf="!isLoggedIn">Contact</a>
-            </li>
+          
 
             <!-- shown in case not connected == !isLoggedIn -->
+              <li class="nav-item "  *ngIf="!isLoggedIn">
+                <a class="nav-link active" [id]="accueilBtnID" routerLink="/" (click)="switchActive(accueilBtnID)">Accueil <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item"  *ngIf="!isLoggedIn">
+                <a class="nav-link inactive" [id]="AproposBtnID" routerLink="/à-propos" (click)="switchActive(AproposBtnID)" >A propos</a>
+              </li>  
+              <li class="nav-item"  *ngIf="!isLoggedIn">
+                <a class="nav-link inactive" [id]="contactBtnID" routerLink="/contact" (click)="switchActive(contactBtnID)" >Contact</a>
+              </li>
               <li class="nav-item" *ngIf="!isLoggedIn">
                 <a class="nav-link inactive" [id]="signupBtnID" routerLink="/register" (click)="switchActive(signupBtnID)">S'inscrire</a>
               <li class="nav-item" *ngIf="!isLoggedIn">
@@ -39,7 +39,7 @@
                 <a class="nav-link inactive" [id]="profileBtnID" routerLink="/profile" (click)="switchActive(profileBtnID)">{{ currentUser.username }}</a>
               </li>
               <li class="nav-item" *ngIf="isLoggedIn">
-                <a class="nav-link inactive" [id]="logoutBtnID" routerLink="/" (click)="logout(); switchActive(logoutBtnID); ">Déconnexion</a>
+                <a class="nav-link inactive" [id]="logoutBtnID" routerLink="/" (click)="logout();">Déconnexion</a>
               </li>
 
           </ul>
