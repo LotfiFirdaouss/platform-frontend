@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
 
 @Component({
-   selector: 'app-reports-list',
-   templateUrl: './reports-list.component.html',
-   styleUrls: ['./reports-list.component.css']
+   selector: 'app-report-student',
+   templateUrl: './report-student.component.html',
+   styleUrls: ['./report-student.component.css']
   })
-export class ReportsListComponent implements OnInit {
+export class ReportStudentComponent implements OnInit {
   
    reports?: Report[];
    currentReport?: Report;
    currentIndex = -1;
    
-   constructor(private reportService: ReportService) { }
+   constructor(private reportService: ReportService,private route: ActivatedRoute) { }
    
    ngOnInit(): void {
-     this.retrieveReports();
+     this.getReport(this.route.snapshot.params.etudiant);
    }
    
-   retrieveReports(): void {
-     this.reportService.getAll()
+   getReport(id: string): void {
+     this.reportService.findByStudent(id)
        .subscribe(
          data => {
            this.reports = data;
@@ -29,12 +30,6 @@ export class ReportsListComponent implements OnInit {
          error => {
            console.log(error);
          });
-   }
-   
-   refreshList(): void {
-     this.retrieveReports();
-     this.currentReport = undefined;
-     this.currentIndex = -1;
    }
    
    setActiveReport(report: Report, index: number): void {

@@ -1,0 +1,22 @@
+<div class="tab-inf" *ngIf="currentReport.id">
+    
+    <div class="container">
+      <h3>{{currentReport.intitule_stage}}</h3>     
+      
+      <div class="table-responsive custom-table-responsive">
+      
+        <table class="table custom-table">
+          <tbody>
+            <tr scope="row" *ngFor="let aff of affiches">
+              <td>{{aff.champ}}</td>
+              <td>{{aff.info}}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+      
+
+    </div>
+    
+  </div>
