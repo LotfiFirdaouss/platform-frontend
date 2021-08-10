@@ -1,0 +1,8 @@
+<div *ngIf="isLoggedIn">
+    <p>This is the home protected page, you are connected !</p>
+    <div *ngIf="isAdministrator"> you are a administrator </div>
+    <div *ngIf="isProfessor"> you are a professor </div>
+    <div *ngIf="isStudent"> you are a student </div>
+</div>
+
+

@@ -1,5 +1,5 @@
 (function ($) {
-    "use strict";
+    "use strict"; 
 
 
     /*==================================================================
@@ -11,7 +11,6 @@
             }
             else {
                 $(this).removeClass('has-val');
-                
             }
         })    
     })
@@ -30,7 +29,6 @@
                 check=false;
             }
         }
-
 
         return check;
     });
@@ -57,16 +55,15 @@
 
     function showValidate(input) {
         var thisAlert = $(input).parent();
+
         $(thisAlert).addClass('alert-validate');
-        $('#code').removeClass('collapse');
-		$('#email').addClass('collapse');
     }
 
     function hideValidate(input) {
         var thisAlert = $(input).parent();
-        $(thisAlert).removeClass('alert-validate');       
-    }
-    
-    
-})(jQuery);
 
+        $(thisAlert).removeClass('alert-validate');
+    }
+
+
+})(jQuery);

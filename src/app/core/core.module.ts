@@ -2,17 +2,17 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { ContactPageComponent } from './components/contact-page/contact-page.component';
+import { AProposPageComponent } from './components/a-propos-page/a-propos-page.component';
 
 
 @NgModule({
   declarations: [
     WelcomePageComponent,
-    LoginPageComponent,
-    RegisterPageComponent
+    ContactPageComponent,
+    AProposPageComponent,
   ],
   imports: [
     CommonModule,
@@ -20,8 +20,6 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     WelcomePageComponent,
-    LoginPageComponent,
-    RegisterPageComponent
   ]
 })
 export class CoreModule { 

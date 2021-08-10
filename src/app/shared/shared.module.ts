@@ -21,6 +21,10 @@ import { AddReportComponent } from '../features/report/components/add-report/add
 import { ReportInfoComponent } from '../features/report/components/report-info/report-info.component';
 import { ReportDetailsComponent } from '../features/report/components/report-details/report-details.component';
 import { ReportStudentComponent } from '../features/report/components/report-student/report-student.component';
+import { LoginComponent } from '../auth/components/login/login.component';
+import { RegisterComponent } from '../auth/components/register/register.component';
+import { HomeComponent } from '../auth/components/home/home.component';
+import { ProfileComponent } from '../auth/components/profile/profile.component';
 
 
 @NgModule({
@@ -39,6 +43,10 @@ import { ReportStudentComponent } from '../features/report/components/report-stu
     InsertionDetailsComponent,
     InsertionInfoComponent,
     InsertionStudentComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

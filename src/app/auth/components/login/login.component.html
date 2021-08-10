@@ -1,0 +1,60 @@
+<div class="limiter" *ngIf="!isLoggedIn">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form class="login100-form validate-form" name="form">
+        <span class="login100-form-title p-b-26"> Bienvenue</span>
+        <span class="login100-form-title">
+          <img class="img" src="assets/Img/iconLibrairieOrange.png" width="35%">
+        </span>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer le username">
+          <input class="input100" type="text" name="username" [(ngModel)]="form.username">
+          <span class="focus-input100" data-placeholder="Username"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer le mot de passe">
+          <span class="btn-show-pass">
+            <i class="zmdi zmdi-eye"></i>
+          </span>
+          <input class="input100" type="password" name="password" [(ngModel)]="form.password">
+          <span class="focus-input100" data-placeholder="mot de passe"></span>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn" (click)="onSubmit()">
+              Connexion
+            </button>
+                        
+          </div>
+        </div>
+
+        <div class="text-center p-t-115">
+          <span class="txt1">
+            Pas encore de compte?
+          </span>
+
+          <a class="txt2" routerLink="/register" >
+            Je m'inscris
+          </a>
+        </div>
+
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="isFormFull && isLoginFailed"
+          >
+            Login failed: {{ errorMessage }}
+          </div>
+        </div>
+
+      </form>
+
+      <!-- <div class="alert alert-success" *ngIf="isLoggedIn"> 
+        logged-in  !!
+      </div> -->
+    </div>
+  </div>
+</div>  

@@ -1,0 +1,78 @@
+<div class="limiter" *ngIf="!isSuccessful || isSignUpFailed">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form class="login100-form validate-form" name="form">
+        <span class="login100-form-title p-b-26"> Bienvenue</span>
+        <span class="login100-form-title">
+          <img class="img" src="assets/Img/iconLibrairieOrange.png" width="35%">
+        </span><br>
+
+        <div class="wrap-input100 validate-input" data-validate="Choisir ce qui vous corresponds">
+          <input type="radio" value=2 id="groupType" 
+            name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;">Professeur</span> 
+          <input type="radio" value=3 id="groupType"
+          name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;">Etudiant</span>  
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer votre email insit">
+          <input class="input100" type="email" name="email" [(ngModel)]="form.email">
+          <span class="focus-input100" data-placeholder="Email"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer le username">
+          <input class="input100" type="text" name="username" [(ngModel)]="form.username">
+          <span class="focus-input100" data-placeholder="Username"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Entrer le mot de passe">
+          <span class="btn-show-pass">
+            <i class="zmdi zmdi-eye"></i>
+          </span>
+          <input class="input100" type="password" name="password" [(ngModel)]="form.password">
+          <span class="focus-input100" data-placeholder="mot de passe"></span>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn" (click)="onSubmit()">
+              s'inscrire
+            </button>
+                        
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="isFormFull && isSignUpFailed"
+          >
+            Sign up failed: {{ errorMessage }}
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>  
+
+
+<div class="container-login100" *ngIf="isSuccessful && !isSignUpFailed">
+  <div class="wrap-login100">
+    <div class="login100-form">
+      <span class="login100-form-title p-b-26"> Votre inscription est réussi!</span>
+
+      <div class="container-login100-form-btn">
+        <div class="wrap-login100-form-btn">
+          <div class="login100-form-bgbtn"></div>
+          <a class="login100-form-btn" routerLink="/login">
+            Se connecter ->
+          </a>
+                      
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

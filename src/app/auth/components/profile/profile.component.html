@@ -1,0 +1,16 @@
+<div class="container" *ngIf="isLoggedIn">
+    <header class="jumbotron">
+      <h3>Username: 
+        <strong>{{ currentUser.username }}</strong> 
+      </h3>
+    </header>
+    <!-- <p>
+      <strong>Token:</strong>
+      {{ currentUser.access }}
+    </p> -->
+    <p>
+      <strong>Email:</strong>
+      {{ currentUser.email }}
+    </p>
+
+</div>

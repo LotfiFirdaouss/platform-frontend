@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomePageComponent } from './core/components/welcome-page/welcome-page.component';
 
-import { LoginPageComponent } from './core/components/login-page/login-page.component';
-import { RegisterPageComponent } from './core/components/register-page/register-page.component';
-
 import {InsertionsListComponent  } from './features/insertion/components/insertions-list/insertions-list.component';
 
 import { NoticeSliderComponent } from './shared/components/notice-slider/notice-slider.component';
@@ -20,11 +17,28 @@ import { AddReportComponent } from './features/report/components/add-report/add-
 import { ReportDetailsComponent } from './features/report/components/report-details/report-details.component';
 import { ReportInfoComponent } from './features/report/components/report-info/report-info.component';
 import { ReportStudentComponent } from './features/report/components/report-student/report-student.component';
+import { RegisterComponent } from './auth/components/register/register.component';
+import { LoginComponent } from './auth/components/login/login.component';
+import { HomeComponent } from './auth/components/home/home.component';
+import { ProfileComponent } from './auth/components/profile/profile.component';
+import { ContactPageComponent } from './core/components/contact-page/contact-page.component';
+import { AProposPageComponent } from './core/components/a-propos-page/a-propos-page.component';
+
+
 const routes: Routes = [
 
-  //reports
+  //not connected 
   { path : '' , component : WelcomePageComponent},
-  { path :'login' , component : LoginPageComponent},
+  { path :'login' , component : LoginComponent},
+  { path :'register' , component : RegisterComponent},
+  { path :'contact' , component : ContactPageComponent},
+  { path :'à-propos' , component : AProposPageComponent},
+
+  //protected routes: connected
+  { path :'home' , component : HomeComponent}, 
+  { path :'profile' , component : ProfileComponent},
+  
+  //reports
   { path: 'rapports' , component: ReportsListComponent},
   { path: 'add-rapport' , component: AddReportComponent},
   { path: 'rapport-details/:id' , component: ReportDetailsComponent},
@@ -39,6 +53,7 @@ const routes: Routes = [
   { path: 'insertions/insertion-etudiant/:etudiant', component: InsertionStudentComponent },
 
 
+  //temporary routes (just to visualize the components)
   { path: 'notice-slider' , component: NoticeSliderComponent},
   { path: 'menu' , component: MenuComponent}
 ];
