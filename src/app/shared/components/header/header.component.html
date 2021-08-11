@@ -5,10 +5,17 @@
     <nav class="navbar sticky-top navbar-expand-lg">
       <div class="container">
         
-        <a class="navbar-brand " routerLink="/" id="logo"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+        <a class="navbar-brand " *ngIf="!isLoggedIn" routerLink="/" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+        <div *ngIf="isLoggedIn">
+          <a class="navbar-brand " *ngIf="isAdministrator" routerLink="/home-admin" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+          <a class="navbar-brand " *ngIf="isProfessor" routerLink="/home-professeur" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+          <a class="navbar-brand " *ngIf="isStudent" routerLink="/home-etudiant" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+        </div>
         <div id="button"><button style=" color:white; " class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button></div>
+
+        
   
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto w-100 justify-content-end">
@@ -16,27 +23,29 @@
 
             <!-- shown in case not connected == !isLoggedIn -->
               <li class="nav-item "  *ngIf="!isLoggedIn">
-                <a class="nav-link active" [id]="accueilBtnID" routerLink="/" (click)="switchActive(accueilBtnID)">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" [id]="accueilBtnID" routerLink="/" (click)="switchActive(accueilBtnID); scrollCenter(0)">Accueil <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item"  *ngIf="!isLoggedIn">
-                <a class="nav-link inactive" [id]="AproposBtnID" routerLink="/à-propos" (click)="switchActive(AproposBtnID)" >A propos</a>
+                <a class="nav-link inactive" [id]="AproposBtnID" routerLink="/à-propos" (click)="switchActive(AproposBtnID); scrollCenter(0)" >A propos</a>
               </li>  
               <li class="nav-item"  *ngIf="!isLoggedIn">
-                <a class="nav-link inactive" [id]="contactBtnID" routerLink="/contact" (click)="switchActive(contactBtnID)" >Contact</a>
+                <a class="nav-link inactive" [id]="contactBtnID" routerLink="/contact" (click)="switchActive(contactBtnID); scrollCenter(0)" >Contact</a>
               </li>
               <li class="nav-item" *ngIf="!isLoggedIn">
-                <a class="nav-link inactive" [id]="signupBtnID" routerLink="/register" (click)="switchActive(signupBtnID)">S'inscrire</a>
+                <a class="nav-link inactive" [id]="signupBtnID" routerLink="/register" (click)="switchActive(signupBtnID); scrollCenter(105)" >S'inscrire</a>
               <li class="nav-item" *ngIf="!isLoggedIn">
-                <a class="nav-link inactive" [id]="signinBtnID" routerLink="/login" (click)="switchActive(signinBtnID)">Se connecter</a>
+                <a class="nav-link inactive" [id]="signinBtnID" routerLink="/login" (click)="switchActive(signinBtnID); scrollCenter(105)">Se connecter</a>
               </li>
 
 
             <!-- shown in case connected == isLoggedIn -->
               <li class="nav-item" *ngIf="isLoggedIn">
-                <a class="nav-link active" [id]="profileBtnID" routerLink="/home" (click)="switchActive(homeBtnID)">Accueil</a>
+                <a class="nav-link active" [id]="homeBtnID" routerLink="/home-admin" (click)="switchActive(homeBtnID); scrollCenter(0)" *ngIf="isAdministrator">Accueil</a>
+                <a class="nav-link active" [id]="homeBtnID" routerLink="/home-professeur" (click)="switchActive(homeBtnID); scrollCenter(0)" *ngIf="isProfessor">Accueil</a>
+                <a class="nav-link active" [id]="homeBtnID" routerLink="/home-etudiant" (click)="switchActive(homeBtnID); scrollCenter(0)" *ngIf="isStudent">Accueil</a>
               </li>
               <li class="nav-item" *ngIf="isLoggedIn">
-                <a class="nav-link inactive" [id]="profileBtnID" routerLink="/profile" (click)="switchActive(profileBtnID)">{{ currentUser.username }}</a>
+                <a class="nav-link inactive" [id]="profileBtnID" routerLink="/profile" (click)="switchActive(profileBtnID); scrollCenter(0)">{{ currentUser.username }}</a>
               </li>
               <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link inactive" [id]="logoutBtnID" routerLink="/" (click)="logout();">Déconnexion</a>

@@ -19,10 +19,16 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   contactBtnID="contactBtnID"
   signupBtnID="signupBtnID"
   signinBtnID="signinBtnID"
+  profileBtnID="profileBtnID"
+  homeBtnID="homeBtnID"
 
   //private roles: string[] = [];
   isLoggedIn = false;
   currentUser!: ReturnedUser; 
+  group="";
+  isProfessor=false;
+  isStudent=false;
+  isAdministrator=false;
 
   constructor(
     private token: TokenStorageService,
@@ -32,9 +38,18 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     this.loadJsFile("../../../../assets/js/header.js"); 
     this.isLoggedIn = !!this.token.getToken();
   
-      if (this.isLoggedIn) {
-        this.currentUser = this.token.getUser();
-      } 
+    if (this.isLoggedIn) {
+      this.currentUser = this.token.getUser();
+      this.group = this.currentUser.groups[0];
+      if( this.group == "Administrator"){
+        this.isAdministrator = true;
+      }else if( this.group == "Professor" ){
+        this.isProfessor = true;
+      }else{
+        this.isStudent = true;
+      }
+    } 
+    
   }  
 
   ngAfterViewInit(){
@@ -70,7 +85,8 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     window.location.reload(); 
   }
 
-
-  
-
+  scrollCenter(y){
+    window.scroll(0,0);
+    window.scroll(0,y); // (left,top) 
+  }
 }

@@ -1,0 +1,6 @@
+/* The element you want to fix the position of */
+.fixed {
+    width: 220px;
+    position: fixed;
+    /* Do not set top / left! */
+}

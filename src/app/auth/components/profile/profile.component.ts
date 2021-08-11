@@ -20,9 +20,10 @@ export class ProfileComponent implements OnInit {
     if(this.currentUser.id){
       this.isLoggedIn=true;
     }
-    if(this.isLoggedIn == false){
-      this.router.navigate(['/'])  
-    }
+
+    // if(this.isLoggedIn == false){
+    //   this.router.navigate(['/'])  
+    // }
   }
 
 }

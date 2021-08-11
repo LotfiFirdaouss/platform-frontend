@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import {Router} from "@angular/router"
+import { ReturnedUser } from '../../models/returned-user';
 
 @Component({
   selector: 'app-login',
@@ -17,20 +18,36 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   isFormFull = false;
-  //roles: string[] = [];
+
+  //to determine the role and path to tk
+  currentUser!: ReturnedUser;
+  group="";
+  isProfessor=false;
+  isStudent=false;
+  isAdministrator=false;
 
   constructor(
     private authService: AuthService, 
-    private tokenStorage: TokenStorageService,
+    private token: TokenStorageService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.loadJsFile("../../../../assets/js/Login.js");  
-    if (this.tokenStorage.getToken()) {
+    if (this.token.getToken()) {
       this.isLoggedIn = true;
-      this.router.navigate(['/home'])
-      //this.roles = this.tokenStorage.getUser().roles;
-    }
+      this.currentUser = this.token.getUser();
+      this.group = this.currentUser.groups[0];
+      if( this.group == "Administrator"){
+        this.isAdministrator = true;
+        this.router.navigate(['/home-admin']);
+      }else if( this.group == "Professor" ){
+        this.isProfessor = true;
+        this.router.navigate(['/home-professeur']);
+      }else{
+        this.isStudent = true;
+        this.router.navigate(['/home-etudiant']);
+      }
+    }  
   }
 
   onSubmit(): void {
@@ -41,8 +58,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.login({'username': username, 'password': password}).subscribe(
       data => {
-        this.tokenStorage.saveToken(data);
-        this.tokenStorage.saveUser(data);
+        this.token.saveToken(data);
+        this.token.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
@@ -58,7 +75,7 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     window.location.reload();
-    console.log(this.tokenStorage.getUser())
+    console.log(this.token.getUser())
   }
 
   public loadJsFile(url) {  

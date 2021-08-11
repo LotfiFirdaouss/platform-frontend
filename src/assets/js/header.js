@@ -5,7 +5,3 @@ function JSswitchActive(ID){
     document.getElementById(ID).classList.add('active');
     document.getElementById(ID).classList.remove('inactive');
 }
-
-var myFunction = function () {
-    alert('hello world')
-}

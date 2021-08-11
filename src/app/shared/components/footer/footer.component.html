@@ -4,8 +4,15 @@
     <div class="container bottom_border">
         <div class="row">
             
-            <div class=" col-sm-4 col-md col-sm-4  col-12 col">
-            <h5 class="col_Blue_amrc pt2"><img src="assets\Img\logoLight.png" alt="Main logo"></h5>
+            <div class=" col-sm-4 col-md col-sm-4  col-12 col" >
+            <h5 class="col_Blue_amrc pt2">
+                <a *ngIf="!isLoggedIn" routerLink="/"><img src="assets\Img\logoLight.png" alt="Main logo"></a>
+                <div *ngIf="isLoggedIn" >
+                    <a routerLink="/home-admin" *ngIf="isAdministrator" ><img src="assets\Img\logoLight.png" alt="Main logo"></a>
+                    <a routerLink="/home-professeur" *ngIf="isProfessor" ><img src="assets\Img\logoLight.png" alt="Main logo"></a>
+                    <a routerLink="/home-etudiant" *ngIf="isStudent" ><img src="assets\Img\logoLight.png" alt="Main logo"></a>
+                </div>            
+            </h5>
             <!--headin5_amrc-->
             <p class="mb10">Notre solution assure le suivi des étudiants dans leurs stages à travers
                 une bibliothèque de rapports de stages classés et étiquetès à l'aide de l'intelligence artificielle.
@@ -39,12 +46,22 @@
 
 
     <div class="container">
-        <ul class="foote_bottom_ul_amrc font-weight-bold footer_menu">
-            <li><a routerLink="/" >Accueil</a></li>
-            <li><a routerLink="/" >A propos</a></li>
-            <li><a routerLink="/" >Contact</a></li>
-            <li><a routerLink="/register" >S'inscrire</a></li>
-            <li><a routerLink="/login" >Se connecter</a></li>
+        <!-- shown in case not connected == !isLoggedIn -->
+        <ul class="foote_bottom_ul_amrc font-weight-bold footer_menu" *ngIf="!isLoggedIn">
+            <li><a routerLink="/" (click)="scrollCenter(0)">Accueil</a></li>
+            <li><a routerLink="/à-propos" (click)="scrollCenter(0)">A propos</a></li>
+            <li><a routerLink="/contact" (click)="scrollCenter(0)">Contact</a></li>
+            <li><a routerLink="/register" (click)="scrollCenter(105)">S'inscrire</a></li>
+            <li><a routerLink="/login" (click)="scrollCenter(105)">Se connecter</a></li>
+        </ul>
+
+        <!-- shown in case connected == isLoggedIn -->
+        <ul class="foote_bottom_ul_amrc font-weight-bold footer_menu" *ngIf="isLoggedIn">
+            <li><a routerLink="/home-admin" (click)="scrollCenter(0)" *ngIf="isAdministrator">Accueil</a></li>
+            <li><a routerLink="/home-professeur" (click)="scrollCenter(0)" *ngIf="isProfessor">Accueil</a></li>
+            <li><a routerLink="/home-etudiant" (click)="scrollCenter(0)" *ngIf="isStudent">Accueil</a></li>
+            <li><a routerLink="/profile" >{{ currentUser.username }}</a></li>
+            <li><a routerLink="/" (click)="logout();" >Déconnexion</a></li>
         </ul>
         <!--foote_bottom_ul_amrc ends here-->
         <div class="footer_copyRights"><p class="text-center"> © 2021 ENSAM - CASABLANCA | Conçu par <a href="https://www.linkedin.com/in/firdaouss-lotfi/">LOTFI Firdaouss</a> & <a href="https://www.linkedin.com/in/gerrar-assmaa/">GERRAR Assmaa</a></p></div>
@@ -62,4 +79,13 @@
 
 </footer>
 
-<router-outlet></router-outlet>
+<!-- 
+<div *ngIf="isLoggedIn" >
+    <a routerLink="/home-admin" *ngIf="isAdministrator" ><img src="assets\Img\logoLight.png" alt="Main logo"></a>
+    <a routerLink="/home-professeur" *ngIf="isProfessor" ><img src="assets\Img\logoLight.png" alt="Main logo"></a>
+    <a routerLink="/home-etudiant" *ngIf="isStudent" ><img src="assets\Img\logoLight.png" alt="Main logo"></a>
+</div>
+
+<li><a routerLink="/home-admin" (click)="scrollCenter(0)" *ngIf="isAdministrator">Accueil</a></li>
+<li><a routerLink="/home-professeur" (click)="scrollCenter(0)" *ngIf="isLoggedIn">Accueil</a></li>
+<li><a routerLink="/home-etudiant" (click)="scrollCenter(0)" *ngIf="isStudent">Accueil</a></li> -->

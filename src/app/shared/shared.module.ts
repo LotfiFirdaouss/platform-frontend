@@ -23,7 +23,6 @@ import { ReportDetailsComponent } from '../features/report/components/report-det
 import { ReportStudentComponent } from '../features/report/components/report-student/report-student.component';
 import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
-import { HomeComponent } from '../auth/components/home/home.component';
 import { ProfileComponent } from '../auth/components/profile/profile.component';
 
 
@@ -45,8 +44,7 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     InsertionStudentComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
