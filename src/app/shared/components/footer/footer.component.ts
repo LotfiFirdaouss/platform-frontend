@@ -10,6 +10,10 @@ import { TokenStorageService } from 'src/app/auth/services/token-storage.service
 export class FooterComponent implements OnInit {
   isLoggedIn = false;
   currentUser!: ReturnedUser; 
+  group="";
+  isProfessor=false;
+  isStudent=false;
+  isAdministrator=false;
 
   constructor(private token: TokenStorageService) { }
 
@@ -18,6 +22,14 @@ export class FooterComponent implements OnInit {
   
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
+      this.group = this.currentUser.groups[0];
+      if( this.group == "Administrator"){
+        this.isAdministrator = true;
+      }else if( this.group == "Professor" ){
+        this.isProfessor = true;
+      }else{
+        this.isStudent = true;
+      }
     } 
   }
 

@@ -6,7 +6,11 @@
       <div class="container">
         
         <a class="navbar-brand " *ngIf="!isLoggedIn" routerLink="/" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
-        <a class="navbar-brand " *ngIf="isLoggedIn" routerLink="/home" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+        <div *ngIf="isLoggedIn">
+          <a class="navbar-brand " *ngIf="isAdministrator" routerLink="/home-admin" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+          <a class="navbar-brand " *ngIf="isProfessor" routerLink="/home-professeur" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+          <a class="navbar-brand " *ngIf="isStudent" routerLink="/home-etudiant" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark.png"  alt="Main logo"></a>
+        </div>
         <div id="button"><button style=" color:white; " class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button></div>
@@ -36,7 +40,9 @@
 
             <!-- shown in case connected == isLoggedIn -->
               <li class="nav-item" *ngIf="isLoggedIn">
-                <a class="nav-link active" [id]="homeBtnID" routerLink="/home" (click)="switchActive(homeBtnID); scrollCenter(0)">Accueil</a>
+                <a class="nav-link active" [id]="homeBtnID" routerLink="/home-admin" (click)="switchActive(homeBtnID); scrollCenter(0)" *ngIf="isAdministrator">Accueil</a>
+                <a class="nav-link active" [id]="homeBtnID" routerLink="/home-professeur" (click)="switchActive(homeBtnID); scrollCenter(0)" *ngIf="isProfessor">Accueil</a>
+                <a class="nav-link active" [id]="homeBtnID" routerLink="/home-etudiant" (click)="switchActive(homeBtnID); scrollCenter(0)" *ngIf="isStudent">Accueil</a>
               </li>
               <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link inactive" [id]="profileBtnID" routerLink="/profile" (click)="switchActive(profileBtnID); scrollCenter(0)">{{ currentUser.username }}</a>
