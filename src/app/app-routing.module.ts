@@ -22,13 +22,13 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { ProfileComponent } from './auth/components/profile/profile.component';
 import { ContactPageComponent } from './core/components/contact-page/contact-page.component';
 import { AProposPageComponent } from './core/components/a-propos-page/a-propos-page.component';
-import { AuthGuard } from './auth/guards/auth.guard';
 import { HomeAdministratorComponent } from './features/administrator/pages/home-administrator/home-administrator.component';
 import { HomeProfessorComponent } from './features/professor/pages/home-professor/home-professor.component';
 import { HomeStudentComponent } from './features/student/pages/home-student/home-student.component';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { ProfGuard } from './auth/guards/prof.guard';
 import { StudGuard } from './auth/guards/stud.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 
 const routes: Routes = [
