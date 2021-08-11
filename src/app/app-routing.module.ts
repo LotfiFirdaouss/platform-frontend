@@ -19,7 +19,6 @@ import { ReportInfoComponent } from './features/report/components/report-info/re
 import { ReportStudentComponent } from './features/report/components/report-student/report-student.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { LoginComponent } from './auth/components/login/login.component';
-import { HomeComponent } from './auth/components/home/home.component';
 import { ProfileComponent } from './auth/components/profile/profile.component';
 import { ContactPageComponent } from './core/components/contact-page/contact-page.component';
 import { AProposPageComponent } from './core/components/a-propos-page/a-propos-page.component';
