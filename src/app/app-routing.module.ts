@@ -23,6 +23,13 @@ import { HomeComponent } from './auth/components/home/home.component';
 import { ProfileComponent } from './auth/components/profile/profile.component';
 import { ContactPageComponent } from './core/components/contact-page/contact-page.component';
 import { AProposPageComponent } from './core/components/a-propos-page/a-propos-page.component';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { HomeAdministratorComponent } from './features/administrator/pages/home-administrator/home-administrator.component';
+import { HomeProfessorComponent } from './features/professor/pages/home-professor/home-professor.component';
+import { HomeStudentComponent } from './features/student/pages/home-student/home-student.component';
+import { AdminGuard } from './auth/guards/admin.guard';
+import { ProfGuard } from './auth/guards/prof.guard';
+import { StudGuard } from './auth/guards/stud.guard';
 
 
 const routes: Routes = [
@@ -35,9 +42,12 @@ const routes: Routes = [
   { path :'à-propos' , component : AProposPageComponent},
 
   //protected routes: connected
-  { path :'home' , component : HomeComponent}, 
-  { path :'profile' , component : ProfileComponent},
+  { path :'profile' , component : ProfileComponent, canActivate : [AuthGuard]},
+  { path: 'home-admin' , component: HomeAdministratorComponent, canActivate : [AuthGuard, AdminGuard]},
+  { path: 'home-professeur' , component: HomeProfessorComponent, canActivate : [AuthGuard, ProfGuard]},
+  { path: 'home-etudiant' , component: HomeStudentComponent, canActivate : [AuthGuard, StudGuard]},
   
+
   //reports
   { path: 'rapports' , component: ReportsListComponent},
   { path: 'add-rapport' , component: AddReportComponent},
@@ -60,6 +70,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
