@@ -46,7 +46,7 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

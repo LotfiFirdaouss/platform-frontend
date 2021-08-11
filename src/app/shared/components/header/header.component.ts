@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   contactBtnID="contactBtnID"
   signupBtnID="signupBtnID"
   signinBtnID="signinBtnID"
+  profileBtnID="profileBtnID"
+  homeBtnID="homeBtnID"
 
   //private roles: string[] = [];
   isLoggedIn = false;
@@ -70,7 +72,8 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     window.location.reload(); 
   }
 
-
-  
-
+  scrollCenter(y){
+    window.scroll(0,0);
+    window.scroll(0,y); // (left,top) 
+  }
 }
