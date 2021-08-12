@@ -20,7 +20,7 @@ export class AuthService {
     return this.http.post(AUTH_API ,JSON.stringify(user), httpOptions);
   }
 
-  register(user: { groups:any, username: any; password: any; email: any; }): Observable<any>{
+  register(user: { groups:any, first_name: any; last_name: any; username: any; password: any; email: any; }): Observable<any>{
     return this.http.post(REGISTER_API, JSON.stringify(user) , httpOptions);
   }
   
