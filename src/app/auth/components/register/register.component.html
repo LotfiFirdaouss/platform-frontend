@@ -1,4 +1,24 @@
-<div class="limiter" *ngIf="!isSuccessful || isSignUpFailed">
+<div class="container-login100" *ngIf="!isSuccessful && !isSignUpFailed">
+  <div class="wrap-login100">
+    <div class="login100-form">
+      <span class="login100-form-title p-b-26" > Bienvenue</span>
+      <br>
+      <div class="container-login100-form-btn">
+        <div class="wrap-login100-form-btn">
+          <div class="login100-form-bgbtn"></div>
+          <button class="login100-form-btn" (click)="registerWithGoogle()">
+            S'inscrire avec  <span class="icon-google mr-3"></span>
+          </button>
+                      
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="limiter" *ngIf="!isSuccessful && isSignUpFailed">
   <div class="container-login100">
     <div class="wrap-login100">
       <form class="login100-form validate-form" name="form">
@@ -11,14 +31,21 @@
 
         <div class="wrap-input100 validate-input" data-validate="Choisir ce qui vous corresponds">
           <input type="radio" value=2 id="groupType" 
-            name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;">Professeur</span> 
+            name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;"> Professeur </span> 
           <input type="radio" value=3 id="groupType"
-          name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;">Etudiant</span>  
+          name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;"> Etudiant </span>  
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Entrer votre email insit">
-          <input class="input100" type="email" name="email" [(ngModel)]="form.email">
-          <span class="focus-input100" data-placeholder="Email"></span>
+        <div class="wrap-input100 validate-input">
+          <input class="input100" type="text" [value]="socialUser.lastName" readonly>
+        </div>
+
+        <div class="wrap-input100 validate-input">
+          <input class="input100" type="text" [value]="socialUser.firstName" readonly>
+        </div>
+
+        <div class="wrap-input100 validate-input">
+          <input class="input100" type="text" [value]="socialUser.email" readonly>
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Entrer le username">
@@ -70,7 +97,7 @@
 </div>  
 
 
-<div class="container-login100" *ngIf="isSuccessful && !isSignUpFailed">
+<div class="container-login100" *ngIf="isSuccessful">
   <div class="wrap-login100">
     <div class="login100-form">
       <span class="login100-form-title p-b-26"> Votre inscription est réussi!</span>
