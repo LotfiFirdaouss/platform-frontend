@@ -1,5 +1,4 @@
-<div class="container">
-  <!-- <h4 style="margin-top: 5%;">Liste des insertions</h4> -->
+<!-- <div class="container">
 
   <div *ngIf="!currentInsertion">
     <br />
@@ -55,8 +54,8 @@
           </div>
 
           <div *ngIf="currentInsertion && currentInsertion==insertion">
-            <!--<a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}">Supprimer</a>-->
-            <a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}" >Modifier </a>  
+            <a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}">Supprimer</a>-->
+            <!--<a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}" >Modifier </a>  
           </div>
 
         </div>
@@ -73,4 +72,75 @@
   </button> 
   
 
+</div>  -->
+
+<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+  <div  *ngFor="let insertion of insertions; let i = index"
+      [class.active]="i == currentIndex"
+      (click)="setActiveInsertion(insertion, i)" style="padding: 0.4%;">
+      <article class="postcard light blue" style="height: 220px; margin: 0%;" >
+        <div class="postcard__text t-dark">
+          <div class="row">
+
+            <div class="col-4">
+                <h3>
+                    {{ insertion.cursus_post_ensam }} :
+                    <a href="#" class="postcard__title blue"><b>{{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }}</b></a>
+                </h3>
+                
+                <div class="postcard__subtitle small">
+                <i class="icon-user mr-2"></i><a href="#" style="margin-right:20px;">id-etudiant: {{ insertion.fk_etudiant }} </a>
+                <time><i class="icon-calendar mr-2"></i> {{ insertion.date_integration }}</time>
+                </div>
+                <div class="postcard__bar"></div>
+            </div>
+
+            <div class="col-8">
+              <br>
+    
+              <div *ngIf="insertion.intit_formation">
+                <div>
+                    <label><strong>Nature de formation : </strong></label>
+                    {{ insertion.nature_formation }}                        </div>
+                <div>
+                    <label><strong>Intitulé de formation :  </strong></label>
+                    {{ insertion.intit_formation }}
+                  </div>
+              </div>
+
+              <div *ngIf="!insertion.intit_formation">
+                  <div>
+                      <label><strong>Nom de société : </strong></label>
+                      {{ insertion.societe }} ( {{ insertion.secteur_societe }} )
+                  </div>
+                  <div>
+                      <label><strong>Intitulé de poste  </strong></label>
+                      {{ insertion.intit_poste }}
+                  </div>
+              </div>
+
+              <div>
+                <label><strong>Ville d'insertion : </strong></label>
+                {{ insertion.ville }} ( {{ insertion.pays }} )                        
+              </div>
+                  
+              <div>
+                <hr>
+                <div class="row">
+                  <div class="col-8"></div>
+                  <div class="col-2">
+                    <a href="/insertions/{{ insertion.id }}" ><u>modifier</u> </a>
+                  </div>
+                  <div class="col-2" class="classLink">
+                    <a href="/insertions/insertion-info/{{ insertion.id }}" ><u>plus de détails</u></a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+                    
+          </div>  
+        </div>
+      </article>
+  </div>
 </div>

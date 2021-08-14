@@ -36,7 +36,6 @@ export class InsertionDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.message = '';
     this.getInsertion(this.route.snapshot.params.id);
-    this.loadJsFile("../../../../assets/js/insertions/insertion-details.js");  
   }
 
   getInsertion(id: string): void {
