@@ -24,7 +24,7 @@ export class ReportDetailsComponent implements OnInit {
    encadrant: '',
    email_encadrant: '',
    telephone_encadrant: '',
-   lien_rapport: '',
+   fichier_rapport: null,
    rapport_confidentiel: false,
    fk_etudiant: 1,
  };

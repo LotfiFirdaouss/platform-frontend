@@ -100,3 +100,10 @@ a, a:hover {text-decoration: none;transition: color 0.3s ease-in-out;}
 .icon-tag:before {
      content: "\f02b";
 }
+.icon-user:before {
+     content: "\f007";
+}
+
+.classLink :hover{
+     color: #0076bd;;
+}

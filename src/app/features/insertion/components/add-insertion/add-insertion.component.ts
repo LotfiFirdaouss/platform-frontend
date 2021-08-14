@@ -30,7 +30,6 @@ export class AddInsertionComponent implements OnInit {
   constructor(private insertionService : InsertionService) { }
 
   ngOnInit(): void {
-    this.loadJsFile("../../../../assets/js/insertions/add-insertion.js");  
     
   }
 
@@ -73,25 +72,6 @@ export class AddInsertionComponent implements OnInit {
       date_integration: null, 
       fk_etudiant : 0,
     };
-  }
-
-  public loadJsFile(url) {  
-    let node = document.createElement('script');  
-    node.src = url;  
-    node.type = 'text/javascript';  
-    document.getElementsByTagName('head')[0].appendChild(node);  
-  }
-
-  onSubmitClick(){/*
-      this.clicked=true; 
-      @ViewChild('frm', { static: true })userFrm: NgForm;
-      if(!insertionForm.form.valid){ 
-          
-          var button = <HTMLInputElement> document.getElementById("submitBtn");
-          button.disabled=true; 
-      }else{
-          saveInsertion();
-      }*/
   }
 
   myFunction(){

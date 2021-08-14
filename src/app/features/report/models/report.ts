@@ -12,7 +12,7 @@ export class Report {
     encadrant?:String;
     email_encadrant?:any;
     telephone_encadrant?:any;
-    lien_rapport?:any;
+    fichier_rapport?:File;
     rapport_confidentiel?:boolean;
     fk_etudiant?:number;
     }

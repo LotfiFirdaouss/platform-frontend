@@ -282,7 +282,6 @@
                   id="submitBtn"
                   type="submit"
                   [disabled]="!insertionForm.form.valid"
-                  (click)="saveInsertion()" 
                   class="btnContact "
                   >
                 Envoyer</button>           
@@ -293,8 +292,7 @@
     </div>
 
     <div *ngIf="submitted" class="container">
-      <h4> L'insertion est ajoutée avec succès ! </h4>
-      <!--<button class="btnSuccess" (click)="newInsertion()">Ajouter</button>-->
+      <br><h4> L'insertion est ajoutée avec succès ! </h4>
     </div>
 
 </div>
