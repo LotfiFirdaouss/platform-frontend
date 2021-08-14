@@ -1,14 +1,35 @@
 <div class="tab-inf" *ngIf="currentReport.id">
     
     <div class="container">
-      <h3>{{currentReport.intitule_stage}}</h3>     
+      <h3>Intitulé de 
+        <span *ngIf='currentReport.stage_ou_projet'>stage</span>
+        <span *ngIf='!currentReport.stage_ou_projet'>projet</span>
+        : <b>{{currentReport.intitule_stage}}</b></h3>     
+      <iframe [src]="fileLink()" title="Appercue du rapport"
+      width="100%" height="360" frameborder="0" >  </iframe>
       
       <div class="table-responsive custom-table-responsive">
       
         <table class="table custom-table">
           <tbody>
+            <!-- <tr>
+              <td> Rapport : </td>
+              <td> <a href="{{ currentReport.fichier_rapport }}">  {{ currentReport.intitule_stage }}  </a></td>
+            </tr> -->
+            <tr>
+              <td> Etudiant : </td>
+              <td> <a href="">  {{ currentReport.fk_etudiant }}  </a></td>
+            </tr>
+            <tr>
+              <td> Date de début :</td>
+              <td> {{ currentReport.date_debut_stage }} </td>
+            </tr>
+            <tr>
+              <td> Date de fin :</td>
+              <td> {{ currentReport.date_fin_stage }} </td>
+            </tr>
             <tr scope="row" *ngFor="let aff of affiches">
-              <td>{{aff.champ}}</td>
+              <td>{{aff.champ}} :</td>
               <td>{{aff.info}}</td>
             </tr>
           </tbody>

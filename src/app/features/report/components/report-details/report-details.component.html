@@ -209,15 +209,12 @@
            <div class="row">
                <div class="col">
                    <div class="form-group input-box">
-                       <input type="text" [(ngModel)]="currentReport.lien_rapport" #lien="ngModel" maxlength="200"
-                       class="form-control" name="lien" placeholder="lien du rapport*" required/>
+                       <input type="file" [(ngModel)]="currentReport.fichier_rapport" #fichier_rapport="ngModel"
+                       class="form-control" name="fichier_rapport" placeholder="lien du rapport*" required/>
                        <span class="unit">Télephone d'encadrant: </span>
-                       <div *ngIf="lien.errors && (lien.dirty || lien.touched)" class="alert alert-danger">
-                           <div [hidden]="!lien.errors?.required">
+                       <div *ngIf="fichier_rapport.errors && (fichier_rapport.dirty || fichier_rapport.touched)" class="alert alert-danger">
+                           <div [hidden]="!fichier_rapport.errors?.required">
                                Le lien du rapport est requis.
-                           </div>
-                           <div [hidden]="!lien.errors?.maxlength">
-                               Ce champ ne peut pas comporter plus de 200 caractères.
                            </div>
                        </div>
                    </div>

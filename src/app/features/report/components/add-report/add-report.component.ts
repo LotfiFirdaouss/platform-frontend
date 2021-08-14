@@ -23,7 +23,7 @@ export class AddReportComponent implements OnInit {
     encadrant: '',
     email_encadrant: '',
     telephone_encadrant: '',
-    lien_rapport: '',
+    fichier_rapport: null,
     rapport_confidentiel: false,
     fk_etudiant: 1,
   };
@@ -31,11 +31,17 @@ export class AddReportComponent implements OnInit {
   active = true;
   natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
   stageDisabled= false;
+  fileToUpload: File | null = null;
 
   constructor(private reportService: ReportService) { }
 
   ngOnInit(): void {
   }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
   saveReport(): void {
     const data = {
       stage_ou_projet: this.report.stage_ou_projet,
@@ -50,7 +56,7 @@ export class AddReportComponent implements OnInit {
       encadrant: this.report.encadrant,
       email_encadrant: this.report.email_encadrant,
       telephone_encadrant: this.report.telephone_encadrant,
-      lien_rapport: this.report.lien_rapport,
+      fichier_rapport: (this.fileToUpload),
       rapport_confidentiel: this.report.rapport_confidentiel,
       fk_etudiant: this.report.fk_etudiant
     };
