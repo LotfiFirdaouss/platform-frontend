@@ -25,7 +25,6 @@ import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { ProfileComponent } from '../auth/components/profile/profile.component';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -52,7 +51,7 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserModule,
+    BrowserModule,    
   ],
   exports: [
     HeaderComponent,
@@ -60,7 +59,7 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     MenuComponent,
     NoticeSliderComponent,
     AppRoutingModule,
-    RouterModule,
+    RouterModule,    
   ]
 })
 export class SharedModule { }

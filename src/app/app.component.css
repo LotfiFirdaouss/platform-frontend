@@ -4,3 +4,24 @@
     position: fixed;
     /* Do not set top / left! */
 }
+
+.menu{
+    position: fixed;
+    z-index: 1;
+    top: 104px; /* Stay at the top */
+    left: 0; 
+    overflow: hidden;
+    scrollbar-width: none; 
+}
+
+.content {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .content {
+        padding-left: 0px;
+    }
+  
+  }
