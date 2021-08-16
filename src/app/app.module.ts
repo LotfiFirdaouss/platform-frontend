@@ -9,6 +9,9 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { ProfessorModule } from './features/professor/professor.module';
+import { StudentModule } from './features/student/student.module';
+import { AdministratorModule } from './features/administrator/administrator.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,11 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    ProfessorModule,
+    StudentModule,
+    AdministratorModule
+    
   ],
   providers: [DatePipe,
     {

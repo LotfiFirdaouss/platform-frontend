@@ -88,5 +88,5 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   scrollCenter(y){
     window.scroll(0,0);
     window.scroll(0,y); // (left,top) 
-  }
+  } 
 }

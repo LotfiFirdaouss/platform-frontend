@@ -1,6 +1,6 @@
 /* =======aside======== */
-aside { width: 300px;left: 0;z-index: 1001;position: fixed;}
-aside .side-inner {width: 300px;height: 100vh;overflow-y: scroll;-webkit-overflow-scrolling: touch; background-color: #b3d6fc; }
+aside {  /* Hide scrollbars */width: 300px;left: 0;z-index: 1001;position: fixed;}
+aside .side-inner {width: 300px;height: 100vh;-webkit-overflow-scrolling: touch; background-color: #b3d6fc; }
 
 /* =======profile======== */
 aside .side-inner .profile {text-align: center;padding-top: 30px;padding-bottom: 30px;background-color: #002245; }
@@ -96,22 +96,71 @@ aside {
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* icons */
-  .icon-search2:before {
-    content: "\e8b6";
-  }
-  .icon-notifications:before {
-    content: "\e7f4";
-  }
-  .icon-location-arrow:before {
-    content: "\f124";
-  }
-  .icon-pie-chart:before {
-    content: "\f200";
-  }
-  .icon-home:before {
-    content: "\f015";
-  }
-  .icon-sign-out:before {
-    content: "\f08b";
-  }
+/* icons */
+.icon-home:before {
+  content: "\f015";
+}
+
+.icon-user:before {
+  content: "\f007";
+} 
+
+.icon-report:before {
+  content: "\e02f";
+}
+
+.icon-insertion:before {
+  content: "\e8f9";
+}
+
+.icon-prof:before {
+  content: "\e8f7"; 
+}
+
+.icon-etudiant:before {
+  content: "\e8d3";
+}
+
+.icon-form:before {
+  content: "\f0c6";
+}
+
+.icon-stats:before {
+  content: "\e6c4";
+}
+
+
+
+/* Dropdown Button */
+.dropbtn {
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}  

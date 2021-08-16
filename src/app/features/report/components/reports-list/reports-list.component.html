@@ -1,11 +1,10 @@
-<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+<div class="container" style="margin-top: 50px; margin-bottom: 100px;">
+    <h2 class="card-subheading center" >Liste des rapports de stage</h2><br>
+    <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects des étudiants de l'ENSAM Casablanca.</small></p><hr>
     <div  *ngFor="let report of reports; let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
         <article class="postcard light blue" style="height: 200px; margin: 0%;" >
-            <!-- <a class="postcard__img_link" href="#">
-                <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
-            </a> -->
             <div class="postcard__text t-dark">
                 <div class="row">
                     <div class="col-4">
@@ -49,57 +48,3 @@
         </article>
     </div>
 </div>
-
-<!-- <div class="container">
-    <h4 style="margin-top: 5%;">Liste des rapports</h4>
-  
-    <div  
-    class="list-group-item"
-    *ngFor="let report of reports; let i = index"
-        [class.active]="i == currentIndex"
-        (click)="setActiveReport(report, i)"
-    style="padding: 0.4%;"
-    >
-      <div class="courses-container">
-      
-        <div class="course">
-  
-          <div class="course-preview">
-            <h7>{{ report.stage_ou_projet ? "Stage" : "Projet" }}</h7>
-            <h3> {{ report.intitule_stage }} </h3>
-            <div *ngIf="currentReport && currentReport==report">
-              <a routerLink="/reports/report-info/{{ currentReport.id }}" style="margin-top: 0%;"><u>plus de détails</u></a>
-            </div>
-          </div>
-  
-          <div class="course-info">
-
-
-            <div *ngIf="report.stage_ou_projet">
-                <div>
-                    <label><strong>Société de stage :</strong></label>
-                    {{ report.societe_stage }} ( {{ report.secteur_societe }} )
-                </div>
-            </div>
-  
-
-            <div>
-                <label><strong>Duré :</strong></label>{{ report.date_debut_stage }} - {{ report.date_fin_stage }}
-              </div>
-            <div>
-              <label><strong>Id étudiant :</strong></label>{{ report.fk_etudiant }}
-            </div>
-  
-           <div *ngIf="currentReport && currentReport==report">
-              <a class="btn1" routerLink="/reports/{{ currentReport.id }}" >Modifier </a>  
-            </div> -->
-  
-        <!--  </div>
-  
-        </div>
-  
-      </div>
-  
-    </div>   
-  
-</div> -->
