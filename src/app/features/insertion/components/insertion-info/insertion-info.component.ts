@@ -19,7 +19,7 @@ export class InsertionInfoComponent implements OnInit {
     societe : '',
     ville : '',
     date_integration: new Date(), //YYYY-MM-DD
-    fk_etudiant : 0,
+    fk_etudiant : {},
   }
   message = '';
 

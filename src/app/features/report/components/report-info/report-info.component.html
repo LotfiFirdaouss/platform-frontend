@@ -1,10 +1,9 @@
-<div class="tab-inf" *ngIf="currentReport.id">
-    
-    <div class="container">
-      <h3>Intitulé de 
-        <span *ngIf='currentReport.stage_ou_projet'>stage</span>
-        <span *ngIf='!currentReport.stage_ou_projet'>projet</span>
-        : <b>{{currentReport.intitule_stage}}</b></h3>     
+<div class="myContentClass container" *ngIf="currentReport.id">
+
+      <h3>Détails relative au 
+        <span *ngIf='currentReport.stage_ou_projet'>stage:</span>
+        <span *ngIf='!currentReport.stage_ou_projet'>projet:</span>
+        <b> {{currentReport.intitule_stage}}</b></h3>     
       <iframe [src]="fileLink()" title="Appercue du rapport"
       width="100%" height="360" frameborder="0" >  </iframe>
       
@@ -38,6 +37,4 @@
       </div>
       
 
-    </div>
-    
-  </div>
+</div>

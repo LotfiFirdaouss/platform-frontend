@@ -17,3 +17,11 @@ input {display:block;border:1px solid #d7d6d6;background:#fff;padding:10px 10px 
 .contact-form #submitBtnDiv :disabled{box-shadow: 0 2px 2px #737577;background: #787b7e;
     color: rgb(146, 143, 153);cursor: pointer;}
 button[disabled] {pointer-events:none}
+
+.myContentClass{
+    margin-top: 50px; 
+    margin-bottom: 100px;    
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 8%;
+}

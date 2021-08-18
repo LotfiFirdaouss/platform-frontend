@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 50px; margin-bottom: 100px;">
+<div class="container myContentClass">
     <h2 class="card-subheading center" >Liste des rapports de stage</h2><br>
     <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects des étudiants de l'ENSAM Casablanca.</small></p><hr>
     <div  *ngFor="let report of reports; let i = index"
@@ -7,15 +7,15 @@
         <article class="postcard light blue" style="height: 200px; margin: 0%;" >
             <div class="postcard__text t-dark">
                 <div class="row">
-                    <div class="col-4">
-                        <h3>
+                    <div class="col-5">
+                        <h4>
                             {{ report.stage_ou_projet ? "Stage" : "Projet" }} :
-                            <a href="#" class="postcard__title blue"><b>{{ report.intitule_stage }}</b></a>
-                        </h3>
+                            <a class="blue"><b>{{ report.intitule_stage }}</b></a>
+                        </h4>
                         
                         <div class="postcard__subtitle small">
-                        <i class="icon-user mr-2"></i><a href="#" style="margin-right:20px;">id-etudiant: {{ report.fk_etudiant }} </a>
-                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} -> {{ report.date_debut_stage }}  </time>
+                        <i class="icon-user mr-2 "></i>Etudiant: <span class="classLink"><a routerLink="/" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
+                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} ➜ {{ report.date_debut_stage }}  </time>
                         </div>
                         <div class="postcard__bar"></div>
                         <!-- <ul class="postcard__tagbox">
@@ -24,7 +24,7 @@
                             </li>
                         </ul> -->
                     </div>
-                    <div class="col-8">
+                    <div class="col-7">
                         <br>
                         <div *ngIf="report.stage_ou_projet">
                             <div>
@@ -38,7 +38,9 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-9"></div>
+                            <div class="col-6"></div>
+                            <div class="col-3" class="classLink"><a href="/rapports/{{ report.id }}" ><u>modifier</u> </a></div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="col-3" class="classLink"><a href="/rapport-info/{{ report.id }}" ><u>plus de détails</u></a></div>
                         </div>
                     </div>
@@ -47,4 +49,4 @@
             </div>
         </article>
     </div>
-</div>
+</div> 

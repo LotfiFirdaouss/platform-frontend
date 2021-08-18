@@ -1,4 +1,4 @@
-<div class="container contact-form">
+<div class="container contact-form myContentClass">
 
     <div *ngIf="!submitted">
         <form #insertionForm="ngForm" (ngSubmit)="saveInsertion()">
@@ -245,7 +245,7 @@
               
             </div>
 
-            <div class="row" style="margin-top: 25px;">
+            <div class="row" style="margin-top: 25px; display: none;">
               <div class="col">
                   <label for="fk_etudiant"> Id étudiant* </label>
                   <div class="form-group input-box">
@@ -291,8 +291,15 @@
         </form>
     </div>
 
-    <div *ngIf="submitted" class="container">
+    <div *ngIf="submitted" class="center">
       <br><h4> L'insertion est ajoutée avec succès ! </h4>
+      <div style="display:inline-block; position:relative; padding-bottom: 0%;">
+          <button 
+          id="returnToInsertion"
+          class="btnContact "
+          routerLink="/insertion-etudiant/{{currentStudent.id}}"
+            >
+          Retour vers insertion</button>
+      </div>
     </div>
-
-</div>
+</div>    

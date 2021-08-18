@@ -6,19 +6,19 @@
   
 .contact-form{
     background: #fff;
-    margin-top: 0%;
-    margin-bottom: 5%;
-    width: 70%;
+    width: 100%;
 }
 .contact-form .form-control{
     border-radius:1rem;
 }
 .contact-form form{
-    padding: 14%;
+    padding-top: 1%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 8%;
 }
 .contact-form h3{
     margin-bottom: 8%;
-    margin-top: -10%;
     text-align: center;
 }
 .btnContactSubmit
@@ -29,18 +29,6 @@
     color: #fff;
     background-color: #0062cc;
     border: none;
-    cursor: pointer;
-}
-
-.contact-form .btnContact {
-    width: 100%;
-    border: none;
-    border-radius: 50px;
-	box-shadow: 0 2px 2px #5397f8;
-    padding: 1.5%;
-    background: #002245;
-    font-weight: 600;
-    color: #fff;
     cursor: pointer;
 }
 
@@ -76,40 +64,24 @@ z-index: 9;
 color: gray;
 }
 
-.btn1 {
-	background-color: #2A265F;
-	border: 0;
-	border-radius: 50px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	color: #fff;
-	font-size: 13px;
-	padding: 6px 12px;
-	position: absolute;
-	bottom: 30px;
-	right: 30px;
-	letter-spacing: 1px;
-}
-
-.btn2 {
-	background-color: #2A265F;
-	border: 0;
-	border-radius: 50px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	color: #fff;
-	font-size: 13px;
-	padding: 6px 12px;
-	position: absolute;
-	bottom: 30px;
-	right: 130px;
-	letter-spacing: 1px;
-}
-
 .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
   }
   
 .ng-invalid:not(form)  {
 border-left: 5px solid #a94442; /* red */
+}
+
+.contact-form .btnContact{
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+	box-shadow: 0 2px 2px #5397f8;
+    padding: 1.5%;
+    background: #002245;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
 }
 
 .contact-form #submitBtnDiv :disabled{
@@ -120,3 +92,17 @@ border-left: 5px solid #a94442; /* red */
 }
 
 button[disabled] {pointer-events:none}
+
+.center {
+    margin: auto;
+    width: 45%;
+    border: 1px #0076bd;
+}
+
+.myContentClass{
+    margin-top: 50px; 
+    margin-bottom: 100px;    
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 8%;
+}
