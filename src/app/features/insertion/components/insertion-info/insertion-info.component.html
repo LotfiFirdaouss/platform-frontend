@@ -20,6 +20,13 @@
                 <td> {{ currentInsertion.cursus_post_ensam }} </td>
               </tr>
 
+              <tr scope="row" >
+                <td>
+                  <B>Etudiant concerné</B>
+                </td>
+                <td class="classLink" routerLink="/"><span> {{ currentInsertion.fk_etudiant.prenom }} {{ currentInsertion.fk_etudiant.nom }}</span> </td>
+              </tr>
+
               <tr scope="row" *ngIf="!currentInsertion.intit_formation">
                 <td>
                   <B>Société d'insertion</B>
@@ -72,13 +79,6 @@
                   <B>Pays d'insertion</B>
                 </td>
                 <td> {{ currentInsertion.pays }} </td>
-              </tr>
-
-              <tr scope="row">
-                <td>
-                  <B>Etudiant concerné</B>
-                </td>
-                <td> {{ currentInsertion.fk_etudiant }} </td>
               </tr>
 
 
