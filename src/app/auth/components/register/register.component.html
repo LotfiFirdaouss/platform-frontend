@@ -3,11 +3,13 @@
     <div class="login100-form">
       <span class="login100-form-title p-b-26" > Bienvenue</span>
       <br>
+      <div class="text-center p-t-115" ><span class="txt1"> Veuillez vous inscrire avec votre adresse e-mail institutionnelle</span></div>
+      <br>
       <div class="container-login100-form-btn">
         <div class="wrap-login100-form-btn">
           <div class="login100-form-bgbtn"></div>
           <button class="login100-form-btn" (click)="registerWithGoogle()">
-            S'inscrire avec  <span class="icon-google mr-3"></span>
+            S'inscrire avec  <span class="icon-google mr-3" style="margin:20px;font-size:30px;"></span>
           </button>
                       
         </div>
@@ -18,10 +20,10 @@
 </div>
 
 
-<div class="limiter" *ngIf="!isSuccessful && isSignUpFailed">
+<div class="limiter" *ngIf="!isSuccessful && isSignUpFailed" >
   <div class="container-login100">
     <div class="wrap-login100">
-      <form class="login100-form validate-form" name="form">
+      <form class="login100-form validate-form" name="form" #registerForm="ngForm">
         <!-- <span class="login100-form-title">
           <img class="img" src="assets/Img/iconLibrairieOrange.png" width="35%">
         </span> -->
@@ -29,45 +31,131 @@
         
 <br> 
 
-        <div class="wrap-input100 validate-input" data-validate="Choisir ce qui vous corresponds">
-          <input type="radio" value=2 id="groupType" 
-            name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;"> Professeur </span> 
-          <input type="radio" value=3 id="groupType"
-          name="groupType" [(ngModel)]="form.groupType"> <span style="color: #b3d6fc;"> Etudiant </span>  
+        <div class="wrap-input100">
+          <input type="radio" value=2 name="groupType" [(ngModel)]="form.groupType"> 
+            <span style="color: #b3d6fc;"> Professeur </span> 
+          <input type="radio" value=3 name="groupType" [(ngModel)]="form.groupType"> 
+            <span style="color: #b3d6fc;"> Etudiant </span>  
         </div>
 
-        <div class="wrap-input100 validate-input">
+        <div class="wrap-input100">
           <input class="input100" type="text" [value]="socialUser.lastName" readonly>
         </div>
 
-        <div class="wrap-input100 validate-input">
+        <div class="wrap-input100">
           <input class="input100" type="text" [value]="socialUser.firstName" readonly>
         </div>
 
-        <div class="wrap-input100 validate-input">
+        <div class="wrap-input100">
           <input class="input100" type="text" [value]="socialUser.email" readonly>
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Entrer le username">
-          <input class="input100" type="text" name="username" [(ngModel)]="form.username">
-          <span class="focus-input100" data-placeholder="Username"></span>
+        <div *ngIf="form.groupType==3">
+
+          <div class="wrap-input100 validate-input">
+            <input class="input100" type="text" #code_etudiant="ngModel" name="code_etudiant" 
+            placeholder="Le code d'étudiant" required maxlength="10" [(ngModel)]="form.code_etudiant"> 
+            <div *ngIf="code_etudiant.errors && (code_etudiant.dirty || code_etudiant.touched)">
+              <div [hidden]="!code_etudiant.errors?.required" class="alert-validate" 
+                data-validate="Entrer le code d'étudiant"></div>
+              <div [hidden]="!code_etudiant.errors?.maxlength" class="alert-validate" 
+                data-validate="Ce champ ne peut pas comporter plus de 10 caractères."></div>
+            </div>
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <select class="input100" type="text" name="filiere" placeholder="Filiére" [(ngModel)]="form.filiere" style=" border:0px; outline:0px;" pattern="^[A-Z]{0,4}$" #filiere="ngModel">
+              <option *ngFor="let filiere of filieres" [ngValue]="filiere">
+                {{ filiere }}
+              </option>
+            </select>
+            <div *ngIf="filiere.errors && (filiere.dirty || filiere.touched)">
+              <div [hidden]="!filiere.errors?.pattern" class="alert-validate" 
+                data-validate="choisissez votre filière"></div>
+            </div>
+          </div>
+
+          <div class="wrap-input100">
+            <input class="input100" type="text" name="promotion" placeholder="promotion" [(ngModel)]="form.promotion" #promotion="ngModel" required pattern="^20\d{2}$">
+            <div *ngIf="promotion.errors && (promotion.dirty || promotion.touched)">
+              <div [hidden]="!promotion.errors?.required" class="alert-validate" 
+                data-validate="Entrer la filiére"></div>
+              <div [hidden]="!promotion.errors?.pattern" class="alert-validate" 
+                data-validate="Entrer une date valide entre 2000 et 2099"></div>
+            </div>
+          </div>
+
+          <div class="wrap-input100">
+            <input class="input100" type="text" name="email_perso" placeholder="Email personnel" [(ngModel)]="form.email_perso">
+          </div>
+
+          <div class="wrap-input100">
+            <input class="input100" type="text" name="telephone" placeholder="Telephone" [(ngModel)]="form.telephone">
+          </div>
+
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate="Entrer le mot de passe">
-          <span class="btn-show-pass">
-            <i class="zmdi zmdi-eye"></i>
+        <div *ngIf="form.groupType==2">
+
+          <div class="wrap-input100">
+            <input class="input100" type="text" name="email_perso" placeholder="Email personnel" [(ngModel)]="form.email_perso">
+          </div>
+
+          <div class="wrap-input100 validate-input">
+            <select class="input100" type="text" name="departement" placeholder="departement" [(ngModel)]="form.departement" style=" border:0px; outline:0px;" pattern="^[A-Z]{0,4}$" #departement="ngModel">
+              <option *ngFor="let departement of departements" [ngValue]="departement">
+                {{ departement }}
+              </option>
+            </select>
+            <div *ngIf="departement.errors && (departement.dirty || departement.touched)">
+              <div [hidden]="!departement.errors?.pattern" class="alert-validate" 
+                data-validate="choisissez votre departement"></div>
+            </div>
+          </div>
+
+          <div class="wrap-input100">
+            <input class="input100" type="text" name="telephone" placeholder="Téléphone" [(ngModel)]="form.telephone">
+          </div>
+
+        </div>
+
+        <div class="wrap-input100 validate-input">
+            <input class="input100" type="text" name="username" placeholder="Nom d'utilisateur" required maxlength="200"
+            [(ngModel)]="form.username" #username="ngModel">
+            <div *ngIf="username.errors && (username.dirty || username.touched)">
+              <div [hidden]="!username.errors?.required" class="alert-validate" 
+                data-validate="Entrer le nom d'utilisateur"></div>
+              <div [hidden]="!username.errors?.maxlength" class="alert-validate" 
+                data-validate="Ce champ ne peut pas comporter plus de 200 caractères."></div>
+            </div>
+        </div>
+
+        <div class="wrap-input100 validate-input">
+          <span class="btn-show-pass" (click)="PasswordEye()">
+            <i class="zmdi zmdi-eye" id="btn-show-pass"></i>
           </span>
-          <input class="input100" type="password" name="password" [(ngModel)]="form.password">
-          <span class="focus-input100" data-placeholder="mot de passe"></span>
+          <input class="input100" type="password" name="password" placeholder="Mot de passe" required maxlength="200"
+          [(ngModel)]="form.password" #password="ngModel" id="password">
+            <div *ngIf="password.errors && (password.dirty || password.touched)">
+              <div [hidden]="!password.errors?.required" class="alert-validate" 
+                data-validate="Entrer le mot de passe"></div>
+              <div [hidden]="!password.errors?.maxlength" class="alert-validate" 
+                data-validate="Ce champ ne peut pas comporter plus de 200 caractères."></div>
+            </div>
+        </div>
+
+        <div class="text-center p-t-115">
+          <span class="txt1" style="display: none;" id="ValidityFormWarn">Veuillez vérifier que tout les champs sont bien remplies !</span>
         </div>
 
         <div class="container-login100-form-btn">
           <div class="wrap-login100-form-btn">
             <div class="login100-form-bgbtn"></div>
-            <button class="login100-form-btn" (click)="onSubmit()">
+            <div style="display:inline-block; position:relative;" class="login100-form-btn" (click)="ValidityWarn()">
+            <button class="login100-form-btn" (click)="onSubmit()" id="submitBtn" [disabled]="!registerForm.form.valid">
               s'inscrire
             </button>
-                        
+            </div>          
           </div>
         </div>
 
@@ -82,13 +170,9 @@
         </div>
 
         <div class="form-group">
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="isFormFull && isSignUpFailed"
-          >
-            Sign up failed: {{ errorMessage }}
-          </div>
+        <div class="text-center p-t-115" role="alert" *ngIf="isFormFull && isSignUpFailed" >
+          <span class="txt1">{{ errorMessage }} </span>
+        </div>
         </div>
 
       </form>

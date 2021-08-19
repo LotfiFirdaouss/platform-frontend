@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Professor } from '../models/professor';
 
-const baseUrl = 'http://localhost:8080/api/professeurs'; 
+const baseUrl = 'http://127.0.0.1:8080/api/professeurs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfessorService {
+
  
   constructor(private http: HttpClient) { }
 
@@ -36,6 +37,9 @@ export class ProfessorService {
     return this.http.delete(baseUrl);
   }
 
+  findProfessorByEmail(email_pro: any): Observable<Professor> {
+    return this.http.get(`${baseUrl}/email?email=${email_pro}`);
+  }
   findByUser(fk_user: any): Observable<Professor[]> {
     return this.http.get<Professor[]>(`${baseUrl}?user=${fk_user}`);
   }

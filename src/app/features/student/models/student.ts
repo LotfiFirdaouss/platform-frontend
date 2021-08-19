@@ -1,12 +1,12 @@
 export class Student {
     id?:any;
     code_etudiant?:number;
+    nom?:String;
     prenom?:String;
-    nom?:String;    
     email_perso?:any;
     email_pro?:any;
-    telephone?:String;
+    telephone?:any;
     filiere?:String;
-    promotion?:Date;
+    promotion?:String;
     fk_user?:any;
 }
