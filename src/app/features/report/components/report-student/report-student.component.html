@@ -4,7 +4,7 @@
         <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects que vous avez soumis.</small></p><hr>
     </span>
     <span *ngIf="!isStudentOwner">
-        <h2 class="card-subheading center" >Liste des rapports de stage de l'étudiant</h2><br>
+        <h2 class="card-subheading center" style="width: 70%;">Liste des rapports de stage de l'étudiant</h2><br>
         <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects que l'étudiant avait soumis.</small></p><hr>
     </span>
     <div  *ngFor="let report of reports; let i = index"

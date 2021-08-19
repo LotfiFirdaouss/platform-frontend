@@ -21,7 +21,7 @@
           </svg>
           {{ currentUser.firstname }} {{ currentUser.lastname }}
           <span class="text-muted font-weight-normal" >@{{ currentUser.username }} </span></h4>
-      <div *ngIf="isStudent && currentStudent" class="text-muted mb-2" style="padding-left: 50px;">CODE: {{ currentStudent.code_etudiant }}</div><!-- code apogée -->
+      <div *ngIf="isStudent && currentStudent" class="text-muted mb-2" style="padding-left: 50px;">CODE apogée: {{ currentStudent.code_etudiant }}</div><!-- code apogée -->
       <!-- <a href="javascript:void(0)" class="btn btn-primary btn-sm">Edit</a>&nbsp;
       <a href="javascript:void(0)" class="btn btn-default btn-sm">Profile</a>&nbsp; -->
       <a href="javascript:void(0)" class="btn btn-default btn-sm icon-btn"><i class="fa fa-mail"></i></a>
@@ -51,9 +51,9 @@
   </div>
 
   <div class="card">
-    <div *ngIf="isStudent" class="row no-gutters row-bordered">
+    <div *ngIf="isStudent && currentStudent" class="row no-gutters row-bordered">
       <div class="d-flex col-md align-items-center">
-          <a routerLink="/rapport-etudiant/{{currentUser.id}}" class="card-body d-block text-body">
+          <a routerLink="/rapport-etudiant/{{currentStudent.id}}" class="card-body d-block text-body">
             <span class="text-muted line-height-1">Rapports</span>
             &nbsp;&nbsp;
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
@@ -63,7 +63,7 @@
           </a>
         </div>
       <div class="d-flex col-md align-items-center">
-        <a routerLink="/insertion-etudiant/{{currentUser.id}}" class="card-body d-block text-body">
+        <a routerLink="/insertion-etudiant/{{currentStudent.id}}" class="card-body d-block text-body">
           <span class="text-muted line-height-1">Insertions</span>
           &nbsp;&nbsp;
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
@@ -117,12 +117,12 @@
       <table class="table user-view-table m-0">
         <tbody>
           <tr >
-            <td>Telephone:</td>
+            <td *ngIf="!isAdministrator">Telephone:</td>
             <td *ngIf="isStudent && currentStudent"> {{ currentStudent.telephone }} </td>
             <td *ngIf="isProfessor && currentProfessor"> {{ currentProfessor.telephone }} </td>
           </tr>
           <tr >
-              <td>Email personnel:</td>
+              <td *ngIf="!isAdministrator">Email personnel:</td>
               <td *ngIf="isStudent && currentStudent"> {{ currentStudent.email_perso }} </td>
               <td *ngIf="isProfessor && currentProfessor"> {{ currentProfessor.email_perso }} </td>
           </tr>
