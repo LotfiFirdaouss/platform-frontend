@@ -74,12 +74,14 @@
             $(this).find('i').removeClass('zmdi-eye');
             $(this).find('i').addClass('zmdi-eye-off');
             showPass = 1;
+            console.log(showPass);
         }
         else {
             $(this).next('input').attr('type','password');
             $(this).find('i').addClass('zmdi-eye');
             $(this).find('i').removeClass('zmdi-eye-off');
             showPass = 0;
+            console.log(showPass);
         }
         
     });

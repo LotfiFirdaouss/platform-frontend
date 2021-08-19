@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       err => {
-        this.errorMessage = err.error.detail;
+        this.errorMessage = "Aucun compte trouvé avec les informations données";
         this.isLoginFailed = true;
       }
     );
