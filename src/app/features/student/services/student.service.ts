@@ -12,6 +12,7 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
+  
   getAll(): Observable<Student[]> {
     return this.http.get<Student[]>(baseUrl);
   }
@@ -38,5 +39,9 @@ export class StudentService {
 
   findStudentByEmail(email_pro: any): Observable<Student> {
     return this.http.get(`${baseUrl}/email?email=${email_pro}`);
+  
+  }
+  findByUser(fk_user: any): Observable<Student[]> {
+    return this.http.get<Student[]>(`${baseUrl}?user=${fk_user}`);
   }
 }

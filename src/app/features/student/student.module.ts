@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
-import { HomeStudentComponent } from './pages/home-student/home-student.component';
-
-
+import { ProfileEtudiantComponent } from './components/profile-etudiant/profile-etudiant.component';
 
 @NgModule({
   declarations: [
-    HomeStudentComponent
+  
+    ProfileEtudiantComponent
   ],
   imports: [
     CommonModule,
     SharedModule
-  ]
+  ],
 })
 export class StudentModule { }

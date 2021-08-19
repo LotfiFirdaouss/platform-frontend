@@ -8,5 +8,5 @@ export class Student {
     telephone?:any;
     filiere?:String;
     promotion?:String;
-    fk_user?:number;
+    fk_user?:any;
 }

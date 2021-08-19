@@ -1,76 +1,73 @@
-<div class="container">
-  <h4 style="margin-top: 5%;">Liste des insertions</h4>
+<div class="container myContentClass">
+  <h2 class="card-subheading center" >Liste des insertions </h2><br>
+  <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les insertions professionelles / poursuites d'études des étudiants de l'ENSAM Casablanca.</small></p><hr>
+  <div  *ngFor="let insertion of insertions; let i = index"
+      [class.active]="i == currentIndex"
+      (click)="setActiveInsertion(insertion, i)" style="padding: 0.4%;">
+      <article class="postcard light blue" style="height: 220px; margin: 0%;" >
+        <div class="postcard__text t-dark">
+          <div class="row">
 
-  <div *ngIf="!currentInsertion">
-    <br />
-    <p>Veuillez selectionnez une insertion...</p>
-  </div>
+            <div class="col-5">
+                <h4>
+                    {{ insertion.cursus_post_ensam=="etude" ? "Etude" : "Travail" }} :
+                    <a class="blue"><b>{{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }}</b></a>
+                </h4>
+                
+                <div class="postcard__subtitle small">
+                <i class="icon-user mr-2"></i>Etudiant: <span class="classLink"><a routerLink="//profile-etudiant/{{insertion.fk_etudiant.id}}" style="margin-right:20px;">{{ insertion.fk_etudiant.prenom }} {{ insertion.fk_etudiant.nom }}</a></span>
+                <time><i class="icon-calendar mr-2"></i> {{ insertion.date_integration }}</time>
+                </div>
+                <div class="postcard__bar"></div>
+            </div>
 
-  <div  
-  class="list-group-item"
-  *ngFor="let insertion of insertions; let i = index"
-  [class.active]="i == currentIndex"
-  (click)="setActiveInsertion(insertion, i)"
-  style="padding: 0.4%;"
-  >
-    <div class="courses-container">
+            <div class="col-7">
+              <br>
     
-      <div class="course">
+              <div *ngIf="insertion.intit_formation">
+                <div>
+                    <label><strong>Nature de formation : </strong></label>
+                    {{ insertion.nature_formation }}                        </div>
+                <div>
+                    <label><strong>Intitulé de formation :  </strong></label>
+                    {{ insertion.intit_formation }}
+                  </div>
+              </div>
 
-        <div class="course-preview">
-          <h7>{{ insertion.cursus_post_ensam }}</h7>
-          <h3> {{ insertion.intit_formation ? insertion.intit_formation : insertion.intit_poste }} </h3>
-          <div *ngIf="currentInsertion && currentInsertion==insertion">
-            <a routerLink="/insertions/insertion-info/{{ currentInsertion.id }}" style="margin-top: 0%;"><u>plus de détails</u></a>
-          </div>
+              <div *ngIf="!insertion.intit_formation">
+                  <div>
+                      <label><strong>Nom de société : </strong></label>
+                      {{ insertion.societe }} ( {{ insertion.secteur_societe }} )
+                  </div>
+                  <div>
+                      <label><strong>Intitulé de poste  </strong></label>
+                      {{ insertion.intit_poste }}
+                  </div>
+              </div>
+
+              <div>
+                <label><strong>Ville d'insertion : </strong></label>
+                {{ insertion.ville }} ( {{ insertion.pays }} )                        
+              </div>
+                  
+              <div>
+                <hr>
+                <div class="row">
+                  <div class="col-6"></div>
+                  <div class="col-3" class="classLink">
+                    <a routerLink="/insertions/{{ insertion.id }}" ><u>modifier</u> </a>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <div class="col-3" class="classLink">
+                    <a routerLink="/insertions/insertion-info/{{ insertion.id }}" ><u>plus de détails</u></a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+                    
+          </div>  
         </div>
-
-        <div class="course-info">
-
-          <div *ngIf="!insertion.intit_formation">
-            <div>
-              <label><strong>Nom de société :</strong></label>
-              {{ insertion.societe }}
-            </div>
-            <div>
-              <label><strong>Intitulé de poste :</strong></label>
-              {{ insertion.intit_poste }}
-            </div>
-          </div>
-
-          <div *ngIf="insertion.intit_formation">
-            <div>
-              <label><strong>Nature de formation :</strong></label>
-              {{ insertion.nature_formation }}
-            </div>
-            <div>
-              <label><strong>Intitulé de formation :</strong></label>
-              {{ insertion.intit_formation }}
-            </div>
-          </div>
-
-          <div>
-            <label><strong>Id étudiant :</strong></label>
-            {{ insertion.fk_etudiant }}
-          </div>
-
-          <div *ngIf="currentInsertion && currentInsertion==insertion">
-            <!--<a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}">Supprimer</a>-->
-            <a class="btn1" routerLink="/insertions/{{ currentInsertion.id }}" >Modifier </a>  
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
+      </article>
   </div>
-
-  
-  <button class="m-3 btn btn-sm btn-danger" (click)="removeAllInsertions()">
-    Supprimer tout les insertions !!
-  </button> 
-  
-
 </div>

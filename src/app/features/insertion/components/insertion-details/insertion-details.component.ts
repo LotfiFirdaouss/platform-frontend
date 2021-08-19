@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Insertion } from 'src/app/features/insertion/models/insertion.model';
 import { InsertionService } from 'src/app/features/insertion/services/insertion.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ReturnedUser } from 'src/app/auth/models/returned-user';
+import { Student } from 'src/app/features/student/models/student';
+import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { StudentService } from 'src/app/features/student/services/student.service';
 
 @Component({
   selector: 'app-insertion-details',
@@ -9,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./insertion-details.component.css']
 })
 export class InsertionDetailsComponent implements OnInit {
-  currentInsertion : Insertion = {
+  currentInsertion : Insertion = { 
     cursus_post_ensam: 'travail',
     univ : '',
     pays : '',    
@@ -27,16 +31,39 @@ export class InsertionDetailsComponent implements OnInit {
   etudeDisabled=true;
   travailDisabled=false;
 
+  //to get value of student_id
+  isLoggedIn = false;
+  currentUser!: ReturnedUser;
+  currentStudent!: Student;
+
   constructor(
     private insertionService: InsertionService,
     private route: ActivatedRoute,
-    private router: Router
+    private token: TokenStorageService,
+    private studentService: StudentService
    ) { }
 
   ngOnInit(): void {
     this.message = '';
     this.getInsertion(this.route.snapshot.params.id);
-    this.loadJsFile("../../../../assets/js/insertions/insertion-details.js");  
+    this.isLoggedIn = !!this.token.getToken();
+    if (this.isLoggedIn) {
+      this.currentUser = this.token.getUser();
+      var user_id = this.currentUser.id;
+      this.getStudent(user_id);
+    }
+  }
+
+  getStudent(id_user: number): void {
+    this.studentService.findByUser(id_user)
+      .subscribe(
+        data => {
+          this.currentStudent = data[0];
+          this.currentInsertion.fk_etudiant= this.currentStudent.id;
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   getInsertion(id: string): void {
@@ -85,7 +112,6 @@ export class InsertionDetailsComponent implements OnInit {
     document.getElementsByTagName('head')[0].appendChild(node);  
   }
 
-
   myFunction(){
     this.onCursus();
     var cursus= <HTMLInputElement> document.getElementById("cursus_post_ensam");
@@ -113,6 +139,9 @@ export class InsertionDetailsComponent implements OnInit {
         Element = <HTMLInputElement> elements[index];
         Element.value="";
       }
+      this.currentInsertion.intit_formation='';
+      this.currentInsertion.nature_formation='';
+      this.currentInsertion.univ='';
   }else{
       elements = document.getElementsByClassName('travailClass');
       count = elements.length;
@@ -120,6 +149,8 @@ export class InsertionDetailsComponent implements OnInit {
         Element = <HTMLInputElement> elements[index];
         Element.value="";
       }
+      this.currentInsertion.societe='';
+      this.currentInsertion.intit_poste='';
     }
   }
 

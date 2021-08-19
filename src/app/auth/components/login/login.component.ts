@@ -39,14 +39,12 @@ export class LoginComponent implements OnInit {
       this.group = this.currentUser.groups[0];
       if( this.group == "Administrator"){
         this.isAdministrator = true;
-        this.router.navigate(['/home-admin']);
       }else if( this.group == "Professor" ){
         this.isProfessor = true;
-        this.router.navigate(['/home-professeur']);
       }else{
         this.isStudent = true;
-        this.router.navigate(['/home-etudiant']);
       }
+      this.router.navigate(['/home']);
     }  
   }
 

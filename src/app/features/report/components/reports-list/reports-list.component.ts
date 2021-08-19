@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ReturnedUser } from 'src/app/auth/models/returned-user';
+import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { Student } from 'src/app/features/student/models/student';
+import { StudentService } from 'src/app/features/student/services/student.service';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
 
@@ -16,7 +20,7 @@ export class ReportsListComponent implements OnInit {
    constructor(private reportService: ReportService) { }
    
    ngOnInit(): void {
-     this.retrieveReports();
+     this.retrieveReports(); 
    }
    
    retrieveReports(): void {

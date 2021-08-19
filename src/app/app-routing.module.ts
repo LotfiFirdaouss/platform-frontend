@@ -22,14 +22,11 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { ProfileComponent } from './auth/components/profile/profile.component';
 import { ContactPageComponent } from './core/components/contact-page/contact-page.component';
 import { AProposPageComponent } from './core/components/a-propos-page/a-propos-page.component';
-import { HomeAdministratorComponent } from './features/administrator/pages/home-administrator/home-administrator.component';
-import { HomeProfessorComponent } from './features/professor/pages/home-professor/home-professor.component';
-import { HomeStudentComponent } from './features/student/pages/home-student/home-student.component';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { ProfGuard } from './auth/guards/prof.guard';
 import { StudGuard } from './auth/guards/stud.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
-
+import { ProfileEtudiantComponent } from './features/student/components/profile-etudiant/profile-etudiant.component';
 
 const routes: Routes = [
 
@@ -42,29 +39,28 @@ const routes: Routes = [
 
   //protected routes: connected
   { path :'profile' , component : ProfileComponent, canActivate : [AuthGuard]},
-  { path: 'home-admin' , component: HomeAdministratorComponent, canActivate : [AuthGuard, AdminGuard]},
-  { path: 'home-professeur' , component: HomeProfessorComponent, canActivate : [AuthGuard, ProfGuard]},
-  { path: 'home-etudiant' , component: HomeStudentComponent, canActivate : [AuthGuard, StudGuard]},
-  
+  { path :'profile-etudiant/:id' , component : ProfileEtudiantComponent, canActivate : [AuthGuard]}, //id_etudiant
+  { path :'home' , component : ReportsListComponent, canActivate : [AuthGuard]},
 
   //reports
-  { path: 'rapports' , component: ReportsListComponent},
-  { path: 'add-rapport' , component: AddReportComponent},
-  { path: 'rapport-details/:id' , component: ReportDetailsComponent},
-  { path: 'rapport-info/:id', component: ReportInfoComponent},
-  { path: 'rapport-etudiant/:etudiant', component:ReportStudentComponent},
+  { path: 'rapports' , component: ReportsListComponent,canActivate : [AuthGuard]},
+  { path: 'add-rapport' , component: AddReportComponent,canActivate : [AuthGuard, StudGuard]},
+  { path: 'rapports/:id' , component: ReportDetailsComponent,canActivate : [AuthGuard]},
+  { path: 'rapport-info/:id', component: ReportInfoComponent,canActivate : [AuthGuard]},
+  { path: 'rapport-etudiant/:etudiant', component:ReportStudentComponent,canActivate : [AuthGuard]},
 
   //insertions
-  { path: 'insertions' , component: InsertionsListComponent},
-  { path: 'add-insertion' , component: AddInsertionComponent},
-  { path: 'insertions/:id', component: InsertionDetailsComponent },
-  { path: 'insertions/insertion-info/:id', component: InsertionInfoComponent },
-  { path: 'insertions/insertion-etudiant/:etudiant', component: InsertionStudentComponent },
+  { path: 'insertions' , component: InsertionsListComponent,canActivate : [AuthGuard]},
+  { path: 'add-insertion' , component: AddInsertionComponent,canActivate : [AuthGuard, StudGuard]},
+  { path: 'insertions/:id', component: InsertionDetailsComponent,canActivate : [AuthGuard] },
+  { path: 'insertions/insertion-info/:id', component: InsertionInfoComponent,canActivate : [AuthGuard] },
+  { path: 'insertion-etudiant/:etudiant', component: InsertionStudentComponent,canActivate : [AuthGuard] },
 
 
   //temporary routes (just to visualize the components)
-  { path: 'notice-slider' , component: NoticeSliderComponent},
-  { path: 'menu' , component: MenuComponent}
+  // { path: 'notice-slider' , component: NoticeSliderComponent},
+  // { path: 'menu' , component: MenuComponent},
+  
 ];
 
 @NgModule({

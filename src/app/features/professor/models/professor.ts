@@ -1,10 +1,10 @@
 export class Professor {
     id?:any;
-    nom?:String;
     prenom?:String;
+    nom?:String;    
     email_perso?:any;
     email_pro?:any;
-    telephone?:any;
+    telephone?:String;
     departement?:String;
-    fk_user?:number;
+    fk_user?:any;
 }

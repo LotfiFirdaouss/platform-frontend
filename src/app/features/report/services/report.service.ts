@@ -21,11 +21,49 @@ export class ReportService {
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    const formData: FormData = new FormData();
+    formData.append('stage_ou_projet',data.stage_ou_projet);
+    formData.append('date_debut_stage',data.date_debut_stage);
+    formData.append('date_fin_stage',data.date_fin_stage);
+    formData.append('intitule_stage',data.intitule_stage);
+    formData.append('societe_stage',data.societe_stage);
+    formData.append('secteur_societe',data.secteur_societe);
+    formData.append('ville_societe',data.ville_societe);
+    formData.append('pays_societe',data.pays_societe);
+    formData.append('details_add_societe',data.details_add_societe);
+    formData.append('encadrant',data.encadrant);
+    formData.append('email_encadrant',data.email_encadrant);
+    formData.append('telephone_encadrant',data.telephone_encadrant);
+    formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
+    formData.append('rapport_confidentiel',data.rapport_confidentiel);
+    formData.append('fk_etudiant',data.fk_etudiant);
+    formData.append('type_rapport',data.type_rapport);
+    formData.append('resume_rapport',data.resume_rapport);
+
+    return this.http.post(baseUrl, formData);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    const formData: FormData = new FormData();
+    formData.append('stage_ou_projet',data.stage_ou_projet);
+    formData.append('date_debut_stage',data.date_debut_stage);
+    formData.append('date_fin_stage',data.date_fin_stage);
+    formData.append('intitule_stage',data.intitule_stage);
+    formData.append('societe_stage',data.societe_stage);
+    formData.append('secteur_societe',data.secteur_societe);
+    formData.append('ville_societe',data.ville_societe);
+    formData.append('pays_societe',data.pays_societe);
+    formData.append('details_add_societe',data.details_add_societe);
+    formData.append('encadrant',data.encadrant);
+    formData.append('email_encadrant',data.email_encadrant);
+    formData.append('telephone_encadrant',data.telephone_encadrant);
+    formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
+    formData.append('rapport_confidentiel',data.rapport_confidentiel);
+    formData.append('fk_etudiant',data.fk_etudiant);
+    formData.append('type_rapport',data.type_rapport);
+    formData.append('resume_rapport',data.resume_rapport);
+
+    return this.http.put(`${baseUrl}/${id}`, formData);
   }
 
   delete(id: any): Observable<any> {

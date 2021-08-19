@@ -100,3 +100,25 @@ a, a:hover {text-decoration: none;transition: color 0.3s ease-in-out;}
 .icon-tag:before {
      content: "\f02b";
 }
+.icon-user:before {
+     content: "\f007";
+}
+
+.center {
+     margin: auto;
+     width: 50%;
+     border: 1px #0076bd;;
+     padding: 10px;
+     }
+
+.myContentClass{
+     margin-top: 50px; 
+     margin-bottom: 100px;    
+     padding-left: 4%;
+     padding-right: 4%;
+     padding-bottom: 8%;
+}     
+.classLink :hover{
+     color: #0076bd;
+     text-decoration: underline;
+}     

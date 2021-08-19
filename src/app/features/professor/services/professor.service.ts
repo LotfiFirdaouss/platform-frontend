@@ -10,6 +10,7 @@ const baseUrl = 'http://127.0.0.1:8080/api/professeurs';
 })
 export class ProfessorService {
 
+ 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Professor[]> {
@@ -39,4 +40,8 @@ export class ProfessorService {
   findProfessorByEmail(email_pro: any): Observable<Professor> {
     return this.http.get(`${baseUrl}/email?email=${email_pro}`);
   }
+  findByUser(fk_user: any): Observable<Professor[]> {
+    return this.http.get<Professor[]>(`${baseUrl}?user=${fk_user}`);
+  }
+
 }
