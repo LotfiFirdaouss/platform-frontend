@@ -15,4 +15,6 @@ export class Report {
     fichier_rapport?:File;
     rapport_confidentiel?:boolean;
     fk_etudiant?:any;
+    type_rapport?:String;
+    resume_rapport?:String;
     }

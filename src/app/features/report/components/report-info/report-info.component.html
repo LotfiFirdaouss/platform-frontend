@@ -9,28 +9,45 @@
       
       <div class="table-responsive custom-table-responsive">
       
-        <table class="table custom-table">
+        <table class="table custom-table" style="width: 100%;">
+          
+          <!-- <thead>
+            <tr>
+              <th style="width: 40%;"></th>
+              <th style="width: 60%;"></th>
+            </tr>
+         </thead>      -->
+
           <tbody>
             <!-- <tr>
               <td> Rapport : </td>
               <td> <a href="{{ currentReport.fichier_rapport }}">  {{ currentReport.intitule_stage }}  </a></td>
             </tr> -->
             <tr>
-              <td> Etudiant : </td>
+              <td><b>Etudiant</b></td>
               <td class="classLink"> <a routerLink="/">  {{ currentReport.fk_etudiant.prenom }} {{ currentReport.fk_etudiant.nom }}  </a></td>
             </tr>
             <tr>
-              <td> Date de début :</td>
+              <td> <b>Type de rapport</b></td>
+              <td> {{ currentReport.type_rapport }} </td>
+            </tr>
+            <tr>
+              <td> <b>Date de début</b></td>
               <td> {{ currentReport.date_debut_stage }} </td>
             </tr>
             <tr>
-              <td> Date de fin :</td>
+              <td> <b>Date de fin</b></td>
               <td> {{ currentReport.date_fin_stage }} </td>
             </tr>
             <tr scope="row" *ngFor="let aff of affiches">
-              <td>{{aff.champ}} :</td>
+              <td><b>{{aff.champ}}</b></td>
               <td>{{aff.info}}</td>
             </tr>
+            <tr>
+              <td><b>Résumé rapport</b></td>
+              <td style="width: 70%;"> {{ currentReport.resume_rapport }} </td>
+            </tr>
+            
           </tbody>
         </table>
         

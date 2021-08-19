@@ -43,7 +43,7 @@ const routes: Routes = [
   //reports
   { path: 'rapports' , component: ReportsListComponent,canActivate : [AuthGuard]},
   { path: 'add-rapport' , component: AddReportComponent,canActivate : [AuthGuard, StudGuard]},
-  { path: 'rapport-details/:id' , component: ReportDetailsComponent,canActivate : [AuthGuard]},
+  { path: 'rapports/:id' , component: ReportDetailsComponent,canActivate : [AuthGuard]},
   { path: 'rapport-info/:id', component: ReportInfoComponent,canActivate : [AuthGuard]},
   { path: 'rapport-etudiant/:etudiant', component:ReportStudentComponent,canActivate : [AuthGuard]},
 

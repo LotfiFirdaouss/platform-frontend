@@ -24,14 +24,17 @@ export class ReportDetailsComponent implements OnInit {
    encadrant: '',
    email_encadrant: '',
    telephone_encadrant: '',
-   fichier_rapport: null,
    rapport_confidentiel: false,
    fk_etudiant: 1,
+   type_rapport:'Initiation',
+   resume_rapport:''
  };
  natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
+ types_rapport : String[] = ['Initiation','PFA','PFE']
  stageDisabled=false;
  Updated= false;
  Deleted= false;
+ fileToUpload: File | null = null;
 
  constructor(private reportService: ReportService,
    private route: ActivatedRoute,
@@ -41,12 +44,23 @@ export class ReportDetailsComponent implements OnInit {
    this.getReport(this.route.snapshot.params.id); 
  }
 
+ handleFileInput(files: FileList) {
+  this.fileToUpload = files.item(0);
+}
 
  getReport(id: string): void {
    this.reportService.get(id)
      .subscribe(
        data => {
-         this.currentReport = data;
+          this.currentReport = data;
+          //console.log(data.stage_ou_projet);
+          if(!data.stage_ou_projet){
+            this.stageDisabled=true;
+          }else{
+            this.stageDisabled=false;
+          }
+         //console.log(this.currentReport.fk_etudiant.id)
+         //this.fileToUpload = data.fichier_rapport;
          console.log(data);
        },
        error => {
@@ -55,7 +69,27 @@ export class ReportDetailsComponent implements OnInit {
  }
 
  updateReport(): void {
-   this.reportService.update(this.currentReport.id, this.currentReport)
+  const data = {
+    stage_ou_projet: this.currentReport.stage_ou_projet,
+    date_debut_stage: this.currentReport.date_debut_stage,
+    date_fin_stage: this.currentReport.date_fin_stage,
+    intitule_stage: this.currentReport.intitule_stage,
+    societe_stage: this.currentReport.societe_stage,
+    secteur_societe: this.currentReport.secteur_societe,
+    ville_societe: this.currentReport.ville_societe,
+    pays_societe: this.currentReport.pays_societe,
+    details_add_societe: this.currentReport.details_add_societe,
+    encadrant: this.currentReport.encadrant,
+    email_encadrant: this.currentReport.email_encadrant,
+    telephone_encadrant: this.currentReport.telephone_encadrant,
+    fichier_rapport: (this.fileToUpload),
+    rapport_confidentiel: this.currentReport.rapport_confidentiel,
+    fk_etudiant: this.currentReport.fk_etudiant.id,
+    type_rapport:this.currentReport.type_rapport,
+    resume_rapport:this.currentReport.resume_rapport,
+  };
+
+   this.reportService.update(this.currentReport.id, data)
      .subscribe(
        response => {
          console.log(response);
@@ -78,6 +112,7 @@ export class ReportDetailsComponent implements OnInit {
          console.log(error);
        });
  }
+
  myFunction(){
    var nat= <HTMLInputElement> document.getElementById("nature");
    if(nat.value[0]=='1'){

@@ -29,7 +29,9 @@ export class AddReportComponent implements OnInit {
     telephone_encadrant: '',
     fichier_rapport: null,
     rapport_confidentiel: false,
-    fk_etudiant: 0, 
+    fk_etudiant: 0,
+    type_rapport:'Initiation',
+    resume_rapport:'' 
   };
 
   //to get value of student_id
@@ -40,6 +42,7 @@ export class AddReportComponent implements OnInit {
   submitted = false;
   active = true;
   natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
+  types_rapport : String[] = ['Initiation','PFA','PFE']
   stageDisabled= false;
   fileToUpload: File | null = null;
 
@@ -89,7 +92,9 @@ export class AddReportComponent implements OnInit {
       telephone_encadrant: this.report.telephone_encadrant,
       fichier_rapport: (this.fileToUpload),
       rapport_confidentiel: this.report.rapport_confidentiel,
-      fk_etudiant: this.report.fk_etudiant
+      fk_etudiant: this.report.fk_etudiant,
+      type_rapport:this.report.type_rapport,
+      resume_rapport:this.report.resume_rapport,
     };
 
     this.reportService.create(data)
@@ -113,7 +118,7 @@ export class AddReportComponent implements OnInit {
       this.report.details_add_societe='';
       this.report.encadrant='';
       this.report.email_encadrant='';
-      this.report.telephone_encadrant='';
+      this.report.telephone_encadrant=''
       this.stageDisabled=true;
     }else{
       this.stageDisabled=false;

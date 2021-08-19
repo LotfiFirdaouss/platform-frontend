@@ -19,6 +19,18 @@
                 </div>
                 <div class="row">
                     <div class="col">
+                        <div class="form-group">
+                            <select class="custom-select form-control" id="type_rapport" name="type_rapport" required
+                            [(ngModel)]="report.type_rapport" #type_rapport="ngModel">
+                                <option *ngFor="let type of types_rapport" [ngValue]="type" selected>
+                                    {{ type }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="report.intitule_stage" required #intitule="ngModel" 
                             class="form-control" name="intitule" placeholder="Intitulé*" maxlength="200"  />
@@ -213,14 +225,28 @@
                         <div class="form-group input-box">
                             <input type="file" [(ngModel)]="report.fichier_rapport" 
                             class="form-control" name="fichier_rapport" placeholder="lien du rapport*" required
-                            (change)="handleFileInput($event.target.files)"/>
+                            (change)="handleFileInput($event.target.files)" style="padding-top: 3px;padding-bottom: 3px;"/>
                             <span class="unit">PDF du rapport: </span>
-                            <!-- #fichier_rapport="ngModel"
-                                <div *ngIf="fichier_rapport.errors && (fichier_rapport.dirty || fichier_rapport.touched)" class="alert alert-danger">
-                                <div [hidden]="!lien.errors?.required">
-                                    Le lien du rapport est requis.
-                                </div>
-                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <p>Résumé du rapport</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <textarea type="text" [(ngModel)]="report.resume_rapport" required #resume_rapport="ngModel" 
+                                class="form-control" name="resume_rapport" placeholder="résume du rapport*" maxlength="3000"
+                                style="height: 150px;">
+                                <span class="unit">Résumé du rapport : </span>
+                                <div *ngIf="resume_rapport.errors && (resume_rapport.dirty || resume_rapport.touched)" class="alert alert-danger">
+                                    <div [hidden]="!resume_rapport.errors?.required">
+                                        Le résumé du rapport est requis.
+                                    </div>
+                                    <div [hidden]="!resume_rapport.errors?.maxlength">
+                                        Ce champ ne peut pas comporter plus de 3000 caractères.
+                                    </div>
+                                </div>   
+                            </textarea>    
                         </div>
                     </div>
                 </div>
