@@ -9,5 +9,5 @@ export class Insertion {
     societe?:String;
     ville?:String;
     date_integration?:Date;
-    fk_etudiant?:number;
+    fk_etudiant?:any;
 }

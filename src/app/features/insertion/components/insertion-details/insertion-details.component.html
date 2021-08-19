@@ -1,4 +1,4 @@
-<div class="container contact-form ">
+<div class="container contact-form myContentClass"> 
 
   <div *ngIf="currentInsertion.id && !updated && !deleted">
     <form #insertionForm="ngForm" (ngSubmit)="updateInsertion()">
@@ -252,7 +252,7 @@
           
         </div>
 
-        <div class="row" style="margin-top: 25px;">
+        <div class="row" style="margin-top: 25px;display: none;">
           <div class="col">
               <label for="fk_etudiant"> Id étudiant* </label>
               <div class="form-group input-box">
@@ -308,10 +308,26 @@
 
   <div *ngIf="updated" class="container">
     <h4 > L'insertion est modifié avec succès ! </h4>
+    <div style="display:inline-block; position:relative; padding-bottom: 0%;">
+      <button 
+      id="returnToInsertion"
+      class="btnContact "
+      routerLink="/insertion-etudiant/{{currentStudent.id}}"
+        >
+      Retour vers insertion</button>
+    </div>
   </div>
 
   <div *ngIf="deleted" class="container">
     <h4 > L'insertion est supprimé avec succès ! </h4>
+    <div style="display:inline-block; position:relative; padding-bottom: 0%; width: 50%;">
+      <button 
+      id="returnToInsertion"
+      class="btnContact "
+      routerLink="/add-insertion/"
+        >
+      Ajouter une autre !</button>
+    </div>
   </div>
 
 </div>

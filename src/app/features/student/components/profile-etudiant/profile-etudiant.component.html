@@ -1,0 +1,124 @@
+<!-- <p>profile-etudiant works!</p>
+
+<div *ngIf="currentStudent">ID: {{ currentStudent.id }} </div>
+<div *ngIf="currentStudent">name: {{ currentStudent.prenom }} {{ currentStudent.nom }} </div>
+<div *ngIf="currentStudent" routerLink="/rapport-etudiant/{{ currentStudent.id }}"> Rapports </div>
+<div *ngIf="currentStudent" routerLink="/insertion-etudiant/{{ currentStudent.id }}"> Insertion </div> -->
+
+<div *ngIf="currentStudent" class="container bootdey flex-grow-1 container-p-y myContentClass">
+
+            <div class="media align-items-center py-3 mb-3">
+              <div class="media-body ml-4">
+                <h4 class="font-weight-bold mb-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                    {{ currentStudent.prenom }} {{ currentStudent.nom }}
+                    <span class="text-muted font-weight-normal" *ngIf="isUser">@ {{ currentStudent.fk_user.username }} </span></h4>
+                <div class="text-muted mb-2" style="padding-left: 50px;">CODE apogée: {{ currentStudent.code_etudiant }}</div><!-- code apogée -->
+                <!-- <a href="javascript:void(0)" class="btn btn-primary btn-sm">Edit</a>&nbsp;
+                <a href="javascript:void(0)" class="btn btn-default btn-sm">Profile</a>&nbsp; -->
+                <a href="javascript:void(0)" class="btn btn-default btn-sm icon-btn"><i class="fa fa-mail"></i></a>
+              </div>
+            </div>
+
+            <div class="card mb-4">
+              <div class="card-body">
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr>
+                      <td>Role:</td>
+                      <td>
+                        <!-- <span >Administrateur</span>
+                        <span>Professeur</span> -->
+                        <span>Etudiant</span>
+                    </td>
+                    </tr>
+                    <tr>
+                      <td>Status:</td><!-- si utilisateur sera active -->
+                      <td *ngIf="isUser"><span class="badge badge-outline-success"><span class="fa fa-check text-primary"></span>&nbsp;Active</span></td>
+                      <td *ngIf="!isUser"><span class="badge badge-outline-success"><span class="fa fa-times text-primary"></span>&nbsp;Non active</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <hr class="border-light m-0">
+            </div>
+
+            <div class="card">
+              <div class="row no-gutters row-bordered">
+                <div class="d-flex col-md align-items-center">
+                    <a routerLink="/rapport-etudiant/{{currentStudent.id}}" class="card-body d-block text-body">
+                      <span class="text-muted line-height-1">Rapports</span>
+                      &nbsp;&nbsp;
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                      </svg>
+                    </a>
+                  </div>
+                <div class="d-flex col-md align-items-center">
+                  <a routerLink="/insertion-etudiant/{{currentStudent.id}}" class="card-body d-block text-body">
+                    <span class="text-muted line-height-1">Insertions</span>
+                    &nbsp;&nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <hr class="border-light m-0">
+              <div class="card-body">
+
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr *ngIf="isUser">
+                      <td>Nom d'utilisateur:</td>
+                      <td> {{ currentStudent.fk_user.username }} </td>
+                    </tr>
+                    <tr>
+                      <td>Nom et Prénom:</td>
+                      <td> {{ currentStudent.prenom }} {{ currentStudent.nom }} </td>
+                    </tr>
+                    <tr>
+                      <td>E-mail:</td>
+                      <td> {{ currentStudent.email_pro }} </td> <!-- email professionnelle -->
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h6 class="mt-4 mb-3">Informations supplémentaires</h6>
+
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr>
+                      <td>Filiére:</td>
+                      <td> {{ currentStudent.filiere }} </td>
+                    </tr>
+                    <tr>
+                      <td>Promotion:</td>
+                      <td> {{ currentStudent.promotion }} </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h6 class="mt-4 mb-3">Contacts</h6>
+
+                <table class="table user-view-table m-0">
+                  <tbody>
+                    <tr>
+                      <td>Telephone:</td>
+                      <td> {{ currentStudent.telephone }} </td>
+                    </tr>
+                    <tr>
+                        <td>Email personnelle:</td>
+                        <td> {{ currentStudent.email_perso }} </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+          </div>

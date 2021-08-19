@@ -26,6 +26,7 @@ import { AdminGuard } from './auth/guards/admin.guard';
 import { ProfGuard } from './auth/guards/prof.guard';
 import { StudGuard } from './auth/guards/stud.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { ProfileEtudiantComponent } from './features/student/components/profile-etudiant/profile-etudiant.component';
 
 const routes: Routes = [
 
@@ -38,12 +39,13 @@ const routes: Routes = [
 
   //protected routes: connected
   { path :'profile' , component : ProfileComponent, canActivate : [AuthGuard]},
+  { path :'profile-etudiant/:id' , component : ProfileEtudiantComponent, canActivate : [AuthGuard]}, //id_etudiant
   { path :'home' , component : ReportsListComponent, canActivate : [AuthGuard]},
 
   //reports
   { path: 'rapports' , component: ReportsListComponent,canActivate : [AuthGuard]},
   { path: 'add-rapport' , component: AddReportComponent,canActivate : [AuthGuard, StudGuard]},
-  { path: 'rapport-details/:id' , component: ReportDetailsComponent,canActivate : [AuthGuard]},
+  { path: 'rapports/:id' , component: ReportDetailsComponent,canActivate : [AuthGuard]},
   { path: 'rapport-info/:id', component: ReportInfoComponent,canActivate : [AuthGuard]},
   { path: 'rapport-etudiant/:etudiant', component:ReportStudentComponent,canActivate : [AuthGuard]},
 

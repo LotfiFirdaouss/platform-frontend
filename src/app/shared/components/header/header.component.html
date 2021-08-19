@@ -41,7 +41,7 @@
                 <a class="nav-link active" [id]="homeBtnID" routerLink="/home" (click)="switchActive(homeBtnID); scrollCenter(0)" >Accueil</a>
               </li>
               <li class="nav-item" *ngIf="isLoggedIn">
-                <a class="nav-link inactive" [id]="profileBtnID" routerLink="/profile" (click)="switchActive(profileBtnID); scrollCenter(0)">{{ currentUser.username }}</a>
+                <a class="nav-link inactive" [id]="profileBtnID" routerLink="/profile" (click)="switchActive(profileBtnID); scrollCenter(0)">Profil</a>
               </li>
               <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link inactive" [id]="logoutBtnID" routerLink="/" (click)="logout();">Déconnexion</a>

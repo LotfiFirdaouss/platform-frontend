@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ReturnedUser } from 'src/app/auth/models/returned-user';
+import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
 import { Insertion } from 'src/app/features/insertion/models/insertion.model';
 import { InsertionService } from 'src/app/features/insertion/services/insertion.service';
+import { Student } from 'src/app/features/student/models/student';
+import { StudentService } from 'src/app/features/student/services/student.service';
 
 
 @Component({
@@ -27,10 +31,36 @@ export class AddInsertionComponent implements OnInit {
   etudeDisabled=true;
   travailDisabled=false;
 
-  constructor(private insertionService : InsertionService) { }
+  //to get value of student_id
+  isLoggedIn = false;
+  currentUser!: ReturnedUser;
+  currentStudent!: Student;
+
+  constructor(private insertionService : InsertionService,
+    private token: TokenStorageService,
+    private studentService: StudentService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.token.getToken();
+    //console.log(this.isLoggedIn);
+    if (this.isLoggedIn) {
+      this.currentUser = this.token.getUser();
+      var user_id = this.currentUser.id;
+      this.getStudent(user_id);
+    }  
     
+  }
+
+  getStudent(id_user: number): void {
+    this.studentService.findByUser(id_user)
+      .subscribe(
+        data => {
+          this.currentStudent = data[0];
+          this.insertion.fk_etudiant= this.currentStudent.id;
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   saveInsertion(): void {
@@ -57,6 +87,7 @@ export class AddInsertionComponent implements OnInit {
           console.log(error);
         });
   }
+
 
   newInsertion(): void {
     this.submitted = false;

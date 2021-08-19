@@ -14,5 +14,7 @@ export class Report {
     telephone_encadrant?:any;
     fichier_rapport?:File;
     rapport_confidentiel?:boolean;
-    fk_etudiant?:number;
+    fk_etudiant?:any;
+    type_rapport?:String;
+    resume_rapport?:String;
     }

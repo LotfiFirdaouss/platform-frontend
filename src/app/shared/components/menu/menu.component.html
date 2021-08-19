@@ -11,29 +11,32 @@
 
       <div class="profile">
         <img src="assets/Img/student_icon.png" alt="Image" class="img-fluid" *ngIf="isStudent">
-        <img src="assets/Img/professor_icon" alt="Image" class="img-fluid" *ngIf="isProfessor">
+        <img src="assets/Img/professor_icon.png" alt="Image" class="img-fluid" *ngIf="isProfessor">
         <img src="assets/Img/admin_icon.png" alt="Image" class="img-fluid" *ngIf="isAdministrator">
         <h3 class="name"> {{ currentUser.username }} </h3>
       </div>
 
+      <!-- <div *ngIf="isStudent && currentStudent"> you are a student {{ currentStudent.id }} </div> -->
+
       <div class="nav-menu">
         <ul>
-          <li class="active"><a routerLink="/rapports"><span class="icon-home mr-3"></span>Accueil</a></li>
+          <li class="active"><a routerLink="/home"><span class="icon-home mr-3"></span>Accueil</a></li>
           <li><a routerLink="/profile"><span class="icon-user mr-3"></span>Mon profil</a></li>
-          <div>
-            <li *ngIf="isStudent"><a  (click)="dropDownFunction(myDropdownRapport)" class="dropbtn"><span class="icon-report mr-3"></span>Rapports</a></li>
+          <div *ngIf="isStudent && currentStudent">
+            <li><a  (click)="dropDownFunction(myDropdownRapport)" class="dropbtn"><span class="icon-report mr-3"></span>Rapports</a></li>
             <div id="myDropdownRapport" class="dropdown-content">
-              <a routerLink="/" >Mes rapports</a> <!-- path: "rapport-etudiant/:etudiant" -->
+              <a routerLink="/rapport-etudiant/{{currentStudent.id}}" >Mes rapports</a> <!-- path: "rapport-etudiant/:etudiant" -->
               <a routerLink="/add-rapport" >Ajouter rapport</a>
             </div>
           </div>
 
           <li *ngIf="isAdministrator"><a routerLink="/insertions"><span class="icon-insertion mr-3"></span>Insertions</a></li>
 
-          <div>
-            <li *ngIf="isStudent"><a  (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>
+          <div *ngIf="isStudent && currentStudent">
+            <li ><a (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>
+            <!-- <div> {{ hasInsertion }} </div> -->
             <div id="myDropdownInsertion" class="dropdown-content">
-              <a routerLink="/">Mon insertion</a> <!-- path: "insertion-etudiant/:etudiant" -->
+              <a routerLink="/insertion-etudiant/{{currentStudent.id}}">Mon insertion</a> <!-- path: "insertion-etudiant/:etudiant" -->
               <a routerLink="/add-insertion">Ajouter insertion</a>
             </div>
           </div>

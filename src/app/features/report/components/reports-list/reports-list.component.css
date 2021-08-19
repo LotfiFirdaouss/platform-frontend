@@ -105,7 +105,8 @@ a, a:hover {text-decoration: none;transition: color 0.3s ease-in-out;}
 }
 
 .classLink :hover{
-     color: #0076bd;;
+     color: #0076bd;
+     text-decoration: underline;
 }
 
 .center {
@@ -114,3 +115,11 @@ a, a:hover {text-decoration: none;transition: color 0.3s ease-in-out;}
      border: 1px #0076bd;;
      padding: 10px;
      }
+
+     .myContentClass{
+          margin-top: 50px; 
+          margin-bottom: 100px;    
+          padding-left: 4%;
+          padding-right: 4%;
+          padding-bottom: 8%;
+     }     

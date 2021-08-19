@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ReturnedUser } from 'src/app/auth/models/returned-user';
+import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { Student } from 'src/app/features/student/models/student';
+import { StudentService } from 'src/app/features/student/services/student.service';
 import { Nature } from '../../models/nature.model';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
@@ -25,17 +29,47 @@ export class AddReportComponent implements OnInit {
     telephone_encadrant: '',
     fichier_rapport: null,
     rapport_confidentiel: false,
-    fk_etudiant: 1,
+    fk_etudiant: 0,
+    type_rapport:'Initiation',
+    resume_rapport:'' 
   };
+
+  //to get value of student_id
+  isLoggedIn = false;
+  currentUser!: ReturnedUser;
+  currentStudent!: Student;
+  
   submitted = false;
   active = true;
   natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
+  types_rapport : String[] = ['Initiation','PFA','PFE']
   stageDisabled= false;
   fileToUpload: File | null = null;
 
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService,
+    private token: TokenStorageService,
+    private studentService: StudentService) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.token.getToken();
+    //console.log(this.isLoggedIn);
+    if (this.isLoggedIn) {
+      this.currentUser = this.token.getUser();
+      var user_id = this.currentUser.id;
+      this.getStudent(user_id);
+    }
+  }
+
+  getStudent(id_user: number): void {
+    this.studentService.findByUser(id_user)
+      .subscribe(
+        data => {
+          this.currentStudent = data[0];
+          this.report.fk_etudiant= this.currentStudent.id;
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   handleFileInput(files: FileList) {
@@ -58,7 +92,9 @@ export class AddReportComponent implements OnInit {
       telephone_encadrant: this.report.telephone_encadrant,
       fichier_rapport: (this.fileToUpload),
       rapport_confidentiel: this.report.rapport_confidentiel,
-      fk_etudiant: this.report.fk_etudiant
+      fk_etudiant: this.report.fk_etudiant,
+      type_rapport:this.report.type_rapport,
+      resume_rapport:this.report.resume_rapport,
     };
 
     this.reportService.create(data)
@@ -82,7 +118,7 @@ export class AddReportComponent implements OnInit {
       this.report.details_add_societe='';
       this.report.encadrant='';
       this.report.email_encadrant='';
-      this.report.telephone_encadrant='';
+      this.report.telephone_encadrant=''
       this.stageDisabled=true;
     }else{
       this.stageDisabled=false;

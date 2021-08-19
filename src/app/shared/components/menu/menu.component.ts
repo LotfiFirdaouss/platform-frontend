@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { InsertionService } from 'src/app/features/insertion/services/insertion.service';
+import { Student } from 'src/app/features/student/models/student';
+import { StudentService } from 'src/app/features/student/services/student.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,30 +17,69 @@ export class MenuComponent implements OnInit {
   myDropdownEtudiant="myDropdownEtudiant";
 
   isLoggedIn = false;
-  currentUser!: ReturnedUser; 
+  currentUser!: ReturnedUser;
   group="";
   isProfessor=false;
   isStudent=false;
   isAdministrator=false;
+  //used only if the current user is a student
+  currentStudent!: Student; 
+  hasInsertion=false;
 
-  constructor(private token: TokenStorageService) { }
+  constructor(private token: TokenStorageService,
+    private studentService: StudentService,
+    private insertionService: InsertionService) { }
 
   ngOnInit() {  
     this.loadJsFile("../../../../assets/js/menu.js");  
     this.isLoggedIn = !!this.token.getToken();
-  
+    //console.log("1.init")
+    
+    var user_id;
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
+      user_id = this.currentUser.id;
       this.group = this.currentUser.groups[0];
+      //console.log("student:",this.currentStudent);
       if( this.group == "Administrator"){
         this.isAdministrator = true;
       }else if( this.group == "Professor" ){
         this.isProfessor = true;
       }else{
         this.isStudent = true;
+        this.getStudent(user_id);
+        //console.log("2.user id:",user_id);
+        //console.log("4.back to init,student object",this.currentStudent)
       }
     }
   }  
+
+  getInsertion(id_etudiant: number): void {
+    this.insertionService.findByStudent(id_etudiant)
+      .subscribe(
+        data => {
+          this.hasInsertion=true;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  getStudent(id_user: number): void {
+    //console.log("3.get student function =========")
+    this.studentService.findByUser(id_user)
+      .subscribe(
+        data => {
+          //console.log("inside func")
+          this.currentStudent = data[0];
+          //console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+    //console.log("after subscribe: ",this.currentStudent);    
+  }
 
   public loadJsFile(url) {  
     let node = document.createElement('script');  

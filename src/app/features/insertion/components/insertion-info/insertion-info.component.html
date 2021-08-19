@@ -1,13 +1,12 @@
-<div class="content">
-    
-    <div class="container">     
+<div class="container myContentClass"> 
+   
       <div *ngIf="currentInsertion.id">
         <div class="table-responsive custom-table-responsive" >
 
           <table class="table custom-table" >
             <thead>
               <tr>                
-                <th scope="col"><h4>Détails relatives à l'insertion</h4></th>
+                <th scope="col"><h4>Détails relatives à l'insertion:</h4></th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -19,6 +18,13 @@
                   <small class="d-block">poursuite d'étude ou insertion professionnelle</small>
                 </td>
                 <td> {{ currentInsertion.cursus_post_ensam }} </td>
+              </tr>
+
+              <tr scope="row" >
+                <td>
+                  <B>Etudiant concerné</B>
+                </td>
+                <td class="classLink" routerLink="/profile-etudiant/{{currentInsertion.fk_etudiant.id}}"><span> {{ currentInsertion.fk_etudiant.prenom }} {{ currentInsertion.fk_etudiant.nom }}</span> </td>
               </tr>
 
               <tr scope="row" *ngIf="!currentInsertion.intit_formation">
@@ -75,13 +81,6 @@
                 <td> {{ currentInsertion.pays }} </td>
               </tr>
 
-              <tr scope="row">
-                <td>
-                  <B>Etudiant concerné</B>
-                </td>
-                <td> {{ currentInsertion.fk_etudiant }} </td>
-              </tr>
-
 
               
 
@@ -96,7 +95,4 @@
         <p >L'insertion spécifié n'est pas accessible ...</p>
       </div>
 
-    </div>
-
-  </div>
-    
+</div>

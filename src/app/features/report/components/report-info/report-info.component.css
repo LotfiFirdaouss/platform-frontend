@@ -46,5 +46,19 @@ border-top: none;border-bottom: none !important;color: #002245; }
 .custom-table tbody tr.active th, .custom-table tbody tr.active td, .custom-table tbody tr:hover th, .custom-table tbody tr:hover td {
     color: #002245;
     background: #a8cff7; }
-    .custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
-    color: #002245; }
+.custom-table tbody tr.active th a, .custom-table tbody tr.active td a, .custom-table tbody tr:hover th a, .custom-table tbody tr:hover td a {
+color: #002245; }
+
+.myContentClass{
+    margin-top: 50px; 
+    margin-bottom: 100px;    
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 8%;
+}    
+
+.classLink :hover{
+    color: #0076bd;
+    text-decoration: underline;
+    cursor: pointer;
+}
