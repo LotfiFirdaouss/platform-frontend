@@ -1,6 +1,12 @@
 <div class="container myContentClass">
-    <h2 class="card-subheading center" >Liste de vos rapports de stage</h2><br>
-    <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects que vous avez soumis.</small></p><hr>
+    <span *ngIf="isStudentOwner">
+        <h2 class="card-subheading center" >Liste de vos rapports de stage</h2><br>
+        <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects que vous avez soumis.</small></p><hr>
+    </span>
+    <span *ngIf="!isStudentOwner">
+        <h2 class="card-subheading center" >Liste des rapports de stage de l'étudiant</h2><br>
+        <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects que l'étudiant avait soumis.</small></p><hr>
+    </span>
     <div  *ngFor="let report of reports; let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
@@ -17,7 +23,7 @@
                         </h4>
                         
                         <div class="postcard__subtitle small">
-                        <i class="icon-user mr-2 "></i>Etudiant: <span class="classLink"><a routerLink="/" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
+                        <span *ngIf="!isStudentOwner"><i class="icon-user mr-2 "></i>Etudiant: <span class="classLink"><a routerLink="/" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span></span>
                         <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} ➜ {{ report.date_debut_stage }}  </time>
                         </div>
                         <div class="postcard__bar"></div>

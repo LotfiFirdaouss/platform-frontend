@@ -13,7 +13,7 @@ import { StudentService } from 'src/app/features/student/services/student.servic
   styleUrls: ['./insertion-details.component.css']
 })
 export class InsertionDetailsComponent implements OnInit {
-  currentInsertion : Insertion = {
+  currentInsertion : Insertion = { 
     cursus_post_ensam: 'travail',
     univ : '',
     pays : '',    
@@ -39,13 +39,11 @@ export class InsertionDetailsComponent implements OnInit {
   constructor(
     private insertionService: InsertionService,
     private route: ActivatedRoute,
-    private router: Router,
     private token: TokenStorageService,
     private studentService: StudentService
    ) { }
 
   ngOnInit(): void {
-    //this.myFunction();
     this.message = '';
     this.getInsertion(this.route.snapshot.params.id);
     this.isLoggedIn = !!this.token.getToken();

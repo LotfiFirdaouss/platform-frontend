@@ -1,12 +1,10 @@
-export class Student {
+export class Professor {
     id?:any;
-    code_etudiant?:number;
     prenom?:String;
     nom?:String;    
     email_perso?:any;
     email_pro?:any;
     telephone?:String;
-    filiere?:String;
-    promotion?:Date;
+    departement?:String;
     fk_user?:any;
 }

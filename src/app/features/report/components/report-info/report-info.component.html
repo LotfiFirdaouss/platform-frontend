@@ -10,14 +10,6 @@
       <div class="table-responsive custom-table-responsive">
       
         <table class="table custom-table" style="width: 100%;">
-          
-          <!-- <thead>
-            <tr>
-              <th style="width: 40%;"></th>
-              <th style="width: 60%;"></th>
-            </tr>
-         </thead>      -->
-
           <tbody>
             <!-- <tr>
               <td> Rapport : </td>
@@ -25,7 +17,7 @@
             </tr> -->
             <tr>
               <td><b>Etudiant</b></td>
-              <td class="classLink"> <a routerLink="/">  {{ currentReport.fk_etudiant.prenom }} {{ currentReport.fk_etudiant.nom }}  </a></td>
+              <td class="classLink"> <a routerLink="/profile-etudiant/{{currentReport.fk_etudiant.id}}">  {{ currentReport.fk_etudiant.prenom }} {{ currentReport.fk_etudiant.nom }}  </a></td>
             </tr>
             <tr>
               <td> <b>Type de rapport</b></td>

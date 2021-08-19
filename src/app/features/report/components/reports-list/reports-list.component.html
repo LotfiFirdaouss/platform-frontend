@@ -13,8 +13,8 @@
                             <a class="blue"><b>{{ report.intitule_stage }}</b></a>
                         </h4>
                         
-                        <div class="postcard__subtitle small">
-                        <i class="icon-user mr-2 "></i>Etudiant: <span class="classLink"><a routerLink="/" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
+                        <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
+                        <i class="icon-user mr-2 "></i>Etudiant: <span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
                         <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} ➜ {{ report.date_debut_stage }}  </time>
                         </div>
                         <div class="postcard__bar"></div>
