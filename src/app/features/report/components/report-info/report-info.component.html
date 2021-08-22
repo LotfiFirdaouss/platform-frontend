@@ -3,18 +3,14 @@
       <h3>Détails relative au 
         <span *ngIf='currentReport.stage_ou_projet'>stage:</span>
         <span *ngIf='!currentReport.stage_ou_projet'>projet:</span>
-        <b> {{currentReport.intitule_stage}}</b></h3>     
-      <iframe [src]="fileLink()" title="Appercue du rapport"
+        <b> {{currentReport.intitule_stage}}</b></h3>  <br>   
+      <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel&&isStudentOwner) || (currentReport.rapport_confidentiel&&isAdministrator) || !this.currentReport.fichier_rapport" [src]="fileLink()" title="Appercue du rapport"
       width="100%" height="360" frameborder="0" >  </iframe>
       
       <div class="table-responsive custom-table-responsive">
       
         <table class="table custom-table" style="width: 100%;">
           <tbody>
-            <!-- <tr>
-              <td> Rapport : </td>
-              <td> <a href="{{ currentReport.fichier_rapport }}">  {{ currentReport.intitule_stage }}  </a></td>
-            </tr> -->
             <tr>
               <td><b>Etudiant</b></td>
               <td class="classLink"> <a routerLink="/profile-etudiant/{{currentReport.fk_etudiant.id}}">  {{ currentReport.fk_etudiant.prenom }} {{ currentReport.fk_etudiant.nom }}  </a></td>
@@ -24,16 +20,16 @@
               <td> {{ currentReport.type_rapport }} </td>
             </tr>
             <tr>
-              <td> <b>Date de début</b></td>
-              <td> {{ currentReport.date_debut_stage }} </td>
+              <td *ngIf="currentReport.date_debut_stage"> <b>Date de début</b></td>
+              <td *ngIf="currentReport.date_debut_stage"> {{ currentReport.date_debut_stage }} </td>
             </tr>
             <tr>
-              <td> <b>Date de fin</b></td>
-              <td> {{ currentReport.date_fin_stage }} </td>
+              <td *ngIf="currentReport.date_fin_stage"> <b>Date de fin</b></td>
+              <td *ngIf="currentReport.date_fin_stage"> {{ currentReport.date_fin_stage }} </td>
             </tr>
             <tr scope="row" *ngFor="let aff of affiches">
-              <td><b>{{aff.champ}}</b></td>
-              <td>{{aff.info}}</td>
+              <td *ngIf="aff.user"><b>{{aff.champ}}</b></td>
+              <td *ngIf="aff.user">{{aff.info}}</td>
             </tr>
             <tr>
               <td><b>Résumé rapport</b></td>
