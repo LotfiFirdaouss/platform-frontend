@@ -16,12 +16,47 @@ export class ReportsListComponent implements OnInit {
    reports?: Report[];
    currentReport?: Report;
    currentIndex = -1;
+   isLoggedIn = false;
+   group="";
+   isAdministrator=false;
+   currentUser: ReturnedUser;
+   currentStudent: Student;
+   isStudent=0;
    
-   constructor(private reportService: ReportService) { }
+   constructor(private reportService: ReportService,
+    private token: TokenStorageService,
+    private studentService : StudentService) { }
    
    ngOnInit(): void {
-     this.retrieveReports(); 
+    this.retrieveReports();
+    this.isLoggedIn = !!this.token.getToken();    
+    var user_id;
+    if (this.isLoggedIn) {
+      this.currentUser = this.token.getUser();
+      user_id = this.currentUser.id;
+      //console.log("User object:",this.currentUser)
+      this.group = this.currentUser.groups[0];
+      if( this.group == "Administrator"){
+        this.isAdministrator = true;
+        
+      }else if( this.group == "Student" ){
+        this.getStudent(user_id);
+      }
+    } 
    }
+
+  getStudent(id_user: number): void {
+    this.studentService.findByUser(id_user)
+      .subscribe(
+        data => {
+          this.currentStudent = data[0];
+          this.isStudent=data[0].id;
+          //console.log("Student object:", data[0])
+        },
+        error => {
+          console.log(error);
+        });
+  }
    
    retrieveReports(): void {
      this.reportService.getAll()
