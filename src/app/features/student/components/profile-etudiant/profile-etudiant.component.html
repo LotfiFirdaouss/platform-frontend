@@ -15,7 +15,7 @@
                     </svg>
                     {{ currentStudent.prenom }} {{ currentStudent.nom }}
                     <span class="text-muted font-weight-normal" *ngIf="isUser">@ {{ currentStudent.fk_user.username }} </span></h4>
-                <div class="text-muted mb-2" style="padding-left: 50px;">CODE apogée: {{ currentStudent.code_etudiant }}</div><!-- code apogée -->
+                <div class="text-muted mb-2" style="padding-left: 50px;">CODE apogée: {{ currentStudent.code_etudiant }}<pan *ngIf="currentStudent && currentStudent.code_etudiant == null"> --- </pan></div><!-- code apogée -->
                 <!-- <a href="javascript:void(0)" class="btn btn-primary btn-sm">Edit</a>&nbsp;
                 <a href="javascript:void(0)" class="btn btn-default btn-sm">Profile</a>&nbsp; -->
                 <a href="javascript:void(0)" class="btn btn-default btn-sm icon-btn"><i class="fa fa-mail"></i></a>
@@ -83,7 +83,8 @@
                     </tr>
                     <tr>
                       <td>E-mail:</td>
-                      <td> {{ currentStudent.email_pro }} </td> <!-- email professionnelle -->
+                      <td *ngIf="currentStudent && currentStudent.email_pro" > {{ currentStudent.email_pro }} </td> <!-- email professionnelle -->
+                      <td *ngIf = "currentStudent && (!currentStudent.email_pro)"> --- </td>
                     </tr>
                   </tbody>
                 </table>
@@ -110,10 +111,12 @@
                     <tr>
                       <td>Telephone:</td>
                       <td> {{ currentStudent.telephone }} </td>
+                      <td *ngIf="currentStudent && currentStudent.telephone == null"> --- </td>
                     </tr>
                     <tr>
                         <td>Email personnelle:</td>
                         <td> {{ currentStudent.email_perso }} </td>
+                        <td *ngIf="currentStudent && !currentStudent.email_perso"> --- </td>
                     </tr>
                   </tbody>
                 </table>

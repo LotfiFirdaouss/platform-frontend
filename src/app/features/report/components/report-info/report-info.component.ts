@@ -58,6 +58,7 @@ export class ReportInfoComponent implements OnInit {
       }else{
         this.getReportProfessor(this.route.snapshot.params.id);
       }
+      this.notHidden;
     }    
   }
 
@@ -73,7 +74,7 @@ export class ReportInfoComponent implements OnInit {
               if(data.fk_etudiant.id == this.currentStudent.id){
                 this.notHidden=true;
               }
-              console.log(this.notHidden);
+              //console.log(this.notHidden);
               this.getNature()
           });
     });
@@ -114,7 +115,7 @@ export class ReportInfoComponent implements OnInit {
           {champ:'Email d\'encadrant',info:this.currentReport.email_encadrant, user:this.notHidden && !!this.currentReport.email_encadrant},
           {champ:'télephone d\'encadrant', info:this.currentReport.telephone_encadrant, user:this.notHidden && !!this.currentReport.telephone_encadrant},
           {champ:'Rapport confidentiel',info: conf,user:this.notHidden},]
-          console.log(this.notHidden && this.currentReport.details_add_societe);                
+          //console.log(this.notHidden && this.currentReport.details_add_societe);                
         return this.affiches        
      }
      this.affiches = [{champ:'Nature',info:'projet',user:true},

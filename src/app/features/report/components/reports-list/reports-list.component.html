@@ -14,7 +14,7 @@
                         </h4>
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
-                        <i class="icon-user mr-2 "></i>Etudiant: <span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
+                        <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
                         <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} ➜ {{ report.date_debut_stage }}  </time>
                         </div>
                         <div class="postcard__bar"></div>
@@ -29,11 +29,11 @@
                         <div *ngIf="report.stage_ou_projet">
                             <div>
                                 <label><strong>Société de stage : </strong></label>
-                                {{ report.societe_stage }} ( {{ report.secteur_societe }} )
+                                {{ report.societe_stage }} <span *ngIf="report.secteur_societe != null">( {{ report.secteur_societe }} )</span>
                             </div>
                             <div>
                                 <label><strong>Ville de stage : </strong></label>
-                                {{ report.ville_societe }} ( {{ report.pays_societe }} )
+                                {{ report.ville_societe }} <span *ngIf="report.pays_societe != null">( {{ report.pays_societe }} )</span>
                             </div>
                         </div>
                         <hr>

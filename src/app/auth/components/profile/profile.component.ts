@@ -68,8 +68,8 @@ export class ProfileComponent implements OnInit {
     this.professorService.findByUser(id_user)
       .subscribe(
         data => {
-          this.currentProfessor = data[0];
-          console.log("Professor object:", data[0])
+          this.currentProfessor = <Professor> data;
+          console.log("Professor object:", this.currentProfessor)
         },
         error => {
           console.log(error);

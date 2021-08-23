@@ -21,8 +21,8 @@
                   </h4>
                   
                   <div class="postcard__subtitle small">
-                    <span *ngIf="!isStudentOwner"><i class="icon-user mr-2"></i>Etudiant: <span class="classLink"><a routerLink="/profile" style="margin-right:20px;">{{ insertion.fk_etudiant.prenom }} {{ insertion.fk_etudiant.nom }}</a></span></span>
-                    <time><i class="icon-calendar mr-2"></i> {{ insertion.date_integration }}</time>
+                    <span *ngIf="!isStudentOwner"><i class="icon-user mr-2"></i><span class="classLink"><a routerLink="/profile" style="margin-right:20px;">{{ insertion.fk_etudiant.prenom }} {{ insertion.fk_etudiant.nom }}</a></span></span>
+                    <time  *ngIf="insertion.date_integration != null"><i class="icon-calendar mr-2"></i> {{ insertion.date_integration }}</time>
                   </div>
                   <div class="postcard__bar"></div>
               </div>
