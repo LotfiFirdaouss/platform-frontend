@@ -1,6 +1,4 @@
-<div class="container contact-form myContentClass">
-
-    <div *ngIf="!submitted">
+<div class="container contact-form myContentClass" *ngIf="!submitted">
         <form (ngSubmit)="saveReport()" #reportForm="ngForm" >
             <h3>Veuillez renseigner les informations relatives à  votre stage/projet :</h3>
                 <hr>
@@ -279,10 +277,14 @@
                 </div>
                 
         </form>
-    </div>
-
-    <div *ngIf="submitted" class="container">
-        <br/><p> Le rapport est ajouté avec succés ! </p>
-    </div>
-
+</div>
+<div class="container contact-form" *ngIf="submitted">
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> Le rapport est ajouté avec succès ! </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/rapport-etudiant/{{currentStudent.id}}">
+        Retour vers mes rapports
+    </button>
+    <br/><br/><br/><br/><br/>
 </div>
