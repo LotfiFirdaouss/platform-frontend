@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       err => {
-        this.errorMessage = "Aucun compte trouvé avec les informations données";
+        this.errorMessage = "Combinaison nom d'utilisateur/mot de passe incorrect!";
         this.isLoginFailed = true;
       }
     );

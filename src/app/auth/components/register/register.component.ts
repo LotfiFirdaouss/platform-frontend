@@ -20,18 +20,18 @@ export class RegisterComponent implements OnInit {
     password: null,
     //STUDENT
     code_etudiant:null,
-    filiere:'choisissez votre filière',
+    filiere:'Choisissez votre filière*',
     promotion:null,
     email_perso:null,
-    departement:'choisissez votre departement',
+    departement:'Choisissez votre departement*',
     telephone:null
   };
   socialUser: SocialUser;
-  filieres=['choisissez votre filière','GI','GM','GEM','MSEI','IAGI'];
-  departements=['choisissez votre departement','GI','GM','GE'];
+  filieres=['Choisissez votre filière*','GI','GM','GEM','MSEI','IAGI'];
+  departements=['Choisissez votre departement*','GI','GM','GE'];
   isSuccessful = false;
   isSignUpFailed = false;
-  errorMessage = '';
+  errorMessage = ''; 
   isFormFull = false;
   showPass = 0;
 

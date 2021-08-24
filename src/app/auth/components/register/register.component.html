@@ -54,7 +54,7 @@
 
           <div class="wrap-input100 validate-input">
             <input class="input100" type="text" #code_etudiant="ngModel" name="code_etudiant" 
-            placeholder="Le code d'étudiant" required maxlength="10" [(ngModel)]="form.code_etudiant"> 
+            placeholder="Code d'étudiant*" required maxlength="10" [(ngModel)]="form.code_etudiant"> 
             <div *ngIf="code_etudiant.errors && (code_etudiant.dirty || code_etudiant.touched)">
               <div [hidden]="!code_etudiant.errors?.required" class="alert-validate" 
                 data-validate="Entrer le code d'étudiant"></div>
@@ -71,12 +71,12 @@
             </select>
             <div *ngIf="filiere.errors && (filiere.dirty || filiere.touched)">
               <div [hidden]="!filiere.errors?.pattern" class="alert-validate" 
-                data-validate="choisissez votre filière"></div>
+                data-validate="Choisissez votre filière*"></div>
             </div>
           </div>
 
           <div class="wrap-input100">
-            <input class="input100" type="text" name="promotion" placeholder="promotion" [(ngModel)]="form.promotion" #promotion="ngModel" required pattern="^20\d{2}$">
+            <input class="input100" type="text" name="promotion" placeholder="Promotion*" [(ngModel)]="form.promotion" #promotion="ngModel" required pattern="^20\d{2}$">
             <div *ngIf="promotion.errors && (promotion.dirty || promotion.touched)">
               <div [hidden]="!promotion.errors?.required" class="alert-validate" 
                 data-validate="Entrer la filiére"></div>
@@ -102,14 +102,14 @@
           </div>
 
           <div class="wrap-input100 validate-input">
-            <select class="input100" type="text" name="departement" placeholder="departement" [(ngModel)]="form.departement" style=" border:0px; outline:0px;" pattern="^[A-Z]{0,4}$" #departement="ngModel">
+            <select class="input100" type="text" name="departement" placeholder="Departement*" [(ngModel)]="form.departement" style=" border:0px; outline:0px;" pattern="^[A-Z]{0,4}$" #departement="ngModel">
               <option *ngFor="let departement of departements" [ngValue]="departement">
                 {{ departement }}
               </option>
             </select>
             <div *ngIf="departement.errors && (departement.dirty || departement.touched)">
               <div [hidden]="!departement.errors?.pattern" class="alert-validate" 
-                data-validate="choisissez votre departement"></div>
+                data-validate="Choisissez votre departement*"></div>
             </div>
           </div>
 
@@ -120,7 +120,7 @@
         </div>
 
         <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="username" placeholder="Nom d'utilisateur" required maxlength="200"
+            <input class="input100" type="text" name="username" placeholder="Nom d'utilisateur*" required maxlength="200"
             [(ngModel)]="form.username" #username="ngModel">
             <div *ngIf="username.errors && (username.dirty || username.touched)">
               <div [hidden]="!username.errors?.required" class="alert-validate" 
@@ -134,7 +134,7 @@
           <span class="btn-show-pass" (click)="PasswordEye()">
             <i class="zmdi zmdi-eye" id="btn-show-pass"></i>
           </span>
-          <input class="input100" type="password" name="password" placeholder="Mot de passe" required maxlength="200"
+          <input class="input100" type="password" name="password" placeholder="Mot de passe*" required maxlength="200"
           [(ngModel)]="form.password" #password="ngModel" id="password">
             <div *ngIf="password.errors && (password.dirty || password.touched)">
               <div [hidden]="!password.errors?.required" class="alert-validate" 
@@ -145,7 +145,7 @@
         </div>
 
         <div class="text-center p-t-115">
-          <span class="txt1" style="display: none;" id="ValidityFormWarn">Veuillez vérifier que tout les champs sont bien remplies !</span>
+          <span class="txt1" style="display: none;" id="ValidityFormWarn" style="color: salmon;">Veuillez vérifier que tout les champs sont bien remplies !</span>
         </div>
 
         <div class="container-login100-form-btn">
@@ -159,6 +159,12 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <div class="text-center p-t-115" role="alert" *ngIf="isFormFull && isSignUpFailed" >
+            <span class="txt1" style="color: salmon;">{{ errorMessage }} </span>
+          </div>
+        </div>
+
         <div class="text-center p-t-115">
           <span class="txt1">
             Vous avez un compte?
@@ -169,11 +175,7 @@
           </a>
         </div>
 
-        <div class="form-group">
-        <div class="text-center p-t-115" role="alert" *ngIf="isFormFull && isSignUpFailed" >
-          <span class="txt1">{{ errorMessage }} </span>
-        </div>
-        </div>
+
 
       </form>
     </div>

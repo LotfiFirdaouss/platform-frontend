@@ -1,16 +1,3 @@
-<!-- <div class="container" *ngIf="isLoggedIn">
-    <header class="jumbotron">
-      <h3>Username: 
-        <strong>{{ currentUser.username }}</strong> 
-      </h3>
-    </header>
-    <p>
-      <strong>Email:</strong>
-      {{ currentUser.email }}
-    </p>
-
-</div> -->
-
 <div *ngIf="isLoggedIn" class="container bootdey flex-grow-1 container-p-y myContentClass">
 
   <div class="media align-items-center py-3 mb-3">
@@ -120,11 +107,13 @@
             <td *ngIf="!isAdministrator">Telephone:</td>
             <td *ngIf="isStudent && currentStudent"> {{ currentStudent.telephone }} </td>
             <td *ngIf="isProfessor && currentProfessor"> {{ currentProfessor.telephone }} </td>
+            <td *ngIf="(currentProfessor && currentProfessor.telephone == null) || (currentStudent && currentStudent.telephone == null)"> --- </td>
           </tr>
           <tr >
-              <td *ngIf="!isAdministrator">Email personnel:</td>
-              <td *ngIf="isStudent && currentStudent"> {{ currentStudent.email_perso }} </td>
-              <td *ngIf="isProfessor && currentProfessor"> {{ currentProfessor.email_perso }} </td>
+            <td *ngIf="!isAdministrator">Email personnel:</td>
+            <td *ngIf="isStudent && currentStudent"> {{ currentStudent.email_perso }} </td>
+            <td *ngIf="isProfessor && currentProfessor"> {{ currentProfessor.email_perso }} </td>
+            <td *ngIf="(currentProfessor && !currentProfessor.email_perso) || (currentStudent && !currentStudent.email_perso)"> --- </td>
           </tr>
         </tbody>
       </table>

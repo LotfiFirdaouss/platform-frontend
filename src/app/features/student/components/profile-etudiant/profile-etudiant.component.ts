@@ -26,8 +26,9 @@ export class ProfileEtudiantComponent implements OnInit {
     this.studentService.get(id)
       .subscribe(
         data => {
+          console.log(data)
           this.currentStudent = data;
-          if(data.fk_user.id){
+          if(data.fk_user != null){
             this.isUser=true;
           }
           //console.log(this.isUser)

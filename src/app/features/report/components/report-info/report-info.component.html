@@ -3,9 +3,18 @@
       <h3>Détails relative au 
         <span *ngIf='currentReport.stage_ou_projet'>stage:</span>
         <span *ngIf='!currentReport.stage_ou_projet'>projet:</span>
-        <b> {{currentReport.intitule_stage}}</b></h3>  <br>   
-      <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel&&isStudentOwner) || (currentReport.rapport_confidentiel&&isAdministrator) || !this.currentReport.fichier_rapport" [src]="fileLink()" title="Appercue du rapport"
+        <b> {{currentReport.intitule_stage}}</b></h3>  <br>
+      <div *ngIf="currentReport.fichier_rapport != null">
+      <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden) || (currentReport.rapport_confidentiel && isAdministrator)" [src]="fileLink()" title="Appercue du rapport"
       width="100%" height="360" frameborder="0" >  </iframe>
+      <div class="container" width="100%" height="360" frameborder="0"
+      style="border: slategrey solid; padding: 10%;" *ngIf="currentReport.rapport_confidentiel && !notHidden && !isAdministrator"> Ce rapport est confidentiel ! </div>
+      </div> 
+      <div *ngIf="currentReport.fichier_rapport == null" 
+      class="container" width="100%" height="360" frameborder="0"
+      style="border: slategrey solid; padding: 10%;">
+        Fichier de rapport non disponible !
+      </div>
       
       <div class="table-responsive custom-table-responsive">
       
@@ -21,19 +30,22 @@
             </tr>
             <tr>
               <td *ngIf="currentReport.date_debut_stage"> <b>Date de début</b></td>
-              <td *ngIf="currentReport.date_debut_stage"> {{ currentReport.date_debut_stage }} </td>
+              <td *ngIf="currentReport.date_debut_stage != null"> {{ currentReport.date_debut_stage }} </td>
+              <td *ngIf="currentReport.date_debut_stage == null"> --- </td>
             </tr>
             <tr>
               <td *ngIf="currentReport.date_fin_stage"> <b>Date de fin</b></td>
-              <td *ngIf="currentReport.date_fin_stage"> {{ currentReport.date_fin_stage }} </td>
+              <td *ngIf="currentReport.date_fin_stage != null"> {{ currentReport.date_fin_stage }} </td>
+              <td *ngIf="currentReport.date_fin_stage == null"> --- </td>
             </tr>
             <tr scope="row" *ngFor="let aff of affiches">
               <td *ngIf="aff.user"><b>{{aff.champ}}</b></td>
               <td *ngIf="aff.user">{{aff.info}}</td>
             </tr>
-            <tr>
+            <tr >
               <td><b>Résumé rapport</b></td>
-              <td style="width: 70%;"> {{ currentReport.resume_rapport }} </td>
+              <td style="width: 70%;" *ngIf="currentReport.resume_rapport != null"> {{ currentReport.resume_rapport }} </td>
+              <td style="width: 70%;" *ngIf="currentReport.resume_rapport == null"> --- </td>
             </tr>
             
           </tbody>

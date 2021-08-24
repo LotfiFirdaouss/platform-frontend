@@ -40,8 +40,9 @@ export class ProfessorService {
   findProfessorByEmail(email_pro: any): Observable<Professor> {
     return this.http.get(`${baseUrl}/email?email=${email_pro}`);
   }
+
   findByUser(fk_user: any): Observable<Professor[]> {
-    return this.http.get<Professor[]>(`${baseUrl}?user=${fk_user}`);
+    return this.http.get<Professor[]>(`${baseUrl}/user?user=${fk_user}`);
   }
 
 }
