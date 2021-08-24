@@ -1,6 +1,4 @@
-<div class="container contact-form myContentClass"> 
-
-  <div *ngIf="currentInsertion.id && !updated && !deleted">
+<div class="container contact-form myContentClass" *ngIf="currentInsertion.id && !updated && !deleted"> 
     <form #insertionForm="ngForm" (ngSubmit)="updateInsertion()">
       
         <h3>Veuillez renseigner les nouvelles informations relatives à votre insertion :</h3>
@@ -298,36 +296,38 @@
         </div>
         <p>{{ message }}</p>            
         
-    </form> 
-  </div>
+    </form>
+</div>
 
-  <div *ngIf="!currentInsertion.id">
-      <br />
-      <p >L'insertion spécifié n'est pas accessible ...</p>
-  </div>
+<div class="container contact-form " *ngIf="!currentInsertion.id">
+   <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> L'insertion spécifié n'est pas accessible ... </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/insertion-etudiant/{{currentStudent.id}}">
+        Retour vers mon insertion
+    </button>
+    <br/><br/><br/><br/><br/>
+</div>
 
-  <div *ngIf="updated" class="container">
-    <h4 > L'insertion est modifié avec succès ! </h4>
-    <div style="display:inline-block; position:relative; padding-bottom: 0%;">
-      <button 
-      id="returnToInsertion"
-      class="btnContact "
-      routerLink="/insertion-etudiant/{{currentStudent.id}}"
-        >
-      Retour vers insertion</button>
-    </div>
-  </div>
+<div class="container contact-form" *ngIf="updated">
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> L'insertion est modifié avec succès ! </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/insertion-etudiant/{{currentStudent.id}}">
+        Retour vers mon insertion
+    </button>
+    <br/><br/><br/><br/><br/>
+</div>
 
-  <div *ngIf="deleted" class="container">
-    <h4 > L'insertion est supprimé avec succès ! </h4>
-    <div style="display:inline-block; position:relative; padding-bottom: 0%; width: 50%;">
-      <button 
-      id="returnToInsertion"
-      class="btnContact "
-      routerLink="/add-insertion/"
-        >
-      Ajouter une autre !</button>
-    </div>
-  </div>
-
+<div class="container contact-form" *ngIf="deleted">
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> L'insertion est supprimé avec succès ! </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/add-insertion/">
+        Ajouter une autre !
+    </button>
+    <br/><br/><br/><br/><br/>
 </div>

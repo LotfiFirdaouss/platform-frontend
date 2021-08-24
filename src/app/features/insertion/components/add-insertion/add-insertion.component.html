@@ -1,6 +1,4 @@
-<div class="container contact-form myContentClass">
-
-    <div *ngIf="!submitted">
+<div class="container contact-form myContentClass" *ngIf="!submitted">
         <form #insertionForm="ngForm" (ngSubmit)="saveInsertion()">
           
             <h3>Veuillez renseigner les informations relatives à votre insertion :</h3>
@@ -288,18 +286,15 @@
               </div>
             </div>
             
-        </form>
-    </div>
-
-    <div *ngIf="submitted" class="center">
-      <br><h4> L'insertion est ajoutée avec succès ! </h4>
-      <div style="display:inline-block; position:relative; padding-bottom: 0%;">
-          <button 
-          id="returnToInsertion"
-          class="btnContact "
-          routerLink="/insertion-etudiant/{{currentStudent.id}}"
-            >
-          Retour vers insertion</button>
-      </div>
-    </div>
+        </form>  
+</div>
+<div *ngIf="submitted" class="container contact-form">
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> L'insertion est ajoutée avec succès ! </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/insertion-etudiant/{{currentStudent.id}}">
+        Retour vers mon insertion
+    </button>
+    <br/><br/><br/><br/><br/>
 </div>    

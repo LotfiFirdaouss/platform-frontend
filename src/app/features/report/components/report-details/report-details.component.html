@@ -279,15 +279,36 @@
            </div>
    </form>
 </div>
-<div class="container contact-form alert-danger" *ngIf="!currentReport.id">
-   <br />
-   <p>Ce rapport n'existe pas...</p>
+
+<div class="container contact-form " *ngIf="!currentReport.id">
+   <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> Ce rapport n'existe pas... </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/rapport-etudiant/{{currentReport.fk_etudiant.id}}">
+        Retour vers mes rapports
+    </button>
+    <br/><br/><br/><br/><br/>
 </div>
-<div class="container contact-form alert-success" *ngIf="Updated">
-   <br />
-   <p>Le rapport est modifié avec succès !</p>
+
+<div class="container contact-form" *ngIf="Updated">
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> Le rapport est modifié avec succès ! </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/rapport-etudiant/{{currentReport.fk_etudiant.id}}">
+        Retour vers mes rapports
+    </button>
+    <br/><br/><br/><br/><br/>
 </div>
-<div class="container contact-form alert-success" *ngIf="Deleted">
-   <br />
-   <p>Ce rapport est supprimé avec succès !</p>
+
+<div class="container contact-form" *ngIf="Deleted">
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> Le rapport est supprimé avec succès ! </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/rapport-etudiant/{{currentReport.fk_etudiant.id}}">
+        Retour vers mes rapports
+    </button>
+    <br/><br/><br/><br/><br/>
 </div>
