@@ -5,10 +5,10 @@
         <span *ngIf='!currentReport.stage_ou_projet'>projet:</span>
         <b> {{currentReport.intitule_stage}}</b></h3>  <br>
       <div *ngIf="currentReport.fichier_rapport != null">
-      <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden) || (currentReport.rapport_confidentiel && isAdministrator)" [src]="fileLink()" title="Appercue du rapport"
+      <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden)" [src]="fileLink()" title="Appercue du rapport"
       width="100%" height="360" frameborder="0" >  </iframe>
       <div class="container" width="100%" height="360" frameborder="0"
-      style="border: slategrey solid; padding: 10%;" *ngIf="currentReport.rapport_confidentiel && !notHidden && !isAdministrator"> Ce rapport est confidentiel ! </div>
+      style="border: slategrey solid; padding: 10%;" *ngIf="currentReport.rapport_confidentiel && !notHidden"> Ce rapport est confidentiel ! </div>
       </div> 
       <div *ngIf="currentReport.fichier_rapport == null" 
       class="container" width="100%" height="360" frameborder="0"
