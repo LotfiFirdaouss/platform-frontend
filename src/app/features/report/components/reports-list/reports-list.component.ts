@@ -22,6 +22,7 @@ export class ReportsListComponent implements OnInit {
    currentUser: ReturnedUser;
    currentStudent: Student;
    isStudent=0;
+   filterText: '';
    
    constructor(private reportService: ReportService,
     private token: TokenStorageService,

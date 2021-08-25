@@ -1,7 +1,14 @@
 <div class="container myContentClass">
     <h2 class="card-subheading center" >Liste des rapports de stage</h2><br>
     <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects des étudiants de l'ENSAM Casablanca.</small></p><hr>
-    <div  *ngFor="let report of reports; let i = index"
+    
+    <div class="dialog-title">
+        <div class="form-group has-search">
+            <span class="fas fa-filter form-control-feedback" style="display:inline-block;margin-right:10px;"></span>
+            <input type="search" [(ngModel)]="filterText" class="form-control" placeholder="Filtrer selon intitulé stage..." style="display:inline-block; width: 90%;">
+        </div> 
+    </div>
+    <div  *ngFor="let report of reports | reportFilter : filterText; let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
         <article class="postcard light blue" style="height: 200px; margin: 0%;" >
