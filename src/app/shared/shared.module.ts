@@ -59,7 +59,8 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     MenuComponent,
     NoticeSliderComponent,
     AppRoutingModule,
-    RouterModule,    
+    RouterModule, 
+    ReportsListComponent,   
   ]
 })
 export class SharedModule { }
