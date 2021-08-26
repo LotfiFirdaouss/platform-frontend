@@ -22,7 +22,14 @@ export class ReportsListComponent implements OnInit {
    currentUser: ReturnedUser;
    currentStudent: Student;
    isStudent=0;
+
+   //filter inputs
    filterText: '';
+   selectedStageProjet:'';
+   selectedConfidentiel;
+   selectedReportType:'';
+   StartDateReport?: any;
+   EndDateReport?: any;
    
    constructor(private reportService: ReportService,
     private token: TokenStorageService,
@@ -43,7 +50,7 @@ export class ReportsListComponent implements OnInit {
       }else if( this.group == "Student" ){
         this.getStudent(user_id);
       }
-    } 
+    }
    }
 
   getStudent(id_user: number): void {

@@ -25,6 +25,10 @@ import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { ProfileComponent } from '../auth/components/profile/profile.component';
 import { ReportFilterPipe } from '../features/report/pipes/report-filter.pipe';
+import { StageProjetFilterPipe } from '../features/report/pipes/stage-projet-filter.pipe';
+import { ConfidentielFilterPipe } from '../features/report/pipes/confidentiel-filter.pipe';
+import { ReportTypeFilterPipe } from '../features/report/pipes/report-type-filter.pipe';
+import { DateRangeFilterPipe } from '../features/report/pipes/date-range-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,10 @@ import { ReportFilterPipe } from '../features/report/pipes/report-filter.pipe';
     RegisterComponent,
     ProfileComponent,
     ReportFilterPipe,
+    StageProjetFilterPipe,
+    ConfidentielFilterPipe,
+    ReportTypeFilterPipe,
+    DateRangeFilterPipe,
   ],
   imports: [
     CommonModule,

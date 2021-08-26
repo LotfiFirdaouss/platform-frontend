@@ -1,14 +1,50 @@
 <div class="container myContentClass">
     <h2 class="card-subheading center" >Liste des rapports de stage</h2><br>
     <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects des étudiants de l'ENSAM Casablanca.</small></p><hr>
-    
+    <!-- FILTER INPUTS -->
     <div class="dialog-title">
         <div class="form-group has-search">
             <span class="fas fa-filter form-control-feedback" style="display:inline-block;margin-right:10px;"></span>
             <input type="search" [(ngModel)]="filterText" class="form-control" placeholder="Filtrer selon intitulé stage..." style="display:inline-block; width: 90%;">
         </div> 
     </div>
-    <div  *ngFor="let report of reports | reportFilter : filterText; let i = index"
+    <hr>
+    <div>
+        <input type="radio" [(ngModel)]="selectedStageProjet" value="stage" > Stage
+        <input type="radio" [(ngModel)]="selectedStageProjet" value="projet" > Projet
+    </div>
+    <hr>
+    <div>
+        <input type="checkbox" [(ngModel)]="selectedConfidentiel"> Rapport confidentiel
+    </div>
+    <hr>
+    <div class="row">
+        <label class="col-4">Filtrer selon type de rapport:</label>
+        <select class="col-8" [(ngModel)]="selectedReportType" class="form-control">
+            <option value="Initiation">Initiation</option>
+            <option value="PFA">PFA</option>
+            <option value="PFE">PFE</option>
+        </select>
+    </div>
+    <hr>
+    <div class="row">
+        <label class="col-2">Date de début:</label>
+        <input class="col-4 form-control" type="date" name="dateDebut" #dateDebut="ngModel"
+            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+        [(ngModel)]="StartDateReport" >
+
+        <label class="col-2">Date de fin:</label>
+        <input class="col-4 form-control" type="date" name="dateDebut" #dateDebut="ngModel"
+            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+        [(ngModel)]="EndDateReport" >
+    </div>
+    <hr>
+
+    <!-- LIST OF REPORTS -------------------------------------------------------------------------------------------------------------------------->
+    <div  *ngFor="let report of reports 
+    | reportFilter : filterText | stageProjetFilter : selectedStageProjet | confidentielFilter : selectedConfidentiel
+    | reportTypeFilter : selectedReportType | dateRangeFilter : StartDateReport:EndDateReport ;
+    let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
         <article class="postcard light blue" style="height: 200px; margin: 0%;" >
@@ -22,7 +58,7 @@
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
                         <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
-                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} ➜ {{ report.date_debut_stage }}  </time>
+                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} ➜ {{ report.date_fin_stage }}  </time>
                         </div>
                         <div class="postcard__bar"></div>
                         <!-- <ul class="postcard__tagbox">
