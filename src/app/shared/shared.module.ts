@@ -24,6 +24,18 @@ import { ReportStudentComponent } from '../features/report/components/report-stu
 import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { ProfileComponent } from '../auth/components/profile/profile.component';
+import { ReportFilterPipe } from '../features/report/pipes/report-filter.pipe';
+import { StageProjetFilterPipe } from '../features/report/pipes/stage-projet-filter.pipe';
+import { ConfidentielFilterPipe } from '../features/report/pipes/confidentiel-filter.pipe';
+import { ReportTypeFilterPipe } from '../features/report/pipes/report-type-filter.pipe';
+import { DateRangeFilterPipe } from '../features/report/pipes/date-range-filter.pipe';
+import { StudentFilterPipe } from '../features/report/pipes/student-filter.pipe';
+import { VillePaysFilterPipe } from '../features/report/pipes/ville-pays-filter.pipe';
+import { SocieteFilterPipe } from '../features/report/pipes/societe-filter.pipe';
+import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-societe-filter.pipe';
+// import { HelloComponent } from '../features/report/components/reports-list/hello.component';
+// import { PaginationPipe } from '../features/report/pipes/pagination.pipe';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @NgModule({
   declarations: [
@@ -44,6 +56,18 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    ReportFilterPipe,
+    StageProjetFilterPipe,
+    ConfidentielFilterPipe,
+    ReportTypeFilterPipe,
+    DateRangeFilterPipe,
+    StudentFilterPipe,
+    VillePaysFilterPipe,
+    SocieteFilterPipe,
+    SecteurSocieteFilterPipe,
+    // both of the two elements are used for pagination
+    // HelloComponent, 
+    // PaginationPipe,
   ],
   imports: [
     CommonModule,
@@ -51,7 +75,8 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserModule,    
+    BrowserModule, 
+    NgxPaginationModule   
   ],
   exports: [
     HeaderComponent,

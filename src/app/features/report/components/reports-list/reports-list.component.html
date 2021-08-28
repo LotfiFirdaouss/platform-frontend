@@ -1,7 +1,123 @@
 <div class="container myContentClass">
     <h2 class="card-subheading center" >Liste des rapports de stage</h2><br>
     <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects des étudiants de l'ENSAM Casablanca.</small></p><hr>
-    <div  *ngFor="let report of reports; let i = index"
+    
+    <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="styled-input multi" style="height: 60px;">
+                    <div>
+                        <input type="text" [(ngModel)]="filterText" data-placeholder-focus="false">
+                        <label>Intitulé Stage</label>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="StudentfilterText" data-placeholder-focus="false">
+                        <label>Etudiant</label>
+                    </div>
+                    <div>
+                        <label>Rapp. confidentiel</label>
+                        <input style="margin-left: 90px; margin-top: 10px;" type="checkbox" [(ngModel)]="selectedConfidentiel" data-placeholder-focus="false">
+                    </div>
+                    <div id="select-type" class="type">
+                        <select name="type" [(ngModel)]="selectedReportType">
+                            <!-- <option value="Tout">Tout</option> -->
+                            <option value="Initiation">Initiation</option>
+                            <option value="PFA">PFA</option>
+                            <option value="PFE">PFE</option>
+                        </select>
+                        <label>Type rapport</label>
+                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                            points="231.8 32.8 221 32.8 221 22"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 no-pad-left-10">
+                <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Renitialiser</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="advanced" style="margin-bottom: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Advance Search With Filters </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
+    
+    <div name="advancedSearch" id="header-search-people" class="form-area hidden" novalidate="novalidate" autocomplete="off">
+        <div class="row">
+            <div class="col">
+                <div class="styled-input multi" style="height: 60px;">
+                    <div>
+                        <label>Date début</label>
+                        <input type="date" name="dateDebut" #dateDebut="ngModel"
+                        pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                        [(ngModel)]="StartDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px; ">
+                    </div>
+                    <div>
+                        <label>Date fin</label>
+                        <input type="date" name="dateDebut" #dateDebut="ngModel"
+                        pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                        [(ngModel)]="EndDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px;">
+                    </div>
+
+                    <div id="select-type">
+                        <select (click)="ShowHideStageFilters()" name="type" [(ngModel)]="selectedStageProjet">
+                            <option value="stage">stage</option>
+                            <option value="projet">projet</option>
+                        </select>
+                        <label>Stage/Projet</label>
+                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                            points="231.8 32.8 221 32.8 221 22"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div name="StageFilters" id="header-search-people" class="form-area hidden" novalidate="novalidate" autocomplete="off">
+        <div class="row">
+            <div class="col">
+                <div class="styled-input multi" style="height: 60px;">
+                    <div>
+                        <input type="text" [(ngModel)]="VillePaysText" data-placeholder-focus="false">
+                        <label>Ville/Pays Stage</label>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="SocieteText" data-placeholder-focus="false">
+                        <label>Société de Stage</label>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="SecteurSocieteText" data-placeholder-focus="false">
+                        <label>Secteur Société</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- LIST OF REPORTS -------------------------------------------------------------------------------------------------------------------------->
+    <div  *ngFor="let report of reports 
+    | reportFilter : filterText | stageProjetFilter : selectedStageProjet | confidentielFilter : selectedConfidentiel
+    | reportTypeFilter : selectedReportType | dateRangeFilter : StartDateReport:EndDateReport | studentFilter : StudentfilterText
+    | villePaysFilter : VillePaysText | societeFilter : SocieteText | secteurSocieteFilter : SecteurSocieteText
+    | paginate: { itemsPerPage: 6, currentPage: p } ;
+    let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
         <article class="postcard light blue" style="height: 200px; margin: 0%;" >
@@ -15,7 +131,7 @@
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
                         <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
-                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage }} ➜ {{ report.date_debut_stage }}  </time>
+                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_fin_stage | date: 'dd/MM/yyyy' }}  </time>
                         </div>
                         <div class="postcard__bar"></div>
                         <!-- <ul class="postcard__tagbox">
@@ -49,4 +165,10 @@
             </div>
         </article>
     </div>
+    <br>
+    <div  class="center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+    <!-- <hello [page]="reports.length" #pageinator></hello> -->
 </div> 
