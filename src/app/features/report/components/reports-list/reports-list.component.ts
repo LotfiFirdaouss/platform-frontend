@@ -4,6 +4,7 @@ import { TokenStorageService } from 'src/app/auth/services/token-storage.service
 import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
 import { Report } from '../../models/report';
+import { StageProjetFilterPipe } from '../../pipes/stage-projet-filter.pipe';
 import { ReportService } from '../../services/report.service';
 
 @Component({
@@ -25,11 +26,15 @@ export class ReportsListComponent implements OnInit {
 
    //filter inputs
    filterText: '';
+   StudentfilterText:'';
    selectedStageProjet:'';
    selectedConfidentiel;
-   selectedReportType:'';
+   selectedReportType:"";
    StartDateReport?: any;
    EndDateReport?: any;
+   VillePaysText:'';
+   SocieteText:'';
+   SecteurSocieteText:'';
    
    constructor(private reportService: ReportService,
     private token: TokenStorageService,
@@ -88,5 +93,60 @@ export class ReportsListComponent implements OnInit {
      this.currentReport = report;
      this.currentIndex = index;
    }
+
+   ShowHideStageFilters(){
+    //  console.log(this.selectedStageProjet)
+    var StageFilters =<HTMLDivElement> document.getElementsByName("StageFilters")[0];
+    // console.log(StageFilters)
+    if( this.selectedStageProjet?.toString() == "stage"){
+      StageFilters.classList.replace("hidden","visible");
+    }else{
+      StageFilters.classList.replace("visible","hidden");
+    }
+  }
+
+  ShowHideAdvancedSearch(){
+    var advancedSearch =<HTMLDivElement> document.getElementsByName("advancedSearch")[0];
+    var StageFilters =<HTMLDivElement> document.getElementsByName("StageFilters")[0];
+    var arrowUp = <HTMLDivElement> document.getElementsByName("arrow-up")[0];
+    var arrowDown = <HTMLDivElement> document.getElementsByName("arrow-down")[0];
+    if( advancedSearch.classList.contains("hidden")){
+      advancedSearch.classList.replace("hidden","visible");
+      arrowUp.classList.replace("hidden","visibleArrow");
+      arrowDown.classList.replace("visibleArrow","hidden");
+      if( this.selectedStageProjet?.toString() == "stage"){
+        StageFilters.classList.replace("hidden","visible");
+      }
+    }else{
+      advancedSearch.classList.replace("visible","hidden");
+      StageFilters.classList.replace("visible","hidden");
+      arrowUp.classList.replace("visibleArrow","hidden");
+      arrowDown.classList.replace("hidden","visibleArrow");
+    }
+  }
+
+  renitialiserFiltres(){
+    this.filterText= '';
+    this.StudentfilterText='';
+    this.selectedStageProjet='';
+    this.selectedConfidentiel=false;
+    this.selectedReportType='';
+    this.StartDateReport=null;
+    this.EndDateReport=null;
+    this.VillePaysText='';
+    this.SocieteText='';
+    this.SecteurSocieteText='';
+    var advancedSearch =<HTMLDivElement> document.getElementsByName("advancedSearch")[0];
+    var arrowUp = <HTMLDivElement> document.getElementsByName("arrow-up")[0];
+    var arrowDown = <HTMLDivElement> document.getElementsByName("arrow-down")[0];
+    var StageFilters =<HTMLDivElement> document.getElementsByName("StageFilters")[0];
+
+    if( advancedSearch.classList.contains("visible")){
+      advancedSearch.classList.replace("visible","hidden");
+      StageFilters.classList.replace("visible","hidden");
+      arrowUp.classList.replace("visibleArrow","hidden");
+      arrowDown.classList.replace("hidden","visibleArrow");
+    }
+  }
    
 }

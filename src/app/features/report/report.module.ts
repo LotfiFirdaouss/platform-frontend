@@ -5,6 +5,10 @@ import { StageProjetFilterPipe } from './pipes/stage-projet-filter.pipe';
 import { ConfidentielFilterPipe } from './pipes/confidentiel-filter.pipe';
 import { ReportTypeFilterPipe } from './pipes/report-type-filter.pipe';
 import { DateRangeFilterPipe } from './pipes/date-range-filter.pipe';
+import { StudentFilterPipe } from './pipes/student-filter.pipe';
+import { VillePaysFilterPipe } from './pipes/ville-pays-filter.pipe';
+import { SocieteFilterPipe } from './pipes/societe-filter.pipe';
+import { SecteurSocieteFilterPipe } from './pipes/secteur-societe-filter.pipe';
 
 
 @NgModule({
@@ -13,7 +17,11 @@ import { DateRangeFilterPipe } from './pipes/date-range-filter.pipe';
     StageProjetFilterPipe,
     ConfidentielFilterPipe,
     ReportTypeFilterPipe,
-    DateRangeFilterPipe
+    DateRangeFilterPipe,
+    StudentFilterPipe,
+    VillePaysFilterPipe,
+    SocieteFilterPipe,
+    SecteurSocieteFilterPipe
   ],
   imports: [
     CommonModule

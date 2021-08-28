@@ -29,6 +29,10 @@ import { StageProjetFilterPipe } from '../features/report/pipes/stage-projet-fil
 import { ConfidentielFilterPipe } from '../features/report/pipes/confidentiel-filter.pipe';
 import { ReportTypeFilterPipe } from '../features/report/pipes/report-type-filter.pipe';
 import { DateRangeFilterPipe } from '../features/report/pipes/date-range-filter.pipe';
+import { StudentFilterPipe } from '../features/report/pipes/student-filter.pipe';
+import { VillePaysFilterPipe } from '../features/report/pipes/ville-pays-filter.pipe';
+import { SocieteFilterPipe } from '../features/report/pipes/societe-filter.pipe';
+import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-societe-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,10 @@ import { DateRangeFilterPipe } from '../features/report/pipes/date-range-filter.
     ConfidentielFilterPipe,
     ReportTypeFilterPipe,
     DateRangeFilterPipe,
+    StudentFilterPipe,
+    VillePaysFilterPipe,
+    SocieteFilterPipe,
+    SecteurSocieteFilterPipe,
   ],
   imports: [
     CommonModule,
