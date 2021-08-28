@@ -33,6 +33,9 @@ import { StudentFilterPipe } from '../features/report/pipes/student-filter.pipe'
 import { VillePaysFilterPipe } from '../features/report/pipes/ville-pays-filter.pipe';
 import { SocieteFilterPipe } from '../features/report/pipes/societe-filter.pipe';
 import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-societe-filter.pipe';
+// import { HelloComponent } from '../features/report/components/reports-list/hello.component';
+// import { PaginationPipe } from '../features/report/pipes/pagination.pipe';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @NgModule({
   declarations: [
@@ -62,6 +65,9 @@ import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-socie
     VillePaysFilterPipe,
     SocieteFilterPipe,
     SecteurSocieteFilterPipe,
+    // both of the two elements are used for pagination
+    // HelloComponent, 
+    // PaginationPipe,
   ],
   imports: [
     CommonModule,
@@ -69,7 +75,8 @@ import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-socie
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserModule,    
+    BrowserModule, 
+    NgxPaginationModule   
   ],
   exports: [
     HeaderComponent,

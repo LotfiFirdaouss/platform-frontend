@@ -12,6 +12,8 @@ export class InsertionsListComponent implements OnInit {
   currentInsertion?: Insertion;
   currentIndex = -1;
 
+  //for pagination
+  p: number = 1;
 
   constructor(private insertionService: InsertionService) { }
 

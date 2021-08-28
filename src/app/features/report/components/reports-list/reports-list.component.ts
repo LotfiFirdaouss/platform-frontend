@@ -4,8 +4,8 @@ import { TokenStorageService } from 'src/app/auth/services/token-storage.service
 import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
 import { Report } from '../../models/report';
-import { StageProjetFilterPipe } from '../../pipes/stage-projet-filter.pipe';
 import { ReportService } from '../../services/report.service';
+//import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @Component({
    selector: 'app-reports-list',
@@ -35,6 +35,9 @@ export class ReportsListComponent implements OnInit {
    VillePaysText:'';
    SocieteText:'';
    SecteurSocieteText:'';
+
+   //for pagination
+   p: number = 1;
    
    constructor(private reportService: ReportService,
     private token: TokenStorageService,

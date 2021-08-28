@@ -1,7 +1,9 @@
 <div class="container myContentClass">
   <h2 class="card-subheading center" >Liste des insertions </h2><br>
   <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les insertions professionelles / poursuites d'études des étudiants de l'ENSAM Casablanca.</small></p><hr>
-  <div  *ngFor="let insertion of insertions; let i = index"
+  <div  *ngFor="let insertion of insertions
+      | paginate: { itemsPerPage: 6, currentPage: p } ;
+      let i = index"
       [class.active]="i == currentIndex"
       (click)="setActiveInsertion(insertion, i)" style="padding: 0.4%;">
       <article class="postcard light blue" style="height: 220px; margin: 0%;" >
@@ -69,5 +71,9 @@
           </div>  
         </div>
       </article>
+  </div>
+  <br>
+  <div  class="center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>

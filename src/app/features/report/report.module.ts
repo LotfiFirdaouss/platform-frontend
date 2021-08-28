@@ -9,6 +9,7 @@ import { StudentFilterPipe } from './pipes/student-filter.pipe';
 import { VillePaysFilterPipe } from './pipes/ville-pays-filter.pipe';
 import { SocieteFilterPipe } from './pipes/societe-filter.pipe';
 import { SecteurSocieteFilterPipe } from './pipes/secteur-societe-filter.pipe';
+// import { PaginationPipe } from './pipes/pagination.pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SecteurSocieteFilterPipe } from './pipes/secteur-societe-filter.pipe';
     StudentFilterPipe,
     VillePaysFilterPipe,
     SocieteFilterPipe,
-    SecteurSocieteFilterPipe
+    SecteurSocieteFilterPipe,
+    //PaginationPipe
   ],
   imports: [
     CommonModule
