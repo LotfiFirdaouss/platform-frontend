@@ -24,6 +24,9 @@ import { ReportStudentComponent } from '../features/report/components/report-stu
 import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { ProfileComponent } from '../auth/components/profile/profile.component';
+import { ProfileEtudiantComponent } from '../features/student/components/profile-etudiant/profile-etudiant.component';
+import { StudentDetailsComponent } from '../features/student/components/student-details/student-details.component';
+import { AddStudentComponent } from '../features/student/components/add-student/add-student.component';
 
 @NgModule({
   declarations: [
@@ -31,16 +34,26 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
     FooterComponent,
     MenuComponent,
     NoticeSliderComponent,
-    InsertionsListComponent,
+
+    //reports
     ReportsListComponent,
     AddReportComponent,
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
+
+    //insertions
+    InsertionsListComponent,
     AddInsertionComponent,
     InsertionDetailsComponent,
     InsertionInfoComponent,
     InsertionStudentComponent,
+
+    //students
+    ProfileEtudiantComponent,
+    AddStudentComponent,
+    StudentDetailsComponent,
+
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
@@ -48,19 +61,40 @@ import { ProfileComponent } from '../auth/components/profile/profile.component';
   imports: [
     CommonModule,
     RouterModule,
-    AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    BrowserModule,    
+    HttpClientModule,      
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     MenuComponent,
     NoticeSliderComponent,
-    AppRoutingModule,
-    RouterModule, 
-    ReportsListComponent,   
+
+
+    //reports
+    ReportsListComponent, 
+    AddReportComponent,
+    ReportDetailsComponent,
+    ReportInfoComponent,
+    ReportStudentComponent,
+
+
+    //insertions
+    InsertionsListComponent,
+    AddInsertionComponent,
+    InsertionDetailsComponent,
+    InsertionInfoComponent,
+    InsertionStudentComponent,
+
+    //students
+    ProfileEtudiantComponent,
+    AddStudentComponent,
+    StudentDetailsComponent,
+
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    HttpClientModule,   
   ]
 })
 export class SharedModule { }

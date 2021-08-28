@@ -18,18 +18,14 @@ import { AdministratorModule } from './features/administrator/administrator.modu
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     SharedModule,
     CoreModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     SocialLoginModule,
     ProfessorModule,
     StudentModule,
-    AdministratorModule
-    
+    AdministratorModule,  
+    AppRoutingModule,
+    BrowserModule,     
   ],
   providers: [DatePipe,
     {

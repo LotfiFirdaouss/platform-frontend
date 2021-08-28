@@ -25,19 +25,19 @@
           <div *ngIf="isStudent && currentStudent">
             <li><a  (click)="dropDownFunction(myDropdownRapport)" class="dropbtn"><span class="icon-report mr-3"></span>Rapports</a></li>
             <div id="myDropdownRapport" class="dropdown-content">
-              <a routerLink="/rapport-etudiant/{{currentStudent.id}}" >Mes rapports</a> <!-- path: "rapport-etudiant/:etudiant" -->
-              <a routerLink="/add-rapport" >Ajouter rapport</a>
+              <a routerLink="/rapport/etudiant/{{currentStudent.id}}" >Mes rapports</a> <!-- path: "rapport-etudiant/:etudiant" -->
+              <a routerLink="/rapport/ajouter" >Ajouter rapport</a>
             </div>
           </div>
 
-          <li *ngIf="isAdministrator"><a routerLink="/insertions"><span class="icon-insertion mr-3"></span>Insertions</a></li>
+          <li *ngIf="isAdministrator"><a routerLink="/insertion"><span class="icon-insertion mr-3"></span>Insertions</a></li>
 
           <div *ngIf="isStudent && currentStudent">
             <li ><a (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>
             <!-- <div> {{ hasInsertion }} </div> -->
             <div id="myDropdownInsertion" class="dropdown-content">
-              <a routerLink="/insertion-etudiant/{{currentStudent.id}}">Mon insertion</a> <!-- path: "insertion-etudiant/:etudiant" -->
-              <a routerLink="/add-insertion">Ajouter insertion</a>
+              <a routerLink="/insertion/etudiant/{{currentStudent.id}}">Mon insertion</a> <!-- path: "insertion-etudiant/:etudiant" -->
+              <a routerLink="/insertion/ajouter">Ajouter insertion</a>
             </div>
           </div>
 
@@ -52,8 +52,8 @@
           <div>
             <li *ngIf="isAdministrator"><a  (click)="dropDownFunction(myDropdownEtudiant)" class="dropbtn"><span class="icon-etudiant mr-3"></span>Gestion etudiants</a></li>
             <div id="myDropdownEtudiant" class="dropdown-content">
-              <a routerLink="/">liste etudiant</a>
-              <a routerLink="/">Ajouter etudiant</a> <!-- path: "insertion-etudiant/:etudiant" -->
+              <a routerLink="/étudiant">liste etudiant</a>
+              <a routerLink="/étudiant/ajouter">Ajouter etudiant</a> <!-- path: "insertion-etudiant/:etudiant" -->
             </div>
           </div>
 
