@@ -125,7 +125,8 @@ export class ReportInfoComponent implements OnInit {
 
    fileLink(){
      //return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentReport.fichier_rapport.toString());
-     return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentReport.fichier_rapport.toString());
+     var fileLink= this.currentReport.fichier_rapport.toString().split('&')[0];
+     return this.sanitizer.bypassSecurityTrustResourceUrl(fileLink);
     }
    
 }
