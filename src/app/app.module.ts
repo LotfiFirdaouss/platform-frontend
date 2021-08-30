@@ -29,7 +29,6 @@ import { AdministratorModule } from './features/administrator/administrator.modu
     ProfessorModule,
     StudentModule,
     AdministratorModule
-    
   ],
   providers: [DatePipe,
     {

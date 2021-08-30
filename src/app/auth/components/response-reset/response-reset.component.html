@@ -1,0 +1,125 @@
+<div class="container-login100">
+    <div class="row" *ngIf="CurrentState=='Wait'">
+        <div class="col-md-12  close-form">
+            <h2> Veuillez patienter...</h2>
+        </div>
+    </div>
+    <div class="row"
+        *ngIf="CurrentState=='NotVerified'">
+        <div class="col-md-12">
+            <h2> URL invalide.</h2>
+        </div>
+    </div>
+    <div class="row" *ngIf="CurrentState=='Verified'">
+        <div class="wrap-login100">
+
+            <div id="errorMsg" *ngIf="errorMessage">
+                <span>{{errorMessage}}</span>
+            </div>
+            <div id="successMsg" *ngIf="successMessage">
+                <span>{{successMessage}}</span>
+            </div>
+            <!-- <form action="" [formGroup]="ResponseResetForm" (ngSubmit)="ResetPassword(ResponseResetForm)">
+                <div class="form-group">
+                    <input _ngcontent-c0="" class="form-control form-control-lg" placeholder="Password"
+                        type="password" id="password" formControlName="newPassword" />
+                    <span *ngIf="!ResponseResetForm.get('newPassword').valid && !IsResetFormValid"
+                        class="help-block">Password is required with atleast 4 characters.</span>
+                </div>
+                <div class="form-group">
+                    <input _ngcontent-c0="" class="form-control form-control-lg"
+                        placeholder="Confirm Password" type="password" id="cpassword"
+                        formControlName="confirmPassword" />
+                    <span *ngIf="!ResponseResetForm.get('confirmPassword').valid && !IsResetFormValid"
+                        class="help-block">. </span>
+                    <span
+                        *ngIf="ResponseResetForm.get('confirmPassword').valid && (ResponseResetForm.get('confirmPassword').value != ResponseResetForm.get('newPassword').value) && !IsResetFormValid"
+                        class="help-block">Confirm Password does not match with password.</span>
+                </div>
+                <div class="form-group">
+                    <div>
+
+                        <button type="submit" class="  btn btn-primary">Update
+                            Password</button>
+
+                    </div>
+                </div>
+            </form> -->
+
+            <form class="login100-form validate-form" name="form" #ResponseResetForm="ngForm">
+                <span class="login100-form-title p-b-26"> Rénitialiser votre mot de passe</span><br>
+
+                <div class="wrap-input100 validate-input">
+                    <span class="btn-show-pass" (click)="PasswordEye(1)">
+                        <i class="zmdi zmdi-eye" id="btn-show-pass1"></i>
+                    </span>
+                    <input class="input100" type="password" name="newPassword" placeholder="Nv mot de passe*" required minlength="8" maxlength="200"
+                    [(ngModel)]="form.newPassword" #newPassword="ngModel" id="newPassword">
+                    <div *ngIf="newPassword.errors && (newPassword.dirty || newPassword.touched)">
+                        <div [hidden]="!newPassword.errors?.required" class="alert-validate" 
+                            data-validate="Entrer le nv mot de passe"></div>
+                        <div [hidden]="!newPassword.errors?.maxlength" class="alert-validate" 
+                            data-validate="200 caractères au max.."></div>
+                        <div [hidden]="!newPassword.errors?.minlength" class="alert-validate" 
+                        data-validate="8 caractères au min."></div>
+                    </div>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <span class="btn-show-pass" (click)="PasswordEye()">
+                        <i class="zmdi zmdi-eye" id="btn-show-pass2"></i>
+                    </span>
+                    <input class="input100" type="password" name="confirmPassword" placeholder="Confimer mot de passe*" required minlength="8" maxlength="200"
+                    [(ngModel)]="form.confirmPassword" #confirmPassword="ngModel" id="confirmPassword">
+                    <div *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)">
+                        <div [hidden]="!confirmPassword.errors?.required" class="alert-validate" 
+                            data-validate="Confirmer votre mot de passe"></div>
+                        <div [hidden]="!confirmPassword.errors?.maxlength" class="alert-validate" 
+                            data-validate="200 caractères au max."></div>
+                        <div [hidden]="!confirmPassword.errors?.minlength" class="alert-validate" 
+                        data-validate="8 caractères au min."></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div
+                    class="text-center p-t-115"
+                    role="alert"
+                    *ngIf="isFormFull"
+                    style="color: salmon;"
+                    >
+                    {{ errorMessage }}
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <div
+                    class="text-center p-t-115"
+                    role="alert"
+                    *ngIf="isFormFull"
+                    style="color: greenyellow"
+                    >
+                    {{ successMessage }}
+                    </div>
+                </div>
+        
+                <span class="text-center p-t-115">
+                    <span class="txt1" id="ValidityFormWarn" style="color: salmon; display: none;" >Veuillez s'assurer que tt les champs sont bien remplies !</span>
+                </span>
+        
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                    <div class="login100-form-bgbtn"></div>
+                    <div style="display:inline-block; position:relative;" class="login100-form-btn" (click)="ValidityWarn()">
+                    <button class="login100-form-btn" (click)="ResetPassword()" id="submitBtn"
+                    [disabled]="!ResponseResetForm.form.valid">
+                        Renitialiser mdp
+                    </button> 
+                    </div>          
+                    </div>
+                </div>
+                    
+            </form>
+        
+        </div>                
+    </div>

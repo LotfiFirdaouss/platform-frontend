@@ -1,0 +1,71 @@
+<div class="container-login100">
+    <div class="wrap-login100">
+
+      <form class="login100-form validate-form" name="form" #resetForm="ngForm">
+
+        <span class="login100-form-title p-b-26"> Mot de passe oublié ?</span><br>
+        
+        <div class="wrap-input100 validate-input" data-validate="Entrer votre email">
+          <input class="input100" type="email" #email="ngModel" name="email" 
+            placeholder="email@ensam-casa.ma*" required [(ngModel)]="form.email"
+            pattern="[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" > 
+          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert-validate">
+            <div [hidden]="!email.errors?.required" class="alert-validate" 
+                data-validate="L'email est requis."></div>
+            <div [hidden]="!email.errors?.pattern" class="alert-validate" 
+                data-validate="Veuillez entrer un email valide !"></div> 
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div
+            class="text-center p-t-115"
+            role="alert"
+            *ngIf="isFormFull"
+            style="color: salmon;"
+          >
+            {{ errorMessage }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div
+            class="text-center p-t-115"
+            role="alert"
+            *ngIf="isFormFull"
+            style="color: greenyellow"
+          >
+            {{ successMessage }}
+          </div>
+        </div>
+
+        <span class="text-center p-t-115">
+          <span class="txt1" id="ValidityFormWarn" style="color: salmon; display: none; " *ngIf="!isFormFull">Veuillez s'assurer que tt les champs sont bien remplies !</span>
+        </span>
+
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <div style="display:inline-block; position:relative;" class="login100-form-btn" (click)="ValidityWarn()">
+            <button class="login100-form-btn" (click)="RequestResetUser()" id="submitBtn"
+            [disabled]="!resetForm.form.valid">
+              Envoyer email
+            </button> 
+            </div>          
+          </div>
+        </div>
+
+        <!-- <div class="text-center p-t-115">
+          <span class="txt1">
+            Pas encore de compte?
+          </span>
+
+          <a class="txt2" routerLink="/register" >
+            Je m'inscris
+          </a>
+        </div> -->
+          
+      </form>
+
+    </div>
+</div>
