@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
 import { DOCUMENT } from '@angular/common';
-
+import {Location} from '@angular/common';
 
 declare function JSswitchActive(id : string):any;
 
@@ -14,13 +14,6 @@ declare function JSswitchActive(id : string):any;
 
 
 export class HeaderComponent implements OnInit, AfterViewInit{
-  accueilBtnID="accueilBtnID"
-  AproposBtnID="AproposBtnID"
-  contactBtnID="contactBtnID"
-  signupBtnID="signupBtnID"
-  signinBtnID="signinBtnID"
-  profileBtnID="profileBtnID"
-  homeBtnID="homeBtnID"
 
   //private roles: string[] = [];
   isLoggedIn = false;
@@ -30,9 +23,12 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   isStudent=false;
   isAdministrator=false;
 
+  currentRoute:String;
+
   constructor(
     private token: TokenStorageService,
-    @Inject(DOCUMENT) private document: Document) { }
+    @Inject(DOCUMENT) private document: Document,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.loadJsFile("../../../../assets/js/header.js"); 
@@ -49,7 +45,27 @@ export class HeaderComponent implements OnInit, AfterViewInit{
         this.isStudent = true;
       }
     } 
-    
+    this.scrollCenter(0);
+
+    //activating appopriate btn depending on currentRoute
+    this.currentRoute = this.location.path();
+    console.log(this.currentRoute)
+    if( this.currentRoute == "/" ){
+      this.menuActiveLinkFuncFromRoute("accueilBtnID");
+    }else if(this.currentRoute == "/%C3%A0-propos"){
+      this.menuActiveLinkFuncFromRoute("AproposBtnID");
+    }else if(this.currentRoute == "/contact"){
+      this.menuActiveLinkFuncFromRoute("contactBtnID");
+    }else if(this.currentRoute == "/register"){
+      this.menuActiveLinkFuncFromRoute("signupBtnID");
+    }else if(this.currentRoute == "/login"){
+      this.menuActiveLinkFuncFromRoute("signinBtnID");
+    }
+    // else if(this.currentRoute == "/home"){
+    //   this.menuActiveLinkFuncFromRoute("homeBtnID");
+    // }else if(this.currentRoute == "/profile"){
+    //   this.menuActiveLinkFuncFromRoute("profileBtnID");
+    // }
   }  
 
   ngAfterViewInit(){
@@ -82,11 +98,69 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
   logout(): void {
     this.token.signOut();
-    window.location.reload(); 
+    window.location.reload();
+    this.logOutActive; 
   }
 
   scrollCenter(y){
     window.scroll(0,0);
     window.scroll(0,y); // (left,top) 
   } 
+
+  public menuActiveLinkFunc(event){
+    var activeLinks = document.getElementsByClassName("Hactive");
+    //console.log("old active links",activeLinks[0])
+    this.currentRoute = this.location.path();
+    console.log(activeLinks)
+    activeLinks[0]?.classList.replace("Hactive","inactive")
+    activeLinks[1]?.classList.replace("Hactive","inactive")
+
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
+    var Element = <HTMLLIElement> document.getElementById(value);
+    Element.classList.replace("inactive","Hactive");
+  
+    // console.log(activeLinks[0])
+    // console.log(activeLinks[1])
+    // console.log(activeLinks[2])
+
+  }
+
+  public menuActiveLinkFuncFromRoute(aId){
+    this.currentRoute = this.location.path();
+    //removing active from default active link
+    console.log("default active:")
+    if( !this.isLoggedIn ){
+      if(this.currentRoute != "/home"){
+        var activeAccueilLink = <HTMLElement> document.getElementById("accueilBtnID");
+        console.log(activeAccueilLink)
+        activeAccueilLink.classList.replace("Hactive","inactive")
+      }
+    }else{
+      if(this.currentRoute != "/login"){
+        var activeHomeLink = <HTMLElement> document.getElementById("homeBtnID");
+        //console.log(activeHomeLink)
+        activeHomeLink.classList.replace("Hactive","inactive")
+        
+      }
+    }
+
+    //console.log("new active:")
+    //adding acting into cuurent active page depending on current URL
+    var link = document.getElementById(aId);
+    //console.log(link)
+    link.classList.replace("inactive","Hactive")
+  }
+
+  public logOutActive(){
+    var activeAccueilLink = <HTMLElement> document.getElementById("accueilBtnID");
+    activeAccueilLink.classList.replace("Hactive","inactive")
+    var logInLink = <HTMLElement> document.getElementById("signinBtnID");
+    logInLink.classList.replace("inactive","Hactive")
+
+  }
+  
+
+
 }

@@ -9,6 +9,8 @@ import { StudentFilterPipe } from './pipes/student-filter.pipe';
 import { VillePaysFilterPipe } from './pipes/ville-pays-filter.pipe';
 import { SocieteFilterPipe } from './pipes/societe-filter.pipe';
 import { SecteurSocieteFilterPipe } from './pipes/secteur-societe-filter.pipe';
+import { PromotionFilterPipe } from './pipes/promotion-filter.pipe';
+import { FiliereFilterPipe } from './pipes/filiere-filter.pipe';
 // import { PaginationPipe } from './pipes/pagination.pipe';
 
 
@@ -23,6 +25,8 @@ import { SecteurSocieteFilterPipe } from './pipes/secteur-societe-filter.pipe';
     VillePaysFilterPipe,
     SocieteFilterPipe,
     SecteurSocieteFilterPipe,
+    PromotionFilterPipe,
+    FiliereFilterPipe,
     //PaginationPipe
   ],
   imports: [

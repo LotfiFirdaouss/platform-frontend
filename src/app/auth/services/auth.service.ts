@@ -35,6 +35,7 @@ export class AuthService {
     return this.http.post(BASEURL, JSON.stringify(user) , httpOptions);
   }
 
+  //for changing the pwd
   newPassword(user : { token:any; password : any;}): Observable<any> {
     return this.http.post(BASEURL+"confirm/", JSON.stringify(user) , httpOptions);
   }

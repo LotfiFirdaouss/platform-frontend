@@ -2,6 +2,9 @@
     <h2 class="card-subheading center" >Liste des rapports de stage</h2><br>
     <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects des étudiants de l'ENSAM Casablanca.</small></p><hr>
     
+
+    <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <!-- First line of filters -->
     <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
         <div class="row">
             <div class="col-md-10">
@@ -11,12 +14,31 @@
                         <label>Intitulé Stage</label>
                     </div>
                     <div>
-                        <input type="text" [(ngModel)]="StudentfilterText" data-placeholder-focus="false">
-                        <label>Etudiant</label>
+                        <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false">
+                        <label>Promotion</label>
                     </div>
-                    <div>
-                        <label>Rapp. confidentiel</label>
-                        <input style="margin-left: 90px; margin-top: 10px;" type="checkbox" [(ngModel)]="selectedConfidentiel" data-placeholder-focus="false">
+                    <div id="select-type" class="type">
+                        <select name="type" [(ngModel)]="selectFiliere">
+                            <!-- <option value="Tout">Tout</option> -->
+                            <option value="GI">GI</option>
+                            <option value="GM">GM</option>
+                            <option value="GE">GE(ancienne)</option>
+                            <option value="GEM">GEM</option>
+                            <option value="IAGI">IAGI</option>
+                            <option value="MSEI">MSEI</option>
+                        </select>
+                        <label>Filière</label>
+                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                            points="231.8 32.8 221 32.8 221 22"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
                     </div>
                     <div id="select-type" class="type">
                         <select name="type" [(ngModel)]="selectedReportType">
@@ -46,13 +68,21 @@
         </div>
         
     </div>
-
     <div class="advanced" style="margin-bottom: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Advance Search With Filters </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
     
+    <!-- Second line of filters -->
     <div name="advancedSearch" id="header-search-people" class="form-area hidden" novalidate="novalidate" autocomplete="off">
         <div class="row">
             <div class="col">
                 <div class="styled-input multi" style="height: 60px;">
+                    <div>
+                        <input type="text" [(ngModel)]="StudentfilterText" data-placeholder-focus="false">
+                        <label>Etudiant</label>
+                    </div>
+                    <div>
+                        <label>Rapp. confidentiel</label>
+                        <input style="margin-left: 30px; margin-top: 10px;" type="checkbox" [(ngModel)]="selectedConfidentiel" data-placeholder-focus="false">
+                    </div>
                     <div>
                         <label>Date début</label>
                         <input type="date" name="dateDebut" #dateDebut="ngModel"
@@ -88,7 +118,8 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Third line of filters -->
     <div name="StageFilters" id="header-search-people" class="form-area hidden" novalidate="novalidate" autocomplete="off">
         <div class="row">
             <div class="col">
@@ -109,6 +140,7 @@
             </div>
         </div>
     </div>
+
     <hr>
 
     <!-- LIST OF REPORTS -------------------------------------------------------------------------------------------------------------------------->
@@ -116,7 +148,8 @@
     | reportFilter : filterText | stageProjetFilter : selectedStageProjet | confidentielFilter : selectedConfidentiel
     | reportTypeFilter : selectedReportType | dateRangeFilter : StartDateReport:EndDateReport | studentFilter : StudentfilterText
     | villePaysFilter : VillePaysText | societeFilter : SocieteText | secteurSocieteFilter : SecteurSocieteText
-    | paginate: { itemsPerPage: 6, currentPage: p } ;
+    | promotionFilter : filterPromotion | filiereFilter : selectFiliere
+    | paginate : { itemsPerPage: 6, currentPage: p } ;
     let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
@@ -166,6 +199,7 @@
         </article>
     </div>
     <br>
+    <app-spinner class="hidden"></app-spinner>
     <div  class="center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>

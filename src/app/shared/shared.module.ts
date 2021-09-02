@@ -38,6 +38,9 @@ import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-socie
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import { RequestResetComponent } from '../auth/components/request-reset/request-reset.component';
 import { ResponseResetComponent } from '../auth/components/response-reset/response-reset.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FiliereFilterPipe } from '../features/report/pipes/filiere-filter.pipe';
+import { PromotionFilterPipe } from '../features/report/pipes/promotion-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,9 @@ import { ResponseResetComponent } from '../auth/components/response-reset/respon
     VillePaysFilterPipe,
     SocieteFilterPipe,
     SecteurSocieteFilterPipe,
+    SpinnerComponent,
+    PromotionFilterPipe,
+    FiliereFilterPipe,
     // both of the two elements are used for pagination
     // HelloComponent, 
     // PaginationPipe,
