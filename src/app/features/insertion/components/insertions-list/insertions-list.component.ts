@@ -19,6 +19,7 @@ export class InsertionsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadJsFile("../../../../assets/js/insertions/insertions-list.js");  
+    this.showSpinner();
     this.retrieveInsertions();
   }
 
@@ -28,6 +29,7 @@ export class InsertionsListComponent implements OnInit {
         data => {
           this.insertions = data;
           console.log(data);
+          this.hideSpinner();
         },
         error => {
           console.log(error);
@@ -62,6 +64,16 @@ export class InsertionsListComponent implements OnInit {
     node.src = url;  
     node.type = 'text/javascript';  
     document.getElementsByTagName('head')[0].appendChild(node);  
+  }
+
+  showSpinner(){
+    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+    spinner.classList.replace("hidden","visible");
+  }
+
+  hideSpinner(){
+    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+    spinner.classList.replace("visible","hidden");
   }
   
 }

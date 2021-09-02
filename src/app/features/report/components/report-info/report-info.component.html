@@ -8,7 +8,7 @@
       <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden)" [src]="fileLink()" title="Appercue du rapport"
       width="100%" height="360" frameborder="0" >  </iframe>
       <div class="container" width="100%" height="360" frameborder="0"
-      style="border: slategrey solid; padding: 10%;" *ngIf="currentReport.rapport_confidentiel && !notHidden"> Ce rapport est confidentiel ! </div>
+      style="border: slategrey solid; padding: 10%;" *ngIf="currentReport.rapport_confidentiel && !notHidden"> Ce rapport est confidentiel,merci de contacter le propriétaire par mail.</div>
       </div> 
       <div *ngIf="currentReport.fichier_rapport == null" 
       class="container" width="100%" height="360" frameborder="0"
@@ -30,12 +30,12 @@
             </tr>
             <tr>
               <td *ngIf="currentReport.date_debut_stage"> <b>Date de début</b></td>
-              <td *ngIf="currentReport.date_debut_stage != null"> {{ currentReport.date_debut_stage }} </td>
+              <td *ngIf="currentReport.date_debut_stage != null"> {{ currentReport.date_debut_stage | date: 'dd/MM/yyyy'}} </td>
               <td *ngIf="currentReport.date_debut_stage == null"> --- </td>
             </tr>
             <tr>
               <td *ngIf="currentReport.date_fin_stage"> <b>Date de fin</b></td>
-              <td *ngIf="currentReport.date_fin_stage != null"> {{ currentReport.date_fin_stage }} </td>
+              <td *ngIf="currentReport.date_fin_stage != null"> {{ currentReport.date_fin_stage | date: 'dd/MM/yyyy'}} </td>
               <td *ngIf="currentReport.date_fin_stage == null"> --- </td>
             </tr>
             <tr scope="row" *ngFor="let aff of affiches">

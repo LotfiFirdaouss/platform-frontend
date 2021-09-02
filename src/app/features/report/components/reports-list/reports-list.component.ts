@@ -26,12 +26,14 @@ export class ReportsListComponent implements OnInit {
 
    //filter inputs
    filterText: '';
-   StudentfilterText:'';
-   selectedStageProjet:'';
-   selectedConfidentiel;
+   filterPromotion:'';
+   selectFiliere:'';
    selectedReportType:"";
+   StudentfilterText:'';
+   selectedConfidentiel;
    StartDateReport?: any;
    EndDateReport?: any;
+   selectedStageProjet:'';
    VillePaysText:'';
    SocieteText:'';
    SecteurSocieteText:'';
@@ -44,6 +46,7 @@ export class ReportsListComponent implements OnInit {
     private studentService : StudentService) { }
    
    ngOnInit(): void {
+    this.showSpinner();
     this.retrieveReports();
     this.isLoggedIn = !!this.token.getToken();    
     var user_id;
@@ -80,6 +83,7 @@ export class ReportsListComponent implements OnInit {
          data => {
            this.reports = data;
            console.log(data);
+           this.hideSpinner();
          },
          error => {
            console.log(error);
@@ -130,6 +134,8 @@ export class ReportsListComponent implements OnInit {
 
   renitialiserFiltres(){
     this.filterText= '';
+    this.filterPromotion='';
+    this.selectFiliere='';
     this.StudentfilterText='';
     this.selectedStageProjet='';
     this.selectedConfidentiel=false;
@@ -150,6 +156,16 @@ export class ReportsListComponent implements OnInit {
       arrowUp.classList.replace("visibleArrow","hidden");
       arrowDown.classList.replace("hidden","visibleArrow");
     }
+  }
+
+  showSpinner(){
+    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+    spinner.classList.replace("hidden","visible");
+  }
+
+  hideSpinner(){
+    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+    spinner.classList.replace("visible","hidden");
   }
    
 }

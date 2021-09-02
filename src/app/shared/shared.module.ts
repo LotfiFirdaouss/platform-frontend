@@ -8,7 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NoticeSliderComponent } from './components/notice-slider/notice-slider.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { InsertionsListComponent } from '../features/insertion/components/insertions-list/insertions-list.component';
@@ -36,6 +36,11 @@ import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-socie
 // import { HelloComponent } from '../features/report/components/reports-list/hello.component';
 // import { PaginationPipe } from '../features/report/pipes/pagination.pipe';
 import {NgxPaginationModule} from 'ngx-pagination'; 
+import { RequestResetComponent } from '../auth/components/request-reset/request-reset.component';
+import { ResponseResetComponent } from '../auth/components/response-reset/response-reset.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FiliereFilterPipe } from '../features/report/pipes/filiere-filter.pipe';
+import { PromotionFilterPipe } from '../features/report/pipes/promotion-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -54,6 +59,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     InsertionInfoComponent,
     InsertionStudentComponent,
     LoginComponent,
+    RequestResetComponent,
+    ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
     ReportFilterPipe,
@@ -65,6 +72,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     VillePaysFilterPipe,
     SocieteFilterPipe,
     SecteurSocieteFilterPipe,
+    SpinnerComponent,
+    PromotionFilterPipe,
+    FiliereFilterPipe,
     // both of the two elements are used for pagination
     // HelloComponent, 
     // PaginationPipe,
@@ -73,10 +83,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CommonModule,
     RouterModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     BrowserModule, 
-    NgxPaginationModule   
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule 
   ],
   exports: [
     HeaderComponent,
@@ -84,7 +95,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MenuComponent,
     NoticeSliderComponent,
     AppRoutingModule,
-    RouterModule,    
+    RouterModule,  
+    FormsModule,
+    ReactiveFormsModule 
   ]
 })
 export class SharedModule { }
