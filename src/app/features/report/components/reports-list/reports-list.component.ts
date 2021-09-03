@@ -90,12 +90,6 @@ export class ReportsListComponent implements OnInit {
          });
    }
    
-   refreshList(): void {
-     this.retrieveReports();
-     this.currentReport = undefined;
-     this.currentIndex = -1;
-   }
-   
    setActiveReport(report: Report, index: number): void {
      this.currentReport = report;
      this.currentIndex = index;

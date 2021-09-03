@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ReportRoutingModule } from './report-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ReportFilterPipe } from './pipes/report-filter.pipe';
 import { StageProjetFilterPipe } from './pipes/stage-projet-filter.pipe';
 import { ConfidentielFilterPipe } from './pipes/confidentiel-filter.pipe';
@@ -11,26 +12,15 @@ import { SocieteFilterPipe } from './pipes/societe-filter.pipe';
 import { SecteurSocieteFilterPipe } from './pipes/secteur-societe-filter.pipe';
 import { PromotionFilterPipe } from './pipes/promotion-filter.pipe';
 import { FiliereFilterPipe } from './pipes/filiere-filter.pipe';
-// import { PaginationPipe } from './pipes/pagination.pipe';
 
 
 @NgModule({
   declarations: [
-    ReportFilterPipe,
-    StageProjetFilterPipe,
-    ConfidentielFilterPipe,
-    ReportTypeFilterPipe,
-    DateRangeFilterPipe,
-    StudentFilterPipe,
-    VillePaysFilterPipe,
-    SocieteFilterPipe,
-    SecteurSocieteFilterPipe,
-    PromotionFilterPipe,
-    FiliereFilterPipe,
     //PaginationPipe
   ],
   imports: [
-    CommonModule
+    ReportRoutingModule,
+    SharedModule
   ]
 })
 export class ReportModule { }

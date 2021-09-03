@@ -24,6 +24,14 @@ import { ReportStudentComponent } from '../features/report/components/report-stu
 import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { ProfileComponent } from '../auth/components/profile/profile.component';
+import { ProfileEtudiantComponent } from '../features/student/components/profile-etudiant/profile-etudiant.component';
+import { StudentDetailsComponent } from '../features/student/components/student-details/student-details.component';
+import { AddStudentComponent } from '../features/student/components/add-student/add-student.component';
+
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { AddProfessorComponent } from '../features/professor/components/add-professor/add-professor.component';
+import { ProfessorDetailsComponent } from '../features/professor/components/professor-details/professor-details.component';
 import { ReportFilterPipe } from '../features/report/pipes/report-filter.pipe';
 import { StageProjetFilterPipe } from '../features/report/pipes/stage-projet-filter.pipe';
 import { ConfidentielFilterPipe } from '../features/report/pipes/confidentiel-filter.pipe';
@@ -59,21 +67,36 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     FooterComponent,
     MenuComponent,
     NoticeSliderComponent,
-    InsertionsListComponent,
+
+    //reports
     ReportsListComponent,
     AddReportComponent,
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
+
+    //insertions
+    InsertionsListComponent,
     AddInsertionComponent,
     InsertionDetailsComponent,
     InsertionInfoComponent,
     InsertionStudentComponent,
+
+    //students
+    ProfileEtudiantComponent,
+    AddStudentComponent,
+    StudentDetailsComponent,
+
+    //professors
+    AddProfessorComponent,
+    ProfessorDetailsComponent,
+
     LoginComponent,
     RequestResetComponent,
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
+
     //Repots filters
     ReportFilterPipe,
     StageProjetFilterPipe,
@@ -87,6 +110,7 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     SpinnerComponent,
     PromotionFilterPipe,
     FiliereFilterPipe,
+
     //insertion filters
     EtudiantFilterPipe,
     PromotionInsertionFilterPipe,
@@ -103,22 +127,53 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
   imports: [
     CommonModule,
     RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserModule, 
-    NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule 
+    HttpClientModule,
+
+    NzTableModule,
+    NzPopoverModule,
+    NgxPaginationModule, 
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     MenuComponent,
     NoticeSliderComponent,
-    AppRoutingModule,
-    RouterModule,  
+
+
+    //reports
+    ReportsListComponent, 
+    AddReportComponent,
+    ReportDetailsComponent,
+    ReportInfoComponent,
+    ReportStudentComponent,
+
+
+    //insertions
+    InsertionsListComponent,
+    AddInsertionComponent,
+    InsertionDetailsComponent,
+    InsertionInfoComponent,
+    InsertionStudentComponent,
+
+    //students
+    ProfileEtudiantComponent,
+    AddStudentComponent,
+    StudentDetailsComponent,
+
+    //professors
+    AddProfessorComponent,
+    ProfessorDetailsComponent,
+    
+    NzTableModule,
+    NzPopoverModule,
+
+    CommonModule,
+    RouterModule,
     FormsModule,
-    ReactiveFormsModule 
+    HttpClientModule,
+    
+    
   ]
 })
 export class SharedModule { }
