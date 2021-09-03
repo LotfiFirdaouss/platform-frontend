@@ -1,7 +1,150 @@
 <div class="container myContentClass">
   <h2 class="card-subheading center" >Liste des insertions </h2><br>
   <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les insertions professionelles / poursuites d'études des étudiants de l'ENSAM Casablanca.</small></p><hr>
+  
+      <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <!-- First line of filters -->
+    <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
+      <div class="row">
+          <div class="col-md-10">
+              <div class="styled-input multi" style="height: 60px;">
+                  <div>
+                      <input type="text" [(ngModel)]="filterEtudiant" data-placeholder-focus="false">
+                      <label>Etudiant</label>
+                  </div>
+                  <div>
+                      <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false">
+                      <label>Promotion</label>
+                  </div>
+                  <div id="select-type" class="type">
+                      <select name="type" [(ngModel)]="selectFiliere">
+                          <!-- <option value="Tout">Tout</option> -->
+                          <option value="GI">GI</option>
+                          <option value="GM">GM</option>
+                          <option value="GE">GE(ancienne)</option>
+                          <option value="GEM">GEM</option>
+                          <option value="IAGI">IAGI</option>
+                          <option value="MSEI">MSEI</option>
+                      </select>
+                      <label>Filière</label>
+                      <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                  <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                      <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                          points="231.8 32.8 221 32.8 221 22"></polyline>
+                                  </g>
+                              </g>
+                          </g>
+                      </svg>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-2 no-pad-left-10">
+              <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Renitialiser</button>
+          </div>
+      </div>
+      
+    </div>
+    <div class="advanced" style="margin-bottom: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Recherches Avancées </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
+    
+    <!-- Second line of filters -->
+    <div name="advancedSearch" id="header-search-people" class="form-area hidden" novalidate="novalidate" autocomplete="off">
+        <div class="row">
+            <div class="col">
+                <div class="styled-input multi" style="height: 60px;">
+                    <div>
+                        <input type="text" [(ngModel)]="villeInsertionFilter" data-placeholder-focus="false">
+                        <label>Ville insertion</label>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="paysInsertionFilter" data-placeholder-focus="false">
+                        <label>Pays insertion</label>
+                    </div>
+                    <div id="select-type" class="type">
+                        <select name="type" [(ngModel)]="selectedInsertionType" (click)="ShowHideTravailEtudeFilters()">
+                            <option value="travail">Travail</option>
+                            <option value="etude">Etude</option>
+                        </select>
+                        <label>Type insertion</label>
+                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                            points="231.8 32.8 221 32.8 221 22"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <!-- <div>
+                        <label>Date début</label>
+                        <input type="date" name="dateDebut" #dateDebut="ngModel"
+                        pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                        [(ngModel)]="StartDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px; ">
+                    </div>
+                    <div>
+                        <label>Date fin</label>
+                        <input type="date" name="dateDebut" #dateDebut="ngModel"
+                        pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                        [(ngModel)]="EndDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px;">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third line of filters for TRAVAIL-->
+    <div name="TravailFilters" id="header-search-people" class="form-area hidden" novalidate="novalidate" autocomplete="off">
+        <div class="row">
+            <div class="col">
+                <div class="styled-input multi" style="height: 60px;">
+                    <div>
+                        <input type="text" [(ngModel)]="posteFilter" data-placeholder-focus="false">
+                        <label>Intitulé poste</label>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="SocieteFilter" data-placeholder-focus="false">
+                        <label>Intitulé Société</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fourth line of filters for ETUDE-->
+    <div name="EtudeFilters" id="header-search-people" class="form-area hidden" novalidate="novalidate" autocomplete="off">
+        <div class="row">
+            <div class="col">
+                <div class="styled-input multi" style="height: 60px;">
+                    <div>
+                        <input type="text" [(ngModel)]="universiteFilter" data-placeholder-focus="false">
+                        <label>Université</label>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="natureFormationFilter" data-placeholder-focus="false">
+                        <label>Nature formation</label>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="intituleFormationFilter" data-placeholder-focus="false">
+                        <label>Intitulé formation</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  <hr>
+  
   <div  *ngFor="let insertion of insertions
+      | etudiantFilter : filterEtudiant | promotionInsertionFilter : filterPromotion | filiereInsertionFilter :  selectFiliere | insertionTypeFilter : selectedInsertionType
+      | villeInsertionFilter : villeInsertionFilter | paysInsertionFilter : paysInsertionFilter
+      | posteInsertionFilter : posteFilter | societeInsertionFilter : SocieteFilter
+      | univInsertionFilter : universiteFilter | natFormationInsertionFilter : natureFormationFilter | intitFormationInsertionFilter : intituleFormationFilter
       | paginate: { itemsPerPage: 6, currentPage: p } ;
       let i = index"
       [class.active]="i == currentIndex"
@@ -40,10 +183,10 @@
               <div *ngIf="!insertion.intit_formation">
                   <div>
                       <label><strong>Nom de société : </strong></label>
-                      {{ insertion.societe }} ( {{ insertion.secteur_societe }} )
+                      {{ insertion.societe }}
                   </div>
                   <div>
-                      <label><strong>Intitulé de poste  </strong></label>
+                      <label><strong>Intitulé de poste : </strong></label>
                       {{ insertion.intit_poste }}
                   </div>
               </div>
