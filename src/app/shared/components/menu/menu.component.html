@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a id="insertionsId" routerLink="/insertions"><span class="icon-insertion mr-3"></span>Insertions</a></li>
+          <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a id="insertionsId" routerLink="/insertion"><span class="icon-insertion mr-3"></span>Insertions</a></li>
 
           <div [class.hidden]="!isStudent || !currentStudent">
             <li (click)="menuActiveLinkFunc($event)"><a id="insertionId" (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>

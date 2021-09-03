@@ -96,6 +96,7 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
+
     //Repots filters
     ReportFilterPipe,
     StageProjetFilterPipe,
@@ -109,6 +110,7 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     SpinnerComponent,
     PromotionFilterPipe,
     FiliereFilterPipe,
+
     //insertion filters
     EtudiantFilterPipe,
     PromotionInsertionFilterPipe,
@@ -129,13 +131,8 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     HttpClientModule,
 
     NzTableModule,
-    NzPopoverModule,      
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserModule, 
-    NgxPaginationModule,
-    FormsModule,
-    ReactiveFormsModule 
+    NzPopoverModule,
+    NgxPaginationModule, 
   ],
   exports: [
     HeaderComponent,
@@ -175,7 +172,8 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     RouterModule,
     FormsModule,
     HttpClientModule,
-     
+    
+    
   ]
 })
 export class SharedModule { }

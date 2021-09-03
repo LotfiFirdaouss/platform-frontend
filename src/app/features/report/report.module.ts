@@ -16,17 +16,6 @@ import { FiliereFilterPipe } from './pipes/filiere-filter.pipe';
 
 @NgModule({
   declarations: [
-    ReportFilterPipe,
-    StageProjetFilterPipe,
-    ConfidentielFilterPipe,
-    ReportTypeFilterPipe,
-    DateRangeFilterPipe,
-    StudentFilterPipe,
-    VillePaysFilterPipe,
-    SocieteFilterPipe,
-    SecteurSocieteFilterPipe,
-    PromotionFilterPipe,
-    FiliereFilterPipe,
     //PaginationPipe
   ],
   imports: [
