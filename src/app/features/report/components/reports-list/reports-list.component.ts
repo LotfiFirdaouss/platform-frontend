@@ -145,6 +145,7 @@ export class ReportsListComponent implements OnInit {
     this.VillePaysText='';
     this.SocieteText='';
     this.SecteurSocieteText='';
+    //hide advanced search and stage filters
     var advancedSearch =<HTMLDivElement> document.getElementsByName("advancedSearch")[0];
     var arrowUp = <HTMLDivElement> document.getElementsByName("arrow-up")[0];
     var arrowDown = <HTMLDivElement> document.getElementsByName("arrow-down")[0];
@@ -160,12 +161,15 @@ export class ReportsListComponent implements OnInit {
 
   showSpinner(){
     var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+    console.log("spin around ",spinner)
     spinner.classList.replace("hidden","visible");
+    //spinner.classList.add("visible");
   }
 
   hideSpinner(){
     var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
     spinner.classList.replace("visible","hidden");
+    //spinner.classList.add("hidden");
   }
    
 }

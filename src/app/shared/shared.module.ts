@@ -41,6 +41,17 @@ import { ResponseResetComponent } from '../auth/components/response-reset/respon
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FiliereFilterPipe } from '../features/report/pipes/filiere-filter.pipe';
 import { PromotionFilterPipe } from '../features/report/pipes/promotion-filter.pipe';
+import { EtudiantFilterPipe } from '../features/insertion/pipes/etudiant-filter.pipe';
+import { PromotionInsertionFilterPipe } from '../features/insertion/pipes/promotion-insertion-filter.pipe';
+import { FiliereInsertionFilterPipe } from '../features/insertion/pipes/filiere-insertion-filter.pipe';
+import { InsertionTypeFilterPipe } from '../features/insertion/pipes/insertion-type-filter.pipe';
+import { VilleInsertionFilterPipe } from '../features/insertion/pipes/ville-insertion-filter.pipe';
+import { PaysInsertionFilterPipe } from '../features/insertion/pipes/pays-insertion-filter.pipe';
+import { SocieteInsertionFilterPipe } from '../features/insertion/pipes/societe-insertion-filter.pipe';
+import { PosteInsertionFilterPipe } from '../features/insertion/pipes/poste-insertion-filter.pipe';
+import { UnivInsertionFilterPipe } from '../features/insertion/pipes/univ-insertion-filter.pipe';
+import { NatFormationInsertionFilterPipe } from '../features/insertion/pipes/nat-formation-insertion-filter.pipe';
+import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/intit-formation-insertion-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -63,6 +74,7 @@ import { PromotionFilterPipe } from '../features/report/pipes/promotion-filter.p
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
+    //Repots filters
     ReportFilterPipe,
     StageProjetFilterPipe,
     ConfidentielFilterPipe,
@@ -75,9 +87,18 @@ import { PromotionFilterPipe } from '../features/report/pipes/promotion-filter.p
     SpinnerComponent,
     PromotionFilterPipe,
     FiliereFilterPipe,
-    // both of the two elements are used for pagination
-    // HelloComponent, 
-    // PaginationPipe,
+    //insertion filters
+    EtudiantFilterPipe,
+    PromotionInsertionFilterPipe,
+    FiliereInsertionFilterPipe,
+    InsertionTypeFilterPipe,
+    VilleInsertionFilterPipe,
+    PaysInsertionFilterPipe,
+    SocieteInsertionFilterPipe,
+    PosteInsertionFilterPipe,
+    UnivInsertionFilterPipe,
+    NatFormationInsertionFilterPipe,
+    IntitFormationInsertionFilterPipe,
   ],
   imports: [
     CommonModule,

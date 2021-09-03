@@ -13,7 +13,7 @@ declare function JSswitchActive(id : string):any;
 })
 
 
-export class HeaderComponent implements OnInit, AfterViewInit{
+export class HeaderComponent implements OnInit{
 
   //private roles: string[] = [];
   isLoggedIn = false;
@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
   isAdministrator=false;
 
   currentRoute:String;
+  loggingOut=false;
 
   constructor(
     private token: TokenStorageService,
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     private location: Location) { }
 
   ngOnInit(): void {
+    // this.openNav();
     this.loadJsFile("../../../../assets/js/header.js"); 
     this.isLoggedIn = !!this.token.getToken();
   
@@ -47,8 +49,8 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     } 
     this.scrollCenter(0);
 
-    //activating appopriate btn depending on currentRoute
     this.currentRoute = this.location.path();
+    //activating appopriate btn depending on currentRoute
     console.log(this.currentRoute)
     if( this.currentRoute == "/" ){
       this.menuActiveLinkFuncFromRoute("accueilBtnID");
@@ -58,7 +60,7 @@ export class HeaderComponent implements OnInit, AfterViewInit{
       this.menuActiveLinkFuncFromRoute("contactBtnID");
     }else if(this.currentRoute == "/register"){
       this.menuActiveLinkFuncFromRoute("signupBtnID");
-    }else if(this.currentRoute == "/login"){
+    }else if(this.currentRoute == "/login" || this.currentRoute == "/home"){
       this.menuActiveLinkFuncFromRoute("signinBtnID");
     }
     // else if(this.currentRoute == "/home"){
@@ -66,11 +68,8 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     // }else if(this.currentRoute == "/profile"){
     //   this.menuActiveLinkFuncFromRoute("profileBtnID");
     // }
+    // this.closeNav();
   }  
-
-  ngAfterViewInit(){
-    //this.ActiveFunction() 
-  }
 
   public loadJsFile(url) {  
     let node = document.createElement('script');  
@@ -79,27 +78,29 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     document.getElementsByTagName('head')[0].appendChild(node);  
   }
 
-  ActiveFunction(){
-    var url= this.document.location.href;
-    var specificURL = url.split("/")[3]
-    if( specificURL == "register"){
-      this.switchActive("signupBtnID");
-    }else if( specificURL == "login" ){
-      this.switchActive("signinBtnID"); 
-    }else{
-      this.switchActive("accueilBtnID");
-    }
-    console.log(specificURL);
-  }
+  // ActiveFunction(){
+  //   var url= this.document.location.href;
+  //   var specificURL = url.split("/")[3]
+  //   if( specificURL == "register"){
+  //     this.switchActive("signupBtnID");
+  //   }else if( specificURL == "login" ){
+  //     this.switchActive("signinBtnID"); 
+  //   }else{
+  //     this.switchActive("accueilBtnID");
+  //   }
+  //   console.log(specificURL);
+  // }
 
-  switchActive(id : string){
-    JSswitchActive(id);
-  }
+  // switchActive(id : string){
+  //   JSswitchActive(id);
+  // }
 
   logout(): void {
+    // this.openNav();
+    this.loggingOut= true;
     this.token.signOut();
-    window.location.reload();
-    this.logOutActive; 
+    this.logOutActive();
+    window.location.reload(); 
   }
 
   scrollCenter(y){
@@ -132,18 +133,10 @@ export class HeaderComponent implements OnInit, AfterViewInit{
     //removing active from default active link
     console.log("default active:")
     if( !this.isLoggedIn ){
-      if(this.currentRoute != "/home"){
         var activeAccueilLink = <HTMLElement> document.getElementById("accueilBtnID");
         console.log(activeAccueilLink)
         activeAccueilLink.classList.replace("Hactive","inactive")
-      }
-    }else{
-      if(this.currentRoute != "/login"){
-        var activeHomeLink = <HTMLElement> document.getElementById("homeBtnID");
-        //console.log(activeHomeLink)
-        activeHomeLink.classList.replace("Hactive","inactive")
-        
-      }
+      
     }
 
     //console.log("new active:")
@@ -161,6 +154,25 @@ export class HeaderComponent implements OnInit, AfterViewInit{
 
   }
   
+  // showSpinner(){
+  //   var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+  //   spinner.classList.replace("hidden","visible");
+  // }
+
+  // hideSpinner(){
+  //   var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+  //   spinner.classList.replace("visible","hidden");
+  // }
+
+  // /* Open */
+  // openNav() {
+  //   document.getElementById("myNav").style.display = "block";
+  // }
+
+  // /* Close */
+  // closeNav() {
+  //   document.getElementById("myNav").style.display = "none";
+  // }
 
 
 }
