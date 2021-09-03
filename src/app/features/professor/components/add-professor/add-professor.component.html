@@ -1,0 +1,129 @@
+<div class="container contact-form myContentClass" *ngIf="!submitted">
+        <form (ngSubmit)="saveProfessor()" #professorForm="ngForm" >
+            <h3>Veuillez renseigner ce formulaire pour ajouter un professeur :</h3>
+                <hr>
+                <p>Informations générales sur le professeur</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="professor.nom" required #nom="ngModel" 
+                            class="form-control" name="nom" placeholder="Nom*" maxlength="200"  />
+                            <span class="unit">Nom : </span>
+                            <div *ngIf="nom.errors && (nom.dirty || nom.touched)" class="alert alert-danger">
+                                <div [hidden]="!nom.errors?.required">
+                                    Le nom du professeur est requis.
+                                </div>
+                                <div [hidden]="!nom.errors?.maxlength">
+                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="professor.prenom" required #prenom="ngModel" 
+                            class="form-control" name="prenom" placeholder="Prenom*" maxlength="200"  />
+                            <span class="unit">Prenom : </span>
+                            <div *ngIf="prenom.errors && (prenom.dirty || prenom.touched)" class="alert alert-danger">
+                                <div [hidden]="!prenom.errors?.required">
+                                    Le prenom du professeur est requis.
+                                </div>
+                                <div [hidden]="!prenom.errors?.maxlength">
+                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p>Informations académique sur le professeur</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="custom-select form-control" name="departement" required
+                              [(ngModel)]="professor.departement" #departement="ngModel">
+                              <option *ngFor="let departement of departements" [ngValue]="departement">
+                                {{ departement }}
+                              </option>
+                            </select>
+                            <div *ngIf="departement.errors && (departement.dirty || departement.touched)" class="alert alert-danger">
+                              <div [hidden]="!departement.errors?.pattern" >
+                                Le departement est requis.
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p>Contact du professeur</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="professor.email_pro" #email_pro="ngModel" name="email_pro" class="form-control nature" placeholder="Email professionnel*" required pattern="^[a-zA-Z]+\.+[a-zA-Z]+@ensam-casa\.ma$" />
+                            <span class="unit">Email professionnel: </span>
+                            <div *ngIf="email_pro.errors && (email_pro.dirty || email_pro.touched)" class="alert alert-danger">
+                                <div [hidden]="!email_pro.errors?.required">
+                                    L'email professionnel est requis.
+                                </div>
+                                <div [hidden]="!email_pro.errors?.pattern">
+                                    Veuillez entrer un email valide !
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="professor.email_perso" name="email_perso" class="form-control nature" placeholder="Email personnel" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$" #email="ngModel" name="email" />
+                            <span class="unit">Email personnel: </span>
+                            <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                                <div [hidden]="!email.errors?.pattern">
+                                    Veuillez entrer un email valide !
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="tel" [(ngModel)]="professor.telephone" name="telephone" pattern="^\+[1-9]{1}[0-9]{3,14}$" required
+                            class="form-control nature" placeholder="Téléphone" #tel="ngModel" name="tel"/>
+                            <span class="unit">Téléphone: </span>
+                            <div *ngIf="tel.errors && (tel.dirty || tel.touched)" class="alert alert-danger">
+                                <div [hidden]="!tel.errors?.pattern">
+                                    Veuillez entrer un numéro de téléphone valide (Format: +...) !
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none; color:red;" id="ValidityFormWarn" class="alert "> 
+                    Veuillez vérifier que tout les champs sont bien remplies ! 
+                </div> 
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-6"></div>
+                    <div class="col-6 " id="submitBtnDiv" 
+                    style="display:inline-block; position:relative; padding-bottom: 0%;"
+                    (click)="ValidityWarn()">
+                    <button 
+                        id="submitBtn"
+                        type="submit"
+                        [disabled]="!professorForm.form.valid"
+                        class="btnContact "
+                        >
+                    Envoyer</button>           
+                    </div>
+                </div>
+                
+        </form>
+</div>
+<div class="container contact-form" *ngIf="submitted">
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> Le professeur est ajouté avec succès ! </h4>
+    <br/>
+    <button class="btnContact "
+        routerLink="/professeur">
+        Retour vers liste professeurs
+    </button>
+    <br/><br/><br/><br/><br/>
+</div>

@@ -44,16 +44,16 @@
           <div>
             <li *ngIf="isAdministrator"><a  (click)="dropDownFunction(myDropdownProf)" class="dropbtn"><span class="icon-prof mr-3"></span>Gestion professeurs</a></li>
             <div id="myDropdownProf" class="dropdown-content">
-              <a routerLink="/">liste prof</a>
-              <a routerLink="/">Ajouter prof</a> <!-- path: "insertion-etudiant/:etudiant" -->
+              <a routerLink="/professeur">liste prof</a>
+              <a routerLink="/professeur/ajouter">Ajouter prof</a> <!-- path: "insertion-etudiant/:etudiant" -->
             </div>
           </div>
 
           <div>
             <li *ngIf="isAdministrator"><a  (click)="dropDownFunction(myDropdownEtudiant)" class="dropbtn"><span class="icon-etudiant mr-3"></span>Gestion etudiants</a></li>
             <div id="myDropdownEtudiant" class="dropdown-content">
-              <a routerLink="/étudiant">liste etudiant</a>
-              <a routerLink="/étudiant/ajouter">Ajouter etudiant</a> <!-- path: "insertion-etudiant/:etudiant" -->
+              <a routerLink="/etudiant">liste etudiant</a>
+              <a routerLink="/etudiant/ajouter">Ajouter etudiant</a> <!-- path: "insertion-etudiant/:etudiant" -->
             </div>
           </div>
 

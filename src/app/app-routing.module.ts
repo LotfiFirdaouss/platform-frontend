@@ -45,8 +45,15 @@ const routes: Routes = [
 
   //students
   { 
-    path: 'étudiant' ,  
+    path: 'etudiant' ,  
     loadChildren: () => import('./features/student/student.module').then(mod => mod.StudentModule),
+    canActivate : [AdminGuard]
+  },
+
+  //professors
+  { 
+    path: 'professeur' ,  
+    loadChildren: () => import('./features/professor/professor.module').then(mod => mod.ProfessorModule),
     canActivate : [AdminGuard]
   },
 

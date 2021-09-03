@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {DatePipe} from '@angular/common';
+import {DatePipe, registerLocaleData} from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,9 +9,13 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-import { ProfessorModule } from './features/professor/professor.module';
-import { StudentModule } from './features/student/student.module';
 import { AdministratorModule } from './features/administrator/administrator.module';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -21,11 +25,13 @@ import { AdministratorModule } from './features/administrator/administrator.modu
     SharedModule,
     CoreModule,
     SocialLoginModule,
-    ProfessorModule,
-    StudentModule,
     AdministratorModule,  
     AppRoutingModule,
-    BrowserModule,     
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,     
   ],
   providers: [DatePipe,
     {
@@ -41,7 +47,8 @@ import { AdministratorModule } from './features/administrator/administrator.modu
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    },
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })

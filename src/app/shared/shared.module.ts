@@ -28,6 +28,11 @@ import { ProfileEtudiantComponent } from '../features/student/components/profile
 import { StudentDetailsComponent } from '../features/student/components/student-details/student-details.component';
 import { AddStudentComponent } from '../features/student/components/add-student/add-student.component';
 
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { AddProfessorComponent } from '../features/professor/components/add-professor/add-professor.component';
+import { ProfessorDetailsComponent } from '../features/professor/components/professor-details/professor-details.component';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -54,6 +59,10 @@ import { AddStudentComponent } from '../features/student/components/add-student/
     AddStudentComponent,
     StudentDetailsComponent,
 
+    //professors
+    AddProfessorComponent,
+    ProfessorDetailsComponent,
+
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
@@ -62,7 +71,10 @@ import { AddStudentComponent } from '../features/student/components/add-student/
     CommonModule,
     RouterModule,
     FormsModule,
-    HttpClientModule,      
+    HttpClientModule,
+
+    NzTableModule,
+    NzPopoverModule,      
   ],
   exports: [
     HeaderComponent,
@@ -91,10 +103,18 @@ import { AddStudentComponent } from '../features/student/components/add-student/
     AddStudentComponent,
     StudentDetailsComponent,
 
+    //professors
+    AddProfessorComponent,
+    ProfessorDetailsComponent,
+    
+    NzTableModule,
+    NzPopoverModule,
+
     CommonModule,
     RouterModule,
     FormsModule,
-    HttpClientModule,   
+    HttpClientModule,
+     
   ]
 })
 export class SharedModule { }

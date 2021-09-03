@@ -1,5 +1,6 @@
 export class Professor {
     id?:any;
+    nom_prenom?:String;
     prenom?:String;
     nom?:String;    
     email_perso?:any;
