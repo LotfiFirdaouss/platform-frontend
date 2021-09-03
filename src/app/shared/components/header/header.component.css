@@ -4,6 +4,10 @@
   font-family: "Titillium Web", sans-serif;
 }
 
+.navbar-nav{
+  background-color:#002244;
+}
+
 .navbar {
     background-color:#002244;
 }
@@ -22,16 +26,15 @@
   color:white;
 }
 
-.active {
+.Hactive {
   background-color: orange;
   border-radius: 30px;
   color:white;
 }
 .inactive {
-  background-color: #002244;
   color:white;
 }
-.nav-item .active:hover {
+.nav-item .Hactive:hover {
   color:#002244;
 }
 .nav-item .inactive:hover {
@@ -44,7 +47,14 @@
   font-size: 30px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 991px) {
+
+  .navbar-nav{
+    background-color:#001d3a;
+    padding-right:20px;
+    border-radius: 13%;
+  }
+  
 
   .navbar .nav-link {
     font-size: 20px;
@@ -57,6 +67,13 @@
 }
 
 @media only screen and (max-width: 383px) {
+
+  .navbar-nav{
+    background-color:#001d3a;
+    padding-right:20px;
+    border-radius: 13%;
+  }
+  
 
   .navbar a img {
     font-size: 20px;
@@ -76,7 +93,29 @@
 
 .header{
   position: fixed;
-  z-index: 1; /* Stay on top */
+  z-index: 1000; /* Stay on top */
   top: 0;
   width: 100%
+}
+
+.hidden{
+  display:None;
+}
+
+.visible{
+  display:block;
+}
+
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(255, 255, 255); /* Black fallback color */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  display: block;
 }

@@ -88,8 +88,6 @@ export class RegisterComponent implements OnInit {
     );}
     if(groupType=="2"){
       this.registerProfessorByEmail(this.socialUser.email,groups,username,password);             
-      
-      
     }
   }
 

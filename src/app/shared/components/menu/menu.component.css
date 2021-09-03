@@ -3,7 +3,7 @@ aside {  /* Hide scrollbars */width: 300px;left: 0;z-index: 1001;position: fixed
 aside .side-inner {width: 300px;height: 100vh;-webkit-overflow-scrolling: touch; background-color: #b3d6fc; }
 
 /* =======profile======== */
-aside .side-inner .profile {text-align: center;padding-top: 30px;padding-bottom: 30px;background-color: #002245; }
+aside .side-inner .profile {text-align: center;padding-top: 30px;padding-bottom: 30px; background:linear-gradient(0deg, rgba(12, 5, 107, 0.623), rgba(255, 165, 0, 0.25)), url(src/assets/Img/library2.jpg); }
 aside .side-inner .profile img {width: 80px;margin: 0 auto 20px auto;border-radius: 50%; }
 aside .side-inner .profile .name {font-size: 18px;color: #FFF; }
 
@@ -32,7 +32,7 @@ aside .side-inner .nav-menu ul li a:hover:before {width: 4px;opacity: 1;visibili
 /* active */
 aside .side-inner .nav-menu ul li.active a {color: #000;background-color: #5397f8; }
 aside .side-inner .nav-menu ul li.active a:before {opacity: 1;visibility: visible;width: 4px; }
-
+aside .side-inner .nav-menu ul li.inactive a {color: #8b8b8b;background-color: #b3d6fc; }
 /* responsive design */
 aside .toggle {visibility: hidden;padding-left:15px;padding-top: 30px;position: absolute;right: 0;
   -webkit-transform: translateX(100%);-ms-transform: translateX(100%);transform: translateX(100%); }
@@ -95,6 +95,7 @@ aside {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
 
 /* icons */
 .icon-home:before {
@@ -164,3 +165,8 @@ aside {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}  
+
+.hidden{
+  visibility:0;
+  display:None;
+}

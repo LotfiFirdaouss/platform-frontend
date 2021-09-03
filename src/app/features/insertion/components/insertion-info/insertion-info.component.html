@@ -43,7 +43,7 @@
                 <td>
                   <B>Date d'insertion professionnelle</B>
                 </td>
-                <td *ngIf="currentInsertion.date_integration != null"> {{ currentInsertion.date_integration }} </td>
+                <td *ngIf="currentInsertion.date_integration != null"> {{ currentInsertion.date_integration | date: 'dd/MM/yyyy'}} </td>
                 <td *ngIf="currentInsertion.date_integration == null"> --- </td>
               </tr>
 
@@ -64,7 +64,7 @@
                 <td>
                   <B>Date d'intégration</B>
                 </td>
-                <td *ngIf="currentInsertion.date_integration != null"> {{ currentInsertion.date_integration }} </td>
+                <td *ngIf="currentInsertion.date_integration != null"> {{ currentInsertion.date_integration | date: 'dd/MM/yyyy'}} </td>
                 <td *ngIf="currentInsertion.date_integration == null"> --- </td>
               </tr>
               

@@ -4,6 +4,7 @@ import { TokenStorageService } from 'src/app/auth/services/token-storage.service
 import { InsertionService } from 'src/app/features/insertion/services/insertion.service';
 import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-menu',
@@ -22,25 +23,29 @@ export class MenuComponent implements OnInit {
   isProfessor=false;
   isStudent=false;
   isAdministrator=false;
+
   //used only if the current user is a student
   currentStudent!: Student; 
   hasInsertion=false;
 
+  currentRoute: string;
+
   constructor(private token: TokenStorageService,
     private studentService: StudentService,
-    private insertionService: InsertionService) { }
+    private insertionService: InsertionService,
+    private location: Location) {
+      
+      }
 
   ngOnInit() {  
-    this.loadJsFile("../../../../assets/js/menu.js");  
+    this.loadJsFile("../../../../assets/js/menu.js"); 
     this.isLoggedIn = !!this.token.getToken();
-    //console.log("1.init")
     
     var user_id;
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
       user_id = this.currentUser.id;
       this.group = this.currentUser.groups[0];
-      //console.log("student:",this.currentStudent);
       if( this.group == "Administrator"){
         this.isAdministrator = true;
       }else if( this.group == "Professor" ){
@@ -48,10 +53,32 @@ export class MenuComponent implements OnInit {
       }else{
         this.isStudent = true;
         this.getStudent(user_id);
-        //console.log("2.user id:",user_id);
-        //console.log("4.back to init,student object",this.currentStudent)
       }
     }
+
+    //activating appopriate btn depending on currentRoute
+    this.currentRoute = this.location.path();
+    console.log(this.currentRoute)
+    if( this.currentRoute == "/home" ){
+      this.menuActiveLinkFuncFromRoute("homeId");
+    }else if(this.currentRoute == "/profile"){
+      this.menuActiveLinkFuncFromRoute("profileId");
+    }else if(this.currentRoute == "/add-rapport" || this.currentRoute.includes("/rapport-etudiant")){
+      this.menuActiveLinkFuncFromRoute("rapportsId");
+    }else if(this.currentRoute == "/insertions"){
+      this.menuActiveLinkFuncFromRoute("insertionsId");
+    }else if(this.currentRoute == "/add-insertion" || this.currentRoute.includes("/insertion-etudiant")){
+      this.menuActiveLinkFuncFromRoute("insertionId");
+    }else if(this.currentRoute == "/professeurs" || this.currentRoute == "/add-professeur"){
+      this.menuActiveLinkFuncFromRoute("gestionProfId");
+    }else if(this.currentRoute == "/etudiants" || this.currentRoute == "/add-etudiant"){
+      this.menuActiveLinkFuncFromRoute("gestionEtudId");
+    }else if(this.currentRoute == "/gestionForm"){
+      this.menuActiveLinkFuncFromRoute("formId");
+    }else if(this.currentRoute == "/stats"){
+      this.menuActiveLinkFuncFromRoute("statsId");
+    }
+    
   }  
 
   getInsertion(id_etudiant: number): void {
@@ -90,6 +117,29 @@ export class MenuComponent implements OnInit {
 
   public dropDownFunction(id) {
     document.getElementById(id).classList.toggle("show");
+  }
+
+  public menuActiveLinkFunc(event){
+    var activeLinks = document.getElementsByClassName("active");
+    //console.log("old active links",activeLinks[0])
+    activeLinks[0].classList.remove("active")
+  
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
+    var ParentLiElement = <HTMLLIElement> document.getElementById(value).parentElement;
+    ParentLiElement.classList.add("active");
+  }
+
+  public menuActiveLinkFuncFromRoute(aId){
+    // console.log("calling active func")
+    //removing active from default active link
+    var activeHomeLink = <HTMLLIElement> document.getElementById("homeId").parentElement;
+    activeHomeLink.classList.remove("active");
+
+    //adding acting into cuurent active page depending on current URL
+    var link = document.getElementById(aId);
+    link.parentElement.classList.add("active")
   }
 
 }
