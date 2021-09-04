@@ -52,6 +52,9 @@ import { PosteInsertionFilterPipe } from '../features/insertion/pipes/poste-inse
 import { UnivInsertionFilterPipe } from '../features/insertion/pipes/univ-insertion-filter.pipe';
 import { NatFormationInsertionFilterPipe } from '../features/insertion/pipes/nat-formation-insertion-filter.pipe';
 import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/intit-formation-insertion-filter.pipe';
+import { ExportService } from '../core/services/export.service';
+import { ReportStatsComponent } from '../features/report/components/report-stats/report-stats.component';
+import { ReportStatsNamePipe } from '../features/report/pipes/report-stats-name.pipe';
 
 @NgModule({
   declarations: [
@@ -74,6 +77,7 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
+    ReportStatsComponent,
     //Repots filters
     ReportFilterPipe,
     StageProjetFilterPipe,
@@ -99,6 +103,8 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     UnivInsertionFilterPipe,
     NatFormationInsertionFilterPipe,
     IntitFormationInsertionFilterPipe,
+    /////////////
+    ReportStatsNamePipe
   ],
   imports: [
     CommonModule,
@@ -119,6 +125,9 @@ import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/i
     RouterModule,  
     FormsModule,
     ReactiveFormsModule 
+  ],
+  providers: [
+    ExportService
   ]
 })
 export class SharedModule { }

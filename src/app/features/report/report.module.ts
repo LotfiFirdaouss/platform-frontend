@@ -11,6 +11,8 @@ import { SocieteFilterPipe } from './pipes/societe-filter.pipe';
 import { SecteurSocieteFilterPipe } from './pipes/secteur-societe-filter.pipe';
 import { PromotionFilterPipe } from './pipes/promotion-filter.pipe';
 import { FiliereFilterPipe } from './pipes/filiere-filter.pipe';
+import { ReportStatsComponent } from './components/report-stats/report-stats.component';
+import { ReportStatsNamePipe } from './pipes/report-stats-name.pipe';
 // import { PaginationPipe } from './pipes/pagination.pipe';
 
 
@@ -27,6 +29,8 @@ import { FiliereFilterPipe } from './pipes/filiere-filter.pipe';
     SecteurSocieteFilterPipe,
     PromotionFilterPipe,
     FiliereFilterPipe,
+    ReportStatsComponent,
+    ReportStatsNamePipe,
     //PaginationPipe
   ],
   imports: [

@@ -26,6 +26,7 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { ProfileEtudiantComponent } from './features/student/components/profile-etudiant/profile-etudiant.component';
 import { RequestResetComponent } from './auth/components/request-reset/request-reset.component';
 import { ResponseResetComponent } from './auth/components/response-reset/response-reset.component';
+import { ReportStatsComponent } from './features/report/components/report-stats/report-stats.component';
 
 const routes: Routes = [
 
@@ -56,6 +57,9 @@ const routes: Routes = [
   { path: 'insertions/:id', component: InsertionDetailsComponent,canActivate : [AuthGuard] },
   { path: 'insertions/insertion-info/:id', component: InsertionInfoComponent,canActivate : [AuthGuard] },
   { path: 'insertion-etudiant/:etudiant', component: InsertionStudentComponent,canActivate : [AuthGuard] },
+
+  //print Excel
+  { path: 'excel-print', component: ReportStatsComponent,canActivate : [AuthGuard] },
 
 
   //temporary routes (just to visualize the components)

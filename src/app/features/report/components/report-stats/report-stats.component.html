@@ -1,0 +1,18 @@
+<p>report-stats works!</p>
+<input type="text" [(ngModel)]="nameFilter" data-placeholder-focus="false" placeholder="name filter ...">
+<table class="table table-sm" #userTable> <!-- we will make use of this angular var as element reference -->
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | reportStatsName: nameFilter">
+        <td scope="row">{{ user.id }}</td>
+        <td scope="row">{{ user.name }}</td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+<button (click)="exportElmToExcel()">print file</button>  
