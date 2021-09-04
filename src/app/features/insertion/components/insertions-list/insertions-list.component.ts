@@ -28,12 +28,15 @@ export class InsertionsListComponent implements OnInit {
   natureFormationFilter:'';
   intituleFormationFilter:'';
 
+  //for spinners
+  hideSpinner = false;
+
 
   constructor(private insertionService: InsertionService) { }
 
   ngOnInit(): void {
     this.loadJsFile("../../../../assets/js/insertions/insertions-list.js");  
-    this.showSpinner();
+    //this.showSpinner();
     this.retrieveInsertions();
   }
 
@@ -43,7 +46,8 @@ export class InsertionsListComponent implements OnInit {
         data => {
           this.insertions = data;
           console.log(data);
-          this.hideSpinner();
+          //this.hideSpinner();
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);
@@ -80,15 +84,15 @@ export class InsertionsListComponent implements OnInit {
     document.getElementsByTagName('head')[0].appendChild(node);  
   }
 
-  showSpinner(){
-    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
-    spinner.classList.replace("hidden","visible");
-  }
+  // showSpinner(){
+  //   var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+  //   spinner.classList.replace("hidden","visible");
+  // }
 
-  hideSpinner(){
-    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
-    spinner.classList.replace("visible","hidden");
-  }
+  // hideSpinner(){
+  //   var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
+  //   spinner.classList.replace("visible","hidden");
+  // }
 
   renitialiserFiltres(){
     this.filterEtudiant='';

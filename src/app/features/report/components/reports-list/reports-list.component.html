@@ -164,7 +164,7 @@
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
                         <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
-                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_fin_stage | date: 'dd/MM/yyyy' }}  </time>
+                        <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_fin_stage | date: 'dd/MM/yyyy' }}  </time>
                         </div>
                         <div class="postcard__bar"></div>
                         <!-- <ul class="postcard__tagbox">
@@ -199,10 +199,13 @@
         </article>
     </div>
     <br>
-    <app-spinner class="hidden"></app-spinner>
+    <app-spinner [class.hidden]="hideSpinner"></app-spinner>
     <div  class="center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
-
+    
+    <div class="col-md-2 no-pad-left-10">
+        <button type="" class="primary-btn serach-btn" (click)="printFiles(filterPromotion,selectFiliere)">imprimer Rapport</button>
+    </div>
     <!-- <hello [page]="reports.length" #pageinator></hello> -->
 </div> 

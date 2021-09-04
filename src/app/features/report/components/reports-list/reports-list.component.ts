@@ -40,13 +40,16 @@ export class ReportsListComponent implements OnInit {
 
    //for pagination
    p: number = 1;
+
+   //For spinner
+   hideSpinner = false;
    
    constructor(private reportService: ReportService,
     private token: TokenStorageService,
     private studentService : StudentService) { }
    
    ngOnInit(): void {
-    this.showSpinner();
+    //this.showSpinner();
     this.retrieveReports();
     this.isLoggedIn = !!this.token.getToken();    
     var user_id;
@@ -77,31 +80,32 @@ export class ReportsListComponent implements OnInit {
         });
   }
    
-   retrieveReports(): void {
+  retrieveReports(): void {
      this.reportService.getAll()
        .subscribe(
          data => {
            this.reports = data;
            console.log(data);
-           this.hideSpinner();
+           //this.hideSpinner();
+           this.hideSpinner = true;
          },
          error => {
            console.log(error);
          });
-   }
+  }
    
-   refreshList(): void {
+  refreshList(): void {
      this.retrieveReports();
      this.currentReport = undefined;
      this.currentIndex = -1;
-   }
+  }
    
-   setActiveReport(report: Report, index: number): void {
+  setActiveReport(report: Report, index: number): void {
      this.currentReport = report;
      this.currentIndex = index;
-   }
+  }
 
-   ShowHideStageFilters(){
+  ShowHideStageFilters(){
     //  console.log(this.selectedStageProjet)
     var StageFilters =<HTMLDivElement> document.getElementsByName("StageFilters")[0];
     // console.log(StageFilters)
@@ -159,17 +163,9 @@ export class ReportsListComponent implements OnInit {
     }
   }
 
-  showSpinner(){
-    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
-    console.log("spin around ",spinner)
-    spinner.classList.replace("hidden","visible");
-    //spinner.classList.add("visible");
-  }
 
-  hideSpinner(){
-    var spinner = <HTMLElement> document.getElementsByTagName("app-spinner")[0];
-    spinner.classList.replace("visible","hidden");
-    //spinner.classList.add("hidden");
+  printFiles(filiere,promotion){
+    this.reportService.printReportsFile(filiere,promotion);
   }
    
 }
