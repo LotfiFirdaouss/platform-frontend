@@ -164,8 +164,13 @@ export class ReportsListComponent implements OnInit {
   }
 
 
-  printFiles(filiere,promotion){
-    this.reportService.printReportsFile(filiere,promotion);
+  // printFiles(filiere,promotion){
+  //   console.log("print function!!")
+  //   this.reportService.printReportsFile(filiere,promotion);
+  // }
+
+  printFiles(){
+    
   }
    
 }

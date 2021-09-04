@@ -79,7 +79,7 @@ export class ReportService {
     return this.http.get<Report[]>(`${baseUrl}?etudiant=${fk_etudiant}`);
   }
 
-  printReportsFile(filiere: any, promotion: any): any {
-    return this.http.get<Report[]>(`${baseUrl}?filiere=${filiere}&?promotion=${promotion}`);
-  }
+  // printReportsFile(filiere: any, promotion: any): Observable<Report[]> {
+  //   return this.http.get<Report[]>(`${baseUrl}?filiere=${filiere}&?promotion=${promotion}`);
+  // }
 }
