@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Report } from '../models/report';
 
 const baseUrl = 'http://127.0.0.1:8080/api/rapports';
+const fileUrl = 'http://127.0.0.1:8080/downFiles/reportsFile';
 
 @Injectable({
   providedIn: 'root'
@@ -77,4 +78,8 @@ export class ReportService {
   findByStudent(fk_etudiant: any): Observable<Report[]> {
     return this.http.get<Report[]>(`${baseUrl}?etudiant=${fk_etudiant}`);
   }
+
+  // printReportsFile(filiere: any, promotion: any): Observable<Report[]> {
+  //   return this.http.get<Report[]>(`${baseUrl}?filiere=${filiere}&?promotion=${promotion}`);
+  // }
 }

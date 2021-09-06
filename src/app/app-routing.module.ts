@@ -12,6 +12,7 @@ import { ProfileEtudiantComponent } from './features/student/components/profile-
 import { AdminGuard } from './auth/guards/admin.guard';
 import { RequestResetComponent } from './auth/components/request-reset/request-reset.component';
 import { ResponseResetComponent } from './auth/components/response-reset/response-reset.component';
+import { ReportStatsComponent } from './features/report/components/report-stats/report-stats.component';
 
 const routes: Routes = [
 
@@ -60,6 +61,9 @@ const routes: Routes = [
     loadChildren: () => import('./features/professor/professor.module').then(mod => mod.ProfessorModule),
     canActivate : [AdminGuard]
   },
+
+  //print Excel
+  { path: 'stats', component: ReportStatsComponent,canActivate : [AuthGuard, AdminGuard] },
 
 
   //temporary routes (just to visualize the components)

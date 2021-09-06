@@ -29,12 +29,12 @@
               <td> {{ currentReport.type_rapport }} </td>
             </tr>
             <tr>
-              <td *ngIf="currentReport.date_debut_stage"> <b>Date de début</b></td>
+              <td> <b>Date de début</b></td>
               <td *ngIf="currentReport.date_debut_stage != null"> {{ currentReport.date_debut_stage | date: 'dd/MM/yyyy'}} </td>
               <td *ngIf="currentReport.date_debut_stage == null"> --- </td>
             </tr>
             <tr>
-              <td *ngIf="currentReport.date_fin_stage"> <b>Date de fin</b></td>
+              <td> <b>Date de fin</b></td>
               <td *ngIf="currentReport.date_fin_stage != null"> {{ currentReport.date_fin_stage | date: 'dd/MM/yyyy'}} </td>
               <td *ngIf="currentReport.date_fin_stage == null"> --- </td>
             </tr>

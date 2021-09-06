@@ -159,12 +159,12 @@
                     <div class="col-5">
                         <h4>
                             {{ report.stage_ou_projet ? "Stage" : "Projet" }} :
-                            <a class="blue"><b>{{ report.intitule_stage }}</b></a>
+                            <a routerLink="/rapport/info/{{ report.id }}"><b>{{ report.intitule_stage }}</b></a>
                         </h4>
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
                         <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
-                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_fin_stage | date: 'dd/MM/yyyy' }}  </time>
+                        <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_fin_stage | date: 'dd/MM/yyyy' }}  </time>
                         </div>
                         <div class="postcard__bar"></div>
                         <!-- <ul class="postcard__tagbox">
@@ -180,7 +180,7 @@
                                 <label><strong>Société de stage : </strong></label>
                                 {{ report.societe_stage }} <span *ngIf="report.secteur_societe != null">( {{ report.secteur_societe }} )</span>
                             </div>
-                            <div>
+                            <div *ngIf="report.ville_societe != null">
                                 <label><strong>Ville de stage : </strong></label>
                                 {{ report.ville_societe }} <span *ngIf="report.pays_societe != null">( {{ report.pays_societe }} )</span>
                             </div>
@@ -199,7 +199,7 @@
         </article>
     </div>
     <br>
-    <app-spinner class="hidden"></app-spinner>
+    <app-spinner [class.hidden]="hideSpinner"></app-spinner>
     <div  class="center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
