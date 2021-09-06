@@ -79,7 +79,7 @@
             <input class="input100" type="text" name="promotion" placeholder="Promotion*" [(ngModel)]="form.promotion" #promotion="ngModel" required pattern="^20\d{2}$">
             <div *ngIf="promotion.errors && (promotion.dirty || promotion.touched)">
               <div [hidden]="!promotion.errors?.required" class="alert-validate" 
-                data-validate="Entrer la filiére"></div>
+                data-validate="Entrer la promotion"></div>
               <div [hidden]="!promotion.errors?.pattern" class="alert-validate" 
                 data-validate="Entrer une date valide entre 2000 et 2099"></div>
             </div>

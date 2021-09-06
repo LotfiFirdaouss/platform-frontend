@@ -1,0 +1,113 @@
+<div class="myContentClass container">
+  <h2 class="card-subheading center" >Liste des professeurs.</h2><br>
+  <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les professeurs.</small></p><hr>
+  <div class="table-responsive custom-table-responsive" >  
+    <nz-table #professorTable [nzData]="professors" [nzScroll]="{ x: '1500px' }" class="table custom-table">
+        <thead>
+          <tr>
+              <th scope="col" nzWidth="10%">
+                <label class="control control--checkbox">
+                  <input type="checkbox"/>
+                  <div class="control__indicator"></div>
+                </label>
+              </th> 
+              <th scope="col" nzWidth="30%">Nom Et Prénom</th>
+              <th scope="col" nzWidth="25%">Nom</th>
+              <th scope="col" nzWidth="25%">Prénom</th>
+              <th scope="col" nzWidth="20%">Département</th>
+              <th scope="col" nzWidth="35%">Email Professionnel</th>
+              <th scope="col" nzWidth="35%">Email Personnel</th>
+              <th scope="col" nzWidth="25%">Téléphone</th>
+              <th scope="col" nzRight nzWidth="25%">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let professor of professorTable.data; let i = index"
+              [class.active]="i == currentIndex" (click)="setActiveProfessor(professor, i)">
+              <th scope="row">
+                <label class="control control--checkbox">
+                  <input type="checkbox"/>
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+            <ng-container *ngIf="!edit[professor.id].edit; else editProfessor">
+              <td><a href="#">{{professor.nom_prenom}}</a></td>
+              <td>{{professor.nom}}</td>
+              <td>{{professor.prenom}}</td>
+              <td>{{professor.departement}}</td>
+              <td>{{professor.email_pro}}</td>
+              <td>{{professor.email_perso}}</td>
+              <td>{{professor.telephone}}</td>
+              <td nzRight >
+                <div>
+                  <a (click)="startEditProfessor(professor.id)">
+                    Modifier
+                  </a>
+                </div>
+                <div>
+                  <a (click)="deleteProfessor(professor.id)">
+                    Supprimer
+                  </a>
+                </div> 
+              </td>
+            </ng-container>
+            <ng-template #editProfessor >
+              <td><a href="#">{{professor.nom_prenom}}</a></td>
+              <td>
+                <input type="text" nz-input [(ngModel)]="professor.nom" required #nom="ngModel" name="nom" maxlength="200"/>
+                <div *ngIf="nom.errors && (nom.dirty || nom.touched)">
+                  <div [hidden]="!nom.errors" [(nzPopoverVisible)]=!hidden nz-popover nzPopoverContent="Ce champ est requis et il ne peut pas comporter plus de 200 caractères."></div>
+                </div>
+              </td>
+              <td>
+                <input type="text" nz-input [(ngModel)]="professor.prenom" required #prenom="ngModel" name="prenom" maxlength="200"/>
+                <div *ngIf="prenom.errors && (prenom.dirty || prenom.touched)">
+                  <div [hidden]="!prenom.errors" [(nzPopoverVisible)]=!hidden nz-popover nzPopoverContent="Ce champ est requis et il ne peut pas comporter plus de 200 caractères."></div>
+                </div>
+              </td>
+              <td>
+                <select nz-input [(ngModel)]="professor.departement" required #departement="ngModel" name="departement">
+                  <option *ngFor="let departement of departements" [ngValue]="departement">
+                    {{ departement }}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <input type="text" nz-input [(ngModel)]="professor.email_pro" required #email_pro="ngModel" name="email_pro" pattern="^[a-zA-Z]+\.+[a-zA-Z]+@ensam-casa\.ma$" />
+                <div *ngIf="email_pro.errors && (email_pro.dirty || email_pro.touched)">
+                  <div [hidden]="!email_pro.errors" [(nzPopoverVisible)]=!hidden nz-popover nzPopoverContent="Ce champ est requis ('@ensam-casa.ma')."></div>
+                </div>
+              </td>
+              <td>
+                <input type="text" nz-input [(ngModel)]="professor.email_perso" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$" #email="ngModel" name="email"/>
+                <div *ngIf="email.errors && (email.dirty || email.touched)" >
+                  <div [hidden]="!email.errors" [(nzPopoverVisible)]=!hidden nz-popover nzPopoverContent="Veuillez entrer un email valide !"></div>
+                </div>
+              </td>
+              <td>
+                <input type="text" nz-input [(ngModel)]="professor.telephone"  pattern="^\+[1-9]{1}[0-9]{3,14}$" required #tel="ngModel" name="tel"/>
+                <div *ngIf="tel.errors && (tel.dirty || tel.touched)">
+                  <div [hidden]="!tel.errors" [(nzPopoverVisible)]=!hidden nz-popover nzPopoverContent="Veuillez entrer un numéro de téléphone valide (Format: +...) !"></div>
+                </div>
+              </td>
+              <td nzRight >
+                <div>
+                  <a (click)="saveEditProfessor(professor.id)" style="margin-right: 8px;">
+                    Modifier
+                  </a>
+                  <a (click)="cancelEditProfessor()">
+                    Annuler
+                  </a>
+                </div>
+                <div>
+                  <a (click)="deleteProfessor(professor.id)">
+                    Supprimer
+                  </a>
+                </div> 
+              </td>
+            </ng-template>
+          </tr>            
+        </tbody>
+    </nz-table>
+  </div>
+</div>

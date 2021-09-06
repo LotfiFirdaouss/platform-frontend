@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ReportRoutingModule } from './report-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ReportFilterPipe } from './pipes/report-filter.pipe';
 import { StageProjetFilterPipe } from './pipes/stage-projet-filter.pipe';
 import { ConfidentielFilterPipe } from './pipes/confidentiel-filter.pipe';
@@ -31,10 +32,10 @@ import { ReportStatsNamePipe } from './pipes/report-stats-name.pipe';
     FiliereFilterPipe,
     ReportStatsComponent,
     ReportStatsNamePipe,
-    //PaginationPipe
   ],
   imports: [
-    CommonModule
+    ReportRoutingModule,
+    SharedModule
   ]
 })
 export class ReportModule { }

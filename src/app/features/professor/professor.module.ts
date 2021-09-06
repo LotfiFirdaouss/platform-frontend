@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
+import { ProfessorRoutingModule } from './professor-routing.module';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
-    CommonModule,
+    ProfessorRoutingModule,
     SharedModule,
   ]
 })
