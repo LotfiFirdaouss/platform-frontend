@@ -73,7 +73,7 @@
                           name="intit_formation" #intit_formation="ngModel"
                           placeholder="intitulé*"
                           [disabled]="etudeDisabled"
-                          [required]="!intit_formation.disabled" [maxlength]="intit_formation.disabled ? false : 200"
+                          [required]="!intit_formation.disabled" [maxlength]="intit_formation.disabled ? false : 80"
                         />
                         <span class="unit">Intitulé de formation : </span>
                         <div *ngIf="intit_formation.errors && (intit_formation.dirty || intit_formation.touched) " 
@@ -82,7 +82,7 @@
                             Ce champs est requis*
                           </div>
                           <div [hidden]="!intit_formation.errors.maxlength">
-                            Ce champs ne peut dépasser 200 caractères.
+                            Ce champs ne peut dépasser 80 caractères.
                           </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         name="nature_formation" #nature_formation="ngModel"
                         placeholder="nature*"
                         [disabled]="etudeDisabled"
-                        [required]="!nature_formation.disabled" [maxlength]="nature_formation.disabled ? false : 200"
+                        [required]="!nature_formation.disabled" [maxlength]="nature_formation.disabled ? false : 80"
                       />
                       <span class="unit">Nature de formation : </span>
                       <div *ngIf="nature_formation.errors && (nature_formation.dirty || nature_formation.touched) " 
@@ -107,7 +107,7 @@
                             Ce champs est requis*
                           </div>
                           <div [hidden]="!nature_formation.errors.maxlength">
-                            Ce champs ne peut dépasser 200 caractères.
+                            Ce champs ne peut dépasser 80 caractères.
                           </div>
                         </div>
                   </div>
@@ -127,7 +127,7 @@
                           name="intit_poste" #intit_poste="ngModel"
                           placeholder="intitulé*"
                           [disabled]="travailDisabled"
-                          [required]="!intit_poste.disabled" [maxlength]="intit_poste.disabled ? false : 200"
+                          [required]="!intit_poste.disabled" [maxlength]="intit_poste.disabled ? false : 80"
                         />
                         <span class="unit">Intitulé de poste : </span>
                         <div *ngIf="intit_poste.errors && (intit_poste.dirty || intit_poste.touched) " 
@@ -136,7 +136,7 @@
                             Ce champs est requis*
                           </div>
                           <div [hidden]="!intit_poste.errors.maxlength">
-                            Ce champs ne peut dépasser 200 caractères.
+                            Ce champs ne peut dépasser 80 caractères.
                           </div>
                         </div>
                     </div>
@@ -151,7 +151,7 @@
                           name="societe" #societe="ngModel"
                           placeholder="société*"
                           [disabled]="travailDisabled"
-                          [required]="!societe.disabled" [maxlength]="societe.disabled ? false : 200"
+                          [required]="!societe.disabled" [maxlength]="societe.disabled ? false : 30"
                         />
                         <span class="unit">Nom de société : </span>
 
@@ -170,7 +170,7 @@
                     type="date"
                     class="form-control datepicker"
                     id="date_integration"
-                    required maxlength="200" 
+                    required maxlength="10" 
                     pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
                     [(ngModel)]="insertion.date_integration"
                     name="date_integration" #date_integration="ngModel"
@@ -182,7 +182,7 @@
                       Ce champs est requis*
                     </div>
                     <div [hidden]="!date_integration.errors.maxlength">
-                      Ce champs ne peut dépasser 200 caractères.
+                      Ce champs ne peut dépasser 10 caractères.
                     </div>
                     <div [hidden]="!date_integration.errors.pattern">
                       Veuillez entrer une date valide !
@@ -200,7 +200,7 @@
                         type="text"
                         class="form-control"
                         id="ville"
-                        required maxlength="200"
+                        required maxlength="20"
                         [(ngModel)]="insertion.ville"
                         name="ville" #ville="ngModel"
                         placeholder="ville*"
@@ -212,7 +212,7 @@
                           Ce champs est requis*
                         </div>
                         <div [hidden]="!ville.errors.maxlength">
-                          Ce champs ne peut dépasser 200 caractères.
+                          Ce champs ne peut dépasser 20 caractères.
                         </div>
                       </div>
                   </div>
@@ -223,7 +223,7 @@
                         type="text"
                         class="form-control"
                         id="pays"
-                        required maxlength="200"
+                        required maxlength="20"
                         [(ngModel)]="insertion.pays"
                         name="pays" #pays="ngModel"
                         placeholder="pays*"
@@ -235,7 +235,7 @@
                           Ce champs est requis*
                         </div>
                         <div [hidden]="!pays.errors.maxlength">
-                          Ce champs ne peut dépasser 200 caractères.
+                          Ce champs ne peut dépasser 20 caractères.
                         </div>
                       </div>
                   </div>

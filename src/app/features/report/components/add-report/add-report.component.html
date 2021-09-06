@@ -31,14 +31,14 @@
                     <div class="col">
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="report.intitule_stage" required #intitule="ngModel" 
-                            class="form-control" name="intitule" placeholder="Intitulé*" maxlength="200"  />
+                            class="form-control" name="intitule" placeholder="Intitulé*" maxlength="80"  />
                             <span class="unit">Intitulé : </span>
                             <div *ngIf="intitule.errors && (intitule.dirty || intitule.touched)" class="alert alert-danger">
                                 <div [hidden]="!intitule.errors?.required">
                                     L'intitulé du stage/projet est requis.
                                 </div>
                                 <div [hidden]="!intitule.errors?.maxlength">
-                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                    Ce champ ne peut pas comporter plus de 80 caractères.
                                 </div>
                             </div>
                         </div>
@@ -91,14 +91,14 @@
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="report.societe_stage" #societe="ngModel" name="societe"
                             class="form-control nature" placeholder="Société*" [required]="!stageDisabled" 
-                            [maxlength]="stageDisabled ? false : 200" [disabled]="stageDisabled" />
+                            [maxlength]="stageDisabled ? false : 30" [disabled]="stageDisabled" />
                             <span class="unit">Société : </span>
                             <div *ngIf="societe.errors && (societe.dirty || societe.touched)" class="alert alert-danger">
                                 <div [hidden]="!societe.errors?.required">
                                     La société du stage est requise.
                                 </div>
                                 <div [hidden]="!societe.errors?.maxlength">
-                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
                                 </div>
                             </div>
                         </div>
@@ -107,14 +107,14 @@
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="report.secteur_societe" #secteur="ngModel" name="secteur"
                             class="form-control nature" placeholder="Secteur*" [required]="!stageDisabled" 
-                            [maxlength]="stageDisabled ? false : 200" [disabled]="stageDisabled"/>
+                            [maxlength]="stageDisabled ? false : 30" [disabled]="stageDisabled"/>
                             <span class="unit">Secteur : </span>
                             <div *ngIf="secteur.errors && (secteur.dirty || secteur.touched)" class="alert alert-danger">
                                 <div [hidden]="!secteur.errors?.required">
                                     Le secteur du stage est requis.
                                 </div>
                                 <div [hidden]="!secteur.errors?.maxlength">
-                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
                                 </div>
                             </div>
                         </div>
@@ -168,14 +168,14 @@
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="report.encadrant" #nom="ngModel" name="nom"
                             class="form-control nature" placeholder="Nom d'encadrant*" [required]="!stageDisabled" 
-                            [maxlength]="stageDisabled ? false : 200" [disabled]="stageDisabled" />
+                            [maxlength]="stageDisabled ? false : 30" [disabled]="stageDisabled" />
                             <span class="unit">Nom d'encadrant: </span>
                             <div *ngIf="nom.errors && (nom.dirty || nom.touched)" class="alert alert-danger">
                                 <div [hidden]="!nom.errors?.required">
                                     Le nom d'encadrant est requis.
                                 </div>
                                 <div [hidden]="!nom.errors?.maxlength">
-                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
                                 </div>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="report.email_encadrant" #email="ngModel" name="email"
                             class="form-control nature" placeholder="Email d'encadrant*" [required]="!stageDisabled"
-                            pattern="[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" 
+                            pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$" 
                             [disabled]="stageDisabled" />
                             <span class="unit">Email d'encadrant: </span>
                             <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">

@@ -45,4 +45,8 @@ export class ProfessorService {
     return this.http.get<Professor[]>(`${baseUrl}/user?user=${fk_user}`);
   }
 
+  deleteUser(fk_user: any): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8080/api/user/${fk_user}`);
+  }
+
 }

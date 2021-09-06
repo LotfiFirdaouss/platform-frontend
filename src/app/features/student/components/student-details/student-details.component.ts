@@ -14,6 +14,15 @@ export class StudentDetailsComponent implements OnInit {
   currentStudent?: Student;
   currentIndex = -1;
   filieres=['GI','GM','GEM','MSEI','IAGI'];
+  filieresOfFilter=['GI','GM','GEM','GE(ancienne)','MSEI','IAGI'];
+
+  //filter inputs
+  filterNom: '';
+  filterPromotion:'';
+  selectFiliere:'';
+
+  //for pagination
+  p: number = 1;
 
   constructor(private studentService : StudentService) { }
 
@@ -42,17 +51,11 @@ export class StudentDetailsComponent implements OnInit {
     this.currentIndex = index;
   }
 
-  /*deleteStudent(id:number): void {
-    this.studentService.delete(id)
-     .subscribe(
-       response => {
-         console.log(response);
-       },
-       error => {
-         console.log(error);
-       });
-    this.retrieveStudents();
-  }*/
+  renitialiserFiltres(){
+    this.filterNom= '';
+    this.filterPromotion='';
+    this.selectFiliere='';
+  }
 
   startEditStudent(id:number): void {
     this.edit[id].edit = true;

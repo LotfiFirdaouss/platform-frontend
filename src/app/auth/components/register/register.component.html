@@ -86,11 +86,21 @@
           </div>
 
           <div class="wrap-input100">
-            <input class="input100" type="text" name="email_perso" placeholder="Email personnel" [(ngModel)]="form.email_perso">
+            <input class="input100" type="text" name="email_perso" placeholder="Email personnel" [(ngModel)]="form.email_perso" #email_perso="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$">
+            <div *ngIf="email_perso.errors && (email_perso.dirty || email_perso.touched)">
+              <div [hidden]="!email_perso.errors?.pattern" class="alert-validate" 
+                data-validate="Veuillez entrer un email valide !"></div>
+            </div>
           </div>
 
           <div class="wrap-input100">
-            <input class="input100" type="text" name="telephone" placeholder="Telephone" [(ngModel)]="form.telephone">
+            <input class="input100" type="text" name="telephone" placeholder="Téléphone*" required [(ngModel)]="form.telephone" #telephone="ngModel" pattern="^\+[1-9]{1}[0-9]{3,14}$">
+            <div *ngIf="telephone.errors && (telephone.dirty || telephone.touched)">
+              <div [hidden]="!telephone.errors?.required" class="alert-validate" 
+                data-validate="Entrer le numéro téléphone"></div>
+              <div [hidden]="!telephone.errors?.pattern" class="alert-validate" 
+                data-validate="Veuillez entrer un numéro de téléphone valide (Format: +...) !"></div>
+            </div>
           </div>
 
         </div>
@@ -98,7 +108,11 @@
         <div *ngIf="form.groupType==2">
 
           <div class="wrap-input100">
-            <input class="input100" type="text" name="email_perso" placeholder="Email personnel" [(ngModel)]="form.email_perso">
+            <input class="input100" type="text" name="email_perso" placeholder="Email personnel" [(ngModel)]="form.email_perso" #email_perso="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$">
+            <div *ngIf="email_perso.errors && (email_perso.dirty || email_perso.touched)">
+              <div [hidden]="!email_perso.errors?.pattern" class="alert-validate" 
+                data-validate="Veuillez entrer un email valide !"></div>
+            </div>
           </div>
 
           <div class="wrap-input100 validate-input">
@@ -114,7 +128,11 @@
           </div>
 
           <div class="wrap-input100">
-            <input class="input100" type="text" name="telephone" placeholder="Téléphone" [(ngModel)]="form.telephone">
+            <input class="input100" type="text" name="telephone" placeholder="Téléphone" [(ngModel)]="form.telephone" #telephone="ngModel" pattern="^\+[1-9]{1}[0-9]{3,14}$">
+            <div *ngIf="telephone.errors && (telephone.dirty || telephone.touched)">
+              <div [hidden]="!telephone.errors?.pattern" class="alert-validate" 
+                data-validate="Veuillez entrer un numéro de téléphone valide (Format: +...) !"></div>
+            </div>
           </div>
 
         </div>
