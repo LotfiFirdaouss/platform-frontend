@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from '../app-routing.module'; // CLI imports 
 import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -9,7 +8,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { NoticeSliderComponent } from './components/notice-slider/notice-slider.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { InsertionsListComponent } from '../features/insertion/components/insertions-list/insertions-list.component';
 import { ReportsListComponent } from '../features/report/components/reports-list/reports-list.component';
@@ -41,8 +39,6 @@ import { StudentFilterPipe } from '../features/report/pipes/student-filter.pipe'
 import { VillePaysFilterPipe } from '../features/report/pipes/ville-pays-filter.pipe';
 import { SocieteFilterPipe } from '../features/report/pipes/societe-filter.pipe';
 import { SecteurSocieteFilterPipe } from '../features/report/pipes/secteur-societe-filter.pipe';
-// import { HelloComponent } from '../features/report/components/reports-list/hello.component';
-// import { PaginationPipe } from '../features/report/pipes/pagination.pipe';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import { RequestResetComponent } from '../auth/components/request-reset/request-reset.component';
 import { ResponseResetComponent } from '../auth/components/response-reset/response-reset.component';
@@ -62,7 +58,6 @@ import { NatFormationInsertionFilterPipe } from '../features/insertion/pipes/nat
 import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/intit-formation-insertion-filter.pipe';
 import { ExportService } from '../core/services/export.service';
 import { ReportStatsComponent } from '../features/report/components/report-stats/report-stats.component';
-import { ReportStatsNamePipe } from '../features/report/pipes/report-stats-name.pipe';
 
 @NgModule({
   declarations: [
@@ -101,7 +96,7 @@ import { ReportStatsNamePipe } from '../features/report/pipes/report-stats-name.
     ProfileComponent,
     ReportStatsComponent,
 
-    //Repots filters
+    //Report filters
     ReportFilterPipe,
     StageProjetFilterPipe,
     ConfidentielFilterPipe,
@@ -127,8 +122,6 @@ import { ReportStatsNamePipe } from '../features/report/pipes/report-stats-name.
     UnivInsertionFilterPipe,
     NatFormationInsertionFilterPipe,
     IntitFormationInsertionFilterPipe,
-    /////////////
-    ReportStatsNamePipe
   ],
   imports: [
     CommonModule,

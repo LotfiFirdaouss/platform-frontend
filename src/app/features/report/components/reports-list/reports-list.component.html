@@ -159,7 +159,7 @@
                     <div class="col-5">
                         <h4>
                             {{ report.stage_ou_projet ? "Stage" : "Projet" }} :
-                            <a class="blue"><b>{{ report.intitule_stage }}</b></a>
+                            <a routerLink="/rapport/info/{{ report.id }}"><b>{{ report.intitule_stage }}</b></a>
                         </h4>
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
@@ -180,7 +180,7 @@
                                 <label><strong>Société de stage : </strong></label>
                                 {{ report.societe_stage }} <span *ngIf="report.secteur_societe != null">( {{ report.secteur_societe }} )</span>
                             </div>
-                            <div>
+                            <div *ngIf="report.ville_societe != null">
                                 <label><strong>Ville de stage : </strong></label>
                                 {{ report.ville_societe }} <span *ngIf="report.pays_societe != null">( {{ report.pays_societe }} )</span>
                             </div>

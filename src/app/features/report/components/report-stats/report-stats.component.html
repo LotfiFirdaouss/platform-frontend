@@ -61,7 +61,7 @@
               <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Renitialiser filtres</button>
           </div>
           <div class="col-md-2 no-pad-left-10">
-            <button type="submit" class="primary-btn serach-btn serach-btn2" (click)="exportElmToExcel()">Imprimer Résultat</button>
+            <button type="submit" class="primary-btn serach-btn serach-btn2" (click)="exportElmToExcel()">Exporter Résultat</button>
           </div>
       </div>
       
@@ -72,10 +72,10 @@
   <div style="padding: 0.4%;">
       <div #reportTable class="table-responsive custom-table-responsive">
       
-        <table class="table custom-table" style="width: 100%;">
+        <nz-table [nzFrontPagination]="false" [nzData]="reports" class="table custom-table" style="width: 100%;">
           
-          <thead>
-            <tr>
+          <thead> 
+            <tr> 
               <th scope="col">Promotion</th>
               <th scope="col">Filière</th>
               <th scope="col">Type rapp.</th>
@@ -84,7 +84,7 @@
               <th scope="col">Stage/ Projet</th>
               <th scope="col">Intitulé rapport</th>
               <th scope="col">Date début</th>
-              <th scope="col">Date  fin</th>
+              <th scope="col">Date fin</th>
               <th scope="col">Société stage</th>
               <th scope="col">Rapport confidentiel</th>
               <th scope="col">Lien rapport</th>
@@ -112,7 +112,7 @@
             </tr>
           </tbody>
 
-        </table>
+        </nz-table>
         
       </div>
   </div>

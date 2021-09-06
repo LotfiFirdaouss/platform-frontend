@@ -1,4 +1,14 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+<app-header></app-header>
+
+<div *ngIf="isLoggedIn">
+        <div ><app-menu class="menu"></app-menu></div>
+        <div class="content" style="padding-top: 100px;">
+            <router-outlet></router-outlet>
+            <app-footer></app-footer> 
+        </div>
+</div>
+
+<div *ngIf="!isLoggedIn" style="padding-top: 100px;">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer> 
+</div>
