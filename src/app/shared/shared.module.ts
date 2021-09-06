@@ -7,7 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NoticeSliderComponent } from './components/notice-slider/notice-slider.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { InsertionsListComponent } from '../features/insertion/components/insertions-list/insertions-list.component';
 import { ReportsListComponent } from '../features/report/components/reports-list/reports-list.component';
@@ -61,6 +61,8 @@ import { PromotionStudentFilterPipe } from '../features/student/pipes/promotion-
 import { FiliereStudentFilterPipe } from '../features/student/pipes/filiere-filter.pipe';
 import { NomProfFilterPipe } from '../features/professor/pipes/nom-prof-filter.pipe';
 import { DepartementProfFilterPipe } from '../features/professor/pipes/departement-prof-filter.pipe';
+import { ExportService } from '../core/services/export.service';
+import { ReportStatsComponent } from '../features/report/components/report-stats/report-stats.component';
 
 @NgModule({
   declarations: [
@@ -106,8 +108,9 @@ import { DepartementProfFilterPipe } from '../features/professor/pipes/departeme
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
+    ReportStatsComponent,
 
-    //Repots filters
+    //Report filters
     ReportFilterPipe,
     StageProjetFilterPipe,
     ConfidentielFilterPipe,
@@ -181,9 +184,12 @@ import { DepartementProfFilterPipe } from '../features/professor/pipes/departeme
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule 
+  ],
+  providers: [
+    ExportService,
     HttpClientModule,
-    
-    
+       
   ]
 })
 export class SharedModule { }

@@ -24,7 +24,7 @@
                         
                         <div class="postcard__subtitle small">
                         <span *ngIf="!isStudentOwner"><i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span></span>
-                        <time><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_debut_stage | date: 'dd/MM/yyyy'}}  </time>
+                        <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_debut_stage | date: 'dd/MM/yyyy'}}  </time>
                         </div>
                         <div class="postcard__bar"></div>
                     </div>

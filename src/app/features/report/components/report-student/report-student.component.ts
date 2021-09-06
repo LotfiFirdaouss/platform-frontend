@@ -48,7 +48,7 @@ export class ReportStudentComponent implements OnInit {
         data => {
           this.currentStudent = data;
           //console.log("Reports' student user id:",data.fk_user.id);
-          if(data.fk_user.id == this.user_id){
+          if(data.fk_user?.id == this.user_id){
             this.isStudentOwner=true;
           }
           //console.log("reports owner:",this.isStudentOwner)

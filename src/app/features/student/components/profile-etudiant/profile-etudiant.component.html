@@ -114,8 +114,8 @@
                       <td *ngIf="currentStudent && currentStudent.telephone == null"> --- </td>
                     </tr>
                     <tr>
-                        <td>Email personnelle:</td>
-                        <td> {{ currentStudent.email_perso }} </td>
+                        <td>Email personnel:</td>
+                        <td *ngIf="currentStudent.email_perso"> {{ currentStudent.email_perso }} </td>
                         <td *ngIf="currentStudent && !currentStudent.email_perso"> --- </td>
                     </tr>
                   </tbody>

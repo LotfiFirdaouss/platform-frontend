@@ -217,7 +217,7 @@
       </article>
   </div>
   <br>
-  <app-spinner class="hidden"></app-spinner>
+  <app-spinner [class.hidden]="hideSpinner"></app-spinner>
   <div  class="center">
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
