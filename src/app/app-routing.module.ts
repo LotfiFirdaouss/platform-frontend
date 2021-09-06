@@ -59,7 +59,7 @@ const routes: Routes = [
   { path: 'insertion-etudiant/:etudiant', component: InsertionStudentComponent,canActivate : [AuthGuard] },
 
   //print Excel
-  { path: 'excel-print', component: ReportStatsComponent,canActivate : [AuthGuard] },
+  { path: 'stats', component: ReportStatsComponent,canActivate : [AuthGuard, AdminGuard] },
 
 
   //temporary routes (just to visualize the components)

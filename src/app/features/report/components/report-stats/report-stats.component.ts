@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExportService } from 'src/app/core/services/export.service';
+import { Report } from '../../models/report';
+import { ReportService } from '../../services/report.service';
 
 @Component({
   selector: 'app-report-stats',
@@ -9,22 +11,58 @@ import { ExportService } from 'src/app/core/services/export.service';
 export class ReportStatsComponent implements OnInit {
 
   /* the table reference */
-  @ViewChild('userTable') userTable: ElementRef;
-  nameFilter:'';
+  @ViewChild('reportTable') reportTable: ElementRef;
 
-  constructor(private exportService: ExportService) { }
+  //list of reports
+  reports?: Report[];
+
+  //filters
+  filterPromotion:'';
+  selectFiliere:'';
+  selectedReportType:"";
+   
+  //For spinner
+  hideSpinner = false;
+
+  //for pagination
+  p=1;
+
+  constructor(
+    private reportService: ReportService,
+    private exportService: ExportService) { }
 
   ngOnInit(): void {
+    this.retrieveReports();
   }
 
-  users= [{'id':1,'name':'fifi'},{'id':2,'name':'jiji'}]
+  retrieveReports(): void {
+    this.reportService.getAll()
+      .subscribe(
+        data => {
+          this.reports = data;
+          console.log(data);
+          //this.hideSpinner();
+          this.hideSpinner = true;
+        },
+        error => {
+          console.log(error);
+        });
+ }
 
-  /**
-   * Function prepares data to pass to export service to create excel from Table DOM reference
-   *
-   */
-   exportElmToExcel(): void {
-    this.exportService.exportTableElmToExcel(this.userTable, 'user_data');
+//  fileLink(re){
+//   //return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentReport.fichier_rapport.toString());
+//   var fileLink= this.currentReport.fichier_rapport.toString().split('&')[0];
+//  }
+
+  //exprt table  function  
+  exportElmToExcel(): void {
+    this.exportService.exportTableElmToExcel(this.reportTable, 'reports_data');
+  }
+
+  renitialiserFiltres(){
+    this.filterPromotion='';
+    this.selectFiliere='';
+    this.selectedReportType='';
   }
 
 }
