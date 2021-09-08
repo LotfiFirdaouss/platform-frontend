@@ -63,6 +63,8 @@ import { NomProfFilterPipe } from '../features/professor/pipes/nom-prof-filter.p
 import { DepartementProfFilterPipe } from '../features/professor/pipes/departement-prof-filter.pipe';
 import { ExportService } from '../core/services/export.service';
 import { ReportStatsComponent } from '../features/report/components/report-stats/report-stats.component';
+import { DashboardComponent } from '../features/report/components/dashboard/dashboard.component';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
+    ReportStatsComponent,
+    DashboardComponent,
 
     //insertions
     InsertionsListComponent,
@@ -108,7 +112,6 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
-    ReportStatsComponent,
 
     //Report filters
     ReportFilterPipe,
@@ -145,6 +148,7 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
 
     NzTableModule,
     NzPopoverModule,
+    NzTabsModule,
     NgxPaginationModule, 
   ],
   exports: [
@@ -160,6 +164,8 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
+    ReportStatsComponent,
+    DashboardComponent,
 
 
     //insertions
@@ -180,6 +186,7 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
     
     NzTableModule,
     NzPopoverModule,
+    NzTabsModule,
 
     CommonModule,
     RouterModule,

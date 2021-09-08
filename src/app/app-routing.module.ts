@@ -62,9 +62,6 @@ const routes: Routes = [
     canActivate : [AdminGuard]
   },
 
-  //print Excel
-  { path: 'stats', component: ReportStatsComponent,canActivate : [AuthGuard, AdminGuard] },
-
 
   //temporary routes (just to visualize the components)
   // { path: 'notice-slider' , component: NoticeSliderComponent},

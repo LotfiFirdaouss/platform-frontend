@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   myDropdownInsertion="myDropdownInsertion";
   myDropdownProf="myDropdownProf";
   myDropdownEtudiant="myDropdownEtudiant";
+  myDropdownStats="myDropdownStats";
 
   isLoggedIn = false;
   currentUser!: ReturnedUser;
@@ -63,19 +64,19 @@ export class MenuComponent implements OnInit {
       this.menuActiveLinkFuncFromRoute("homeId");
     }else if(this.currentRoute == "/profile"){
       this.menuActiveLinkFuncFromRoute("profileId");
-    }else if(this.currentRoute == "/add-rapport" || this.currentRoute.includes("/rapport-etudiant")){
+    }else if(this.currentRoute == "/rapport/ajouter" || this.currentRoute.includes("/rapport/etudiant/")){
       this.menuActiveLinkFuncFromRoute("rapportsId");
-    }else if(this.currentRoute == "/insertions"){
+    }else if(this.currentRoute == "/insertion"){
       this.menuActiveLinkFuncFromRoute("insertionsId");
-    }else if(this.currentRoute == "/add-insertion" || this.currentRoute.includes("/insertion-etudiant")){
+    }else if(this.currentRoute == "/insertion/ajouter" || this.currentRoute.includes("/insertion/etudiant/")){
       this.menuActiveLinkFuncFromRoute("insertionId");
-    }else if(this.currentRoute == "/professeurs" || this.currentRoute == "/add-professeur"){
+    }else if(this.currentRoute == "/professeur" || this.currentRoute == "/professeur/ajouter"){
       this.menuActiveLinkFuncFromRoute("gestionProfId");
-    }else if(this.currentRoute == "/etudiants" || this.currentRoute == "/add-etudiant"){
+    }else if(this.currentRoute == "/etudiant" || this.currentRoute == "/etudiant/ajouter"){
       this.menuActiveLinkFuncFromRoute("gestionEtudId");
     }else if(this.currentRoute == "/gestionForm"){
       this.menuActiveLinkFuncFromRoute("formId");
-    }else if(this.currentRoute == "/stats"){
+    }else if(this.currentRoute == "/rapport/stats" || this.currentRoute == "/rapport/dashboard"){
       this.menuActiveLinkFuncFromRoute("statsId");
     }
     

@@ -58,7 +58,13 @@
           </div>
 
           <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a id="formId" routerLink="/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
-          <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a id="statsId" routerLink="/stats"><span class="icon-stats mr-3"></span>Analyses et statistiques</a></li>       
+          <div>
+            <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a  id="statsId" (click)="dropDownFunction(myDropdownStats)" class="dropbtn"><span class="icon-stats mr-3"></span>Analyses et statistiques</a></li>
+            <div id="myDropdownStats" class="dropdown-content">
+              <a routerLink="/rapport/statistique">Filters</a>
+              <a routerLink="/rapport/dashboard">Dashboard</a> <!-- path: "insertion-etudiant/:etudiant" -->
+            </div>
+          </div>      
 
         </ul>
       </div>
