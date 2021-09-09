@@ -259,7 +259,8 @@
                     </div>
                 </div>
                 <div style="display: none; color:red;" id="ValidityFormWarn" class="alert "> 
-                    Veuillez vérifier que tout les champs sont bien remplies ! 
+                    Veuillez vérifier que tout les champs sont bien remplies !
+                    <small> N.B. Les rapports ne peuvent pas être ajoutés après leurs date limite. </small>
                 </div> 
                 <div class="row" style="margin-top: 30px;">
                     <div class="col-6"></div>
@@ -269,7 +270,7 @@
                     <button 
                         id="submitBtn"
                         type="submit"
-                        [disabled]="!reportForm.form.valid"
+                        [disabled]="!reportForm.form.valid || !canAddReport"
                         class="btnContact "
                         >
                     Envoyer</button>           

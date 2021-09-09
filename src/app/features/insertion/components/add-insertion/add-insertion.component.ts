@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { MyFormService } from 'src/app/features/administrator/services/my-form.service';
 import { Insertion } from 'src/app/features/insertion/models/insertion.model';
 import { InsertionService } from 'src/app/features/insertion/services/insertion.service';
 import { Student } from 'src/app/features/student/models/student';
@@ -36,9 +37,17 @@ export class AddInsertionComponent implements OnInit {
   currentUser!: ReturnedUser;
   currentStudent!: Student;
 
+  canAddInsertion=true;
+  insertionForm={
+    "id": 0,
+    "nom_form": '',
+    "active_status": true
+  }
+
   constructor(private insertionService : InsertionService,
     private token: TokenStorageService,
-    private studentService: StudentService) { }
+    private studentService: StudentService,
+    private myFormService: MyFormService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();
@@ -48,6 +57,7 @@ export class AddInsertionComponent implements OnInit {
       var user_id = this.currentUser.id;
       this.getStudent(user_id);
     }  
+    this.CanAddInsertion();
     
   }
 
@@ -150,6 +160,18 @@ export class AddInsertionComponent implements OnInit {
   }else{
       ValidityFormWarn.style.display="none";
   }
+  }
+
+  public CanAddInsertion(){
+    this.myFormService.get(2).subscribe(
+      data => {
+        console.log("form:",data)
+        this.insertionForm = data;
+        this.canAddInsertion = this.insertionForm.active_status;
+      },
+      error => {
+        console.log(error);
+      });
   }
 
 }

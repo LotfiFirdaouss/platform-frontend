@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Insertion } from '../models/insertion.model';
 
 const baseUrl = 'http://localhost:8080/api/insertions';
-
+ 
 @Injectable({
   providedIn: 'root'
 })

@@ -56,8 +56,9 @@ import { PosteInsertionFilterPipe } from '../features/insertion/pipes/poste-inse
 import { UnivInsertionFilterPipe } from '../features/insertion/pipes/univ-insertion-filter.pipe';
 import { NatFormationInsertionFilterPipe } from '../features/insertion/pipes/nat-formation-insertion-filter.pipe';
 import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/intit-formation-insertion-filter.pipe';
-import { ExportService } from '../core/services/export.service';
 import { ReportStatsComponent } from '../features/report/components/report-stats/report-stats.component';
+import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
+import { ExportService } from '../features/administrator/services/export.service';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
+    ReportStatsComponent,
 
     //insertions
     InsertionsListComponent,
@@ -89,6 +91,9 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
     AddProfessorComponent,
     ProfessorDetailsComponent,
 
+    //Admin components
+    FormManagementComponent,
+    
     LoginComponent,
     RequestResetComponent,
     ResponseResetComponent,
@@ -146,6 +151,7 @@ import { ReportStatsComponent } from '../features/report/components/report-stats
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
+    ReportStatsComponent,
 
 
     //insertions

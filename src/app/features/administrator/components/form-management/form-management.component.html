@@ -1,0 +1,37 @@
+<div class="container myContentClass" >
+
+  <h3>Veuillez indiquer le status (active/inactive) des formulaires de la plateforme :</h3>
+  <hr><br>
+
+  <label class="toggle">
+    <input class="toggle-checkbox" type="checkbox" name="addRapportactivated" 
+    [(ngModel)]="addRapportactivated">
+    <div class="toggle-switch"></div>
+    <span class="toggle-label">Ajout Rapport</span>
+  </label>
+  <br><br>
+  <label class="toggle">
+    <input class="toggle-checkbox" type="checkbox" name="addInsertionactivated" 
+    [(ngModel)]="addInsertionactivated">
+    <div class="toggle-switch"></div>
+    <span class="toggle-label">Ajout Insertion</span>
+  </label>
+
+  <br><br>
+
+  <div  *ngIf="updatedReportForm && updatedInsertionForm" style=" color:green;" class="alert "> Les modifications sont enregistrées avec succès ! </div> 
+
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-6"></div>
+    <div class="col-6 ">  <button (click)="applyModifOnForms()" class="btnSend"> Enregistrer modifications </button></div>
+  </div>
+
+  <!-- <div>
+    <br/><br/><br/><br/><br/>
+    <h4 style="text-align:center;"> Les modifications sont enregistrées avec succès ! </h4>
+    <br/>
+    
+</div> -->
+
+</div>
+    

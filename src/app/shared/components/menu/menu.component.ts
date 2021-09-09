@@ -28,14 +28,12 @@ export class MenuComponent implements OnInit {
   currentStudent!: Student; 
   hasInsertion=false;
 
-  currentRoute: string;
+  //currentRoute: string;
 
   constructor(private token: TokenStorageService,
     private studentService: StudentService,
     private insertionService: InsertionService,
-    private location: Location) {
-      
-      }
+    ) { }
 
   ngOnInit() {  
     this.loadJsFile("../../../../assets/js/menu.js"); 
@@ -54,29 +52,6 @@ export class MenuComponent implements OnInit {
         this.isStudent = true;
         this.getStudent(user_id);
       }
-    }
-
-    //activating appopriate btn depending on currentRoute
-    this.currentRoute = this.location.path();
-    console.log(this.currentRoute)
-    if( this.currentRoute == "/home" ){
-      this.menuActiveLinkFuncFromRoute("homeId");
-    }else if(this.currentRoute == "/profile"){
-      this.menuActiveLinkFuncFromRoute("profileId");
-    }else if(this.currentRoute == "/add-rapport" || this.currentRoute.includes("/rapport-etudiant")){
-      this.menuActiveLinkFuncFromRoute("rapportsId");
-    }else if(this.currentRoute == "/insertions"){
-      this.menuActiveLinkFuncFromRoute("insertionsId");
-    }else if(this.currentRoute == "/add-insertion" || this.currentRoute.includes("/insertion-etudiant")){
-      this.menuActiveLinkFuncFromRoute("insertionId");
-    }else if(this.currentRoute == "/professeurs" || this.currentRoute == "/add-professeur"){
-      this.menuActiveLinkFuncFromRoute("gestionProfId");
-    }else if(this.currentRoute == "/etudiants" || this.currentRoute == "/add-etudiant"){
-      this.menuActiveLinkFuncFromRoute("gestionEtudId");
-    }else if(this.currentRoute == "/gestionForm"){
-      this.menuActiveLinkFuncFromRoute("formId");
-    }else if(this.currentRoute == "/stats"){
-      this.menuActiveLinkFuncFromRoute("statsId");
     }
     
   }  
@@ -117,29 +92,6 @@ export class MenuComponent implements OnInit {
 
   public dropDownFunction(id) {
     document.getElementById(id).classList.toggle("show");
-  }
-
-  public menuActiveLinkFunc(event){
-    var activeLinks = document.getElementsByClassName("active");
-    //console.log("old active links",activeLinks[0])
-    activeLinks[0].classList.remove("active")
-  
-    var target = event.target || event.srcElement || event.currentTarget;
-    var idAttr = target.attributes.id;
-    var value = idAttr.nodeValue;
-    var ParentLiElement = <HTMLLIElement> document.getElementById(value).parentElement;
-    ParentLiElement.classList.add("active");
-  }
-
-  public menuActiveLinkFuncFromRoute(aId){
-    // console.log("calling active func")
-    //removing active from default active link
-    var activeHomeLink = <HTMLLIElement> document.getElementById("homeId").parentElement;
-    activeHomeLink.classList.remove("active");
-
-    //adding acting into cuurent active page depending on current URL
-    var link = document.getElementById(aId);
-    link.parentElement.classList.add("active")
   }
 
 }

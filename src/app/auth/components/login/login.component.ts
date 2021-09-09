@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       }else{
         this.isStudent = true;
       }
-      this.router.navigate(['/home']);
+      this.router.navigate(['/rapport']);
     }  
   }
 

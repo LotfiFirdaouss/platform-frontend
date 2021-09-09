@@ -12,7 +12,7 @@ export class StudGuard implements CanActivate {
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
       var isStudent = this.token.isStudent().student;
-      console.log(isStudent);
+      //console.log(isStudent);
       try {
         if (isStudent) {
           return of(true);
