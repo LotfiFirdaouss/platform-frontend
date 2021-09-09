@@ -83,7 +83,7 @@
                     </tr>
                     <tr>
                       <td>E-mail:</td>
-                      <td *ngIf="currentStudent && currentStudent.email_pro" > {{ currentStudent.email_pro }} </td> <!-- email professionnelle -->
+                      <td *ngIf="currentStudent.email_pro" > {{ currentStudent.email_pro }} </td> <!-- email professionnelle -->
                       <td *ngIf = "currentStudent && (!currentStudent.email_pro)"> --- </td>
                     </tr>
                   </tbody>
@@ -110,7 +110,7 @@
                   <tbody>
                     <tr>
                       <td>Telephone:</td>
-                      <td> {{ currentStudent.telephone }} </td>
+                      <td *ngIf="currentStudent.telephone"> {{ currentStudent.telephone }} </td>
                       <td *ngIf="currentStudent && currentStudent.telephone == null"> --- </td>
                     </tr>
                     <tr>

@@ -7,7 +7,7 @@
       </a>
   </div>
   
-  <div class="side-inner">
+  <div class="side-inner" id="main-navbar">
 
       <div class="profile">
         <img src="assets/Img/student_icon.png" alt="Image" class="img-fluid" *ngIf="isStudent">
@@ -20,20 +20,20 @@
 
       <div class="nav-menu">
         <ul>
-          <li (click)="menuActiveLinkFunc($event)" class="active"><a  id="homeId" routerLink="/home" ><span class="icon-home mr-3"></span>Accueil</a></li>
-          <li (click)="menuActiveLinkFunc($event)"><a id="profileId" routerLink="/profile"><span class="icon-user mr-3"></span>Mon profil</a></li>
+          <li class="active"><a  id="homeId" routerLink="/rapport" ><span class="icon-home mr-3"></span>Accueil</a></li>
+          <li ><a id="profileId" routerLink="/profile"><span class="icon-user mr-3"></span>Mon profil</a></li>
           <div [class.hidden]="!isStudent || !currentStudent">
-            <li (click)="menuActiveLinkFunc($event)"><a  id="rapportsId" (click)="dropDownFunction(myDropdownRapport)" class="dropbtn"><span class="icon-report mr-3"></span>Rapports</a></li>
+            <li ><a  id="rapportsId" (click)="dropDownFunction(myDropdownRapport)" class="dropbtn"><span class="icon-report mr-3"></span>Rapports</a></li>
             <div *ngIf="currentStudent" id="myDropdownRapport" class="dropdown-content">
               <a routerLink="/rapport/etudiant/{{currentStudent.id}}" >Mes rapports</a> <!-- path: "rapport-etudiant/:etudiant" -->
               <a routerLink="/rapport/ajouter" >Ajouter rapport</a>
             </div>
           </div>
 
-          <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a id="insertionsId" routerLink="/insertion"><span class="icon-insertion mr-3"></span>Insertions</a></li>
+          <li  [class.hidden]="!isAdministrator"><a id="insertionsId" routerLink="/insertion"><span class="icon-insertion mr-3"></span>Insertions</a></li>
 
           <div [class.hidden]="!isStudent || !currentStudent">
-            <li (click)="menuActiveLinkFunc($event)"><a id="insertionId" (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>
+            <li ><a id="insertionId" (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>
             <!-- <div> {{ hasInsertion }} </div> -->
             <div *ngIf="currentStudent" id="myDropdownInsertion" class="dropdown-content">
               <a routerLink="/insertion/etudiant/{{currentStudent.id}}">Mon insertion</a> <!-- path: "insertion-etudiant/:etudiant" -->
@@ -42,7 +42,7 @@
           </div>
 
           <div>
-            <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a  id="gestionProfId" (click)="dropDownFunction(myDropdownProf)" class="dropbtn"><span class="icon-prof mr-3"></span>Gestion professeurs</a></li>
+            <li  [class.hidden]="!isAdministrator"><a  id="gestionProfId" (click)="dropDownFunction(myDropdownProf)" class="dropbtn"><span class="icon-prof mr-3"></span>Gestion professeurs</a></li>
             <div id="myDropdownProf" class="dropdown-content">
               <a routerLink="/professeur">liste prof</a>
               <a routerLink="/professeur/ajouter">Ajouter prof</a> <!-- path: "insertion-etudiant/:etudiant" -->
@@ -50,15 +50,15 @@
           </div>
 
           <div>
-            <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a  id="gestionEtudId" (click)="dropDownFunction(myDropdownEtudiant)" class="dropbtn"><span class="icon-etudiant mr-3"></span>Gestion etudiants</a></li>
+            <li  [class.hidden]="!isAdministrator"><a  id="gestionEtudId" (click)="dropDownFunction(myDropdownEtudiant)" class="dropbtn"><span class="icon-etudiant mr-3"></span>Gestion etudiants</a></li>
             <div id="myDropdownEtudiant" class="dropdown-content">
               <a routerLink="/etudiant">liste etudiant</a>
               <a routerLink="/etudiant/ajouter">Ajouter etudiant</a> <!-- path: "insertion-etudiant/:etudiant" -->
             </div>
           </div>
 
-          <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a id="formId" routerLink="/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
-          <li (click)="menuActiveLinkFunc($event)" [class.hidden]="!isAdministrator"><a id="statsId" routerLink="/stats"><span class="icon-stats mr-3"></span>Analyses et statistiques</a></li>       
+          <li  [class.hidden]="!isAdministrator"><a id="formId" routerLink="/admin/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
+          <li  [class.hidden]="!isAdministrator"><a id="statsId" routerLink="/rapport/stats"><span class="icon-stats mr-3"></span>Analyses et statistiques</a></li>       
 
         </ul>
       </div>

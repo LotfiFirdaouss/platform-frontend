@@ -1,0 +1,15 @@
+.myContentClass{
+    margin-top: 50px; 
+    margin-bottom: 100px;    
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 8%;
+}
+
+.hidden{
+    display:none;
+}
+
+.visible{
+    display:block;
+}

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ExportService } from 'src/app/core/services/export.service';
+import { ExportService } from 'src/app/features/administrator/services/export.service';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
 
@@ -48,11 +48,6 @@ export class ReportStatsComponent implements OnInit {
           console.log(error);
         });
  }
-
-//  fileLink(re){
-//   //return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentReport.fichier_rapport.toString());
-//   var fileLink= this.currentReport.fichier_rapport.toString().split('&')[0];
-//  }
 
   //exprt table  function  
   exportElmToExcel(): void {

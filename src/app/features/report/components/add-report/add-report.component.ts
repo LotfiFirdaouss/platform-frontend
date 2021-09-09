@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { MyFormService } from 'src/app/features/administrator/services/my-form.service';
 import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
 import { Nature } from '../../models/nature.model';
@@ -46,9 +47,18 @@ export class AddReportComponent implements OnInit {
   stageDisabled= false;
   fileToUpload: File | null = null;
 
+  //form active or not
+  canAddReport=true;
+  reportForm={
+    "id": 0,
+    "nom_form": '',
+    "active_status": true
+  }
+
   constructor(private reportService: ReportService,
     private token: TokenStorageService,
-    private studentService: StudentService) { }
+    private studentService: StudentService,
+    private myFormService : MyFormService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();
@@ -58,6 +68,8 @@ export class AddReportComponent implements OnInit {
       var user_id = this.currentUser.id;
       this.getStudent(user_id);
     }
+    //we get the value of this.canAddReport from the db (table forms)
+    this.CanAddReport();
   }
 
   getStudent(id_user: number): void {
@@ -135,5 +147,16 @@ export class AddReportComponent implements OnInit {
   }
   }
   
+  public CanAddReport(){
+    this.myFormService.get(1).subscribe(
+      data => {
+        console.log("form:",data)
+        this.reportForm = data;
+        this.canAddReport = this.reportForm.active_status;
+      },
+      error => {
+        console.log(error);
+      });
+  }
 
 }
