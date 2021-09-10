@@ -36,6 +36,8 @@ export class InsertionDetailsComponent implements OnInit {
   currentUser!: ReturnedUser;
   currentStudent!: Student;
 
+  hideSpinner=true;
+
      //for cities and countries
      countryList: Array<any> = [
       { name: 'Maroc', cities: [
@@ -573,6 +575,7 @@ export class InsertionDetailsComponent implements OnInit {
   }
 
   updateInsertion(): void {
+    this.hideSpinner=false;
     if(this.currentInsertion.pays=="Autre"){
       this.currentInsertion.pays = this.autrePays_societe;
       this.currentInsertion.ville = this.autreVille_societe;
@@ -583,6 +586,7 @@ export class InsertionDetailsComponent implements OnInit {
           console.log(response);
           this.message = response.message;
           this.updated = true;
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);
@@ -590,12 +594,14 @@ export class InsertionDetailsComponent implements OnInit {
   }
 
   deleteInsertion(): void {
+    this.hideSpinner=false;
     this.insertionService.delete(this.currentInsertion.id)
       .subscribe(
         response => {
           console.log(response);
           //this.router.navigate(['/insertions']);
           this.deleted = true;
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);

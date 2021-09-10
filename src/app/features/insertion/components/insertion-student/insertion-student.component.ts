@@ -24,6 +24,8 @@ export class InsertionStudentComponent implements OnInit {
   currentStudent !: Student;
   isStudentOwner=false; 
 
+  hideSpinner=false;
+
   constructor(
     private insertionService: InsertionService,
     private route: ActivatedRoute,
@@ -65,6 +67,7 @@ export class InsertionStudentComponent implements OnInit {
         data => {
           this.insertions = data;
           console.log(data);
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);

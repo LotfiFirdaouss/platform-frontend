@@ -24,6 +24,9 @@ export class ReportStudentComponent implements OnInit {
    
    currentStudent !: Student;
    isStudentOwner=false; 
+
+    //For spinner
+    hideSpinner = false;
    
    constructor(private reportService: ReportService,
     private route: ActivatedRoute,
@@ -64,6 +67,7 @@ export class ReportStudentComponent implements OnInit {
          data => {
            this.reports = data;
            console.log(data);
+           this.hideSpinner = true;
          },
          error => {
            console.log(error);

@@ -2,8 +2,9 @@
         <form (ngSubmit)="saveReport()" #reportForm="ngForm" >
             <h3>Veuillez renseigner les informations relatives à  votre stage/projet :</h3>
                 <hr>
-                <p>Informations générales sur le stage/projet</p>
-                <div class="row">
+
+                <span style="font-size:large;"> <I>Informations générales sur le stage/projet :</I> </span>
+                <div class="row" style="margin-top: 25px; ">
                     <div class="col">
                         <div class="form-group input-box">
                             <select class="custom-select form-control" id="nature" (click)="myFunction()" name="nature" required
@@ -50,7 +51,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group row input-box">
-                            <label for="inputPassword" class="col-sm-3 col-form-label">Date de début</label>
+                            <label class="col-sm-3 col-form-label">
+                                Date de début :</label>
                             <div class="col-sm-9">
                             <input type="date" class="form-control" name="dateDebut" required #dateDebut="ngModel"
                                 pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
@@ -70,7 +72,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group row input-box">
-                            <label class="col-sm-3 col-form-label">Date de fin</label>
+                            <label class="col-sm-3 col-form-label">Date de fin :</label>
                             <div class="col-sm-9">
                             <input type="date" class="form-control" name="dateFin" required #dateFin="ngModel"
                                 pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
@@ -88,8 +90,8 @@
                     </div>
                 </div>
                 <hr>
-                <p>Informations sur la société</p>
-                <div class="row">
+                <span style="font-size:large;"> <I>Informations sur la société :</I> </span><br>
+                <div class="row" style="margin-top: 25px; ">
                     <div class="col">
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="report.societe_stage" #societe="ngModel" name="societe"
@@ -251,8 +253,9 @@
                     </div>
                 </div>
                 <hr>
-                <p>Le rapport du stage/projet</p>
-                <div class="row">
+                
+                <span style="font-size:large;"> <I>Le rapport du stage/projet :</I> </span>
+                <div class="row" style="margin-top: 25px; ">
                     <div class="col">
                         <div class="form-group input-box">
                             <input type="file" [(ngModel)]="report.fichier_rapport" 
@@ -270,8 +273,9 @@
                         </div>
                     </div>
                 </div>
-                <p>Résumé du rapport</p>
-                <div class="row">
+                <p></p>
+                <span > <I>Résumé du rapport :</I> </span><br>
+                <div class="row" style="margin-top: 15px; ">
                     <div class="col">
                         <div class="form-group input-box">
                             <textarea type="text" [(ngModel)]="report.resume_rapport" required #resume_rapport="ngModel" 
@@ -331,3 +335,5 @@
     </button>
     <br/><br/><br/><br/><br/>
 </div>
+
+<app-spinner class="mySpinnerReportClass" message="" [class.hidden]="hideSpinner"></app-spinner>

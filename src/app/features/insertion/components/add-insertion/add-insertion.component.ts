@@ -508,6 +508,8 @@ export class AddInsertionComponent implements OnInit {
     otherCountryHidden=true;
     otherCityHidden=true; 
 
+    hideSpinner=true;
+
   constructor(private insertionService : InsertionService,
     private token: TokenStorageService,
     private studentService: StudentService,
@@ -552,6 +554,7 @@ export class AddInsertionComponent implements OnInit {
   }
 
   saveInsertion(): void {
+    this.hideSpinner=false;
     if(this.insertion.pays=="Autre"){
       this.insertion.pays = this.autrePays_societe;
       this.insertion.ville = this.autreVille_societe;
@@ -574,6 +577,7 @@ export class AddInsertionComponent implements OnInit {
         response => {
           console.log(response);
           this.submitted = true;
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);

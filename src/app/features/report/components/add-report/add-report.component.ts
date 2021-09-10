@@ -524,6 +524,8 @@ export class AddReportComponent implements OnInit {
     "active_status": true
   }
 
+  hideSpinner=true;
+
     /* the form reference */
     @ViewChild('reportForm') reportForm: NgForm;
 
@@ -590,6 +592,7 @@ export class AddReportComponent implements OnInit {
   }
 
   saveReport(): void {
+    this.hideSpinner=false;
     if(this.report.pays_societe=="Autre"){
       this.report.pays_societe = this.autrePays_societe;
       this.report.ville_societe = this.autreVille_societe;
@@ -619,6 +622,7 @@ export class AddReportComponent implements OnInit {
         response => {
           console.log(response);
           this.submitted = true;
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);

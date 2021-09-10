@@ -72,6 +72,10 @@ export class AppComponent implements OnInit{
       {
         if(  url == "/rapport" || url == "/login"){
           id = "homeId";
+        }else if( url.includes("/profile-etudiant")){
+          id = "homeId";
+        }else if( url.includes("/rapport/info")){
+          id = "homeId";
         }else if( url == "/profile"){
           id = "profileId";
         }else if( url.includes("/rapport/")){

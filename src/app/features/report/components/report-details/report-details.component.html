@@ -2,9 +2,9 @@
    <form method="post" #reportForm="ngForm">
        <h3>Veuillez renseigner les nouvelles informations relatives à  votre stage/projet :</h3>
            <hr> 
-           <p>Informations générales sur le stage/projet</p>
-           <div class="row">
-               <div class="col">
+           <span style="font-size:large;"> <I>Informations générales sur le stage/projet :</I> </span>
+           <div class="row" style="margin-top: 25px; ">
+            <div class="col">
                    <div class="form-group input-box">
                        <select class="custom-select form-control"  (click)="myFunction()" name="nature" id="nature" required
                        [(ngModel)]="currentReport.stage_ou_projet">
@@ -87,9 +87,9 @@
                </div>
            </div>
            <hr>
-           <p>Informations sur la société</p>
-           <div class="row">
-               <div class="col">
+           <span style="font-size:large;"> <I>Informations sur la société :</I> </span><br>
+           <div class="row" style="margin-top: 25px; ">
+            <div class="col">
                    <div class="form-group input-box">
                        <input type="text" [(ngModel)]="currentReport.societe_stage" #societe="ngModel" name="societe"
                        class="form-control nature" placeholder="Société*" [required]="!stageDisabled" 
@@ -250,9 +250,9 @@
                </div>
            </div>
            <hr>
-           <p>Le nv rapport du stage/projet <small> (Ancien fichier : <a href="{{ currentReport.fichier_rapport }}">lien</a> )</small></p>
-           <div class="row">
-               <div class="col">
+           <span style="font-size:large;"> <I>Le nv rapport du stage/projet :<small> (Ancien fichier : <a href="{{ currentReport.fichier_rapport }}">lien</a> )</small> </I> </span>
+           <div class="row" style="margin-top: 25px; ">
+            <div class="col">
                    <div class="form-group input-box">
                        <input type="file" [(ngModel)]="file" #fichier_rapport="ngModel"
                        class="form-control" name="fichier_rapport" placeholder="lien du rapport*" required
@@ -269,9 +269,9 @@
                    </div>
                </div>
            </div>
-           <p>Résumé du rapport</p>
-                <div class="row">
-                    <div class="col">
+           <span > <I>Résumé du rapport :</I> </span><br>
+           <div class="row" style="margin-top: 15px; ">
+                <div class="col">
                         <div class="form-group input-box">
                             <textarea type="text" [(ngModel)]="currentReport.resume_rapport" required #resume_rapport="ngModel" 
                                 class="form-control" name="resume_rapport" placeholder="résume du rapport*" maxlength="3000"
@@ -353,3 +353,5 @@
     </button>
     <br/><br/><br/><br/><br/>
 </div>
+
+<app-spinner class="mySpinnerReportClass" message="" [class.hidden]="hideSpinner"></app-spinner>

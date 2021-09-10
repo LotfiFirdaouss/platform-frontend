@@ -505,6 +505,7 @@ export class ReportDetailsComponent implements OnInit {
   fileSizeError=false;
   fileTypeError=false;
   
+  hideSpinner=true;
 
   /* the form reference */
   @ViewChild('reportForm') reportForm: NgForm;
@@ -577,6 +578,7 @@ export class ReportDetailsComponent implements OnInit {
  }
 
  updateReport(): void {
+  this.hideSpinner=false;
   if(this.currentReport.pays_societe=="Autre"){
     this.currentReport.pays_societe = this.autrePays_societe;
     this.currentReport.ville_societe = this.autreVille_societe;
@@ -606,6 +608,7 @@ export class ReportDetailsComponent implements OnInit {
        response => {
          console.log(response);
          this.Updated=true;
+         this.hideSpinner=true;
        },
        error => {
          console.log(error);
@@ -613,11 +616,13 @@ export class ReportDetailsComponent implements OnInit {
  }
 
  deleteReport(): void {
+  this.hideSpinner=false;
    this.reportService.delete(this.currentReport.id)
      .subscribe(
        response => {
          console.log(response);
          this.Deleted=true;
+         this.hideSpinner=true;
          //this.router.navigate(['/reports']);
        },
        error => {

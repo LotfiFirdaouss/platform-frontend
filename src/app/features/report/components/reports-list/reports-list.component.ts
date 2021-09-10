@@ -44,6 +44,7 @@ export class ReportsListComponent implements OnInit {
    //For spinner
    hideSpinner = false;
    
+   
    constructor(private reportService: ReportService,
     private token: TokenStorageService,
     private studentService : StudentService) { }
