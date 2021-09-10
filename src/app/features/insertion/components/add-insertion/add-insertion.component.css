@@ -106,3 +106,23 @@ button[disabled] {pointer-events:none}
     padding-right: 4%;
     padding-bottom: 8%;
 }
+
+.hidden{
+    display:none;
+  }
+
+  select { 
+    display: block; 
+    border: 1px solid #d7d6d6; 
+    background: #fff; 
+    padding: 0px 0px 0px 170px; 
+    }
+
+.myIconList{
+    position: absolute; 
+    display: block; 
+    left: 380px; 
+    bottom: 10px; 
+    z-index: 9; 
+    color: gray;
+}  

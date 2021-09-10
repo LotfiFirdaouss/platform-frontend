@@ -7,6 +7,7 @@
         <span style="font-size:large;"> <I>Selectionnez le cursus post Ensam :</I> </span>
         <div class="row" style="margin-top: 25px; ">
           <div class="col">
+            <div class="form-group input-box " >
               <select 
                 class="form-control" 
                 id="cursus_post_ensam"
@@ -19,11 +20,13 @@
                   <option value="travail" selected>Travail</option>
                   <option value="etude">Etude</option>
               </select>
+              <span class="unit" >Cursus : </span>
               <div *ngIf="cursus_post_ensam.errors && (cursus_post_ensam.dirty || cursus_post_ensam.touched) " 
               class="alert alert-danger">
               <div [hidden]="!cursus_post_ensam.errors.required">
                 Ce champs est requis*
               </div>
+            </div>  
 
           </div>
 
@@ -201,7 +204,13 @@
         <div class="row" >
           <div class="col">
               <div class="form-group input-box">
-                  <input
+                  <select class="custom-select form-control" id="pays" name="pays" [required]="!stageDisabled && otherCountryHidden"
+                  (change)="changeCountry($event.target.value)" [(ngModel)]="currentInsertion.pays" [disabled]="stageDisabled">
+                  <option *ngFor="let count of countryList">{{count.name}}</option>
+                </select>
+                <span class="unit" >Pays d'étude/boulot : </span>
+                <i class="fas fa-caret-down myIconList"></i>
+                  <!-- <input
                     type="text"
                     class="form-control"
                     id="ville"
@@ -220,12 +229,12 @@
                     <div [hidden]="!ville.errors.maxlength">
                       Ce champs ne peut dépasser 200 caractères.
                     </div>
-                  </div>
+                  </div> -->
               </div>
           </div>
           <div class="col">
               <div class="form-group input-box">
-                  <input
+                  <!-- <input
                     type="text"
                     class="form-control"
                     id="pays"
@@ -244,11 +253,59 @@
                     <div [hidden]="!pays.errors.maxlength">
                       Ce champs ne peut dépasser 200 caractères.
                     </div>
-                  </div>
+                  </div> -->
+
+                  
+                  <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled && otherCityHidden"
+                  [(ngModel)]="currentInsertion.ville" [disabled]="stageDisabled">
+                      <option *ngFor="let city of cities">{{city}}</option>
+                  </select>
+                  <span class="unit" >Ville d'étude/boulot: </span>
+                  <i class="fas fa-caret-down myIconList"></i>
               </div>
           </div>
           
         </div>
+
+        <div class="row">
+          <div class="col">
+              <div class="form-group input-box">
+                  <div id="otherCountry" [class.hidden]="otherCountryHidden">
+                      <input type="text" [(ngModel)]="autrePays_societe"
+                      class="form-control nature" name="autrePays_societe" placeholder="Pays*" [required]="!stageDisabled && !otherCountryHidden" 
+                      [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
+                      <span class="unit">Autre pays : </span>
+                      <div *ngIf="autrePays_societe.errors && (autrePays_societe.dirty || autrePays_societe.touched)" class="alert alert-danger">
+                          <div [hidden]="!autrePays_societe.errors?.required">
+                              Le pays du stage est requis.
+                          </div>
+                          <div [hidden]="!autrePays_societe.errors?.maxlength">
+                              Ce champ ne peut pas comporter plus de 20 caractères.
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div> 
+          <div class="col">
+              <div class="form-group input-box">
+                  <div id="otherCity" [class.hidden]="otherCityHidden">
+                      <input type="text" [(ngModel)]="autreVille_societe"
+                      class="form-control nature" name="autreVille_societe" placeholder="Ville*" [required]="!stageDisabled && !otherCityHidden" 
+                      [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
+                      <span class="unit">Autre ville : </span>
+                      <div *ngIf="autreVille_societe.errors && (autreVille_societe.dirty || autreVille_societe.touched)" class="alert alert-danger">
+                          <div [hidden]="!autrePays_societe.errors?.required">
+                              Le pays du stage est requis.
+                          </div>
+                          <div [hidden]="!autreVille_societe.errors?.maxlength">
+                              Ce champ ne peut pas comporter plus de 20 caractères.
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>        
+
+      </div>
 
         <div class="row" style="margin-top: 25px;display: none;">
           <div class="col">
@@ -304,7 +361,7 @@
     <h4 style="text-align:center;"> L'insertion spécifié n'est pas accessible ... </h4>
     <br/>
     <button class="btnContact "
-        routerLink="/insertion/etudiant/{{currentStudent.id}}">
+        routerLink="/insertion/etudiant/{{currentInsertion.fk_etudiant.id}}">
         Retour vers mon insertion
     </button>
     <br/><br/><br/><br/><br/>

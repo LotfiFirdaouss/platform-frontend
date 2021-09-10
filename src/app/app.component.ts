@@ -74,11 +74,11 @@ export class AppComponent implements OnInit{
           id = "homeId";
         }else if( url == "/profile"){
           id = "profileId";
-        }else if( url == "/rapport/ajouter" || url.includes("/rapport/etudiant") || url.includes("/rapport/info/")){
+        }else if( url.includes("/rapport/")){
           id = "rapportsId";
         }else if( url == "/insertion"){
           id = "insertionsId";
-        }else if( url == "/insertion/ajouter" || url.includes("/insertion/etudiant/") || url.includes("/insertion/info/")){
+        }else if( url.includes("/insertion/")){
           id = "insertionId";
         }else if( url == "/professeur" || url == "/professeur/ajouter"){
           id = "gestionProfId";
