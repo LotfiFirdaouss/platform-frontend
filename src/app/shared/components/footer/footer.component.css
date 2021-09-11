@@ -35,7 +35,23 @@ footer p { font-size:18px; color:#06121f;; padding-bottom:0px; margin-bottom:0px
     margin-bottom: 13px;
 }
 
-@media only screen and (max-width: 495px) {
+@media only screen and (max-width: 768px) {
+	/* .responsiveClass {
+		padding-top: 100px;
+		max-width: fit-content;
+	  } */
+
+	.col{
+		max-width: fit-content;
+	}  
+
+}
+
+@media only screen and (max-width: 576px) {
+
+	/* .responsiveClass {
+		padding-top: 0px;
+	  } */
 
 	.navbar a img {
 	  font-size: 20px;

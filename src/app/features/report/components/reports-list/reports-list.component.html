@@ -156,11 +156,11 @@
         <article class="postcard light blue" style="height: 200px; margin: 0%;" >
             <div class="postcard__text t-dark">
                 <div class="row">
-                    <div class="col-5">
-                        <h4>
-                            {{ report.stage_ou_projet ? "Stage" : "Projet" }} :
-                            <a routerLink="/rapport/info/{{ report.id }}"><b>{{ report.intitule_stage }}</b></a>
-                        </h4>
+                    <div class="col-6">
+                        <h5>
+                            <I><b>{{ report.stage_ou_projet ? "Stage" : "Projet" }} : </b></I>
+                            <a routerLink="/rapport/info/{{ report.id }}">{{ capitalizeFirstLetter(report.intitule_stage) }}</a>
+                        </h5>
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
                         <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
@@ -173,7 +173,7 @@
                             </li>
                         </ul> -->
                     </div>
-                    <div class="col-7">
+                    <div class="col-6">
                         <br>
                         <div *ngIf="report.stage_ou_projet">
                             <div>
@@ -199,7 +199,7 @@
         </article>
     </div>
     <br>
-    <app-spinner [class.hidden]="hideSpinner"></app-spinner>
+    <app-spinner message="" class="mySpinnerClass" [class.hidden]="hideSpinner"></app-spinner>
     <div  class="center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>

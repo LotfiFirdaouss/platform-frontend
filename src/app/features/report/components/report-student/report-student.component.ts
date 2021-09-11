@@ -24,6 +24,9 @@ export class ReportStudentComponent implements OnInit {
    
    currentStudent !: Student;
    isStudentOwner=false; 
+
+    //For spinner
+    hideSpinner = false;
    
    constructor(private reportService: ReportService,
     private route: ActivatedRoute,
@@ -64,6 +67,7 @@ export class ReportStudentComponent implements OnInit {
          data => {
            this.reports = data;
            console.log(data);
+           this.hideSpinner = true;
          },
          error => {
            console.log(error);
@@ -74,5 +78,12 @@ export class ReportStudentComponent implements OnInit {
      this.currentReport = report;
      this.currentIndex = index;
    }
+
+     //capitalize only the first letter of the string. 
+  capitalizeFirstLetter(string) {
+    //console.log("capitalize")
+    string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
    
 }

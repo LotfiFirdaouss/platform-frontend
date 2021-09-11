@@ -2,28 +2,30 @@
    <form method="post" #reportForm="ngForm">
        <h3>Veuillez renseigner les nouvelles informations relatives à  votre stage/projet :</h3>
            <hr> 
-           <p>Informations générales sur le stage/projet</p>
-           <div class="row">
-               <div class="col">
-                   <div class="form-group">
+           <span style="font-size:large;"> <I>Informations générales sur le stage/projet :</I> </span>
+           <div class="row" style="margin-top: 25px; ">
+            <div class="col">
+                   <div class="form-group input-box">
                        <select class="custom-select form-control"  (click)="myFunction()" name="nature" id="nature" required
                        [(ngModel)]="currentReport.stage_ou_projet">
                            <option *ngFor="let nature of natures" [ngValue]="nature.nature" selected>
                             {{ nature.name }}
                            </option>
                        </select>
+                       <span class="unit" >Nature : </span>
+                        <i class="fas fa-caret-down myIconList"></i>
                    </div>
                </div>
-           </div>
-           <div class="row">
                 <div class="col">
-                    <div class="form-group">
+                    <div class="form-group input-box">
                         <select class="custom-select form-control" id="type_rapport" name="type_rapport" required
                         [(ngModel)]="currentReport.type_rapport">
                             <option *ngFor="let type of types_rapport" [ngValue]="type" selected>
                                 {{ type }}
                             </option>
                         </select>
+                        <span class="unit" >Type rapport : </span>
+                        <i class="fas fa-caret-down myIconList"></i>
                     </div>
                 </div>
             </div>
@@ -85,9 +87,9 @@
                </div>
            </div>
            <hr>
-           <p>Informations sur la société</p>
-           <div class="row">
-               <div class="col">
+           <span style="font-size:large;"> <I>Informations sur la société :</I> </span><br>
+           <div class="row" style="margin-top: 25px; ">
+            <div class="col">
                    <div class="form-group input-box">
                        <input type="text" [(ngModel)]="currentReport.societe_stage" #societe="ngModel" name="societe"
                        class="form-control nature" placeholder="Société*" [required]="!stageDisabled" 
@@ -123,37 +125,68 @@
            <div class="row">
                <div class="col">
                    <div class="form-group input-box">
-                       <input type="text" [(ngModel)]="currentReport.pays_societe" #pays="ngModel" 
-                       class="form-control nature" name="pays" placeholder="Pays*" [required]="!stageDisabled" 
-                       [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
-                       <span class="unit">Pays : </span>
-                       <div *ngIf="pays.errors && (pays.dirty || pays.touched)" class="alert alert-danger">
-                           <div [hidden]="!pays.errors?.required">
-                               Le pays du stage est requis.
-                           </div>
-                           <div [hidden]="!pays.errors?.maxlength">
-                               Ce champ ne peut pas comporter plus de 20 caractères.
-                           </div>
-                       </div>
+                       
+                        <select class="custom-select form-control" id="pays" name="pays" [required]="!stageDisabled && otherCountryHidden"
+                        (change)="changeCountry($event.target.value)" [(ngModel)]="currentReport.pays_societe" [disabled]="stageDisabled">
+                        <option *ngFor="let count of countryList">{{count.name}}</option>
+                        </select>
+                        <span class="unit" >Pays : </span>
+                        <i class="fas fa-caret-down myIconList"></i>
+
                    </div>
                </div>
                <div class="col">
                    <div class="form-group input-box">
-                       <input type="text" [(ngModel)]="currentReport.ville_societe" #ville="ngModel"
-                       class="form-control nature" name="ville" placeholder="Ville*" [required]="!stageDisabled" 
-                       [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
-                       <span class="unit">Ville : </span>
-                       <div *ngIf="ville.errors && (ville.dirty || ville.touched)" class="alert alert-danger">
-                           <div [hidden]="!ville.errors?.required">
-                               La ville du stage est requise.
-                           </div>
-                           <div [hidden]="!ville.errors?.maxlength">
-                               Ce champ ne peut pas comporter plus de 20 caractères.
-                           </div>
-                       </div>
+                       
+                        <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled && otherCityHidden"
+                        [(ngModel)]="currentReport.ville_societe" [disabled]="stageDisabled">
+                            <option *ngFor="let city of cities">{{city}}</option>
+                        </select>
+                        <span class="unit" >Ville : </span>
+                        <i class="fas fa-caret-down myIconList"></i>
+
                    </div>
                </div>
            </div>
+           <div class="row">
+            <div class="col">
+                <div class="form-group input-box">
+                    <div id="otherCountry" [class.hidden]="otherCountryHidden">
+                        <input type="text" [(ngModel)]="autrePays_societe"
+                        class="form-control nature" name="autrePays_societe" placeholder="Pays*" [required]="!otherCountryHidden" 
+                        [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
+                        <span class="unit">Autre pays : </span>
+                        <div *ngIf="autrePays_societe.errors && (autrePays_societe.dirty || autrePays_societe.touched)" class="alert alert-danger">
+                            <div [hidden]="!autrePays_societe.errors?.required">
+                                Le pays du stage est requis.
+                            </div>
+                            <div [hidden]="!autrePays_societe.errors?.maxlength">
+                                Ce champ ne peut pas comporter plus de 20 caractères.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col">
+                <div class="form-group input-box">
+                    <div id="otherCity" [class.hidden]="otherCityHidden">
+                        <input type="text" [(ngModel)]="autreVille_societe"
+                        class="form-control nature" name="autreVille_societe" placeholder="Ville*" [required]="!otherCityHidden" 
+                        [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
+                        <span class="unit">Autre ville : </span>
+                        <div *ngIf="autreVille_societe.errors && (autreVille_societe.dirty || autreVille_societe.touched)" class="alert alert-danger">
+                            <div [hidden]="!autrePays_societe.errors?.required">
+                                Le pays du stage est requis.
+                            </div>
+                            <div [hidden]="!autreVille_societe.errors?.maxlength">
+                                Ce champ ne peut pas comporter plus de 20 caractères.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+
+        </div>
            <div class="row">
                <div class="col">
                    <div class="form-group input-box">
@@ -217,20 +250,28 @@
                </div>
            </div>
            <hr>
-           <p>Le nv rapport du stage/projet <small> (Ancien fichier : <a href="{{ currentReport.fichier_rapport }}">lien</a> )</small></p>
-           <div class="row">
-               <div class="col">
+           <span style="font-size:large;"> <I>Le nv rapport du stage/projet :<small> (Ancien fichier : <a href="{{ currentReport.fichier_rapport }}">lien</a> )</small> </I> </span>
+           <div class="row" style="margin-top: 25px; ">
+            <div class="col">
                    <div class="form-group input-box">
                        <input type="file" [(ngModel)]="file" #fichier_rapport="ngModel"
                        class="form-control" name="fichier_rapport" placeholder="lien du rapport*" required
                        (change)="handleFileInput($event.target.files)" style="padding-top:3px; padding-bottom: 3px;"/>
                        <span class="unit">PDF du rapport: </span>
+                       <div *ngIf="fileSizeError || fileTypeError" class="alert alert-danger">
+                        <div [hidden]="!fileSizeError">
+                            Le fichier ne peut pas dépasser 50Mb ou 200pages.
+                        </div>
+                        <div [hidden]="!fileTypeError">
+                            Le fichier doit avoir l'extension de (.pdf).
+                        </div>
+                    </div> 
                    </div>
                </div>
            </div>
-           <p>Résumé du rapport</p>
-                <div class="row">
-                    <div class="col">
+           <span > <I>Résumé du rapport :</I> </span><br>
+           <div class="row" style="margin-top: 15px; ">
+                <div class="col">
                         <div class="form-group input-box">
                             <textarea type="text" [(ngModel)]="currentReport.resume_rapport" required #resume_rapport="ngModel" 
                                 class="form-control" name="resume_rapport" placeholder="résume du rapport*" maxlength="3000"
@@ -312,3 +353,5 @@
     </button>
     <br/><br/><br/><br/><br/>
 </div>
+
+<app-spinner class="mySpinnerReportClass" message="" [class.hidden]="hideSpinner"></app-spinner>

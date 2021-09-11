@@ -28,6 +28,8 @@ export class ResponseResetComponent implements OnInit {
   // newPasswordId="newPassword"
   // confirmPasswordId="confirmPassword"
 
+  hideSpinner=true;
+
 
   constructor(
     private authService: AuthService,
@@ -88,6 +90,7 @@ export class ResponseResetComponent implements OnInit {
   }
 
   ResetPassword() {
+    this.hideSpinner=false;
     if (this.Validate()) {
       this.isFormFull = true;
       this.IsResetFormValid = true;
@@ -103,6 +106,7 @@ export class ResponseResetComponent implements OnInit {
             this.successMessage = null;
             this.router.navigate(['login']);
           }, 3000);
+          this.hideSpinner=true;
         },
         err => {
           var erreurPwd=err.error.password;

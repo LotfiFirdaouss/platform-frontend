@@ -16,19 +16,19 @@
             </a> -->
             <div class="postcard__text t-dark">
                 <div class="row">
-                    <div class="col-5">
-                        <h4>
-                            {{ report.stage_ou_projet ? "Stage" : "Projet" }} :
-                            <a class="blue"><b>{{ report.intitule_stage }}</b></a>
-                        </h4>
+                    <div class="col-6">
+                        <h5>
+                            <I><b>{{ report.stage_ou_projet ? "Stage" : "Projet" }} : </b></I>
+                            <a routerLink="/rapport/info/{{ report.id }}">{{ capitalizeFirstLetter(report.intitule_stage) }}</a>
+                        </h5>
                         
                         <div class="postcard__subtitle small">
-                        <span *ngIf="!isStudentOwner"><i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span></span>
+                        <span *ngIf="!isStudentOwner"><i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span></span>
                         <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_debut_stage | date: 'dd/MM/yyyy'}}  </time>
                         </div>
                         <div class="postcard__bar"></div>
                     </div>
-                    <div class="col-7">
+                    <div class="col-6">
                         <br>
                         <div *ngIf="report.stage_ou_projet">
                             <div>
@@ -50,7 +50,10 @@
                     </div>
                 </div>
                 
+
+                
             </div>
         </article>
     </div>
 </div>
+<app-spinner class="mySpinnerClass" message="" [class.hidden]="hideSpinner"></app-spinner>

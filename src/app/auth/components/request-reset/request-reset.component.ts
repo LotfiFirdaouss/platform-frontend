@@ -22,6 +22,8 @@ export class RequestResetComponent implements OnInit {
     email:null,
   }; 
 
+  hideSpinner=true;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -35,6 +37,7 @@ export class RequestResetComponent implements OnInit {
   }
 
   RequestResetUser() {
+    this.hideSpinner=false;
     const { email } = this.form;
     if( email ){
       this.isFormFull = true;
@@ -53,6 +56,8 @@ export class RequestResetComponent implements OnInit {
           this.successMessage = null;
           this.router.navigate(['login']);
         }, 3000);
+        this.hideSpinner=true;
+
       },
       err => {
         if (err.error.email) {

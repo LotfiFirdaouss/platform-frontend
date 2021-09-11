@@ -13,3 +13,27 @@
 .visible{
     display:block;
 }
+
+.mySpinnerReportClass {
+    position: relative;
+    bottom: 120px;
+    left: 35%;
+}
+
+.mySpinnerClass {
+    position: relative;
+    top:-100px;
+    left: 35%;
+}
+
+.mySpinnerInsertionClass{
+    position: relative;
+    bottom: 150px;
+    left: 35%;
+}
+
+.spinnerResetPwd{
+    position: relative;
+    top:-330px;
+    left: 43%;
+}

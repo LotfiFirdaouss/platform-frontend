@@ -59,7 +59,11 @@ export class AppComponent implements OnInit{
           id = "contactBtnID";
         }else if( url == "/register"){
           id = "signupBtnID";
-        }else if( url == "/login" || url == "/home"){
+        }else if( url == "/login"){
+          id = "signinBtnID";
+        }else if( url == "/request-reset-password"){
+          id = "signinBtnID";
+        }else if( url.includes("/response-reset-password")){
           id = "signinBtnID";
         }
         //console.log("not logged in id:",id)
@@ -70,24 +74,34 @@ export class AppComponent implements OnInit{
       }
       else
       {
+        // if(this.isAdministrator){
+        //   console.log("you're admin");
+        //   if( url.includes("/insertion/") ){
+        //     id = "homeId";
+        //   }
+        // }
         if(  url == "/rapport" || url == "/login"){
+          id = "homeId";
+        }else if( url.includes("/profile-etudiant")){
           id = "homeId";
         }else if( url == "/profile"){
           id = "profileId";
-        }else if( url == "/rapport/ajouter" || url.includes("/rapport/etudiant") || url.includes("/rapport/info/")){
+        }else if( url == "/rapport/stats"){
+          id = "statsId";
+        }else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
+          id = "homeId";
+        }else if( url.includes("/rapport/")){
           id = "rapportsId";
         }else if( url == "/insertion"){
           id = "insertionsId";
-        }else if( url == "/insertion/ajouter" || url.includes("/insertion/etudiant/") || url.includes("/insertion/info/")){
-          id = "insertionId";
+        }else if( url.includes("/insertion/")){
+          this.isAdministrator ? id = "insertionsId" : id = "insertionId";
         }else if( url == "/professeur" || url == "/professeur/ajouter"){
           id = "gestionProfId";
         }else if( url == "/etudiant" || url == "/etudiant/ajouter"){
           id = "gestionEtudId";
         }else if( url == "/admin/gestionForm"){
           id = "formId";
-        }else if( url == "/rapport/stats"){
-          id = "statsId";
         }
         //console.log("logged in id:",id)
         activeLink = <HTMLLIElement> document.getElementsByClassName("active")[0];
