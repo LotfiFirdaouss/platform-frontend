@@ -61,6 +61,10 @@ export class AppComponent implements OnInit{
           id = "signupBtnID";
         }else if( url == "/login"){
           id = "signinBtnID";
+        }else if( url == "/request-reset-password"){
+          id = "signinBtnID";
+        }else if( url.includes("/response-reset-password")){
+          id = "signinBtnID";
         }
         //console.log("not logged in id:",id)
         activeLink = <HTMLElement> document.getElementsByClassName("Hactive")[0];
@@ -70,28 +74,34 @@ export class AppComponent implements OnInit{
       }
       else
       {
+        // if(this.isAdministrator){
+        //   console.log("you're admin");
+        //   if( url.includes("/insertion/") ){
+        //     id = "homeId";
+        //   }
+        // }
         if(  url == "/rapport" || url == "/login"){
           id = "homeId";
         }else if( url.includes("/profile-etudiant")){
           id = "homeId";
-        }else if( url.includes("/rapport/info")){
-          id = "homeId";
         }else if( url == "/profile"){
           id = "profileId";
+        }else if( url == "/rapport/stats"){
+          id = "statsId";
+        }else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
+          id = "homeId";
         }else if( url.includes("/rapport/")){
           id = "rapportsId";
         }else if( url == "/insertion"){
           id = "insertionsId";
         }else if( url.includes("/insertion/")){
-          id = "insertionId";
+          this.isAdministrator ? id = "insertionsId" : id = "insertionId";
         }else if( url == "/professeur" || url == "/professeur/ajouter"){
           id = "gestionProfId";
         }else if( url == "/etudiant" || url == "/etudiant/ajouter"){
           id = "gestionEtudId";
         }else if( url == "/admin/gestionForm"){
           id = "formId";
-        }else if( url == "/rapport/stats"){
-          id = "statsId";
         }
         //console.log("logged in id:",id)
         activeLink = <HTMLLIElement> document.getElementsByClassName("active")[0];

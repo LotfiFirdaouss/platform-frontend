@@ -78,5 +78,12 @@ export class ReportStudentComponent implements OnInit {
      this.currentReport = report;
      this.currentIndex = index;
    }
+
+     //capitalize only the first letter of the string. 
+  capitalizeFirstLetter(string) {
+    //console.log("capitalize")
+    string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
    
 }

@@ -19,7 +19,7 @@ export class ReportsListComponent implements OnInit {
    currentIndex = -1;
    isLoggedIn = false;
    group="";
-   isAdministrator=false;
+   isAdministrator=false; 
    currentUser: ReturnedUser;
    currentStudent: Student;
    isStudent=0;
@@ -164,14 +164,11 @@ export class ReportsListComponent implements OnInit {
     }
   }
 
-
-  // printFiles(filiere,promotion){
-  //   console.log("print function!!")
-  //   this.reportService.printReportsFile(filiere,promotion);
-  // }
-
-  printFiles(){
-    
+  //capitalize only the first letter of the string. 
+  capitalizeFirstLetter(string) {
+    //console.log("capitalize")
+    string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
    
 }

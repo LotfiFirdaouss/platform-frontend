@@ -564,8 +564,8 @@ export class ReportDetailsComponent implements OnInit {
             this.currentReport = data;
             //to handle autre pays/ville
             if(this.currentReport.pays_societe!= "Maroc" && this.currentReport.pays_societe!="France" && this.currentReport.pays_societe!=""){
-              this.autrePays_societe= this.currentReport.pays_societe.toString();
-              this.autreVille_societe= this.currentReport.ville_societe.toString();
+              this.autrePays_societe= this.currentReport.pays_societe?.toString();
+              this.autreVille_societe= this.currentReport.ville_societe?.toString();
               this.currentReport.pays_societe="Autre";
               this.changeCountry("Autre");
             }
