@@ -59,7 +59,7 @@ export class AppComponent implements OnInit{
           id = "contactBtnID";
         }else if( url == "/register"){
           id = "signupBtnID";
-        }else if( url == "/login" || url == "/home"){
+        }else if( url == "/login"){
           id = "signinBtnID";
         }
         //console.log("not logged in id:",id)

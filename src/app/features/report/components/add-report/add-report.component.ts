@@ -564,6 +564,9 @@ export class AddReportComponent implements OnInit {
     console.log(count)
     console.log(this.report.pays_societe)
     this.cities = this.countryList.find(con => con.name == count).cities;
+    if( count == "Maroc"){ this.report.ville_societe="Casablanca" }
+    if( count == "France"){ this.report.ville_societe="Paris" }
+    if( count == "Autre"){ this.report.ville_societe="Autre" }
     if(count =="Autre"){
       this.otherCountryHidden=false;
       this.otherCityHidden=false;
@@ -575,6 +578,7 @@ export class AddReportComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
+
     var size = this.fileToUpload.size/1000;
 
     //setting the errors
