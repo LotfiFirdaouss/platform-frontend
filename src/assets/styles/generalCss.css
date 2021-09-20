@@ -1,0 +1,39 @@
+.myContentClass{
+    margin-top: 50px; 
+    margin-bottom: 100px;    
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 8%;
+}
+
+.hidden{
+    display:none;
+}
+
+.visible{
+    display:block;
+}
+
+.mySpinnerReportClass {
+    position: relative;
+    bottom: 120px;
+    left: 35%;
+}
+
+.mySpinnerClass {
+    position: relative;
+    top:-100px;
+    left: 35%;
+}
+
+.mySpinnerInsertionClass{
+    position: relative;
+    bottom: 150px;
+    left: 35%;
+}
+
+.spinnerResetPwd{
+    position: relative;
+    top:-330px;
+    left: 43%;
+}

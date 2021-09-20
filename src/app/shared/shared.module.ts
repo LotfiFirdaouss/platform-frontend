@@ -61,13 +61,14 @@ import { PromotionStudentFilterPipe } from '../features/student/pipes/promotion-
 import { FiliereStudentFilterPipe } from '../features/student/pipes/filiere-filter.pipe';
 import { NomProfFilterPipe } from '../features/professor/pipes/nom-prof-filter.pipe';
 import { DepartementProfFilterPipe } from '../features/professor/pipes/departement-prof-filter.pipe';
-import { ExportService } from '../core/services/export.service';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from '../features/administrator/components/dashboard/dashboard.component';
 import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/promotion-filter.pipe';
+import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
+import { ExportService } from '../features/administrator/services/export.service';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,9 @@ import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/pr
     PromotionFilterDashboardPipe,
 
 
+    //Admin components
+    FormManagementComponent,
+    
     LoginComponent,
     RequestResetComponent,
     ResponseResetComponent,
@@ -173,7 +177,6 @@ import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/pr
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
-    DashboardComponent,
 
 
     //insertions

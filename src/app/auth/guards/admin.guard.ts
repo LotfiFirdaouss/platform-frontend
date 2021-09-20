@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
       var isAdministrator = this.token.isAdministrator().administrator;
-      console.log(isAdministrator);
+      //console.log(isAdministrator);
       try {
         if (isAdministrator) {
           return of(true);

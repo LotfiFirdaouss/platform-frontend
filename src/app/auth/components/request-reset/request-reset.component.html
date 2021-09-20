@@ -9,7 +9,7 @@
           <input class="input100" type="email" #email="ngModel" name="email" 
             placeholder="email@ensam-casa.ma*" required [(ngModel)]="form.email"
             pattern="[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" > 
-          <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert-validate">
+          <div *ngIf="email.errors && (email.dirty || email.touched)">
             <div [hidden]="!email.errors?.required" class="alert-validate" 
                 data-validate="L'email est requis."></div>
             <div [hidden]="!email.errors?.pattern" class="alert-validate" 
@@ -54,18 +54,10 @@
             </div>          
           </div>
         </div>
-
-        <!-- <div class="text-center p-t-115">
-          <span class="txt1">
-            Pas encore de compte?
-          </span>
-
-          <a class="txt2" routerLink="/register" >
-            Je m'inscris
-          </a>
-        </div> -->
           
       </form>
 
     </div>
 </div>
+
+<app-spinner message="" class="spinnerResetPwd" [class.hidden]="hideSpinner"></app-spinner>

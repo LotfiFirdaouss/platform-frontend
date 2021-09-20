@@ -205,7 +205,7 @@
                   </div>
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <div class="col-3" class="classLink">
-                    <a routerLink="insertion/info/{{ insertion.id }}" ><u>plus de détails</u></a>
+                    <a routerLink="/insertion/info/{{ insertion.id }}" ><u>plus de détails</u></a>
                   </div>
                 </div>
               </div>
@@ -217,7 +217,7 @@
       </article>
   </div>
   <br>
-  <app-spinner [class.hidden]="hideSpinner"></app-spinner>
+  <app-spinner class="mySpinnerClass" [class.hidden]="hideSpinner"></app-spinner>
   <div  class="center">
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>

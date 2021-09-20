@@ -24,6 +24,8 @@ export class InsertionStudentComponent implements OnInit {
   currentStudent !: Student;
   isStudentOwner=false; 
 
+  hideSpinner=false;
+
   constructor(
     private insertionService: InsertionService,
     private route: ActivatedRoute,
@@ -49,7 +51,7 @@ export class InsertionStudentComponent implements OnInit {
         data => {
           this.currentStudent = data;
           //console.log("Reports' student user id:",data.fk_user.id);
-          if(data.fk_user.id == this.user_id){
+          if(data.fk_user?.id == this.user_id){
             this.isStudentOwner=true;
           }
           //console.log("reports owner:",this.isStudentOwner)
@@ -65,6 +67,7 @@ export class InsertionStudentComponent implements OnInit {
         data => {
           this.insertions = data;
           console.log(data);
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);

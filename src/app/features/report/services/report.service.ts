@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Report } from '../models/report';
 
 const baseUrl = 'http://127.0.0.1:8080/api/rapports';
-const fileUrl = 'http://127.0.0.1:8080/downFiles/reportsFile';
 
 @Injectable({
   providedIn: 'root'

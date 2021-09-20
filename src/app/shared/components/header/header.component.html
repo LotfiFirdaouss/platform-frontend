@@ -21,28 +21,28 @@
 
             <!-- shown in case not connected == !isLoggedIn -->
               <li class="nav-item "  [class.hidden]="isLoggedIn">
-                <a class="nav-link Hactive" id="accueilBtnID" routerLink="/" (click)="menuActiveLinkFunc($event); scrollCenter(0)">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-link Hactive" id="accueilBtnID" routerLink="/" (click)="scrollCenter(0)">Accueil <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item"  [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="AproposBtnID" routerLink="/à-propos" (click)="menuActiveLinkFunc($event); scrollCenter(0)" >À propos</a>
+                <a class="nav-link inactive" id="AproposBtnID" routerLink="/à-propos" (click)="scrollCenter(0)" >À propos</a>
               </li>  
               <li class="nav-item"  [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="contactBtnID" routerLink="/contact" (click)="menuActiveLinkFunc($event); scrollCenter(0)" >Contact</a>
+                <a class="nav-link inactive" id="contactBtnID" routerLink="/contact" (click)="scrollCenter(0)" >Contact</a>
               </li>
               <li class="nav-item" [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="signupBtnID" routerLink="/register" (click)="menuActiveLinkFunc($event); scrollCenter(0)" >S'inscrire</a>
+                <a class="nav-link inactive" id="signupBtnID" routerLink="/register" (click)="scrollCenter(0)" >S'inscrire</a>
               <li class="nav-item" [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="signinBtnID" routerLink="/login" (click)="menuActiveLinkFunc($event); scrollCenter(0)">Se connecter</a>
+                <a class="nav-link inactive" id="signinBtnID" routerLink="/login" (click)="scrollCenter(0)">Se connecter</a>
               </li>
 
 
             <!-- shown in case connected == isLoggedIn -->
             
               <!-- <li class="nav-item" [class.hidden]="!isLoggedIn">
-                <a class="nav-link Hactive" id="homeBtnID" routerLink="/home" (click)="menuActiveLinkFunc($event); scrollCenter(0)" >Accueil</a>
+                <a class="nav-link Hactive" id="homeBtnID" routerLink="/home" (click)="scrollCenter(0)" >Accueil</a>
               </li>
               <li class="nav-item" [class.hidden]="!isLoggedIn">
-                <a class="nav-link inactive" id="profileBtnID" routerLink="/profile" (click)="menuActiveLinkFunc($event); scrollCenter(0)">Profil</a>
+                <a class="nav-link inactive" id="profileBtnID" routerLink="/profile" (click)="scrollCenter(0)">Profil</a>
               </li> -->
               <li class="nav-item" [class.hidden]="!isLoggedIn">
                 <a class="nav-link inactive" id="logoutBtnID" routerLink="/" (click)="logout();">Déconnexion</a>
