@@ -35,7 +35,7 @@ export class AddProfessorComponent implements OnInit {
       email_perso:this.professor.email_perso,
       email_pro:this.professor.email_pro,
       telephone:this.professor.telephone,
-      filiere:this.professor.departement,
+      departement:this.professor.departement,
       fk_user:this.professor.fk_user,
     };
 

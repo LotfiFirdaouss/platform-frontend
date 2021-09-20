@@ -1,16 +1,47 @@
 <div class="myContentClass container">
   <h2 class="card-subheading center" >Liste des étudiants</h2><br>
   <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les étudiants.</small></p><hr>
+
+  <!--filters -->
+  <div class="form-area" novalidate="novalidate" autocomplete="off">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="styled-input multi" style="height: 60px;">
+          <div>
+            <input type="text" [(ngModel)]="filterNom" data-placeholder-focus="false">
+            <label>Nom d'étudiant</label>
+          </div>
+          <div>
+            <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false">
+            <label>Promotion</label>
+          </div>
+          <div id="select-type" class="type">
+            <select name="type" [(ngModel)]="selectFiliere">
+              <option *ngFor="let filiereOfFilter of filieresOfFilter" [ngValue]="filiereOfFilter"> {{filiereOfFilter}}</option>
+            </select>
+            <label>Filière</label>
+            <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                  <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                    <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "points="231.8 32.8 221 32.8 221 22"></polyline>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 no-pad-left-10">
+        <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Renitialiser</button>
+      </div>
+    </div>
+  </div>
+
   <div class="table-responsive custom-table-responsive" >  
-    <nz-table #studentTable [nzData]="students" [nzScroll]="{ x: '1500px' }" class="table custom-table">
+    <nz-table [nzFrontPagination]="false" #studentTable [nzData]="students" [nzScroll]="{ x: '1500px' }" class="table custom-table">
         <thead>
-          <tr>
-              <th scope="col" nzWidth="10%">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th> 
+          <tr> 
               <th scope="col" nzWidth="25%">Code D'étudiant</th>
               <th scope="col" nzWidth="30%">Nom Et Prénom</th>
               <th scope="col" nzWidth="25%">Nom</th>
@@ -24,14 +55,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let student of studentTable.data; let i = index"
-              [class.active]="i == currentIndex" (click)="setActiveStudent(student, i)">
-              <th scope="row">
-                <label class="control control--checkbox">
-                  <input type="checkbox"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
+          <tr *ngFor="let student of studentTable.data | nomStudentFilter : filterNom | promotionStudentFilter :    filterPromotion | filiereStudentFilter : selectFiliere | paginate : { itemsPerPage: 6, currentPage: p }; let i = index" [class.active]="i == currentIndex" (click)="setActiveStudent(student, i)">
             <ng-container *ngIf="!edit[student.id].edit; else editStudent">                          
               <td>{{student.code_etudiant}}</td>
               <td><a href="/profile-etudiant/{{student.id}}" >{{student.nom_prenom}}</a></td>
@@ -115,6 +139,9 @@
           </tr>            
         </tbody>
     </nz-table>
+  </div>
+  <div  class="center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
 

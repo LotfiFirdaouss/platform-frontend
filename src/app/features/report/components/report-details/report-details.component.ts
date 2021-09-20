@@ -34,8 +34,8 @@ export class ReportDetailsComponent implements OnInit {
  types_rapport : String[] = ['Initiation','PFA','PFE']
  stageDisabled=false;
  Updated= false;
- Deleted= false;
  fileToUpload: File | null = null;
+ link: string;
 
    //for cities and countries
    countryList: Array<any> = [
@@ -552,6 +552,8 @@ export class ReportDetailsComponent implements OnInit {
    this.reportService.get(id)
      .subscribe(
        data => {
+          this.currentReport = data;
+          this.link=this.currentReport.fichier_rapport.toString().split('&')[0];
           //console.log(data.stage_ou_projet);
           if(!data.stage_ou_projet){
             //projet
@@ -609,21 +611,6 @@ export class ReportDetailsComponent implements OnInit {
          console.log(response);
          this.Updated=true;
          this.hideSpinner=true;
-       },
-       error => {
-         console.log(error);
-       });
- }
-
- deleteReport(): void {
-  this.hideSpinner=false;
-   this.reportService.delete(this.currentReport.id)
-     .subscribe(
-       response => {
-         console.log(response);
-         this.Deleted=true;
-         this.hideSpinner=true;
-         //this.router.navigate(['/reports']);
        },
        error => {
          console.log(error);

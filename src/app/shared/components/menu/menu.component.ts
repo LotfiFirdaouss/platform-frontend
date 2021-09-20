@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   myDropdownInsertion="myDropdownInsertion";
   myDropdownProf="myDropdownProf";
   myDropdownEtudiant="myDropdownEtudiant";
+  myDropdownStats="myDropdownStats";
 
   isLoggedIn = false;
   currentUser!: ReturnedUser;

@@ -1,4 +1,4 @@
-<div class="container contact-form myContentClass" *ngIf="currentReport.id && !Updated && !Deleted">
+<div class="container contact-form myContentClass" *ngIf="currentReport.id && !Updated">
    <form method="post" #reportForm="ngForm">
        <h3>Veuillez renseigner les nouvelles informations relatives à  votre stage/projet :</h3>
            <hr> 
@@ -303,9 +303,8 @@
                Veuillez vérifier que tout les champs sont bien remplies ! 
            </div> 
            <div class="row" style="margin-top: 30px;">
-             <div class="col-4"></div>
-             <div class="col-4 "><button class="btnContact" (click)="deleteReport()">Delete</button></div>
-             <div class="col-4 " id="submitBtnDiv" 
+             <div class="col-6"></div>
+             <div class="col-6 " id="submitBtnDiv" 
              style="display:inline-block; position:relative; padding-bottom: 0%;"
              (click)="ValidityWarn()">
                <button 
@@ -343,15 +342,3 @@
     <br/><br/><br/><br/><br/>
 </div>
 
-<div class="container contact-form" *ngIf="Deleted">
-    <br/><br/><br/><br/><br/>
-    <h4 style="text-align:center;"> Le rapport est supprimé avec succès ! </h4>
-    <br/>
-    <button class="btnContact "
-        routerLink="/rapport/etudiant/{{currentReport.fk_etudiant.id}}">
-        Retour vers mes rapports
-    </button>
-    <br/><br/><br/><br/><br/>
-</div>
-
-<app-spinner class="mySpinnerReportClass" message="" [class.hidden]="hideSpinner"></app-spinner>

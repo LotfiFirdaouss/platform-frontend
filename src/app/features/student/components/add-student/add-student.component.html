@@ -7,14 +7,14 @@
                     <div class="col">
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="student.nom" required #nom="ngModel" 
-                            class="form-control" name="nom" placeholder="Nom*" maxlength="200"  />
+                            class="form-control" name="nom" placeholder="Nom*" maxlength="30"  />
                             <span class="unit">Nom : </span>
                             <div *ngIf="nom.errors && (nom.dirty || nom.touched)" class="alert alert-danger">
                                 <div [hidden]="!nom.errors?.required">
                                     Le nom de l'étudiant est requis.
                                 </div>
                                 <div [hidden]="!nom.errors?.maxlength">
-                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
                                 </div>
                             </div>
                         </div>
@@ -22,14 +22,14 @@
                     <div class="col">
                         <div class="form-group input-box">
                             <input type="text" [(ngModel)]="student.prenom" required #prenom="ngModel" 
-                            class="form-control" name="prenom" placeholder="Prenom*" maxlength="200"  />
+                            class="form-control" name="prenom" placeholder="Prenom*" maxlength="30"  />
                             <span class="unit">Prenom : </span>
                             <div *ngIf="prenom.errors && (prenom.dirty || prenom.touched)" class="alert alert-danger">
                                 <div [hidden]="!prenom.errors?.required">
                                     Le prenom d'étudiant est requis.
                                 </div>
                                 <div [hidden]="!prenom.errors?.maxlength">
-                                    Ce champ ne peut pas comporter plus de 200 caractères.
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
                                 </div>
                             </div>
                         </div>
@@ -55,8 +55,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <select class="custom-select form-control" name="filiere" required
-                              [(ngModel)]="student.filiere" #filiere="ngModel">
+                            <select class="custom-select form-control" name="filiere" 
+                              [(ngModel)]="student.filiere" #filiere="ngModel" pattern="^[A-Z]{0,4}$">
                               <option *ngFor="let filiere of filieres" [ngValue]="filiere">
                                 {{ filiere }}
                               </option>
