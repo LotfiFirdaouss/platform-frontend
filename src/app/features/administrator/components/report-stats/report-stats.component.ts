@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExportService } from 'src/app/features/administrator/services/export.service';
-import { Report } from '../../models/report';
-import { ReportService } from '../../services/report.service';
+import { Report } from '../../../report/models/report';
+import { ReportService } from '../../../report/services/report.service';
 
 @Component({
   selector: 'app-report-stats',

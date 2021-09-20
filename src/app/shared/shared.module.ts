@@ -56,7 +56,7 @@ import { PosteInsertionFilterPipe } from '../features/insertion/pipes/poste-inse
 import { UnivInsertionFilterPipe } from '../features/insertion/pipes/univ-insertion-filter.pipe';
 import { NatFormationInsertionFilterPipe } from '../features/insertion/pipes/nat-formation-insertion-filter.pipe';
 import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/intit-formation-insertion-filter.pipe';
-import { ReportStatsComponent } from '../features/report/components/report-stats/report-stats.component';
+import { ReportStatsComponent } from '../features/administrator/components/report-stats/report-stats.component';
 import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
 import { ExportService } from '../features/administrator/services/export.service';
 
