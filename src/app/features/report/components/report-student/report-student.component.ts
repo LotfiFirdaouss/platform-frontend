@@ -40,9 +40,15 @@ export class ReportStudentComponent implements OnInit {
       this.user_id = this.currentUser.id;
       //console.log("current User id:",this.user_id)
     }  
-     var student_id=this.route.snapshot.params.etudiant;
-     this.getReport(student_id);
-     this.getStudent(student_id);
+     var student_id;
+     this.route.params.subscribe(
+      params => {
+        student_id=this.route.snapshot.params.etudiant;
+        this.getReport(student_id);
+        this.getStudent(student_id);
+      }
+    );
+     
    }
 
    getStudent(id_etudiant: number): void {

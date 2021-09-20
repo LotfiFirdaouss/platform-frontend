@@ -70,7 +70,7 @@ export class ReportInfoComponent implements OnInit {
             data => {
               
               this.currentReport = data;
-              console.log(data);
+              //console.log(data);
               if(data.fk_etudiant.id == this.currentStudent.id){
                 this.notHidden=true;
               }
