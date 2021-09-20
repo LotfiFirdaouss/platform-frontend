@@ -6,7 +6,7 @@ import { StudGuard } from 'src/app/auth/guards/stud.guard';
 import { AddReportComponent } from './components/add-report/add-report.component';
 import { ReportDetailsComponent } from './components/report-details/report-details.component';
 import { ReportInfoComponent } from './components/report-info/report-info.component';
-import { ReportStatsComponent } from './components/report-stats/report-stats.component';
+import { ReportStatsComponent } from '../administrator/components/report-stats/report-stats.component';
 import { ReportStudentComponent } from './components/report-student/report-student.component';
 import { ReportsListComponent } from './components/reports-list/reports-list.component';
 
@@ -14,7 +14,6 @@ import { ReportsListComponent } from './components/reports-list/reports-list.com
 const routes: Routes = [
   { path: '', component: ReportsListComponent,canActivate : [AuthGuard] },
   { path: 'ajouter' , component: AddReportComponent,canActivate : [AuthGuard, StudGuard]},
-  { path: 'stats' , component: ReportStatsComponent,canActivate : [AuthGuard, AdminGuard]},
   { path: ':id' , component: ReportDetailsComponent,canActivate : [AuthGuard]},
   { path: 'info/:id', component: ReportInfoComponent,canActivate : [AuthGuard]},
   { path: 'etudiant/:etudiant', component:ReportStudentComponent,canActivate : [AuthGuard]},

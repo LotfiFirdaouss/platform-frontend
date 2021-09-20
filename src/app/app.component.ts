@@ -88,7 +88,7 @@ export class AppComponent implements OnInit{
           this.getStudentUser(this.currentUser.id, url);
         }else if( url == "/profile"){
           id = "profileId";
-        }else if( url == "/rapport/stats"){
+        }else if( url.includes("/admin/") ){
           id = "statsId";
         }else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
           this.getStudent(this.currentUser.id, url);
@@ -187,12 +187,12 @@ export class AppComponent implements OnInit{
             console.log(this.currentStudent.id)
             if(url == "/profile-etudiant/".concat(this.currentStudent.id.toString())){
               id = "profileId";
-              console.log("isStudentOwner")
+              // console.log("isStudentOwner")
               this.router.navigate(['/profile']);
             }
             else{
               id = "homeId";
-              console.log("llll")
+              // console.log("llll")
             }
             console.log(id)
             activeLink = <HTMLLIElement> document.getElementsByClassName("active")[0];
