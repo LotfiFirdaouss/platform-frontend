@@ -4,10 +4,13 @@ import { AuthGuard } from "src/app/auth/guards/auth.guard";
 import { AdminGuard } from "src/app/auth/guards/admin.guard";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormManagementComponent } from "./components/form-management/form-management.component";
+import { ReportStatsComponent } from "./components/report-stats/report-stats.component";
 
 const routes: Routes = [
-  { path: 'gestionForm' , component: FormManagementComponent,canActivate : [AuthGuard]},
   { path: 'dashboard', component: DashboardComponent,canActivate : [AuthGuard, AdminGuard] },
+  { path: 'gestionForm' , component: FormManagementComponent,canActivate : [AuthGuard,AdminGuard]},
+  { path: 'stats' , component: ReportStatsComponent,canActivate : [AuthGuard, AdminGuard]},
+
 ];
 
 @NgModule({

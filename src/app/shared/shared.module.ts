@@ -67,6 +67,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { ChartsModule } from 'ng2-charts';
 import { DashboardComponent } from '../features/administrator/components/dashboard/dashboard.component';
 import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/promotion-filter.pipe';
+import { ReportStatsComponent } from '../features/administrator/components/report-stats/report-stats.component';
 import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
 import { ExportService } from '../features/administrator/services/export.service';
 
