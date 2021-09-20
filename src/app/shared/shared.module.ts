@@ -84,7 +84,7 @@ import { ExportService } from '../features/administrator/services/export.service
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
-    DashboardComponent,
+    
 
     //insertions
     InsertionsListComponent,
@@ -117,6 +117,8 @@ import { ExportService } from '../features/administrator/services/export.service
 
     //Admin components
     FormManagementComponent,
+    DashboardComponent,
+    ReportStatsComponent,
     
     LoginComponent,
     RequestResetComponent,
@@ -195,6 +197,11 @@ import { ExportService } from '../features/administrator/services/export.service
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
+
+    //Admin components
+    FormManagementComponent,
+    DashboardComponent,
+    ReportStatsComponent,
     
     NzTableModule,
     NzPopoverModule,
