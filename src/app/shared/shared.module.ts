@@ -62,9 +62,12 @@ import { FiliereStudentFilterPipe } from '../features/student/pipes/filiere-filt
 import { NomProfFilterPipe } from '../features/professor/pipes/nom-prof-filter.pipe';
 import { DepartementProfFilterPipe } from '../features/professor/pipes/departement-prof-filter.pipe';
 import { ExportService } from '../core/services/export.service';
-import { ReportStatsComponent } from '../features/report/components/report-stats/report-stats.component';
-import { DashboardComponent } from '../features/report/components/dashboard/dashboard.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { ChartsModule } from 'ng2-charts';
+import { DashboardComponent } from '../features/administrator/components/dashboard/dashboard.component';
+import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/promotion-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,6 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
-    ReportStatsComponent,
     DashboardComponent,
 
     //insertions
@@ -106,6 +108,10 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     //professorsFilters
     NomProfFilterPipe,
     DepartementProfFilterPipe,
+
+    //dashboardFilters
+    PromotionFilterDashboardPipe,
+
 
     LoginComponent,
     RequestResetComponent,
@@ -149,7 +155,10 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     NzTableModule,
     NzPopoverModule,
     NzTabsModule,
+    NzGridModule,
+    NzSpinModule,
     NgxPaginationModule, 
+    ChartsModule,
   ],
   exports: [
     HeaderComponent,
@@ -164,7 +173,6 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
-    ReportStatsComponent,
     DashboardComponent,
 
 
@@ -187,6 +195,8 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
     NzTableModule,
     NzPopoverModule,
     NzTabsModule,
+    NzGridModule,
+    NzSpinModule,
 
     CommonModule,
     RouterModule,
@@ -196,6 +206,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
   providers: [
     ExportService,
     HttpClientModule,
+    PromotionFilterDashboardPipe
        
   ]
 })

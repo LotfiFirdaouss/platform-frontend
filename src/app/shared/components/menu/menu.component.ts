@@ -76,7 +76,7 @@ export class MenuComponent implements OnInit {
       this.menuActiveLinkFuncFromRoute("gestionEtudId");
     }else if(this.currentRoute == "/gestionForm"){
       this.menuActiveLinkFuncFromRoute("formId");
-    }else if(this.currentRoute == "/rapport/stats" || this.currentRoute == "/rapport/dashboard"){
+    }else if(this.currentRoute == "/admin/"){
       this.menuActiveLinkFuncFromRoute("statsId");
     }
     
