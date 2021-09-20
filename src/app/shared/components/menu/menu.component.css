@@ -129,6 +129,9 @@ aside {
 .icon-stats:before {
   content: "\e6c4";
 }
+.icon-dashboard:before {
+  content: "\f0e4";
+}
 
 
 
