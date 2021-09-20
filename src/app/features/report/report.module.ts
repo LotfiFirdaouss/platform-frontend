@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { ReportRoutingModule } from './report-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
+
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     ReportRoutingModule,
     SharedModule

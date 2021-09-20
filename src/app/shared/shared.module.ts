@@ -56,6 +56,17 @@ import { PosteInsertionFilterPipe } from '../features/insertion/pipes/poste-inse
 import { UnivInsertionFilterPipe } from '../features/insertion/pipes/univ-insertion-filter.pipe';
 import { NatFormationInsertionFilterPipe } from '../features/insertion/pipes/nat-formation-insertion-filter.pipe';
 import { IntitFormationInsertionFilterPipe } from '../features/insertion/pipes/intit-formation-insertion-filter.pipe';
+import { NomStudentFilterPipe } from '../features/student/pipes/nom-filter.pipe';
+import { PromotionStudentFilterPipe } from '../features/student/pipes/promotion-filter.pipe';
+import { FiliereStudentFilterPipe } from '../features/student/pipes/filiere-filter.pipe';
+import { NomProfFilterPipe } from '../features/professor/pipes/nom-prof-filter.pipe';
+import { DepartementProfFilterPipe } from '../features/professor/pipes/departement-prof-filter.pipe';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { ChartsModule } from 'ng2-charts';
+import { DashboardComponent } from '../features/administrator/components/dashboard/dashboard.component';
+import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/promotion-filter.pipe';
 import { ReportStatsComponent } from '../features/administrator/components/report-stats/report-stats.component';
 import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
 import { ExportService } from '../features/administrator/services/export.service';
@@ -73,7 +84,7 @@ import { ExportService } from '../features/administrator/services/export.service
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
-    ReportStatsComponent,
+    
 
     //insertions
     InsertionsListComponent,
@@ -87,19 +98,33 @@ import { ExportService } from '../features/administrator/services/export.service
     AddStudentComponent,
     StudentDetailsComponent,
 
+    //studentsFilters
+    NomStudentFilterPipe,
+    PromotionStudentFilterPipe,
+    FiliereStudentFilterPipe,
+
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
 
+    //professorsFilters
+    NomProfFilterPipe,
+    DepartementProfFilterPipe,
+
+    //dashboardFilters
+    PromotionFilterDashboardPipe,
+
+
     //Admin components
     FormManagementComponent,
+    DashboardComponent,
+    ReportStatsComponent,
     
     LoginComponent,
     RequestResetComponent,
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
-    ReportStatsComponent,
 
     //Report filters
     ReportFilterPipe,
@@ -136,7 +161,11 @@ import { ExportService } from '../features/administrator/services/export.service
 
     NzTableModule,
     NzPopoverModule,
+    NzTabsModule,
+    NzGridModule,
+    NzSpinModule,
     NgxPaginationModule, 
+    ChartsModule,
   ],
   exports: [
     HeaderComponent,
@@ -151,7 +180,6 @@ import { ExportService } from '../features/administrator/services/export.service
     ReportDetailsComponent,
     ReportInfoComponent,
     ReportStudentComponent,
-    ReportStatsComponent,
 
 
     //insertions
@@ -169,9 +197,17 @@ import { ExportService } from '../features/administrator/services/export.service
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
+
+    //Admin components
+    FormManagementComponent,
+    DashboardComponent,
+    ReportStatsComponent,
     
     NzTableModule,
     NzPopoverModule,
+    NzTabsModule,
+    NzGridModule,
+    NzSpinModule,
 
     CommonModule,
     RouterModule,
@@ -181,6 +217,7 @@ import { ExportService } from '../features/administrator/services/export.service
   providers: [
     ExportService,
     HttpClientModule,
+    PromotionFilterDashboardPipe
        
   ]
 })

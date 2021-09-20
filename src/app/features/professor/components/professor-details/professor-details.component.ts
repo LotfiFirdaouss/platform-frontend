@@ -14,6 +14,14 @@ export class ProfessorDetailsComponent implements OnInit {
   currentProfessor?: Professor;
   currentIndex = -1;
   departements=['GI','GM','GE'];
+  departementsOfFilter=['GI','GM','GE'];
+
+  //filter inputs
+  filterNom: '';
+  selectDepartement:'';
+
+  //for pagination
+  p: number = 1;
 
   constructor(private professorService : ProfessorService) { }
 
@@ -42,16 +50,27 @@ export class ProfessorDetailsComponent implements OnInit {
     this.currentIndex = index;
   }
 
+  renitialiserFiltres(){
+    this.filterNom= '';
+    this.selectDepartement='';
+  }
+
   deleteProfessor(id:number): void {
-    this.professorService.delete(id)
-     .subscribe(
+    const index = this.professors.findIndex(item => item.id === id);
+    var idUser:number;
+    if(this.professors[index].fk_user==null){
+      this.professorService.delete(id).subscribe(
        response => {
          this.retrieveProfessor();
-       },
-       error => {
-         console.log(error);
        });
-    
+    }
+    else{
+      idUser=this.professors[index].fk_user;
+      this.professorService.deleteUser(idUser).subscribe(
+        response => {
+          this.retrieveProfessor();
+        });
+    }    
   }
 
   startEditProfessor(id:number): void {
@@ -79,7 +98,7 @@ export class ProfessorDetailsComponent implements OnInit {
       email_perso:this.professors[index].email_perso,
       email_pro:this.professors[index].email_pro,
       telephone:this.professors[index].telephone,
-      filiere:this.professors[index].departement,
+      departement:this.professors[index].departement,
       fk_user:idUser,
     };
     this.professorService.update(this.professors[index].id, data)

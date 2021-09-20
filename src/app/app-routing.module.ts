@@ -12,8 +12,6 @@ import { ProfileEtudiantComponent } from './features/student/components/profile-
 import { AdminGuard } from './auth/guards/admin.guard';
 import { RequestResetComponent } from './auth/components/request-reset/request-reset.component';
 import { ResponseResetComponent } from './auth/components/response-reset/response-reset.component';
-import { ReportStatsComponent } from './features/administrator/components/report-stats/report-stats.component';
-import { FormManagementComponent } from './features/administrator/components/form-management/form-management.component';
 
 const routes: Routes = [
 
@@ -29,10 +27,11 @@ const routes: Routes = [
   //protected routes: connected
   { path :'profile' , component : ProfileComponent, canActivate : [AuthGuard]},
   { path :'profile-etudiant/:id' , component : ProfileEtudiantComponent, canActivate : [AuthGuard]}, //id_etudiant
+  
   { 
-    path: 'home' ,  
-    loadChildren: () => import('./features/report/report.module').then(mod => mod.ReportModule),
-    canActivate : [AuthGuard]
+    path: 'admin' ,  
+    loadChildren: () => import('./features/administrator/administrator.module').then(mod => mod.AdministratorModule),
+    canActivate : [AdminGuard]
   },
 
   //reports
@@ -62,17 +61,6 @@ const routes: Routes = [
     loadChildren: () => import('./features/professor/professor.module').then(mod => mod.ProfessorModule),
     canActivate : [AdminGuard]
   },
-
-  //Admin
-  { 
-    path: 'admin' ,  
-    loadChildren: () => import('./features/administrator/administrator.module').then(mod => mod.AdministratorModule),
-    canActivate : [AdminGuard]
-  },
-
-  //print Excel
-  //{ path: 'stats', component: ReportStatsComponent,canActivate : [AuthGuard, AdminGuard] },
-  //{ path: 'form', component: FormManagementComponent,canActivate : [AuthGuard, AdminGuard] },
 
 
   //temporary routes (just to visualize the components)

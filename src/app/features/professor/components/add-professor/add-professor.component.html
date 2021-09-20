@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <select class="custom-select form-control" name="departement" required
+                            <select class="custom-select form-control" name="departement" pattern="^[A-Z]{0,4}$"
                               [(ngModel)]="professor.departement" #departement="ngModel">
                               <option *ngFor="let departement of departements" [ngValue]="departement">
                                 {{ departement }}
