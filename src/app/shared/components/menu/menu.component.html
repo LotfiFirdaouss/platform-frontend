@@ -58,14 +58,9 @@
           </div>
 
           <li [class.hidden]="!isAdministrator"><a id="formId" routerLink="/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
-          <div>
-            <li [class.hidden]="!isAdministrator"><a  id="statsId" (click)="dropDownFunction(myDropdownStats)" class="dropbtn"><span class="icon-stats mr-3"></span>Analyses et statistiques</a></li>
-            <div id="myDropdownStats" class="dropdown-content">
-              <a routerLink="/admin/dashboard">Dashboard</a>
-              <a routerLink="/admin/stats">statistiques</a> <!-- path: "insertion-etudiant/:etudiant" -->
-            </div>
-          </div>      
-
+          <li [class.hidden]="!isAdministrator"><a  id="statsId" routerLink="/admin/stats"><span class="icon-stats mr-3"></span>Statistiques</a></li>
+          <li [class.hidden]="!isAdministrator"><a  id="dashId" routerLink="/admin/dashboard"><span class="icon-dashboard mr-3"></span>Dashboard</a></li>
+               
         </ul>
       </div>
   </div>
