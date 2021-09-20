@@ -90,8 +90,10 @@ export class AppComponent implements OnInit{
           id = "profileId";
         }else if( url == "/admin/gestionForm"){
           id = "formId";
-        }else if( url.includes("/admin/") ){
+        }else if( url == "/admin/stats" ){
           id = "statsId";
+        }else if( url == "/admin/dashboard" ){
+          id = "dashId";
         }else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
           this.getStudent(this.currentUser.id, url);
           // id = "rapportsId";  OR  id = "homeId"; depending on the user viewing it
