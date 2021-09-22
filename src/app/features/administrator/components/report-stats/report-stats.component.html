@@ -108,7 +108,8 @@
               <th scope="col" > {{ report.date_fin_stage | date: 'dd/MM/yyyy' }} </th>
               <th scope="col" > {{ report.societe_stage }} </th>
               <th scope="col"> {{ report.rapport_confidentiel ? "oui" : "non" }} </th>
-              <th scope="col" class="classLink"> <a href="{{ report.fichier_rapport.toString().split('&')[0] }}"> {{ report.fichier_rapport.toString().split('&')[0] }} </a></th>
+              <!-- <th scope="col" class="classLink"> <a href="{{ report.fichier_rapport.toString().split('&')[0] }}"> {{ report.fichier_rapport.toString().split('&')[0] }} </a></th> -->
+              <th scope="col" class="classLink"> <a href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> {{ report.fichier_rapport.toString().split('/')[2] }} </a></th>
             </tr>
           </tbody>
 
