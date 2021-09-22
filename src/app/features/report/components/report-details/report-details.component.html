@@ -153,9 +153,9 @@
                 <div class="form-group input-box">
                     <div id="otherCountry" [class.hidden]="otherCountryHidden">
                         <input type="text" [(ngModel)]="autrePays_societe"
-                        class="form-control nature" name="autrePays_societe" placeholder="Pays*" [required]="!otherCountryHidden" 
+                        class="form-control nature" name="autrePays_societe" placeholder="Pays*" [required]="!stageDisabled && !otherCountryHidden" 
                         [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
-                        <span class="unit">Autre pays : </span>
+                        <span class="unit">Autre pays : </span> 
                         <div *ngIf="autrePays_societe.errors && (autrePays_societe.dirty || autrePays_societe.touched)" class="alert alert-danger">
                             <div [hidden]="!autrePays_societe.errors?.required">
                                 Le pays du stage est requis.

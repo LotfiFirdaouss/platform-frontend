@@ -28,7 +28,7 @@ export class ReportDetailsComponent implements OnInit {
    rapport_confidentiel: false,
    fk_etudiant: 1,
    type_rapport:'Initiation',
-   resume_rapport:''
+   resume_rapport:'',
  };
  natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
  types_rapport : String[] = ['Initiation','PFA','PFE']
@@ -553,26 +553,30 @@ export class ReportDetailsComponent implements OnInit {
      .subscribe(
        data => {
           this.currentReport = data;
+          console.log(this.currentReport);
           this.link=this.currentReport.fichier_rapport.toString().split('&')[0];
           //console.log(data.stage_ou_projet);
           if(!data.stage_ou_projet){
             //projet
+            console.log("projet")
             this.stageDisabled=true;
-            this.currentReport = data;
           }else{
             //Stage
-            this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
+            console.log("stage")
             this.stageDisabled=false;
-            this.currentReport = data;
+            console.log(data.pays_societe)
             //to handle autre pays/ville
             if(this.currentReport.pays_societe!= "Maroc" && this.currentReport.pays_societe!="France" && this.currentReport.pays_societe!=""){
               this.autrePays_societe= this.currentReport.pays_societe?.toString();
               this.autreVille_societe= this.currentReport.ville_societe?.toString();
               this.currentReport.pays_societe="Autre";
               this.changeCountry("Autre");
+            }else{
+              this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
             }
+            
           }
-         console.log(this.currentReport);
+         //console.log(this.currentReport);
        },
        error => {
          console.log(error);

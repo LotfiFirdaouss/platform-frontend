@@ -47,7 +47,13 @@
               <td style="width: 70%;" *ngIf="currentReport.resume_rapport != null"> {{ currentReport.resume_rapport }} </td>
               <td style="width: 70%;" *ngIf="currentReport.resume_rapport == null"> --- </td>
             </tr>
-            
+            <tr>
+              <td> <b>Validé par admin</b>
+                <small class="d-block">Necessaire pour qu'il soit disponible sur la platforme, et puis validé par l'encadrant (si pfe)</small>
+              </td>
+              <td> {{ currentReport.valid_admin ? "oui" : "non" }} 
+              </td>
+            </tr>
           </tbody>
         </table>
         

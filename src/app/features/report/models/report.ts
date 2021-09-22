@@ -17,4 +17,5 @@ export class Report {
     fk_etudiant?:any;
     type_rapport?:String;
     resume_rapport?:String;
+    valid_admin?:boolean;
     }
