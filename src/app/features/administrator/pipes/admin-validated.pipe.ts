@@ -15,8 +15,17 @@ export class AdminValidatedPipe implements PipeTransform {
     }
 
     return reports.filter( report => { 
-      return report.valid_admin == valid_admin;
+      return this.reportValidatedOrNotByAdmin(report, valid_admin);
     });
+  }
+
+  reportValidatedOrNotByAdmin(report: Report, valid_admin){
+    if( valid_admin == "V" && report.valid_admin ){
+      return true;
+    }else if( valid_admin == "NV" && !report.valid_admin ){
+      return true;
+    }
+    return false;
   }
 
 }

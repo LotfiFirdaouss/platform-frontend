@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -589,7 +590,7 @@ export class ReportDetailsComponent implements OnInit {
     this.currentReport.pays_societe = this.autrePays_societe;
     this.currentReport.ville_societe = this.autreVille_societe;
   }
-  const data = {
+  let data = {
     stage_ou_projet: this.currentReport.stage_ou_projet,
     date_debut_stage: this.currentReport.date_debut_stage,
     date_fin_stage: this.currentReport.date_fin_stage,
@@ -602,12 +603,21 @@ export class ReportDetailsComponent implements OnInit {
     encadrant: this.currentReport.encadrant,
     email_encadrant: this.currentReport.email_encadrant,
     telephone_encadrant: this.currentReport.telephone_encadrant,
-    fichier_rapport: (this.fileToUpload),
+    // fichier_rapport: (this.fileToUpload),
     rapport_confidentiel: this.currentReport.rapport_confidentiel,
     fk_etudiant: this.currentReport.fk_etudiant.id,
     type_rapport:this.currentReport.type_rapport,
     resume_rapport:this.currentReport.resume_rapport,
+    valid_admin:this.currentReport.valid_admin,
   };
+
+  if(this.fileToUpload!=null){
+    console.log('with file')
+    data['fichier_rapport']=this.fileToUpload;
+  }else{
+    console.log("with no file")
+  }
+  console.log("data sent to update",data)
 
    this.reportService.update(this.currentReport.id, data)
      .subscribe(
@@ -650,8 +660,6 @@ export class ReportDetailsComponent implements OnInit {
  }else{
      ValidityFormWarn.style.display="none";
  }
- }
-
- 
+ } 
 
 }

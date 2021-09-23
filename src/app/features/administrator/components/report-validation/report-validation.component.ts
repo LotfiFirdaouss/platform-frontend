@@ -27,8 +27,6 @@ export class ReportValidationComponent implements OnInit {
   selectedReportType:"";
   selectedValidatedAdmin:"";
 
-  valids= [{'name':'V','value':true},{'name':'NV','value':false}];
-
 
   constructor(private reportService : ReportService) { }
 

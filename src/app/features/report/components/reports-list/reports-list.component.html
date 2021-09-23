@@ -163,9 +163,15 @@
                         </h5>
                         
                         <div class="postcard__subtitle small"> <!-- path: 'profile-etudiant/:id' -->
-                        <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
+                        <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ capitalizeFirstLetter(report.fk_etudiant.prenom) }} {{ capitalizeFirstLetter(report.fk_etudiant.nom) }}</a></span>
                         <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_fin_stage | date: 'dd/MM/yyyy' }}  </time>
                         </div>
+
+                        <hr width="15%" align="left">
+                        <div> <small>
+                            {{ report.resume_rapport }}</small>
+                        </div>
+
                         <div class="postcard__bar"></div>
                         <!-- <ul class="postcard__tagbox">
                             <li class="tag__item play blue">
@@ -178,14 +184,14 @@
                         <div *ngIf="report.stage_ou_projet">
                             <div>
                                 <label><strong>Société de stage : </strong></label>
-                                {{ report.societe_stage }} <span *ngIf="report.secteur_societe != null">( {{ report.secteur_societe }} )</span>
+                                {{ capitalizeFirstLetter(report.societe_stage) }} <span *ngIf="report.secteur_societe != null">( {{ capitalizeFirstLetter(report.secteur_societe) }} )</span>
                             </div>
                             <div *ngIf="report.ville_societe != null">
                                 <label><strong>Ville de stage : </strong></label>
-                                {{ report.ville_societe }} <span *ngIf="report.pays_societe != null">( {{ report.pays_societe }} )</span>
+                                {{ capitalizeFirstLetter(report.ville_societe) }} <span *ngIf="report.pays_societe != null">( {{ capitalizeFirstLetter(report.pays_societe) }} )</span>
                             </div>
                         </div>
-                        <hr>
+                        <br>
                         <div class="row">
                             <div class="col-6"></div>
                             <div class="col-3" class="classLink" *ngIf=" (report.fk_etudiant.id==isStudent) || isAdministrator"><a routerLink="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>

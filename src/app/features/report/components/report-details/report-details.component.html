@@ -250,12 +250,12 @@
                </div>
            </div>
            <hr>
-           <span style="font-size:large;"> <I>Le nv rapport du stage/projet :<small> (Ancien fichier : <a href="{{ currentReport.fichier_rapport }}">lien</a> )</small> </I> </span>
+           <span style="font-size:large;"> <I>Le nv rapport du stage/projet :<small> (Ancien fichier : <a target="_blank" href="{{ currentReport.fichier_rapport }}">lien</a> )</small> </I> </span>
            <div class="row" style="margin-top: 25px; ">
             <div class="col">
                    <div class="form-group input-box">
                        <input type="file" [(ngModel)]="file" #fichier_rapport="ngModel"
-                       class="form-control" name="fichier_rapport" placeholder="lien du rapport*" required
+                       class="form-control" name="fichier_rapport" placeholder="lien du rapport*"
                        (change)="handleFileInput($event.target.files)" style="padding-top:3px; padding-bottom: 3px;"/>
                        <span class="unit">PDF du rapport: </span>
                        <div *ngIf="fileSizeError || fileTypeError" class="alert alert-danger">

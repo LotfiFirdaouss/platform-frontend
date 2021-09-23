@@ -10,9 +10,8 @@
             <div class="styled-input multi" style="height: 60px;">
               <div id="select-type" class="type">
                 <select name="type" [(ngModel)]="selectedValidatedAdmin">
-                  <option *ngFor="let valid of valids" [ngValue]="valid.value" selected>
-                    {{ valid.name }}
-                </option>
+                  <option value="V">V</option>
+                  <option value="NV">NV</option>
                 </select>
                 <label>Validé par admin</label>
                 <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"

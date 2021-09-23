@@ -78,18 +78,25 @@ export class ReportService {
     if(data.telephone_encadrant){
       formData.append('telephone_encadrant',data.telephone_encadrant);
     }
-    if(data.fichier_rapport){
+    console.log("nn")
+    if(data.fichier_rapport!=null){
+      console.log("heeere fichier rapport")
       formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
     }
-    if(data.resume_rapport){
-      formData.append('fichier_rapport',data.resume_rapport);
+    if(data.resume_rapport!=null){
+      console.log("resume")
+      formData.append('resume_rapport',data.resume_rapport);
+    }
+    if(data.valid_admin){
+      formData.append('valid_admin',data.valid_admin);
+    }
+    if(data.details_add_societe){
+      formData.append('details_add_societe',data.details_add_societe);
     }
     formData.append('intitule_stage',data.intitule_stage);
-    formData.append('details_add_societe',data.details_add_societe);
     formData.append('rapport_confidentiel',data.rapport_confidentiel);
     formData.append('fk_etudiant',data.fk_etudiant);
     formData.append('type_rapport',data.type_rapport);
-    formData.append('valid_admin',data.valid_admin);
 
     return this.http.put(`${baseUrl}/${id}`, formData);
   }
