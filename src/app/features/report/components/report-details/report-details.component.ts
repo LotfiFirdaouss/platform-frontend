@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -28,7 +29,7 @@ export class ReportDetailsComponent implements OnInit {
    rapport_confidentiel: false,
    fk_etudiant: 1,
    type_rapport:'Initiation',
-   resume_rapport:''
+   resume_rapport:'',
  };
  natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
  types_rapport : String[] = ['Initiation','PFA','PFE']
@@ -553,26 +554,30 @@ export class ReportDetailsComponent implements OnInit {
      .subscribe(
        data => {
           this.currentReport = data;
+          console.log(this.currentReport);
           this.link=this.currentReport.fichier_rapport.toString().split('&')[0];
           //console.log(data.stage_ou_projet);
           if(!data.stage_ou_projet){
             //projet
+            console.log("projet")
             this.stageDisabled=true;
-            this.currentReport = data;
           }else{
             //Stage
-            this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
+            console.log("stage")
             this.stageDisabled=false;
-            this.currentReport = data;
+            console.log(data.pays_societe)
             //to handle autre pays/ville
             if(this.currentReport.pays_societe!= "Maroc" && this.currentReport.pays_societe!="France" && this.currentReport.pays_societe!=""){
               this.autrePays_societe= this.currentReport.pays_societe?.toString();
               this.autreVille_societe= this.currentReport.ville_societe?.toString();
               this.currentReport.pays_societe="Autre";
               this.changeCountry("Autre");
+            }else{
+              this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
             }
+            
           }
-         console.log(this.currentReport);
+         //console.log(this.currentReport);
        },
        error => {
          console.log(error);
@@ -585,7 +590,7 @@ export class ReportDetailsComponent implements OnInit {
     this.currentReport.pays_societe = this.autrePays_societe;
     this.currentReport.ville_societe = this.autreVille_societe;
   }
-  const data = {
+  let data = {
     stage_ou_projet: this.currentReport.stage_ou_projet,
     date_debut_stage: this.currentReport.date_debut_stage,
     date_fin_stage: this.currentReport.date_fin_stage,
@@ -598,12 +603,21 @@ export class ReportDetailsComponent implements OnInit {
     encadrant: this.currentReport.encadrant,
     email_encadrant: this.currentReport.email_encadrant,
     telephone_encadrant: this.currentReport.telephone_encadrant,
-    fichier_rapport: (this.fileToUpload),
+    // fichier_rapport: (this.fileToUpload),
     rapport_confidentiel: this.currentReport.rapport_confidentiel,
     fk_etudiant: this.currentReport.fk_etudiant.id,
     type_rapport:this.currentReport.type_rapport,
     resume_rapport:this.currentReport.resume_rapport,
+    valid_admin:this.currentReport.valid_admin,
   };
+
+  if(this.fileToUpload!=null){
+    console.log('with file')
+    data['fichier_rapport']=this.fileToUpload;
+  }else{
+    console.log("with no file")
+  }
+  console.log("data sent to update",data)
 
    this.reportService.update(this.currentReport.id, data)
      .subscribe(
@@ -646,8 +660,6 @@ export class ReportDetailsComponent implements OnInit {
  }else{
      ValidityFormWarn.style.display="none";
  }
- }
-
- 
+ } 
 
 }

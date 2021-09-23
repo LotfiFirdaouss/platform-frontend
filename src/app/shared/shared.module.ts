@@ -70,6 +70,8 @@ import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/pr
 import { ReportStatsComponent } from '../features/administrator/components/report-stats/report-stats.component';
 import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
 import { ExportService } from '../features/administrator/services/export.service';
+import { ReportValidationComponent } from '../features/administrator/components/report-validation/report-validation.component';
+import { AdminValidatedPipe } from '../features/administrator/pipes/admin-validated.pipe';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,7 @@ import { ExportService } from '../features/administrator/services/export.service
     FormManagementComponent,
     DashboardComponent,
     ReportStatsComponent,
+    ReportValidationComponent,
     
     LoginComponent,
     RequestResetComponent,
@@ -139,6 +142,7 @@ import { ExportService } from '../features/administrator/services/export.service
     SpinnerComponent,
     PromotionFilterPipe,
     FiliereFilterPipe,
+    AdminValidatedPipe,
 
     //insertion filters
     EtudiantFilterPipe,

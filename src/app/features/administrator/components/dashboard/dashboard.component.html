@@ -18,8 +18,8 @@
         </div> 
         </div>      
       </div>
-      <div nz-row nzJustify="space-between" style="margin-bottom:40px;">
-        <div class="card" nz-col nzSpan="9">
+      <div nz-row nzJustify="space-around" style="margin-bottom:40px;">
+        <div class="card" nz-col nzSpan="11">
           <div class="card-header"> Nombre des Stages par Filière </div>
           <div class="card-body">
             <nz-spin nzTip="Loading..." [nzSpinning]="loadingDoughnut"> 
@@ -32,22 +32,7 @@
               </canvas>
             </nz-spin>
           </div>
-        </div> 
-        
-        <div class="card" nz-col nzSpan="14">
-          <div class="card-header"> Nombre des stages par société  </div>
-          <div class="card-body">
-            <nz-spin nzTip="Loading..." [nzSpinning]="loadingLineChart1"> 
-              <canvas baseChart  height="300"
-                [datasets]="lineChartData1"
-                [labels]="lineChartLabels1"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors1"
-                [chartType]="lineChartType1"
-              ></canvas>
-            </nz-spin>
-          </div>
-        </div>     
+        </div>      
       </div>
       <div nz-row style="margin-bottom:40px;">
         <div class="card" nz-col nzFlex="auto">
@@ -60,6 +45,22 @@
                 [options]="lineChartOptions"
                 [colors]="lineChartColors2"
                 [chartType]="lineChartType2"
+              ></canvas>
+            </nz-spin>
+          </div>
+        </div>
+      </div>
+      <div nz-row style="margin-bottom:40px;">
+        <div class="card" nz-col nzFlex="auto">
+          <div class="card-header"> Nombre des stages par société  </div>
+          <div class="card-body">
+            <nz-spin nzTip="Loading..." [nzSpinning]="loadingLineChart1"> 
+              <canvas baseChart  height="300"
+                [datasets]="lineChartData1"
+                [labels]="lineChartLabels1"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors1"
+                [chartType]="lineChartType1"
               ></canvas>
             </nz-spin>
           </div>

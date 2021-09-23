@@ -31,6 +31,7 @@ export class ReportInfoComponent implements OnInit {
      fichier_rapport: null,
      rapport_confidentiel: false,
      fk_etudiant: 1,
+     valid_admin:false,
   };
    
   affiches:affiche[];

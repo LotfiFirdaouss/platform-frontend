@@ -15,10 +15,11 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
 
   getAllReportStage(): Observable<Report[]> {
-    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.stage_ou_projet===true)));
+    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.stage_ou_projet===true && report.valid_admin===true)));
   }
   getAllReportProjet(): Observable<Report[]> {
-    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.stage_ou_projet===false)));
-  }
+    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.stage_ou_projet===false && report.valid_admin===true)));
+  }  
+
   
 }

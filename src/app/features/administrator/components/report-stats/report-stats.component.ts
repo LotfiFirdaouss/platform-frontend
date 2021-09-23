@@ -36,7 +36,7 @@ export class ReportStatsComponent implements OnInit {
   }
 
   retrieveReports(): void {
-    this.reportService.getAll()
+    this.reportService.getAllReportValidatedAdmin()
       .subscribe(
         data => {
           this.reports = data;

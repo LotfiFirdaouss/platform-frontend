@@ -3,7 +3,8 @@ import { AdministratorRoutingModule } from './administrator-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     SharedModule,
     AdministratorRoutingModule,

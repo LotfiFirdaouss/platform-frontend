@@ -7,6 +7,11 @@
         <h2 class="card-subheading center" style="width: 70%;">Liste des rapports de stage de l'étudiant</h2><br>
         <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects que l'étudiant avait soumis.</small></p><hr>
     </span>
+
+    <!-- <div class="tooltip">Hover over me
+        <span class="tooltiptext">Tooltip text</span>
+    </div> -->
+
     <div  *ngFor="let report of reports; let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
@@ -23,24 +28,40 @@
                         </h5>
                         
                         <div class="postcard__subtitle small">
-                        <span *ngIf="!isStudentOwner"><i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span></span>
+                        <span *ngIf="!isStudentOwner"><i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ capitalizeFirstLetter(report.fk_etudiant.prenom) }} {{ capitalizeFirstLetter(report.fk_etudiant.nom) }}</a></span></span>
                         <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} ➜ {{ report.date_debut_stage | date: 'dd/MM/yyyy'}}  </time>
                         </div>
+
+                        <hr width="15%" align="left">
+                        <div> <small>
+                            {{ report.resume_rapport }}</small>
+                        </div>
+
                         <div class="postcard__bar"></div>
                     </div>
+
                     <div class="col-6">
+
+                        <span *ngIf="report.valid_admin" style="position:absolute; right:0;"> 
+                            <i class="iconAdminValidated fas fa-check-circle"></i> 
+                        </span>
+
+                        <span *ngIf="!report.valid_admin" style="position:absolute; right:0;"> 
+                            <i class="iconAdminNotValidated fa fa-times-circle"></i> 
+                        </span>
+
                         <br>
                         <div *ngIf="report.stage_ou_projet">
                             <div>
                                 <label><strong>Société de stage : </strong></label>
-                                {{ report.societe_stage }} <span *ngIf="report.secteur_societe != null">( {{ report.secteur_societe }} )</span>
+                                {{ capitalizeFirstLetter(report.societe_stage) }} <span *ngIf="report.secteur_societe != null">( {{ capitalizeFirstLetter(report.secteur_societe) }} )</span>
                             </div>
                             <div>
                                 <label><strong>Ville de stage : </strong></label>
-                                {{ report.ville_societe }} <span *ngIf="report.pays_societe != null">( {{ report.pays_societe }} )</span>
+                                {{ capitalizeFirstLetter(report.ville_societe) }} <span *ngIf="report.pays_societe != null">( {{ capitalizeFirstLetter(report.pays_societe) }} )</span>
                             </div>
                         </div>
-                        <hr>
+                        <br>
                         <div class="row">
                             <div class="col-6"></div>
                             <div class="col-3" class="classLink" *ngIf="isStudentOwner"><a href="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>
