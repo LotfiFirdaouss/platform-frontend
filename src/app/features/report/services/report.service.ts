@@ -44,15 +44,14 @@ export class ReportService {
     formData.append('fk_etudiant',data.fk_etudiant);
     formData.append('type_rapport',data.type_rapport);
     formData.append('resume_rapport',data.resume_rapport);
-
+    formData.append('fk_encadrant_univ',data.fk_encadrant_univ);
+    
     return this.http.post(baseUrl, formData);
   }
 
   update(id: any, data: any): Observable<any> {
     const formData: FormData = new FormData();
-    if(data.stage_ou_projet!=null){
-      formData.append('stage_ou_projet',data.stage_ou_projet);
-    }    
+    formData.append('stage_ou_projet',data.stage_ou_projet);   
     if(data.date_debut_stage){
       formData.append('date_debut_stage',data.date_debut_stage);
     }
@@ -103,7 +102,10 @@ export class ReportService {
     if(data.type_rapport){
       formData.append('type_rapport',data.type_rapport);
     }
+
+    formData.append('fk_encadrant_univ',data.fk_encadrant_univ);
     formData.append('fk_etudiant',data.fk_etudiant);
+
 
     return this.http.put(`${baseUrl}/${id}`, formData);
   }

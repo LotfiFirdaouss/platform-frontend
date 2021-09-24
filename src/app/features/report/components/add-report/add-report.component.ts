@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
 import { MyFormService } from 'src/app/features/administrator/services/my-form.service';
+import { Professor } from 'src/app/features/professor/models/professor';
+import { ProfessorService } from 'src/app/features/professor/services/professor.service';
 import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
 import { Nature } from '../../models/nature.model';
@@ -33,7 +35,8 @@ export class AddReportComponent implements OnInit {
     rapport_confidentiel: false,
     fk_etudiant: 0,
     type_rapport:'Initiation',
-    resume_rapport:'' 
+    resume_rapport:'',
+    fk_encadrant_univ:null, 
   };
 
   //to get value of student_id
@@ -47,6 +50,7 @@ export class AddReportComponent implements OnInit {
   types_rapport : String[] = ['Initiation','PFA','PFE']
   stageDisabled= false;
   fileToUpload: File | null = null;
+  professeurs : Professor[];
 
   //for cities and countries
   countryList: Array<any> = [
@@ -533,6 +537,7 @@ export class AddReportComponent implements OnInit {
   constructor(private reportService: ReportService,
     private token: TokenStorageService,
     private studentService: StudentService,
+    private professorService: ProfessorService,
     private myFormService : MyFormService) { }
 
   ngOnInit(): void {
@@ -546,6 +551,18 @@ export class AddReportComponent implements OnInit {
     //we get the value of this.canAddReport from the db (table forms)
     this.CanAddReport();
     this.cities = this.countryList.find(con => con.name == this.report.pays_societe).cities;
+    this.retreiveProfessors();
+  }
+
+  retreiveProfessors(){
+    this.professorService.getAll().subscribe(
+      data => {
+        this.professeurs = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   getStudent(id_user: number): void {
@@ -601,6 +618,7 @@ export class AddReportComponent implements OnInit {
       this.report.pays_societe = this.autrePays_societe;
       this.report.ville_societe = this.autreVille_societe;
     }
+    console.log("professeur",this.report.fk_encadrant_univ)
     const data = {
       stage_ou_projet: this.report.stage_ou_projet,
       date_debut_stage: this.report.date_debut_stage,
@@ -619,6 +637,7 @@ export class AddReportComponent implements OnInit {
       fk_etudiant: this.report.fk_etudiant,
       type_rapport:this.report.type_rapport,
       resume_rapport:this.report.resume_rapport,
+      encadrant_univ:this.report.fk_encadrant_univ,
     };
 
     this.reportService.create(data)

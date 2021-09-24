@@ -116,6 +116,7 @@ export class ReportValidationComponent implements OnInit {
     if(this.reports[index].pays_societe!=null){
       data['pays_societe']=this.reports[index].pays_societe;
     }
+
     console.log(data)
     this.reportService.update(this.reports[index].id, data)
      .subscribe(
@@ -189,7 +190,7 @@ export class ReportValidationComponent implements OnInit {
     requestData.map(report => {
       report['valid_admin']=true;
       // console.log(report)
-      this.reportService.update(report.id, {'valid_admin':true,'fk_etudiant':report.fk_etudiant.id})
+      this.reportService.update(report.id, {'valid_admin':true,'fk_etudiant':report.fk_etudiant.id,'stage_ou_projet':report.stage_ou_projet})
       .subscribe(
         response => {
           this.retrieveReports();
