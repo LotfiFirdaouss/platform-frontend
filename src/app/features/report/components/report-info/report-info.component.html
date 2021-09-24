@@ -54,8 +54,8 @@
               <td> {{ currentReport.valid_admin ? "oui" : "non" }} 
               </td>
             </tr>
-            <tr>
-              <td *ngIf="currentReport.type_rapport=='PFE'"> <b>Validé par encadrant</b>
+            <tr *ngIf="currentReport.type_rapport=='PFE'">
+              <td > <b>Validé par encadrant</b>
               </td>
               <td> {{ currentReport.valid_encadrant ? "oui" : "non" }} 
               </td>

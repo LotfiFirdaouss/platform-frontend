@@ -73,6 +73,7 @@ import { ExportService } from '../features/administrator/services/export.service
 import { ReportValidationComponent } from '../features/administrator/components/report-validation/report-validation.component';
 import { AdminValidatedPipe } from '../features/administrator/pipes/admin-validated.pipe';
 import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in.pipe';
+import { ReportProfessorValidationComponent } from '../features/professor/components/report-professor-validation/report-professor-validation.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +124,7 @@ import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in
     DashboardComponent,
     ReportStatsComponent,
     ReportValidationComponent,
+    ReportProfessorValidationComponent,
     
     LoginComponent,
     RequestResetComponent,
@@ -202,6 +204,7 @@ import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
+    ReportProfessorValidationComponent,
 
     //Admin components
     FormManagementComponent,

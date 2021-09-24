@@ -20,6 +20,15 @@ export class ReportService {
   getAllReportValidatedAdmin(): Observable<Report[]> {
     return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
   }
+  
+  getSupervizedReportsValidatedAdmin(fk_encadrant_univ: number): Observable<Report[]> {
+    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true && report.fk_encadrant_univ==fk_encadrant_univ)));
+  }
+  
+  getAllReportValidated(): Observable<Report[]> {
+    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => (report.valid_admin && report.type_rapport!='PFE') || 
+    (report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant))));
+  }
 
   get(id: any): Observable<Report> {
     return this.http.get(`${baseUrl}/${id}`);
@@ -90,6 +99,9 @@ export class ReportService {
     if(data.valid_admin!=null){
       formData.append('valid_admin',data.valid_admin);
     }
+    if(data.valid_encadrant!=null){
+      formData.append('valid_encadrant',data.valid_encadrant);
+    }
     if(data.details_add_societe){
       formData.append('details_add_societe',data.details_add_societe);
     }
@@ -102,8 +114,10 @@ export class ReportService {
     if(data.type_rapport){
       formData.append('type_rapport',data.type_rapport);
     }
+    if(data.fk_encadrant_univ){
+      formData.append('fk_encadrant_univ',data.fk_encadrant_univ);
+    }
 
-    formData.append('fk_encadrant_univ',data.fk_encadrant_univ);
     formData.append('fk_etudiant',data.fk_etudiant);
 
 

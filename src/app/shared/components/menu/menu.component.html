@@ -60,7 +60,9 @@
           <li [class.hidden]="!isAdministrator"><a id="formId" routerLink="/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
           <li [class.hidden]="!isAdministrator"><a  id="statsId" routerLink="/admin/stats"><span class="icon-stats mr-3"></span>Statistiques</a></li>
           <li [class.hidden]="!isAdministrator"><a  id="dashId" routerLink="/admin/dashboard"><span class="icon-dashboard mr-3"></span>Dashboard</a></li>
-               
+
+          <li [class.hidden]="!isProfessor"><a  id="validReportId" routerLink="/rapport/supervise"><span class="icon-report mr-3"></span>Rapports Encadrés</a></li>
+                
         </ul>
       </div>
   </div>

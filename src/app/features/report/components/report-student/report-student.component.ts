@@ -24,6 +24,10 @@ export class ReportStudentComponent implements OnInit {
    
    currentStudent !: Student;
    isStudentOwner=false; 
+   group:null;
+   isAdministrator=false;
+   isProfessor=false;
+   isStudent=false;
 
     //For spinner
     hideSpinner = false;
@@ -38,7 +42,14 @@ export class ReportStudentComponent implements OnInit {
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
       this.user_id = this.currentUser.id;
-      //console.log("current User id:",this.user_id)
+      this.group = this.currentUser.groups[0];
+      if( this.group == "Administrator"){
+        this.isAdministrator = true;
+      }else if( this.group == "Professor" ){
+        this.isProfessor = true;
+      }else{
+        this.isStudent = true;
+      }
     }  
      var student_id;
      this.route.params.subscribe(

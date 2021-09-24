@@ -94,7 +94,10 @@ export class AppComponent implements OnInit{
           id = "statsId";
         }else if( url == "/admin/dashboard" ){
           id = "dashId";
-        }else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
+        }else if( url == "/rapport/supervise" ){
+          id = "validReportId";
+        }
+        else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
           this.getStudent(this.currentUser.id, url);
           // id = "rapportsId";  OR  id = "homeId"; depending on the user viewing it
           // are they the owner student or not?

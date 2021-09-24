@@ -42,13 +42,13 @@
 
                     <div class="col-6">
 
-                        <span *ngIf="report.valid_admin" style="position:absolute; right:0;"> 
+                        <ng-container *ngIf="(report.valid_admin && report.type_rapport!='PFE') || (report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant); else notValid" style="position:absolute; right:0;"> 
                             <i class="iconAdminValidated fas fa-check-circle"></i> 
-                        </span>
+                        </ng-container>
 
-                        <span *ngIf="!report.valid_admin" style="position:absolute; right:0;"> 
+                        <ng-template #notValid style="position:absolute; right:0;"> 
                             <i class="iconAdminNotValidated fa fa-times-circle"></i> 
-                        </span>
+                        </ng-template>
 
                         <br>
                         <div *ngIf="report.stage_ou_projet">
@@ -64,7 +64,7 @@
                         <br>
                         <div class="row">
                             <div class="col-6"></div>
-                            <div class="col-3" class="classLink" *ngIf="isStudentOwner"><a href="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>
+                            <div class="col-3" class="classLink" *ngIf="isStudentOwner || isAdministrator"><a href="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="col-3" class="classLink"><a href="/rapport/info/{{ report.id }}" ><u>plus de détails</u></a></div>
                         </div>
