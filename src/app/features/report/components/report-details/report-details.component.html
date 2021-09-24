@@ -199,13 +199,13 @@
            <div class="row">
                <div class="col">
                    <div class="form-group input-box">
-                       <input type="text" [(ngModel)]="currentReport.encadrant" #nom="ngModel" name="nom"
-                       class="form-control nature" placeholder="Nom d'encadrant*" [required]="!stageDisabled" 
+                       <input type="text" [(ngModel)]="currentReport.parrain" #nom="ngModel" name="nom"
+                       class="form-control nature" placeholder="Nom du parrain*" [required]="!stageDisabled" 
                        [maxlength]="stageDisabled ? false : 200" [disabled]="stageDisabled" />
-                       <span class="unit">Nom d'encadrant: </span>
+                       <span class="unit">Nom du parrain: </span>
                        <div *ngIf="nom.errors && (nom.dirty || nom.touched)" class="alert alert-danger">
                            <div [hidden]="!nom.errors?.required">
-                               Le nom d'encadrant est requis.
+                               Le nom du parrain est requis.
                            </div>
                            <div [hidden]="!nom.errors?.maxlength">
                                Ce champ ne peut pas comporter plus de 200 caractères.
@@ -215,14 +215,14 @@
                </div>
                <div class="col">
                    <div class="form-group input-box">
-                       <input type="text" [(ngModel)]="currentReport.email_encadrant" #email="ngModel" name="email"
-                       class="form-control nature" placeholder="Email d'encadrant*" [required]="!stageDisabled"
+                       <input type="text" [(ngModel)]="currentReport.email_parrain" #email="ngModel" name="email"
+                       class="form-control nature" placeholder="Email du parrain*" [required]="!stageDisabled"
                        pattern="[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" 
                        [disabled]="stageDisabled" />
-                       <span class="unit">Email d'encadrant: </span>
+                       <span class="unit">Email du parrain: </span>
                        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
                            <div [hidden]="!email.errors?.required">
-                               L'email d'encadrant est requis.
+                               L'email du parrain est requis.
                            </div>
                            <div [hidden]="!email.errors?.pattern">
                                Veuillez entrer un email valide !
@@ -234,13 +234,13 @@
            <div class="row">
                <div class="col">
                    <div class="form-group input-box">
-                       <input type="tel" [(ngModel)]="currentReport.telephone_encadrant" #tel="ngModel" name="tel"
-                       class="form-control nature" placeholder="Tél° d'encadrant*" [required]="!stageDisabled" 
+                       <input type="tel" [(ngModel)]="currentReport.telephone_parrain" #tel="ngModel" name="tel"
+                       class="form-control nature" placeholder="Tél° du parrain*" [required]="!stageDisabled" 
                        [disabled]="stageDisabled" pattern="^\+[1-9]{1}[0-9]{3,14}$" />
-                       <span class="unit">Télephone d'encadrant: </span>
+                       <span class="unit">Télephone du parrain: </span>
                        <div *ngIf="tel.errors && (tel.dirty || tel.touched)" class="alert alert-danger">
                            <div [hidden]="!tel.errors?.required">
-                               Le numéro de téléphone d'encadrant est requis.
+                               Le numéro de téléphone du parrain est requis.
                            </div>
                            <div [hidden]="!tel.errors?.pattern">
                                Veuillez entrer un numéro de téléphone valide (Format: +...) !

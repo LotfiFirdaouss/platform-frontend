@@ -22,9 +22,9 @@ export class ReportDetailsComponent implements OnInit {
    ville_societe: '',
    pays_societe: '',
    details_add_societe: '',
-   encadrant: '',
-   email_encadrant: '',
-   telephone_encadrant: '',
+   parrain: '',
+   email_parrain: '',
+   telephone_parrain: '',
    rapport_confidentiel: false,
    fk_etudiant: 1,
    type_rapport:'Initiation',
@@ -595,9 +595,9 @@ export class ReportDetailsComponent implements OnInit {
     ville_societe: this.currentReport.ville_societe,
     pays_societe: this.currentReport.pays_societe,
     details_add_societe: this.currentReport.details_add_societe,
-    encadrant: this.currentReport.encadrant,
-    email_encadrant: this.currentReport.email_encadrant,
-    telephone_encadrant: this.currentReport.telephone_encadrant,
+    parrain: this.currentReport.parrain,
+    email_parrain: this.currentReport.email_parrain,
+    telephone_parrain: this.currentReport.telephone_parrain,
     fichier_rapport: (this.fileToUpload),
     rapport_confidentiel: this.currentReport.rapport_confidentiel,
     fk_etudiant: this.currentReport.fk_etudiant.id,
@@ -626,9 +626,9 @@ export class ReportDetailsComponent implements OnInit {
      this.currentReport.ville_societe='';
      this.currentReport.pays_societe='';
      this.currentReport.details_add_societe='';
-     this.currentReport.encadrant='';
-     this.currentReport.email_encadrant='';
-     this.currentReport.telephone_encadrant='';
+     this.currentReport.parrain='';
+     this.currentReport.email_parrain='';
+     this.currentReport.telephone_parrain='';
      this.stageDisabled=true;
    }else{
      //stage
