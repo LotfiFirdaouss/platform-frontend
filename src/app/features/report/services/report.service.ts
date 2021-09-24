@@ -50,7 +50,9 @@ export class ReportService {
 
   update(id: any, data: any): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('stage_ou_projet',data.stage_ou_projet);
+    if(data.stage_ou_projet!=null){
+      formData.append('stage_ou_projet',data.stage_ou_projet);
+    }    
     if(data.date_debut_stage){
       formData.append('date_debut_stage',data.date_debut_stage);
     }
@@ -78,25 +80,30 @@ export class ReportService {
     if(data.telephone_encadrant){
       formData.append('telephone_encadrant',data.telephone_encadrant);
     }
-    console.log("nn")
     if(data.fichier_rapport!=null){
       console.log("heeere fichier rapport")
       formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
     }
-    if(data.resume_rapport!=null){
+    if(data.resume_rapport){
       console.log("resume")
       formData.append('resume_rapport',data.resume_rapport);
     }
-    if(data.valid_admin){
+    if(data.valid_admin!=null){
       formData.append('valid_admin',data.valid_admin);
     }
     if(data.details_add_societe){
       formData.append('details_add_societe',data.details_add_societe);
     }
-    formData.append('intitule_stage',data.intitule_stage);
-    formData.append('rapport_confidentiel',data.rapport_confidentiel);
+    if(data.intitule_stage){
+      formData.append('intitule_stage',data.intitule_stage);
+    }
+    if(data.rapport_confidentiel!=null){
+      formData.append('rapport_confidentiel',data.rapport_confidentiel);
+    }
+    if(data.type_rapport){
+      formData.append('type_rapport',data.type_rapport);
+    }
     formData.append('fk_etudiant',data.fk_etudiant);
-    formData.append('type_rapport',data.type_rapport);
 
     return this.http.put(`${baseUrl}/${id}`, formData);
   }

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Nature } from 'src/app/features/report/models/nature.model';
 import { Report } from 'src/app/features/report/models/report';
+// import { PromotionFilterPipe } from 'src/app/features/report/pipes/promotion-filter.pipe';
+// import { FiliereFilterPipe } from 'src/app/features/report/pipes/filiere-filter.pipe';
+// import { ReportTypeFilterPipe } from 'src/app/features/report/pipes/report-type-filter.pipe';
+// import { AdminValidatedPipe } from 'src/app/features/administrator/pipes/admin-validated.pipe';
+import { AllFiltersInPipe } from 'src/app/features/administrator/pipes/all-filters-in.pipe';
 import { ReportService } from 'src/app/features/report/services/report.service';
 
 @Component({
@@ -27,8 +32,19 @@ export class ReportValidationComponent implements OnInit {
   selectedReportType:"";
   selectedValidatedAdmin:"";
 
+  checked = false;
+  loading = false;
+  indeterminate = false;
+  setOfCheckedId = new Set<number>();
+  listOfCurrentPageData: readonly Report[] = [];
 
-  constructor(private reportService : ReportService) { }
+
+  constructor(private reportService : ReportService,
+    // private promotionFilterPipe: PromotionFilterPipe,
+    // private filiereFilterPipe: FiliereFilterPipe,
+    // private reportTypeFilterPipe: ReportTypeFilterPipe,
+    // private adminValidatedPipe: AdminValidatedPipe
+    private allFiltersInPipe: AllFiltersInPipe ) { }
 
   ngOnInit(): void {
     this.retrieveReports();
@@ -84,7 +100,7 @@ export class ReportValidationComponent implements OnInit {
       secteur_societe:this.reports[index].secteur_societe,
       // ville_societe:this.reports[index].ville_societe,
       // pays_societe:this.reports[index].pays_societe,
-      rapport_confidentiel:this.reports[index].rapport_confidentiel,
+      rapport_confidentiel:Boolean(this.reports[index].rapport_confidentiel),
       type_rapport:this.reports[index].type_rapport,
       valid_admin:this.reports[index].valid_admin,
       // email_encadrant:this.reports[index].email_encadrant,
@@ -100,6 +116,7 @@ export class ReportValidationComponent implements OnInit {
     if(this.reports[index].pays_societe!=null){
       data['pays_societe']=this.reports[index].pays_societe;
     }
+    console.log(data)
     this.reportService.update(this.reports[index].id, data)
      .subscribe(
        response => {
@@ -121,6 +138,105 @@ export class ReportValidationComponent implements OnInit {
     this.selectFiliere='';
     this.selectedReportType='';
     this.selectedValidatedAdmin='';
+    this.onCurrentPageDataChange(this.reports);
   }
 
+  updateCheckedSet(id: number, checked: boolean): void {
+    //console.log("updaaate:",id,checked)
+    //console.log("set of checked:",this.setOfCheckedId)
+    if (checked) {
+      this.setOfCheckedId.add(id);
+    } else {
+      this.setOfCheckedId.delete(id);
+    }
+    //console.log("AFTER set of checked:",this.setOfCheckedId)
+
+  }
+
+  onCurrentPageDataChange(listOfCurrentPageData: readonly Report[]): void {
+    this.listOfCurrentPageData = listOfCurrentPageData;
+    this.refreshCheckedStatus();
+  }
+
+  refreshCheckedStatus(): void {
+    //console.log(this.lisdtOfCurrentPageData)
+    const listOfEnabledData = this.listOfCurrentPageData.filter(({ valid_admin }) => !valid_admin);
+    // const listOfEnabledData = this.listOfCurrentPageData.filter(( report ) => {
+    //   return report.fk_etudiant.promotion==this.filterPromotion;
+    // }).filter(({ valid_admin }) => !valid_admin);
+    this.checked = listOfEnabledData.every(({ id }) => this.setOfCheckedId.has(id));
+    //console.log("checked",this.checked)
+    this.indeterminate = listOfEnabledData.some(({ id }) => this.setOfCheckedId.has(id)) && !this.checked;
+  }
+
+  onItemChecked(id: number, checked: boolean): void {
+    this.updateCheckedSet(id, checked);
+    this.refreshCheckedStatus();
+  }
+
+  onAllChecked(checked: boolean): void {
+    //console.log(this.listOfCurrentPageData)
+    this.listOfCurrentPageData
+      .filter(({ valid_admin }) => !valid_admin)
+      .forEach(({ id }) => this.updateCheckedSet(id, checked));
+    this.refreshCheckedStatus();
+  }
+
+  sendRequest(): void {
+    this.loading = true;
+    const requestData = this.reports.filter(data => this.setOfCheckedId.has(data.id));
+    //console.log(requestData);
+    requestData.map(report => {
+      report['valid_admin']=true;
+      // console.log(report)
+      this.reportService.update(report.id, {'valid_admin':true,'fk_etudiant':report.fk_etudiant.id})
+      .subscribe(
+        response => {
+          this.retrieveReports();
+        },
+        error => {
+          console.log(error);
+       });
+    })
+    setTimeout(() => {
+      this.setOfCheckedId.clear();
+      this.refreshCheckedStatus();
+      this.loading = false;
+    }, 1000);
+  }
+
+  // onKeyPromotion(){
+  //   console.log("promotion",this.filterPromotion)
+  //   this.onCurrentPageDataChange(this.promotionFilterPipe.transform(this.reports,this.filterPromotion));
+  // }
+  
+  // changeFiliere(){
+  //   console.log("filiere",this.selectFiliere)
+  //   this.onCurrentPageDataChange(this.filiereFilterPipe.transform(this.reports,this.selectFiliere));
+  // }
+  
+  // changeReportType(){
+  //   console.log("report type",this.selectedReportType)
+  //   this.onCurrentPageDataChange(this.reportTypeFilterPipe.transform(this.reports,this.selectedReportType));
+  // }
+  
+  // changeValid(){
+  //   console.log("valid admin",this.selectedValidatedAdmin)
+  //   this.onCurrentPageDataChange(this.adminValidatedPipe.transform(this.reports,this.selectedValidatedAdmin));
+  // }
+
+  applyFilters(){
+    // this.retrieveReports();
+    // //this.setOfCheckedId.clear();
+    // // console.log(this.setOfCheckedId)
+    // // console.log(this.listOfCurrentPageData)
+    // console.log("promotion",this.filterPromotion)
+    // console.log("filiere",this.selectFiliere)
+    // console.log("report type",this.selectedReportType)
+    // console.log("valid admin",this.selectedValidatedAdmin)
+    // this.reports = this.allFiltersInPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.selectedValidatedAdmin,this.selectedReportType);
+    // console.log(this.reports)
+    // // console.log("filtered",filteredReports)
+    // this.onCurrentPageDataChange(this.reports);
+  }
 }

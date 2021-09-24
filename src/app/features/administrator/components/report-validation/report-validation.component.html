@@ -9,7 +9,7 @@
         <div class="col-md-10">
             <div class="styled-input multi" style="height: 60px;">
               <div id="select-type" class="type">
-                <select name="type" [(ngModel)]="selectedValidatedAdmin">
+                <select name="type" [(ngModel)]="selectedValidatedAdmin" (ngModelChange)="applyFilters()">
                   <option value="V">V</option>
                   <option value="NV">NV</option>
                 </select>
@@ -27,11 +27,11 @@
                 </svg>
               </div>
                 <div>
-                    <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false">
+                    <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false" (ngModelChange)="applyFilters()">
                     <label>Promotion</label>
                 </div>
                 <div id="select-type" class="type">
-                    <select name="type" [(ngModel)]="selectFiliere">
+                    <select name="type" [(ngModel)]="selectFiliere" (ngModelChange)="applyFilters()">
                         <!-- <option value="Tout">Tout</option> -->
                         <option value="GI">GI</option>
                         <option value="GM">GM</option>
@@ -54,7 +54,7 @@
                     </svg>
                 </div>
                 <div id="select-type" class="type">
-                    <select name="type" [(ngModel)]="selectedReportType">
+                    <select name="type" [(ngModel)]="selectedReportType" (ngModelChange)="applyFilters()">
                         <!-- <option value="Tout">Tout</option> -->
                         <option value="Initiation">Initiation</option>
                         <option value="PFA">PFA</option>
@@ -84,10 +84,28 @@
 </div>
 
 
-    <div class="table-responsive custom-table-responsive" >  
-      <nz-table #reportTable [nzFrontPagination]="false" [nzData]="reports" [nzScroll]="{ x: '1500px' }" class="table custom-table">
+    <div class="table-responsive custom-table-responsive" > 
+
+      <div class="send-request">
+        <button
+          nz-button
+          nzType="primary"
+          [disabled]="setOfCheckedId.size === 0"
+
+          (click)="sendRequest()"
+        >
+          Valider Rapports
+        </button>
+        <span> {{ setOfCheckedId.size }} rapports selectionnées</span>
+      </div>
+
+      <nz-table #reportTable [nzFrontPagination]="false" [nzData]="reports" 
+      [nzScroll]="{ x: '1500px' }"
+      (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+      class="table custom-table">
           <thead>
             <tr> 
+                <th scope="col" nzWidth="25%" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
                 <th scope="col" nzWidth="25%">Lien rapp.</th>
                 <th scope="col" nzWidth="30%">Stage/Projet</th>
                 <th scope="col" nzWidth="25%">Type rapp.</th>
@@ -114,7 +132,14 @@
             | filiereFilter : selectFiliere
             | adminValidated : selectedValidatedAdmin
             | paginate : { itemsPerPage: 10, currentPage: p } ; let i = index" [class.active]="i == currentIndex" (click)="setActiveReport(report, i)">
-              <ng-container *ngIf="!edit[report.id].edit; else editReport">
+                
+
+            <ng-container *ngIf="!edit[report.id].edit; else editReport">
+              <td
+              [nzChecked]="setOfCheckedId.has(report.id) || report.valid_admin"
+              [nzDisabled]="report.valid_admin"
+              (nzCheckedChange)="onItemChecked(report.id, $event)"
+            ></td>  
                 <td class="classLink"><a target="_blank" href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
@@ -149,7 +174,14 @@
                   </div> 
                 </td>
               </ng-container>
-              <ng-template #editReport >
+            
+            <ng-template #editReport >
+
+              <td
+              [nzChecked]="setOfCheckedId.has(report.id)"
+              [nzDisabled]="report.valid_admin"
+              (nzCheckedChange)="onItemChecked(report.id, $event)"
+            ></td> 
 
                 <td class="classLink"><a target="_blank" href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
@@ -252,10 +284,12 @@
                 <td>{{report.fk_etudiant.nom_prenom}}</td>
 
                 
-                <td>
-                    <input nz-input type="checkbox" name="rapport_confidentiel" 
+                <!-- <td>
+                    <input nz-input type="checkbox" name="valid_admin" 
                     [(ngModel)]="report.valid_admin">
-                </td>
+                </td> -->
+
+                <td>{{report.valid_admin ? "V" : "NV"}}</td>
 
 
 

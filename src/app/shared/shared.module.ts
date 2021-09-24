@@ -72,6 +72,7 @@ import { FormManagementComponent } from '../features/administrator/components/fo
 import { ExportService } from '../features/administrator/services/export.service';
 import { ReportValidationComponent } from '../features/administrator/components/report-validation/report-validation.component';
 import { AdminValidatedPipe } from '../features/administrator/pipes/admin-validated.pipe';
+import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in.pipe';
 
 @NgModule({
   declarations: [
@@ -221,7 +222,12 @@ import { AdminValidatedPipe } from '../features/administrator/pipes/admin-valida
   providers: [
     ExportService,
     HttpClientModule,
-    PromotionFilterDashboardPipe
+    PromotionFilterDashboardPipe,
+    // PromotionFilterPipe,
+    // FiliereFilterPipe,
+    // ReportTypeFilterPipe,
+    // AdminValidatedPipe,
+    AllFiltersInPipe
        
   ]
 })
