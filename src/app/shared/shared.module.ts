@@ -70,6 +70,8 @@ import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/pr
 import { ReportStatsComponent } from '../features/administrator/components/report-stats/report-stats.component';
 import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
 import { ExportService } from '../features/administrator/services/export.service';
+import { ReportJuryComponent } from '../features/professor/components/report-jury/report-jury.component';
+import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury.pipe';
 
 @NgModule({
   declarations: [
@@ -106,10 +108,12 @@ import { ExportService } from '../features/administrator/services/export.service
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
+    ReportJuryComponent,
 
     //professorsFilters
     NomProfFilterPipe,
     DepartementProfFilterPipe,
+    DateFilterJuryPipe,
 
     //dashboardFilters
     PromotionFilterDashboardPipe,
@@ -197,6 +201,8 @@ import { ExportService } from '../features/administrator/services/export.service
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
+    ReportJuryComponent,
+    
 
     //Admin components
     FormManagementComponent,

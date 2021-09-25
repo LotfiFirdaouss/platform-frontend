@@ -58,8 +58,7 @@ const routes: Routes = [
   //professors
   { 
     path: 'professeur' ,  
-    loadChildren: () => import('./features/professor/professor.module').then(mod => mod.ProfessorModule),
-    canActivate : [AdminGuard]
+    loadChildren: () => import('./features/professor/professor.module').then(mod => mod.ProfessorModule)
   },
 
 

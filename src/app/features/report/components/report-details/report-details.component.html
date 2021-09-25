@@ -299,10 +299,82 @@
                    </div>
                </div>
            </div>
+
+            <hr>
+            <span style="font-size:large;"> <I>Informations sur soutenance :</I> </span>
+                <div class="row" style="margin-top: 25px; ">
+                    <div class="col" *ngIf="jury1">
+                        <div class="form-group input-box">
+                            <select class="custom-select form-control" name="jury1" #jury1="ngModel"
+                            [(ngModel)]="alljurys[0]" required>
+                                <option *ngFor="let professor of professors" [ngValue]="professor.id">
+                                    {{ professor.nom_prenom }}
+                                </option>
+                            </select>
+                            <span class="unit" >Membre du jury : </span>
+                            <i class="fas fa-caret-down myIconList"></i>
+                            <div *ngIf="jury1.errors && (jury1.dirty || jury1.touched)" class="alert alert-danger">
+                              <div [hidden]="!jury1.errors?.required">
+                                Ce champ est requis.
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" *ngIf="jury2">
+                        <div class="form-group input-box">
+                            <select class="custom-select form-control" name="jury2" #jury2="ngModel"
+                            [(ngModel)]="alljurys[1]" required>
+                                <option *ngFor="let professor of professors" [ngValue]="professor.id">
+                                    {{ professor.nom_prenom }}
+                                </option>
+                            </select>
+                            <span class="unit" >Membre du jury : </span>
+                            <i class="fas fa-caret-down myIconList"></i>
+                            <div *ngIf="jury2.errors && (jury2.dirty || jury2.touched)" class="alert alert-danger">
+                              <div [hidden]="!jury2.errors?.required">
+                                Ce champ est requis.
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" *ngIf="jury3">
+                        <div class="form-group input-box">
+                            <select class="custom-select form-control" name="jury3" 
+                            [(ngModel)]="alljurys[2]">
+                                <option *ngFor="let professor of professors" [ngValue]="professor.id">
+                                    {{ professor.nom_prenom }}
+                                </option>
+                                <option [ngValue]="0">aucun</option>
+                            </select>
+                            <span class="unit" >Membre du jury : </span>
+                            <i class="fas fa-caret-down myIconList"></i>
+                        </div>
+                    </div>
+                    <div class="col" *ngIf="jury4">
+                        <div class="form-group input-box">
+                            <select class="custom-select form-control" name="jury4" 
+                            [(ngModel)]="alljurys[3]">
+                                <option *ngFor="let professor of professors" [ngValue]="professor.id">
+                                    {{ professor.nom_prenom }}
+                                </option>
+                                <option [ngValue]="0">aucun</option>
+                            </select>
+                            <span class="unit" >Membre du jury : </span>
+                            <i class="fas fa-caret-down myIconList"></i>
+                        </div>
+                    </div>
+                    <div class="col" *ngIf="addJury">
+                      <div class="btnContact" (click)="addJurys()">
+                        Ajouter un jury
+                      </div> 
+                    </div>
+                </div>
            <div style="display: none; color:red;" id="ValidityFormWarn" class="alert "> 
                Veuillez vérifier que tout les champs sont bien remplies ! 
            </div> 
-           <div class="row" style="margin-top: 30px;">
+           <div class="row" style="margin-top: 70px;">
              <div class="col-6"></div>
              <div class="col-6 " id="submitBtnDiv" 
              style="display:inline-block; position:relative; padding-bottom: 0%;"

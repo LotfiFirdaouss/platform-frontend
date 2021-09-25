@@ -133,6 +133,10 @@ aside {
   content: "\f0e4";
 }
 
+.icon-insert_invitation:before {
+  content: "\e24f";
+}
+
 
 
 /* Dropdown Button */

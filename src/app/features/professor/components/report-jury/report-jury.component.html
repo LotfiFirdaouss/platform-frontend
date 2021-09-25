@@ -1,0 +1,128 @@
+<div class="container myContentClass">
+  <h2 class="card-subheading center" >Liste des rapports</h2><br>
+  <p class="card-heading "><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects dans vous étiez un membre de jury.</small></p><hr>    
+    
+    
+    
+  <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
+  <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
+      <div class="row">
+          <div class="col-md-10">
+              <div class="styled-input multi" style="height: 60px;">
+                  <div>
+                      <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false">
+                      <label>Promotion</label>
+                  </div>
+                  <div>
+                      <input type="text" [(ngModel)]="dateFilter" data-placeholder-focus="false">
+                      <label>Année</label>
+                  </div>
+                  <div id="select-type" class="type">
+                      <select name="type" [(ngModel)]="selectFiliere">
+                          <!-- <option value="Tout">Tout</option> -->
+                          <option value="GI">GI</option>
+                          <option value="GM">GM</option>
+                          <option value="GE">GE(ancienne)</option>
+                          <option value="GEM">GEM</option>
+                          <option value="IAGI">IAGI</option>
+                          <option value="MSEI">MSEI</option>
+                      </select>
+                      <label>Filière</label>
+                      <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                  <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                      <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                          points="231.8 32.8 221 32.8 221 22"></polyline>
+                                  </g>
+                              </g>
+                          </g>
+                      </svg>
+                  </div>
+                  <div id="select-type" class="type">
+                      <select name="type" [(ngModel)]="selectedReportType">
+                          <!-- <option value="Tout">Tout</option> -->
+                          <option value="Initiation">Initiation</option>
+                          <option value="PFA">PFA</option>
+                          <option value="PFE">PFE</option>
+                      </select>
+                      <label>Type rapport</label>
+                      <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                  <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                      <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                          points="231.8 32.8 221 32.8 221 22"></polyline>
+                                  </g>
+                              </g>
+                          </g>
+                      </svg>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-2 no-pad-left-10">
+              <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Reinitialiser</button>
+          </div>
+      </div>
+      
+  </div>
+  <hr>
+
+  <!-- LIST OF REPORTS -------------------------------------------------------------------------------------------------------------------------->  
+  <div style="padding: 0.4%;">
+      <div #reportTable class="table-responsive custom-table-responsive">
+      
+        <nz-table [nzFrontPagination]="false" [nzData]="reports" [nzScroll]="{ x: '1500px' }" class="table custom-table" style="width: 100%;">
+          
+          <thead> 
+            <tr> 
+              <th scope="col" nzWidth="25%">Date</th>
+              <th scope="col" nzWidth="25%">Promotion</th>
+              <th scope="col" nzWidth="25%">Filière</th>
+              <th scope="col" nzWidth="25%">Type rapport</th>
+              <th scope="col" nzWidth="25%">Code étudiant</th>
+              <th scope="col" nzWidth="35%">Nom complet</th>
+              <th scope="col" nzWidth="35%">Stage/ Projet</th>
+              <th scope="col" nzWidth="35%">Intitulé rapport</th>
+              <th scope="col" nzWidth="25%">Date début</th>
+              <th scope="col" nzWidth="25%">Date fin</th>
+              <th scope="col" nzWidth="35%">Société stage</th>
+              <th scope="col" nzWidth="55%">Lien rapport</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let report of reports 
+            | reportTypeFilter : selectedReportType 
+            | promotionFilter : filterPromotion 
+            | filiereFilter : selectFiliere 
+            | dateFilterJury : dateFilter
+            | paginate : { itemsPerPage: 10, currentPage: p } ;">
+              <th scope="col"> {{ report.horodateur }} </th>
+              <th scope="col"> {{ report.fk_etudiant.promotion }} </th>
+              <th scope="col"> {{ report.fk_etudiant.filiere }} </th>
+              <th scope="col"> {{ report.type_rapport }} </th>
+              <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>
+              <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
+              <th scope="col"> {{ report.stage_ou_projet ? "Stage" : "Projet" }} </th>
+              <th scope="col"> {{ report.intitule_stage }} </th>
+              <th scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </th>
+              <th scope="col" > {{ report.date_fin_stage | date: 'dd/MM/yyyy' }} </th>
+              <th scope="col" > {{ report.societe_stage }} </th>
+              <th scope="col" class="classLink"> <a href="http://localhost:8080{{report.fichier_rapport.toString()}}"> {{report.fichier_rapport.toString().split('/')[2]}} </a> <p *ngIf="report.rapport_confidentiel" style="color:red; outline:none;"> rapport confidentiel </p></th>
+            </tr>
+          </tbody>
+
+        </nz-table>
+        
+      </div>
+  </div>
+  <br>
+  <app-spinner class="mySpinnerClass" message="" [class.hidden]="hideSpinner"></app-spinner>
+  <div  class="center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+

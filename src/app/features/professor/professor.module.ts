@@ -3,7 +3,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ProfessorRoutingModule } from './professor-routing.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [ ],
   imports: [
     ProfessorRoutingModule,
     SharedModule,

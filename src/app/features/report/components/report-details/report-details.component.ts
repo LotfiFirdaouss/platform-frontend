@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Professor } from 'src/app/features/professor/models/professor';
+import { ProfessorService } from 'src/app/features/professor/services/professor.service';
 import { Nature } from '../../models/nature.model';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
@@ -30,12 +32,17 @@ export class ReportDetailsComponent implements OnInit {
    type_rapport:'Initiation',
    resume_rapport:''
  };
+  alljurys=[];
+  jury1=true;
+  jury2=true;
+  jury3=false;
+  jury4=false;
+  addJury=true;
  natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
  types_rapport : String[] = ['Initiation','PFA','PFE']
  stageDisabled=false;
  Updated= false;
  fileToUpload: File | null = null;
- link: string;
 
    //for cities and countries
    countryList: Array<any> = [
@@ -509,12 +516,14 @@ export class ReportDetailsComponent implements OnInit {
 
   /* the form reference */
   @ViewChild('reportForm') reportForm: NgForm;
+  professors?: Professor[];
 
  constructor(private reportService: ReportService,
    private route: ActivatedRoute,
-   private router: Router) { }
+   private professorService : ProfessorService) { }
       
  ngOnInit(): void {
+  this.retrieveProfessor();
    this.getReport(this.route.snapshot.params.id); 
  }
 
@@ -553,7 +562,6 @@ export class ReportDetailsComponent implements OnInit {
      .subscribe(
        data => {
           this.currentReport = data;
-          this.link=this.currentReport.fichier_rapport.toString().split('&')[0];
           //console.log(data.stage_ou_projet);
           if(!data.stage_ou_projet){
             //projet
@@ -572,7 +580,18 @@ export class ReportDetailsComponent implements OnInit {
               this.changeCountry("Autre");
             }
           }
-         console.log(this.currentReport);
+          this.alljurys[0]=data.jurys[0];
+          this.alljurys[1]=data.jurys[1];
+          this.alljurys[2]=this.alljurys[3]=0;
+          if(data.jurys.length>=3){
+            this.alljurys[2]=data.jurys[2];
+            this.jury3=true;
+          }
+          if(data.jurys.length==4){
+            this.alljurys[3]=data.jurys[3];
+            this.jury4=true;
+            this.addJury=false;
+          }
        },
        error => {
          console.log(error);
@@ -608,9 +627,18 @@ export class ReportDetailsComponent implements OnInit {
    this.reportService.update(this.currentReport.id, data)
      .subscribe(
        response => {
-         console.log(response);
-         this.Updated=true;
-         this.hideSpinner=true;
+        const data2 = {
+          fk_etudiant: this.currentReport.fk_etudiant.id,
+          jurys:this.Jurys(),
+        }
+        this.reportService.updateJurys(response.id,data2)
+          .subscribe(
+          response => {
+            //console.log(response);
+            this.Updated = true;
+            this.hideSpinner=true;
+          }
+        );
        },
        error => {
          console.log(error);
@@ -647,6 +675,30 @@ export class ReportDetailsComponent implements OnInit {
      ValidityFormWarn.style.display="none";
  }
  }
+
+ public retrieveProfessor(): void {
+  this.professorService.getAll().subscribe( data => {this.professors = data;});
+}
+
+public addJurys(){
+  if(this.jury3===false){
+    this.jury3=true;
+  }
+  else if(this.jury3===true){
+    this.jury4=true;
+    this.addJury=false;
+  }
+}
+
+public Jurys(): Number[] {
+  let array=[];
+  for(var i = 0; i < 4; i++){ 
+    if (this.alljurys[i]!=0){
+      array.push(this.alljurys[i])
+    } 
+  }
+  return array;
+}
 
  
 
