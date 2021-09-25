@@ -3,6 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { Professor } from 'src/app/features/professor/models/professor';
+import { ProfessorService } from 'src/app/features/professor/services/professor.service';
 import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
 import { Report } from '../../models/report';
@@ -31,6 +33,8 @@ export class ReportInfoComponent implements OnInit {
      fichier_rapport: null,
      rapport_confidentiel: false,
      fk_etudiant: 1,
+     valid_admin:false,
+     fk_encadrant_univ:null,
   };
    
   affiches:affiche[];
@@ -39,12 +43,14 @@ export class ReportInfoComponent implements OnInit {
   notHidden=false;
   currentUser: ReturnedUser;
   currentStudent: Student;
+  current_encadrant_univ: Professor;
    
   constructor(private reportService: ReportService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
     private token: TokenStorageService,
-    private studentService : StudentService) { }
+    private studentService : StudentService,
+    private professorService : ProfessorService) { }
      
   ngOnInit(): void {   
     this.isLoggedIn = !!this.token.getToken();
@@ -74,6 +80,17 @@ export class ReportInfoComponent implements OnInit {
               if(data.fk_etudiant.id == this.currentStudent.id){
                 this.notHidden=true;
               }
+              if( data.type_rapport=='PFE' ){
+                this.professorService.get(data.fk_encadrant_univ).subscribe(
+                  data => {
+                    this.current_encadrant_univ=data;
+                    console.log("encadrant:",this.current_encadrant_univ);
+                  },
+                  error => {
+                    console.log(error);
+                  }
+                );
+              }
               //console.log(this.notHidden);
               this.getNature()
           });
@@ -86,6 +103,17 @@ export class ReportInfoComponent implements OnInit {
             this.currentReport = data;
             this.notHidden=true;
             this.getNature()
+            if( data.type_rapport=='PFE' ){
+              this.professorService.get(data.fk_encadrant_univ).subscribe(
+                data => {
+                  this.current_encadrant_univ=data;
+                  console.log("encadrant:",this.current_encadrant_univ);
+                },
+                error => {
+                  console.log(error);
+                }
+              );
+            }
         }
     );
   }
@@ -95,6 +123,17 @@ export class ReportInfoComponent implements OnInit {
         data => {
             this.currentReport = data;
             this.getNature()
+            if( data.type_rapport=='PFE' ){
+              this.professorService.get(data.fk_encadrant_univ).subscribe(
+                data => {
+                  this.current_encadrant_univ=data;
+                  console.log("encadrant:",this.current_encadrant_univ);
+                },
+                error => {
+                  console.log(error);
+                }
+              );
+            }
         }
     );
   }

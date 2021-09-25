@@ -1,0 +1,80 @@
+<div class="myContentClass container">
+  <h2 class="card-subheading center" >Liste des rapports encadrés</h2><br>
+  <p class="card-heading"><small>Ci-dessous vous trouverez la liste des rapports <b>(validés par l'admin)</b> des étudiants que vous encadrez, selectionner et valider pour accepter les rapports.</small></p><hr>
+ 
+  <div class="table-responsive custom-table-responsive" > 
+
+    <div class="send-request">
+        <button
+          nz-button
+          nzType="primary"
+          [disabled]="setOfCheckedId.size === 0"
+          (click)="sendRequest()"
+        >
+          Valider Rapports
+        </button>
+        <span> {{ setOfCheckedId.size }} rapports selectionés</span>
+      </div>
+      <nz-table
+        #rowSelectionTable
+        nzShowPagination
+        nzShowSizeChanger
+        [nzData]="reports"
+        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+        class="table custom-table"
+      >
+        <thead>
+          <tr>
+            <th scope="col" nzWidth="30%" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+            <th scope="col" nzWidth="35%">Etudiant</th> 
+            <th scope="col" nzWidth="35%">Code étudiant</th>
+            <th scope="col" nzWidth="35%">promotion</th>
+            <th scope="col" nzWidth="35%">filière</th>
+            <th scope="col" nzWidth="25%">Lien rapp.</th>
+            <th scope="col" nzWidth="30%">Stage/Projet</th>
+            <th scope="col" nzWidth="25%">Type rapp.</th>
+            <th scope="col" nzWidth="50%">Intitulé rapp.</th>
+            <th scope="col" nzWidth="40%">Date début</th>
+            <th scope="col" nzWidth="40%">Date fin</th>
+            <th scope="col" nzWidth="35%">Société Stage</th>
+            <!-- <th scope="col" nzWidth="35%">Secteur Société</th>
+            <th scope="col" nzWidth="30%">Pays Soc.</th>
+            <th scope="col" nzWidth="30%">Ville Soc.</th> -->
+            <th scope="col" nzWidth="30%">Confidentiel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let report of rowSelectionTable.reports"> -->
+          <tr *ngFor="let report of reports">
+            <td
+              [nzChecked]="setOfCheckedId.has(report.id) || report.valid_encadrant" 
+              [nzDisabled]="report.valid_encadrant"
+              (nzCheckedChange)="onItemChecked(report.id, $event)"
+            ></td>
+            <td routerLink="/profile-etudiant/{{report.fk_etudiant.id}}"  class="classLink"><a>{{report.fk_etudiant.nom_prenom}}</a></td>
+            <th >{{report.fk_etudiant.code_etudiant}}</th>
+            <th >{{report.fk_etudiant.promotion}}</th>
+            <th >{{report.fk_etudiant.filiere}}</th>
+            <td class="classLink"><a target="_blank" href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> 
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+              </svg>
+          </a></td>
+          <td>{{report.stage_ou_projet ? "Stage" : "Projet" }}</td>
+          <td>{{report.type_rapport}}</td>
+          <td routerLink="/rapport/info/{{ report.id }}" class="classLink"><A>{{capitalizeFirstLetter(report.intitule_stage)}}</A></td>
+          <td>{{report.date_debut_stage | date: 'dd/MM/yyyy'}}</td>
+          <td>{{report.date_fin_stage | date: 'dd/MM/yyyy'}}</td>
+          <td>{{report.societe_stage}}</td>
+          <!-- <td>{{report.secteur_societe}}</td>
+          <td>{{report.pays_societe}}</td>
+          <td>{{report.ville_societe}}</td> -->
+          <td>{{report.rapport_confidentiel ? "oui" : "non"}}</td>
+
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>  
+
+</div>

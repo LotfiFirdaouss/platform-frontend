@@ -47,7 +47,7 @@ export class ReportsListComponent implements OnInit {
    
    constructor(private reportService: ReportService,
     private token: TokenStorageService,
-    private studentService : StudentService) { }
+    private studentService : StudentService,) { }
    
    ngOnInit(): void {
     //this.showSpinner();
@@ -82,7 +82,9 @@ export class ReportsListComponent implements OnInit {
   }
    
   retrieveReports(): void {
-     this.reportService.getAll()
+    //(report.valid_admin && report.type_rapport!='PFE')  OR
+    //(report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant)
+     this.reportService.getAllReportValidated()
        .subscribe(
          data => {
            this.reports = data;

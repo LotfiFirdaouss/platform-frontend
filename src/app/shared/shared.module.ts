@@ -24,7 +24,6 @@ import { RegisterComponent } from '../auth/components/register/register.componen
 import { ProfileComponent } from '../auth/components/profile/profile.component';
 import { ProfileEtudiantComponent } from '../features/student/components/profile-etudiant/profile-etudiant.component';
 import { StudentDetailsComponent } from '../features/student/components/student-details/student-details.component';
-import { AddStudentComponent } from '../features/student/components/add-student/add-student.component';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
@@ -72,6 +71,10 @@ import { FormManagementComponent } from '../features/administrator/components/fo
 import { ExportService } from '../features/administrator/services/export.service';
 import { ReportJuryComponent } from '../features/professor/components/report-jury/report-jury.component';
 import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury.pipe';
+import { ReportValidationComponent } from '../features/administrator/components/report-validation/report-validation.component';
+import { AdminValidatedPipe } from '../features/administrator/pipes/admin-validated.pipe';
+import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in.pipe';
+import { ReportProfessorValidationComponent } from '../features/professor/components/report-professor-validation/report-professor-validation.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +100,6 @@ import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury
 
     //students
     ProfileEtudiantComponent,
-    AddStudentComponent,
     StudentDetailsComponent,
 
     //studentsFilters
@@ -123,6 +125,8 @@ import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury
     FormManagementComponent,
     DashboardComponent,
     ReportStatsComponent,
+    ReportValidationComponent,
+    ReportProfessorValidationComponent,
     
     LoginComponent,
     RequestResetComponent,
@@ -143,6 +147,7 @@ import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury
     SpinnerComponent,
     PromotionFilterPipe,
     FiliereFilterPipe,
+    AdminValidatedPipe,
 
     //insertion filters
     EtudiantFilterPipe,
@@ -195,14 +200,13 @@ import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury
 
     //students
     ProfileEtudiantComponent,
-    AddStudentComponent,
     StudentDetailsComponent,
 
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
     ReportJuryComponent,
-    
+    ReportProfessorValidationComponent,
 
     //Admin components
     FormManagementComponent,
@@ -223,7 +227,12 @@ import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury
   providers: [
     ExportService,
     HttpClientModule,
-    PromotionFilterDashboardPipe
+    PromotionFilterDashboardPipe,
+    // PromotionFilterPipe,
+    // FiliereFilterPipe,
+    // ReportTypeFilterPipe,
+    // AdminValidatedPipe,
+    AllFiltersInPipe
        
   ]
 })

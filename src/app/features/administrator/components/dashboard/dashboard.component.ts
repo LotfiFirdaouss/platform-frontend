@@ -175,7 +175,7 @@ export class DashboardComponent implements OnInit {
         this.lineChartLabels1.push(report_societe.societe_stage);
         this.lineChartData1.forEach(
           (element) => 
-            element.data.push(data.filter(report=>report.societe_stage==report_societe.societe_stage).length)
+            element.data.push(data.filter(report=>report.societe_stage===report_societe.societe_stage).length)
         )}
       );
       this.lineChartColors1=[{ 

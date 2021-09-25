@@ -47,6 +47,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" [hidden]="report.type_rapport!='PFE'">
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <select class="custom-select form-control" id="encadrant_univ" name="encadrant_univ" [required]="report.type_rapport=='PFE'"
+                            [(ngModel)]="report.fk_encadrant_univ" #encadrant_univ="ngModel" >
+                                <option *ngFor="let professeur of professeurs" [ngValue]="professeur.id">
+                                    {{ professeur.nom_prenom }}
+                                </option>
+                            </select>
+                            <span class="unit" >Encadrant univ. : </span>
+                            <i class="fas fa-caret-down myIconList" style="margin-left: 440px;"></i>
+                            <div *ngIf="encadrant_univ.errors && (encadrant_univ.dirty || encadrant_univ.touched)" class="alert alert-danger">
+                                <div [hidden]="!encadrant_univ.errors?.required">
+                                    L'encadrant universitaire est requis pour le cas d'un stage PFE.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
                 <div class="row">
                     <div class="col">
                         <div class="form-group row input-box">

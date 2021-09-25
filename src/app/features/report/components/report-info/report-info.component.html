@@ -47,7 +47,27 @@
               <td style="width: 70%;" *ngIf="currentReport.resume_rapport != null"> {{ currentReport.resume_rapport }} </td>
               <td style="width: 70%;" *ngIf="currentReport.resume_rapport == null"> --- </td>
             </tr>
-            
+            <tr>
+              <td> <b>Validé par admin</b>
+                <small class="d-block">Necessaire pour qu'il soit disponible sur la platforme, et puis validé par l'encadrant (si pfe)</small>
+              </td>
+              <td> {{ currentReport.valid_admin ? "oui" : "non" }} 
+              </td>
+            </tr>
+            <tr *ngIf="currentReport.type_rapport=='PFE' && current_encadrant_univ">
+              <td > <b>Encadrant</b>
+                <small class="d-block">Specifié s'il s'agit d'un PFE</small>
+
+              </td>
+              <td> {{ current_encadrant_univ.nom_prenom }} 
+              </td>
+            </tr>
+            <tr *ngIf="currentReport.type_rapport=='PFE'">
+              <td > <b>Validé par encadrant</b>
+              </td>
+              <td> {{ currentReport.valid_encadrant ? "oui" : "non" }} 
+              </td>
+            </tr>
           </tbody>
         </table>
         

@@ -46,6 +46,25 @@
                    </div>
                </div>
            </div>
+           <div class="row" [hidden]="currentReport.type_rapport!='PFE'">
+            <div class="col">
+                <div class="form-group input-box">
+                    <select class="custom-select form-control" id="encadrant_univ" name="encadrant_univ" [required]="currentReport.type_rapport=='PFE'"
+                    [(ngModel)]="currentReport.fk_encadrant_univ" #encadrant_univ="ngModel" >
+                        <option *ngFor="let professeur of professeurs" [ngValue]="professeur.id">
+                            {{ professeur.nom_prenom }}
+                        </option>
+                    </select>
+                    <span class="unit" >Encadrant univ. : </span>
+                    <i class="fas fa-caret-down myIconList" style="margin-left: 440px;"></i>
+                    <div *ngIf="encadrant_univ.errors && (encadrant_univ.dirty || encadrant_univ.touched)" class="alert alert-danger">
+                        <div [hidden]="!encadrant_univ.errors?.required">
+                            L'encadrant universitaire est requis pour le cas d'un stage PFE.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
            <div class="row">
                <div class="col">
                    <div class="form-group row input-box">
@@ -153,9 +172,9 @@
                 <div class="form-group input-box">
                     <div id="otherCountry" [class.hidden]="otherCountryHidden">
                         <input type="text" [(ngModel)]="autrePays_societe"
-                        class="form-control nature" name="autrePays_societe" placeholder="Pays*" [required]="!otherCountryHidden" 
+                        class="form-control nature" name="autrePays_societe" placeholder="Pays*" [required]="!stageDisabled && !otherCountryHidden" 
                         [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
-                        <span class="unit">Autre pays : </span>
+                        <span class="unit">Autre pays : </span> 
                         <div *ngIf="autrePays_societe.errors && (autrePays_societe.dirty || autrePays_societe.touched)" class="alert alert-danger">
                             <div [hidden]="!autrePays_societe.errors?.required">
                                 Le pays du stage est requis.
@@ -250,12 +269,12 @@
                </div>
            </div>
            <hr>
-           <span style="font-size:large;"> <I>Le nv rapport du stage/projet :<small> (Ancien fichier : <a href="{{ currentReport.fichier_rapport }}">lien</a> )</small> </I> </span>
+           <span style="font-size:large;"> <I>Le nv rapport du stage/projet :<small> (Ancien fichier : <a target="_blank" href="{{ currentReport.fichier_rapport }}">lien</a> )</small> </I> </span>
            <div class="row" style="margin-top: 25px; ">
             <div class="col">
                    <div class="form-group input-box">
                        <input type="file" [(ngModel)]="file" #fichier_rapport="ngModel"
-                       class="form-control" name="fichier_rapport" placeholder="lien du rapport*" required
+                       class="form-control" name="fichier_rapport" placeholder="lien du rapport*"
                        (change)="handleFileInput($event.target.files)" style="padding-top:3px; padding-bottom: 3px;"/>
                        <span class="unit">PDF du rapport: </span>
                        <div *ngIf="fileSizeError || fileTypeError" class="alert alert-danger">
@@ -398,7 +417,7 @@
     <br/>
     <button class="btnContact "
         routerLink="/rapport/etudiant/{{currentReport.fk_etudiant.id}}">
-        Retour vers mes rapports
+        <span>Retour vers rapports</span>
     </button>
     <br/><br/><br/><br/><br/>
 </div>
@@ -409,7 +428,7 @@
     <br/>
     <button class="btnContact "
         routerLink="/rapport/etudiant/{{currentReport.fk_etudiant.id}}">
-        Retour vers mes rapports
+        Retour vers rapports
     </button>
     <br/><br/><br/><br/><br/>
 </div>
