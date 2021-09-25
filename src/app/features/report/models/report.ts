@@ -1,5 +1,6 @@
 export class Report {
     id?:any;
+    horodateur?:any;
     stage_ou_projet?:boolean;
     date_debut_stage?:Date;
     date_fin_stage?:Date;
@@ -9,14 +10,15 @@ export class Report {
     ville_societe?:String;
     pays_societe?:String;
     details_add_societe?:String;
-    encadrant?:String;
-    email_encadrant?:any;
-    telephone_encadrant?:any;
+    parrain?:String;
+    email_parrain?:any;
+    telephone_parrain?:any;
     fichier_rapport?:File;
     rapport_confidentiel?:boolean;
     fk_etudiant?:any;
     type_rapport?:String;
     resume_rapport?:String;
+    jurys?:Number[];
     valid_admin?:boolean;
     fk_encadrant_univ?:any;
     valid_encadrant?:boolean;

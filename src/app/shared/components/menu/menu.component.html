@@ -34,6 +34,7 @@
           <li [class.hidden]="!isAdministrator"><a  id="adminValidReportId" routerLink="/admin/reportValid"><span class="icon-validation mr-3"></span>Gestion Rapport</a></li>
 
 
+          <li  [class.hidden]="!isProfessor"><a id="juryId" routerLink="/professeur/jury"><span class="icon-report mr-3"></span>Rapports assistés</a></li>
           <div [class.hidden]="!isStudent || !currentStudent">
             <li ><a id="insertionId" (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>
             <!-- <div> {{ hasInsertion }} </div> -->

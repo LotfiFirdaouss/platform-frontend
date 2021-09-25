@@ -69,6 +69,8 @@ import { PromotionFilterDashboardPipe } from '../features/administrator/pipes/pr
 import { ReportStatsComponent } from '../features/administrator/components/report-stats/report-stats.component';
 import { FormManagementComponent } from '../features/administrator/components/form-management/form-management.component';
 import { ExportService } from '../features/administrator/services/export.service';
+import { ReportJuryComponent } from '../features/professor/components/report-jury/report-jury.component';
+import { DateFilterJuryPipe } from '../features/professor/pipes/date-filter-jury.pipe';
 import { ReportValidationComponent } from '../features/administrator/components/report-validation/report-validation.component';
 import { AdminValidatedPipe } from '../features/administrator/pipes/admin-validated.pipe';
 import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in.pipe';
@@ -108,10 +110,12 @@ import { ReportProfessorValidationComponent } from '../features/professor/compon
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
+    ReportJuryComponent,
 
     //professorsFilters
     NomProfFilterPipe,
     DepartementProfFilterPipe,
+    DateFilterJuryPipe,
 
     //dashboardFilters
     PromotionFilterDashboardPipe,
@@ -201,6 +205,7 @@ import { ReportProfessorValidationComponent } from '../features/professor/compon
     //professors
     AddProfessorComponent,
     ProfessorDetailsComponent,
+    ReportJuryComponent,
     ReportProfessorValidationComponent,
 
     //Admin components

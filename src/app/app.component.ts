@@ -113,6 +113,10 @@ export class AppComponent implements OnInit{
           id = "gestionProfId";
         }else if( url == "/etudiant" || url == "/etudiant/ajouter"){
           id = "gestionEtudId";
+        }else if( url == "/professeur/jury"){
+          id = "juryId";
+        }else if( url == "/admin/gestionForm"){
+          id = "formId";
         }
         //console.log("logged in id:",id)
         if( !url.includes("/rapport/info") && !url.includes("/rapport/etudiant") && !url.includes("/profile-etudiant")){

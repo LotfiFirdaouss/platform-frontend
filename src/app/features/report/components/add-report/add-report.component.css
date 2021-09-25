@@ -92,11 +92,12 @@ border-left: 5px solid #a94442; /* red */
     width: 100%;
     border: none;
     border-radius: 50px;
-	box-shadow: 0 2px 2px #5397f8;
+	  box-shadow: 0 2px 2px #5397f8;
     padding: 1.5%;
     background: #002245;
     font-weight: 600;
     color: #fff;
+    text-align:center ;
     cursor: pointer;
 }
 

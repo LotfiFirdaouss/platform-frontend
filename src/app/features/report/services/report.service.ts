@@ -39,6 +39,7 @@ export class ReportService {
 
   create(data: any): Observable<any> {
     const formData: FormData = new FormData();
+    formData.append('horodateur',this.getCurrentDate());
     formData.append('stage_ou_projet',data.stage_ou_projet);
     formData.append('date_debut_stage',data.date_debut_stage);
     formData.append('date_fin_stage',data.date_fin_stage);
@@ -56,9 +57,23 @@ export class ReportService {
     formData.append('fk_etudiant',data.fk_etudiant);
     formData.append('type_rapport',data.type_rapport);
     formData.append('resume_rapport',data.resume_rapport);
+    /*formData.append('jurys',new Blob( [ JSON.stringify( data.jurys ) ], { type : 'application/json' } ));
+    
+
+    for(const index in data.jurys){ 
+      formData.append(`jurys[${index}]`,data.jurys[index]);
+      console.log(`jurys[${index}]`);
+      console.log(data.jurys[index]);
+    }*/
+    
+
     formData.append('fk_encadrant_univ',data.fk_encadrant_univ);
     
     return this.http.post(baseUrl, formData);
+  }
+
+  updateJurys(id: any, data: any): Observable<any> {
+    return this.http.put(`${baseUrl}/${id}`, data);
   }
 
   update(id: any, data: any): Observable<any> {
@@ -123,7 +138,6 @@ export class ReportService {
 
     formData.append('fk_etudiant',data.fk_etudiant);
 
-
     return this.http.put(`${baseUrl}/${id}`, formData);
   }
 
@@ -142,4 +156,12 @@ export class ReportService {
   // printReportsFile(filiere: any, promotion: any): Observable<Report[]> {
   //   return this.http.get<Report[]>(`${baseUrl}?filiere=${filiere}&?promotion=${promotion}`);
   // }
+
+  getCurrentDate(): any {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    return yyyy+'-'+mm+'-'+dd;
+  }
 }

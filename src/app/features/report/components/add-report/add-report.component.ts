@@ -17,7 +17,15 @@ import { ReportService } from '../../services/report.service';
   styleUrls: ['./add-report.component.css']
 })
 export class AddReportComponent implements OnInit {
-  
+
+  //add jury
+  alljurys=[,,0,0];
+  jury1=true;
+  jury2=true;
+  jury3=false;
+  jury4=false;
+  addJury=true;
+
   report: Report = {
     stage_ou_projet: true,
     date_debut_stage: new Date(),
@@ -28,9 +36,9 @@ export class AddReportComponent implements OnInit {
     ville_societe: 'Casablanca',
     pays_societe: 'Maroc',
     details_add_societe: '',
-    encadrant: '',
-    email_encadrant: '',
-    telephone_encadrant: '',
+    parrain: '',
+    email_parrain: '',
+    telephone_parrain: '',
     fichier_rapport: null,
     rapport_confidentiel: false,
     fk_etudiant: 0,
@@ -520,6 +528,8 @@ export class AddReportComponent implements OnInit {
   fileSizeError=false;
   fileTypeError=false;
 
+  
+
   //form active or not
   canAddReport=true;
   DBreportForm={
@@ -532,6 +542,7 @@ export class AddReportComponent implements OnInit {
 
     /* the form reference */
     @ViewChild('reportForm') reportForm: NgForm;
+  professors?: Professor[];
 
 
   constructor(private reportService: ReportService,
@@ -542,6 +553,7 @@ export class AddReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();
+    this.retrieveProfessor();
     //console.log(this.isLoggedIn);
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
@@ -629,9 +641,9 @@ export class AddReportComponent implements OnInit {
       ville_societe: this.report.ville_societe,
       pays_societe: this.report.pays_societe,
       details_add_societe: this.report.details_add_societe,
-      encadrant: this.report.encadrant,
-      email_encadrant: this.report.email_encadrant,
-      telephone_encadrant: this.report.telephone_encadrant,
+      parrain: this.report.parrain,
+      email_parrain: this.report.email_parrain,
+      telephone_parrain: this.report.telephone_parrain,
       fichier_rapport: (this.fileToUpload),
       rapport_confidentiel: this.report.rapport_confidentiel,
       fk_etudiant: this.report.fk_etudiant,
@@ -648,12 +660,22 @@ export class AddReportComponent implements OnInit {
     this.reportService.create(data)
       .subscribe(
         response => {
-          console.log(response);
-          this.submitted = true;
-          this.hideSpinner=true;
+          //console.log(response);
+          const data2 = {
+            fk_etudiant: this.report.fk_etudiant,
+            jurys:this.Jurys(),
+          }
+          this.reportService.updateJurys(response.id,data2)
+            .subscribe(
+            response => {
+              //console.log(response);
+              this.submitted = true;
+              this.hideSpinner=true;
+            }
+          );
         },
         error => {
-          console.log(error);
+          //console.log(error);
         });
   }
 
@@ -663,9 +685,9 @@ export class AddReportComponent implements OnInit {
       this.report.societe_stage='';
       this.report.secteur_societe='';
       this.report.details_add_societe='';
-      this.report.encadrant='';
-      this.report.email_encadrant='';
-      this.report.telephone_encadrant='';
+      this.report.parrain='';
+      this.report.email_parrain='';
+      this.report.telephone_parrain='';
       this.stageDisabled=true;
       this.report.pays_societe='';
       this.report.ville_societe='';
@@ -694,6 +716,30 @@ export class AddReportComponent implements OnInit {
       error => {
         console.log(error);
       });
+  }
+
+  public retrieveProfessor(): void {
+    this.professorService.getAll().subscribe( data => {this.professors = data;});
+  }
+
+  public addJurys(){
+    if(this.jury3===false){
+      this.jury3=true;
+    }
+    else if(this.jury3===true){
+      this.jury4=true;
+      this.addJury=false;
+    }
+  }
+
+  public Jurys(): Number[] {
+    let array=[];
+    for(var i = 0; i < 4; i++){ 
+      if (this.alljurys[i]!=0){
+        array.push(this.alljurys[i])
+      } 
+    }
+    return array;
   }
 
 

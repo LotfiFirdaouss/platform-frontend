@@ -27,9 +27,9 @@ export class ReportInfoComponent implements OnInit {
      ville_societe: null,
      pays_societe: null,
      details_add_societe: null,
-     encadrant: null,
-     email_encadrant: null,
-     telephone_encadrant: null,
+     parrain: null,
+     email_parrain: null,
+     telephone_parrain: null,
      fichier_rapport: null,
      rapport_confidentiel: false,
      fk_etudiant: 1,
@@ -150,9 +150,9 @@ export class ReportInfoComponent implements OnInit {
           {champ:'Pays',info:this.currentReport.pays_societe,user:!!this.currentReport.pays_societe},
           {champ:'Ville',info:this.currentReport.ville_societe,user:!!this.currentReport.ville_societe},
           {champ:'plus de détails sur la société',info:this.currentReport.details_add_societe, user:this.notHidden && !!this.currentReport.details_add_societe },
-          {champ:'Nom d\'encadrant',info:this.currentReport.encadrant, user:this.notHidden && !!this.currentReport.encadrant},
-          {champ:'Email d\'encadrant',info:this.currentReport.email_encadrant, user:this.notHidden && !!this.currentReport.email_encadrant},
-          {champ:'télephone d\'encadrant', info:this.currentReport.telephone_encadrant, user:this.notHidden && !!this.currentReport.telephone_encadrant},
+          {champ:'Nom du parrain',info:this.currentReport.parrain, user:this.notHidden && !!this.currentReport.parrain},
+          {champ:'Email du parrain',info:this.currentReport.email_parrain, user:this.notHidden && !!this.currentReport.email_parrain},
+          {champ:'télephone du parrain', info:this.currentReport.telephone_parrain, user:this.notHidden && !!this.currentReport.telephone_parrain},
           {champ:'Rapport confidentiel',info: conf,user:this.notHidden},]
           //console.log(this.notHidden && this.currentReport.details_add_societe);                
         return this.affiches        

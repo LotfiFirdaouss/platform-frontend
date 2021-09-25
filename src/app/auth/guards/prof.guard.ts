@@ -12,7 +12,7 @@ export class ProfGuard implements CanActivate {
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
       var isProfessor = this.token.isProfessor().professor;
-      console.log(isProfessor);
+      //console.log(isProfessor);
       try {
         if (isProfessor) {
           return of(true);

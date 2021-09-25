@@ -146,6 +146,10 @@ aside {
   content: "\e877";
 }
 
+.icon-insert_invitation:before {
+  content: "\e24f";
+}
+
 
 
 /* Dropdown Button */

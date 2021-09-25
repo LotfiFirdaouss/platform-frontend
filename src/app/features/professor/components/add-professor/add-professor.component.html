@@ -86,7 +86,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group input-box">
-                            <input type="tel" [(ngModel)]="professor.telephone" name="telephone" pattern="^\+[1-9]{1}[0-9]{3,14}$" required
+                            <input type="tel" [(ngModel)]="professor.telephone" name="telephone" pattern="^\+[1-9]{1}[0-9]{3,14}$"
                             class="form-control nature" placeholder="Téléphone" #tel="ngModel" name="tel"/>
                             <span class="unit">Téléphone: </span>
                             <div *ngIf="tel.errors && (tel.dirty || tel.touched)" class="alert alert-danger">

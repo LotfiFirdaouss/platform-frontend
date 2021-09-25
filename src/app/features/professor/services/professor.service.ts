@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Report } from '../../report/models/report';
 import { Professor } from '../models/professor';
 
 const baseUrl = 'http://127.0.0.1:8080/api/professeurs';
@@ -19,6 +20,10 @@ export class ProfessorService {
 
   get(id: any): Observable<Professor> {
     return this.http.get(`${baseUrl}/${id}`);
+  }
+
+  getReportJury(id: any): Observable<Report[]> {
+    return this.http.get<Report[]>(`http://127.0.0.1:8080/api/rapports/jury?jury=${id}`);
   }
 
   create(data: any): Observable<any> {

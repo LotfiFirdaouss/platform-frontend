@@ -25,21 +25,27 @@ export class ReportDetailsComponent implements OnInit {
    ville_societe: '',
    pays_societe: '',
    details_add_societe: '',
-   encadrant: '',
-   email_encadrant: '',
-   telephone_encadrant: '',
+   parrain: '',
+   email_parrain: '',
+   telephone_parrain: '',
    rapport_confidentiel: false,
    fk_etudiant: 1,
    type_rapport:'Initiation',
    resume_rapport:'',
    fk_encadrant_univ:null,
  };
+  alljurys=[];
+  jury1=true;
+  jury2=true;
+  jury3=false;
+  jury4=false;
+  addJury=true;
  natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
  types_rapport : String[] = ['Initiation','PFA','PFE']
  stageDisabled=false;
  Updated= false;
  fileToUpload: File | null = null;
- link: string;
+ 
  professeurs : Professor[];
 
 
@@ -516,13 +522,14 @@ export class ReportDetailsComponent implements OnInit {
 
   /* the form reference */
   @ViewChild('reportForm') reportForm: NgForm;
+  professors?: Professor[];
 
  constructor(private reportService: ReportService,
    private route: ActivatedRoute,
-   private router: Router,
-   private professorService: ProfessorService) { }
+   private professorService : ProfessorService) { }
       
  ngOnInit(): void {
+  this.retrieveProfessor();
    this.getReport(this.route.snapshot.params.id); 
    this.retreiveProfessors();
 
@@ -574,8 +581,6 @@ export class ReportDetailsComponent implements OnInit {
      .subscribe(
        data => {
           this.currentReport = data;
-          // console.log(this.currentReport);
-          this.link=this.currentReport.fichier_rapport.toString().split('&')[0];
           //console.log(data.stage_ou_projet);
           if(!data.stage_ou_projet){
             //projet
@@ -595,6 +600,18 @@ export class ReportDetailsComponent implements OnInit {
             }else{
               this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
             }            
+          }
+          this.alljurys[0]=data.jurys[0];
+          this.alljurys[1]=data.jurys[1];
+          this.alljurys[2]=this.alljurys[3]=0;
+          if(data.jurys.length>=3){
+            this.alljurys[2]=data.jurys[2];
+            this.jury3=true;
+          }
+          if(data.jurys.length==4){
+            this.alljurys[3]=data.jurys[3];
+            this.jury4=true;
+            this.addJury=false;
           }
           // console.log(this.currentReport.fk_encadrant_univ)
 
@@ -620,10 +637,10 @@ export class ReportDetailsComponent implements OnInit {
     ville_societe: this.currentReport.ville_societe,
     pays_societe: this.currentReport.pays_societe,
     details_add_societe: this.currentReport.details_add_societe,
-    encadrant: this.currentReport.encadrant,
-    email_encadrant: this.currentReport.email_encadrant,
-    telephone_encadrant: this.currentReport.telephone_encadrant,
-    // fichier_rapport: (this.fileToUpload),
+    parrain: this.currentReport.parrain,
+    email_parrain: this.currentReport.email_parrain,
+    telephone_parrain: this.currentReport.telephone_parrain,
+    //fichier_rapport: (this.fileToUpload),
     rapport_confidentiel: this.currentReport.rapport_confidentiel,
     fk_etudiant: this.currentReport.fk_etudiant.id,
     type_rapport:this.currentReport.type_rapport,
@@ -648,9 +665,18 @@ export class ReportDetailsComponent implements OnInit {
    this.reportService.update(this.currentReport.id, data)
      .subscribe(
        response => {
-         console.log(response);
-         this.Updated=true;
-         this.hideSpinner=true;
+        const data2 = {
+          fk_etudiant: this.currentReport.fk_etudiant.id,
+          jurys:this.Jurys(),
+        }
+        this.reportService.updateJurys(response.id,data2)
+          .subscribe(
+          response => {
+            //console.log(response);
+            this.Updated = true;
+            this.hideSpinner=true;
+          }
+        );
        },
        error => {
          console.log(error);
@@ -666,9 +692,9 @@ export class ReportDetailsComponent implements OnInit {
      this.currentReport.ville_societe='';
      this.currentReport.pays_societe='';
      this.currentReport.details_add_societe='';
-     this.currentReport.encadrant='';
-     this.currentReport.email_encadrant='';
-     this.currentReport.telephone_encadrant='';
+     this.currentReport.parrain='';
+     this.currentReport.email_parrain='';
+     this.currentReport.telephone_parrain='';
      this.stageDisabled=true;
    }else{
      //stage
@@ -686,6 +712,32 @@ export class ReportDetailsComponent implements OnInit {
  }else{
      ValidityFormWarn.style.display="none";
  }
- } 
+ }
+
+ public retrieveProfessor(): void {
+  this.professorService.getAll().subscribe( data => {this.professors = data;});
+}
+
+public addJurys(){
+  if(this.jury3===false){
+    this.jury3=true;
+  }
+  else if(this.jury3===true){
+    this.jury4=true;
+    this.addJury=false;
+  }
+}
+
+public Jurys(): Number[] {
+  let array=[];
+  for(var i = 0; i < 4; i++){ 
+    if (this.alljurys[i]!=0){
+      array.push(this.alljurys[i])
+    } 
+  }
+  return array;
+}
+
+ 
 
 }
