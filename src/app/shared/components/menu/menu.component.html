@@ -51,19 +51,15 @@
             </div>
           </div>
 
-          <div>
-            <li  [class.hidden]="!isAdministrator"><a  id="gestionEtudId" (click)="dropDownFunction(myDropdownEtudiant)" class="dropbtn"><span class="icon-etudiant mr-3"></span>Gestion etudiants</a></li>
-            <div id="myDropdownEtudiant" class="dropdown-content">
-              <a routerLink="/etudiant">liste etudiant</a>
-              <!-- <a routerLink="/etudiant/ajouter">Ajouter etudiant</a>  -->
-            </div>
-          </div>
+
+          <li  [class.hidden]="!isAdministrator"><a  id="gestionEtudId" routerLink="/etudiant"><span class="icon-etudiant mr-3"></span>Gestion etudiants</a></li>
+
 
           <li [class.hidden]="!isAdministrator"><a id="formId" routerLink="/admin/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
           <li [class.hidden]="!isAdministrator"><a  id="statsId" routerLink="/admin/stats"><span class="icon-stats mr-3"></span>Statistiques</a></li>
           <li [class.hidden]="!isAdministrator"><a  id="dashId" routerLink="/admin/dashboard"><span class="icon-dashboard mr-3"></span>Dashboard</a></li>
 
-          <li [class.hidden]="!isProfessor"><a  id="validReportId" routerLink="/rapport/supervise"><span class="icon-report mr-3"></span>Rapports Encadrés</a></li>
+          <li [class.hidden]="!isProfessor"><a  id="validReportId" routerLink="/rapport/supervise"><span class="icon-validation mr-3"></span>Rapports Encadrés</a></li>
                 
         </ul>
       </div>

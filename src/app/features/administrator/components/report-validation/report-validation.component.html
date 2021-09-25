@@ -1,6 +1,6 @@
 <div class="myContentClass container">
     <h2 class="card-subheading center" >Liste globale des rapports</h2><br>
-    <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports soumis par les étudiants.</small></p><hr>
+    <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les rapports <b>(validés ou non)</b> soumis par les étudiants.</small></p><hr>
     
 
       <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -105,6 +105,10 @@
           <thead>
             <tr> 
                 <th scope="col" nzWidth="25%" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+                <th scope="col" nzWidth="35%">Etudiant</th>
+                <th scope="col" nzWidth="35%">Code étudiant</th>
+                <th scope="col" nzWidth="35%">promotion</th>
+                <th scope="col" nzWidth="35%">filière</th>
                 <th scope="col" nzWidth="25%">Lien rapp.</th>
                 <th scope="col" nzWidth="30%">Stage/Projet</th>
                 <th scope="col" nzWidth="25%">Type rapp.</th>
@@ -119,8 +123,7 @@
                 <th scope="col" nzWidth="30%">Email parrain.</th>
                 <th scope="col" nzWidth="30%">Tel parrain</th> -->
                 <th scope="col" nzWidth="30%">Confidentiel</th>
-                <th scope="col" nzWidth="35%">Etudiant</th>
-                <th scope="col" nzWidth="25%">Valid</th>
+                <!-- <th scope="col" nzWidth="25%">Valid</th> -->
                 <th scope="col" nzRight nzWidth="30%">Action</th>
             </tr>
           </thead>
@@ -139,6 +142,12 @@
               [nzDisabled]="report.valid_admin"
               (nzCheckedChange)="onItemChecked(report.id, $event)"
             ></td>  
+            <td routerLink="/profile-etudiant/{{report.fk_etudiant.id}}"  class="classLink"><a>{{report.fk_etudiant.nom_prenom}}</a></td>
+            <th >{{report.fk_etudiant.code_etudiant}}</th>
+            <th >{{report.fk_etudiant.promotion}}</th>
+            <th >{{report.fk_etudiant.filiere}}</th>
+
+
                 <td class="classLink"><a target="_blank" href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
@@ -158,8 +167,7 @@
                 <td>{{report.email_encadrant}}</td>
                 <td>{{report.telephone_encadrant}}</td> -->
                 <td>{{report.rapport_confidentiel ? "oui" : "non"}}</td>
-                <td routerLink="/profile-etudiant/{{report.fk_etudiant.id}}"  class="classLink"><a>{{report.fk_etudiant.nom_prenom}}</a></td>
-                <td>{{report.valid_admin ? "V" : "NV"}}</td>
+                <!-- <td>{{report.valid_admin ? "V" : "NV"}}</td> -->
                 <td nzRight >
                   <div>
                     <a (click)="startEditReport(report.id)">
@@ -181,6 +189,10 @@
               [nzDisabled]="report.valid_admin"
               (nzCheckedChange)="onItemChecked(report.id, $event)"
             ></td> 
+            <td>{{report.fk_etudiant.nom_prenom}}</td>
+            <th >{{report.fk_etudiant.code_etudiant}}</th>
+            <th >{{report.fk_etudiant.promotion}}</th>
+            <th >{{report.fk_etudiant.filiere}}</th>
 
                 <td class="classLink"><a target="_blank" href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
@@ -188,6 +200,8 @@
                         <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
                     </svg>
                 </a></td>
+
+
 
                 <td>
                     <select nz-input [(ngModel)]="report.stage_ou_projet" required #stage_ou_projet="ngModel" name="stage_ou_projet">
@@ -280,7 +294,6 @@
                     [(ngModel)]="report.rapport_confidentiel">
                 </td>
 
-                <td>{{report.fk_etudiant.nom_prenom}}</td>
 
                 
                 <!-- <td>
@@ -288,7 +301,7 @@
                     [(ngModel)]="report.valid_admin">
                 </td> -->
 
-                <td>{{report.valid_admin ? "V" : "NV"}}</td>
+                <!-- <td>{{report.valid_admin ? "V" : "NV"}}</td> -->
 
 
 

@@ -23,6 +23,7 @@ export class ReportProfessorValidationComponent implements OnInit {
 
   currentUser!: ReturnedUser;
   isLoggedIn = false;
+  user_id=0;
   currentProfessor!: Professor;
 
   constructor(private reportService: ReportService,
@@ -31,12 +32,11 @@ export class ReportProfessorValidationComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();    
-    var user_id;
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
-      user_id = this.currentUser.id;
+      this.user_id = this.currentUser.id;
       console.log("User object:",this.currentUser);
-      this.getProfessor(user_id);
+      this.getProfessor(this.user_id);
     }  
     
   }
@@ -113,7 +113,7 @@ export class ReportProfessorValidationComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response)
-          // this.retrieveReports();
+          this.getProfessor(this.user_id);        
         },
         error => {
           console.log(error);

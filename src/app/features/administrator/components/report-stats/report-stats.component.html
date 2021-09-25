@@ -76,7 +76,7 @@
           
           <thead> 
             <tr> 
-              <th scope="col">Nom complet</th>
+              <th scope="col">Etudiant</th>
               <th scope="col">Code étudiant</th>
               <th scope="col">Promotion</th>
               <th scope="col">Filière</th>
@@ -106,7 +106,7 @@
               <th scope="col"> {{ report.fk_etudiant.filiere }} </th>
               <th scope="col"> {{ report.type_rapport }} </th>
               <th scope="col"> {{ report.stage_ou_projet ? "Stage" : "Projet" }} </th>
-              <th scope="col"> {{ report.intitule_stage }} </th>
+              <td routerLink="/rapport/info/{{ report.id }}" class="classLink"><A>{{capitalizeFirstLetter(report.intitule_stage)}}</A></td>
               <th scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </th>
               <th scope="col" > {{ report.date_fin_stage | date: 'dd/MM/yyyy' }} </th>
               <th scope="col" > {{ report.societe_stage }} </th>

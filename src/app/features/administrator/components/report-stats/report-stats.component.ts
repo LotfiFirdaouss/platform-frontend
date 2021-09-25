@@ -76,4 +76,10 @@ export class ReportStatsComponent implements OnInit {
     this.selectedReportType='';
   }
 
+  capitalizeFirstLetter(string) {
+    //console.log("capitalize")
+    string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 }
