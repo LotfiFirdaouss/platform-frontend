@@ -18,4 +18,6 @@ export class Report {
     type_rapport?:String;
     resume_rapport?:String;
     valid_admin?:boolean;
+    fk_encadrant_univ?:any;
+    valid_encadrant?:boolean;
     }

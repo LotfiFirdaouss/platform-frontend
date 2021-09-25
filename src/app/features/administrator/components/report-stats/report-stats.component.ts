@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExportService } from 'src/app/features/administrator/services/export.service';
+import { Professor } from 'src/app/features/professor/models/professor';
+import { ProfessorService } from 'src/app/features/professor/services/professor.service';
 import { Report } from '../../../report/models/report';
 import { ReportService } from '../../../report/services/report.service';
 
@@ -27,16 +29,20 @@ export class ReportStatsComponent implements OnInit {
   //for pagination
   p=1;
 
+  professeurs?:Professor[];
+
   constructor(
     private reportService: ReportService,
-    private exportService: ExportService) { }
+    private exportService: ExportService,
+    private professorService: ProfessorService) { }
 
   ngOnInit(): void {
     this.retrieveReports();
+    this.retrieveProfesseurs();
   }
 
   retrieveReports(): void {
-    this.reportService.getAllReportValidatedAdmin()
+    this.reportService.getAllReportValidated() 
       .subscribe(
         data => {
           this.reports = data;
@@ -49,6 +55,16 @@ export class ReportStatsComponent implements OnInit {
         });
  }
 
+ retrieveProfesseurs(){
+   this.professorService.getAll()
+    .subscribe(data => {
+      this.professeurs = data;
+    },
+    error => {
+      console.log(error);
+    });
+ }
+
   //exprt table  function  
   exportElmToExcel(): void {
     this.exportService.exportTableElmToExcel(this.reportTable, 'reports_data');
@@ -58,6 +74,12 @@ export class ReportStatsComponent implements OnInit {
     this.filterPromotion='';
     this.selectFiliere='';
     this.selectedReportType='';
+  }
+
+  capitalizeFirstLetter(string) {
+    //console.log("capitalize")
+    string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
 }

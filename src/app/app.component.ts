@@ -94,7 +94,12 @@ export class AppComponent implements OnInit{
           id = "statsId";
         }else if( url == "/admin/dashboard" ){
           id = "dashId";
-        }else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
+        }else if( url == "/admin/reportValid" ){
+          id = "adminValidReportId";
+        }else if( url == "/rapport/supervise" ){
+          id = "validReportId";
+        }
+        else if( url.includes("/rapport/info") || url.includes("/rapport/etudiant") ){
           this.getStudent(this.currentUser.id, url);
           // id = "rapportsId";  OR  id = "homeId"; depending on the user viewing it
           // are they the owner student or not?
@@ -134,13 +139,13 @@ export class AppComponent implements OnInit{
             if(url.includes("/rapport/etudiant")){
               if(url == "/rapport/etudiant/".concat(this.currentStudent.id.toString())){
                 id = "rapportsId";
-                console.log("isStudentOwner")
+                // console.log("isStudentOwner")
               }
               else{
                 id = "homeId";
-                console.log("llll")
+                // console.log("llll")
               }
-              console.log(id)
+              // console.log(id)
               activeLink = <HTMLLIElement> document.getElementsByClassName("active")[0];
               activeLink.classList.remove("active");
               currentLink = document.getElementById(id);
@@ -148,18 +153,18 @@ export class AppComponent implements OnInit{
 
             }else if(url.includes("/rapport/info")){
               var reportId = <number>url.split("/")[3];
-              console.log("hhhere")
+              // console.log("hhhere")
               this.reportService.get(reportId).subscribe(
                 data => {
-                  console.log("found")
+                  // console.log("found")
                   this.currentReport = data;
                   if(this.currentReport.fk_etudiant.id==this.currentStudent.id ){
                     id = "rapportsId";
-                    console.log("isReportOwner")
+                    // console.log("isReportOwner")
                   }else{
                     id = "homeId";
                   }
-                  console.log(id)
+                  // console.log(id)
                   activeLink = <HTMLLIElement> document.getElementsByClassName("active")[0];
                   activeLink.classList.remove("active");
                   currentLink = document.getElementById(id);
@@ -186,7 +191,7 @@ export class AppComponent implements OnInit{
             this.currentStudent = data[0];
 
             var id,activeLink,currentLink;
-            console.log(this.currentStudent.id)
+            // console.log(this.currentStudent.id)
             if(url == "/profile-etudiant/".concat(this.currentStudent.id.toString())){
               id = "profileId";
               // console.log("isStudentOwner")
@@ -196,7 +201,7 @@ export class AppComponent implements OnInit{
               id = "homeId";
               // console.log("llll")
             }
-            console.log(id)
+            // console.log(id)
             activeLink = <HTMLLIElement> document.getElementsByClassName("active")[0];
             activeLink.classList.remove("active");
             currentLink = document.getElementById(id);

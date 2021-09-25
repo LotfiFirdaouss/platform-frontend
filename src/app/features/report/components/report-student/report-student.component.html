@@ -41,14 +41,15 @@
                     </div>
 
                     <div class="col-6">
-
-                        <span *ngIf="report.valid_admin" style="position:absolute; right:0;"> 
+                        <span style="position:absolute; right:0;">
+                        <ng-container *ngIf="(report.valid_admin && report.type_rapport!='PFE') || (report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant); else notValid" > 
                             <i class="iconAdminValidated fas fa-check-circle"></i> 
+                        </ng-container>
                         </span>
 
-                        <span *ngIf="!report.valid_admin" style="position:absolute; right:0;"> 
+                        <ng-template #notValid > 
                             <i class="iconAdminNotValidated fa fa-times-circle"></i> 
-                        </span>
+                        </ng-template>
 
                         <br>
                         <div *ngIf="report.stage_ou_projet">
@@ -64,7 +65,7 @@
                         <br>
                         <div class="row">
                             <div class="col-6"></div>
-                            <div class="col-3" class="classLink" *ngIf="isStudentOwner"><a href="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>
+                            <div class="col-3" class="classLink" *ngIf="isStudentOwner || isAdministrator"><a href="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="col-3" class="classLink"><a href="/rapport/info/{{ report.id }}" ><u>plus de détails</u></a></div>
                         </div>
@@ -76,5 +77,13 @@
             </div>
         </article>
     </div>
+<hr>
+
+<p class="myDisclaimer "><small>Dans cette page, vous trouverez l'ensemble des rapports que vous avez soumis, notez bien que ces derniers 
+    doivent être accepté par l'administrateur de la plateforme avant qu'ils soient disponible sur
+    celle-ci (l'état d'un rapport est affiché dans l'angle en haut à droite de la carte de celui-ci). Notez aussi que s'il s'agit d'un rapport
+    liée à un stage PFE, le dernier devra passé par une deuxième étape de la validation de l'encadrant concerné avant qu'il soit accépté définitivement.
+</small></p>
+
 </div>
 <app-spinner class="mySpinnerClass" message="" [class.hidden]="hideSpinner"></app-spinner>

@@ -2,6 +2,8 @@ import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Professor } from 'src/app/features/professor/models/professor';
+import { ProfessorService } from 'src/app/features/professor/services/professor.service';
 import { Nature } from '../../models/nature.model';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
@@ -30,6 +32,7 @@ export class ReportDetailsComponent implements OnInit {
    fk_etudiant: 1,
    type_rapport:'Initiation',
    resume_rapport:'',
+   fk_encadrant_univ:null,
  };
  natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
  types_rapport : String[] = ['Initiation','PFA','PFE']
@@ -37,6 +40,8 @@ export class ReportDetailsComponent implements OnInit {
  Updated= false;
  fileToUpload: File | null = null;
  link: string;
+ professeurs : Professor[];
+
 
    //for cities and countries
    countryList: Array<any> = [
@@ -501,6 +506,7 @@ export class ReportDetailsComponent implements OnInit {
   autreVille_societe="";
   otherCountryHidden=true;
   otherCityHidden=true; 
+  encadrant_univ="";
 
   //file validation
   fileSizeError=false;
@@ -513,11 +519,25 @@ export class ReportDetailsComponent implements OnInit {
 
  constructor(private reportService: ReportService,
    private route: ActivatedRoute,
-   private router: Router) { }
+   private router: Router,
+   private professorService: ProfessorService) { }
       
  ngOnInit(): void {
    this.getReport(this.route.snapshot.params.id); 
+   this.retreiveProfessors();
+
  }
+
+ retreiveProfessors(){
+  this.professorService.getAll().subscribe(
+    data => {
+      this.professeurs = data;
+    },
+    error => {
+      console.log(error);
+    }
+  );
+}
 
  changeCountry(count) {
   this.cities = this.countryList.find(con => con.name == count).cities;
@@ -554,7 +574,7 @@ export class ReportDetailsComponent implements OnInit {
      .subscribe(
        data => {
           this.currentReport = data;
-          console.log(this.currentReport);
+          // console.log(this.currentReport);
           this.link=this.currentReport.fichier_rapport.toString().split('&')[0];
           //console.log(data.stage_ou_projet);
           if(!data.stage_ou_projet){
@@ -574,10 +594,10 @@ export class ReportDetailsComponent implements OnInit {
               this.changeCountry("Autre");
             }else{
               this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
-            }
-            
+            }            
           }
-         //console.log(this.currentReport);
+          // console.log(this.currentReport.fk_encadrant_univ)
+
        },
        error => {
          console.log(error);
@@ -610,6 +630,12 @@ export class ReportDetailsComponent implements OnInit {
     resume_rapport:this.currentReport.resume_rapport,
     valid_admin:this.currentReport.valid_admin,
   };
+  if(this.currentReport.type_rapport=="PFE"){
+    data['fk_encadrant_univ']=this.currentReport.fk_encadrant_univ;
+  }else{
+    data['fk_encadrant_univ']="";
+  }
+  console.log("DATAAAAA",data)
 
   if(this.fileToUpload!=null){
     console.log('with file')

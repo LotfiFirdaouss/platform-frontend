@@ -6,7 +6,7 @@ import { Report } from '../../report/models/report';
 })
 export class AdminValidatedPipe implements PipeTransform {
 
-  transform(reports: Report[], valid_admin: boolean): Report[] {
+  transform(reports: Report[], valid_admin: String): Report[] {
     if (!reports) {
       return [];
     }

@@ -82,7 +82,9 @@ export class ReportsListComponent implements OnInit {
   }
    
   retrieveReports(): void {
-     this.reportService.getAllReportValidatedAdmin()
+    //(report.valid_admin && report.type_rapport!='PFE')  OR
+    //(report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant)
+     this.reportService.getAllReportValidated()
        .subscribe(
          data => {
            this.reports = data;
