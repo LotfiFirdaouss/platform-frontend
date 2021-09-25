@@ -637,8 +637,13 @@ export class AddReportComponent implements OnInit {
       fk_etudiant: this.report.fk_etudiant,
       type_rapport:this.report.type_rapport,
       resume_rapport:this.report.resume_rapport,
-      encadrant_univ:this.report.fk_encadrant_univ,
     };
+ 
+    if(this.report.type_rapport=="PFE"){
+      data['fk_encadrant_univ']=this.report.fk_encadrant_univ;
+    }else{
+      data['fk_encadrant_univ']="";
+    }
 
     this.reportService.create(data)
       .subscribe(

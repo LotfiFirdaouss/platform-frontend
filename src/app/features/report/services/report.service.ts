@@ -17,14 +17,17 @@ export class ReportService {
     return this.http.get<Report[]>(baseUrl);
   }
 
+  //tt rapports validé par admin
   getAllReportValidatedAdmin(): Observable<Report[]> {
     return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
   }
   
+  //rapports validé par admin et supervizé par un professeur X
   getSupervizedReportsValidatedAdmin(fk_encadrant_univ: number): Observable<Report[]> {
     return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true && report.fk_encadrant_univ==fk_encadrant_univ)));
   }
   
+  //rapports validé définitement par admin (et par encadrant si pfe)
   getAllReportValidated(): Observable<Report[]> {
     return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => (report.valid_admin && report.type_rapport!='PFE') || 
     (report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant))));

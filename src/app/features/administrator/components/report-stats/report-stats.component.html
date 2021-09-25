@@ -1,6 +1,6 @@
 <div class="container myContentClass">
   <h2 class="card-subheading center" >Liste des rapports de stage</h2><br>
-  <p class="card-heading "><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects des étudiants de l'ENSAM Casablanca.</small></p><hr>
+  <p class="card-heading "><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects <b>acceptés et validés</b> des étudiants de l'ENSAM Casablanca.</small></p><hr>
   
 
   <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -76,11 +76,11 @@
           
           <thead> 
             <tr> 
+              <th scope="col">Nom complet</th>
+              <th scope="col">Code étudiant</th>
               <th scope="col">Promotion</th>
               <th scope="col">Filière</th>
               <th scope="col">Type rapp.</th>
-              <th scope="col">Code étudiant</th>
-              <th scope="col">Nom complet</th>
               <th scope="col">Stage/ Projet</th>
               <th scope="col">Intitulé rapport</th>
               <th scope="col">Date début</th>
@@ -88,6 +88,9 @@
               <th scope="col">Société stage</th>
               <th scope="col">Rapport confidentiel</th>
               <th scope="col">Lien rapport</th>
+              <th scope="col">Encadrant</th>
+              <th scope="col">V. Admin</th>
+              <th scope="col">V. Encadrant</th>
             </tr>
           </thead>
 
@@ -97,11 +100,11 @@
             | promotionFilter : filterPromotion 
             | filiereFilter : selectFiliere
             | paginate : { itemsPerPage: 10, currentPage: p } ;">
+              <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
+              <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>
               <th scope="col"> {{ report.fk_etudiant.promotion }} </th>
               <th scope="col"> {{ report.fk_etudiant.filiere }} </th>
               <th scope="col"> {{ report.type_rapport }} </th>
-              <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>
-              <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
               <th scope="col"> {{ report.stage_ou_projet ? "Stage" : "Projet" }} </th>
               <th scope="col"> {{ report.intitule_stage }} </th>
               <th scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </th>
@@ -109,7 +112,16 @@
               <th scope="col" > {{ report.societe_stage }} </th>
               <th scope="col"> {{ report.rapport_confidentiel ? "oui" : "non" }} </th>
               <!-- <th scope="col" class="classLink"> <a href="{{ report.fichier_rapport.toString().split('&')[0] }}"> {{ report.fichier_rapport.toString().split('&')[0] }} </a></th> -->
-              <th scope="col" class="classLink"> <a href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> {{ report.fichier_rapport.toString().split('/')[2] }} </a></th>
+              <th scope="col" class="classLink"> <a href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> http://localhost:8080{{ report.fichier_rapport.toString() }} </a></th>
+              <th scope="col">
+                  <span *ngIf="report.type_rapport=='PFE'"> <div *ngFor="let professor of professeurs"><div *ngIf="professor.id==report.fk_encadrant_univ">{{ professor.nom_prenom }} </div></div></span>
+                  <span *ngIf="report.type_rapport!='PFE'"> -- </span>
+              </th>
+              <th scope="col"> {{ report.valid_admin ? "V" : "NV" }} </th>
+              <th scope="col">
+                <span *ngIf="report.type_rapport=='PFE'"> {{ report.valid_encadrant ? "V" : "NV" }} </span>
+                <span *ngIf="report.type_rapport!='PFE'"> -- </span>
+              </th>
             </tr>
           </tbody>
 

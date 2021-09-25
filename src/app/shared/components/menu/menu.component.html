@@ -1,6 +1,6 @@
 <!-- <p>menu-student works!</p> -->
-
-<aside class="sidebar">
+<div class="myAside"> 
+<aside class="scrollbox myAside sidebar">
   <div class="toggle">
       <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar" >
             <span></span>
@@ -31,6 +31,8 @@
           </div>
 
           <li  [class.hidden]="!isAdministrator"><a id="insertionsId" routerLink="/insertion"><span class="icon-insertion mr-3"></span>Insertions</a></li>
+          <li [class.hidden]="!isAdministrator"><a  id="adminValidReportId" routerLink="/admin/reportValid"><span class="icon-validation mr-3"></span>Gestion Rapport</a></li>
+
 
           <div [class.hidden]="!isStudent || !currentStudent">
             <li ><a id="insertionId" (click)="dropDownFunction(myDropdownInsertion)" class="dropbtn"><span class="icon-insertion mr-3"></span>Insertions</a></li>
@@ -53,11 +55,11 @@
             <li  [class.hidden]="!isAdministrator"><a  id="gestionEtudId" (click)="dropDownFunction(myDropdownEtudiant)" class="dropbtn"><span class="icon-etudiant mr-3"></span>Gestion etudiants</a></li>
             <div id="myDropdownEtudiant" class="dropdown-content">
               <a routerLink="/etudiant">liste etudiant</a>
-              <a routerLink="/etudiant/ajouter">Ajouter etudiant</a> <!-- path: "insertion-etudiant/:etudiant" -->
+              <!-- <a routerLink="/etudiant/ajouter">Ajouter etudiant</a>  -->
             </div>
           </div>
 
-          <li [class.hidden]="!isAdministrator"><a id="formId" routerLink="/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
+          <li [class.hidden]="!isAdministrator"><a id="formId" routerLink="/admin/gestionForm"><span class="icon-form mr-3"></span>Gestion form</a></li>
           <li [class.hidden]="!isAdministrator"><a  id="statsId" routerLink="/admin/stats"><span class="icon-stats mr-3"></span>Statistiques</a></li>
           <li [class.hidden]="!isAdministrator"><a  id="dashId" routerLink="/admin/dashboard"><span class="icon-dashboard mr-3"></span>Dashboard</a></li>
 
@@ -68,3 +70,4 @@
   </div>
     
 </aside>
+</div>

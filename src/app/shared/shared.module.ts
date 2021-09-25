@@ -24,7 +24,6 @@ import { RegisterComponent } from '../auth/components/register/register.componen
 import { ProfileComponent } from '../auth/components/profile/profile.component';
 import { ProfileEtudiantComponent } from '../features/student/components/profile-etudiant/profile-etudiant.component';
 import { StudentDetailsComponent } from '../features/student/components/student-details/student-details.component';
-import { AddStudentComponent } from '../features/student/components/add-student/add-student.component';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
@@ -99,7 +98,6 @@ import { ReportProfessorValidationComponent } from '../features/professor/compon
 
     //students
     ProfileEtudiantComponent,
-    AddStudentComponent,
     StudentDetailsComponent,
 
     //studentsFilters
@@ -198,7 +196,6 @@ import { ReportProfessorValidationComponent } from '../features/professor/compon
 
     //students
     ProfileEtudiantComponent,
-    AddStudentComponent,
     StudentDetailsComponent,
 
     //professors

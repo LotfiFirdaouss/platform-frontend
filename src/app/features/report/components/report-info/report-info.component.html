@@ -54,6 +54,14 @@
               <td> {{ currentReport.valid_admin ? "oui" : "non" }} 
               </td>
             </tr>
+            <tr *ngIf="currentReport.type_rapport=='PFE' && current_encadrant_univ">
+              <td > <b>Encadrant</b>
+                <small class="d-block">Specifié s'il s'agit d'un PFE</small>
+
+              </td>
+              <td> {{ current_encadrant_univ.nom_prenom }} 
+              </td>
+            </tr>
             <tr *ngIf="currentReport.type_rapport=='PFE'">
               <td > <b>Validé par encadrant</b>
               </td>
