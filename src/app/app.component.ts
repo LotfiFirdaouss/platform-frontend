@@ -141,7 +141,7 @@ export class AppComponent implements OnInit{
             // console.log("==========================")
             var id,activeLink,currentLink;
             if(url.includes("/rapport/etudiant")){
-              if(url == "/rapport/etudiant/".concat(this.currentStudent.id.toString())){
+              if(url == "/rapport/etudiant/".concat(this.currentStudent?.id.toString())){
                 id = "rapportsId";
                 // console.log("isStudentOwner")
               }
@@ -162,7 +162,7 @@ export class AppComponent implements OnInit{
                 data => {
                   // console.log("found")
                   this.currentReport = data;
-                  if(this.currentReport.fk_etudiant.id==this.currentStudent.id ){
+                  if(this.currentReport.fk_etudiant?.id==this.currentStudent?.id ){
                     id = "rapportsId";
                     // console.log("isReportOwner")
                   }else{
@@ -196,7 +196,7 @@ export class AppComponent implements OnInit{
 
             var id,activeLink,currentLink;
             // console.log(this.currentStudent.id)
-            if(url == "/profile-etudiant/".concat(this.currentStudent.id.toString())){
+            if(url == "/profile-etudiant/".concat(this.currentStudent?.id.toString())){
               id = "profileId";
               // console.log("isStudentOwner")
               this.router.navigate(['/profile']);
