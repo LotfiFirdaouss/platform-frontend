@@ -99,8 +99,10 @@ export class ReportStudentComponent implements OnInit {
      //capitalize only the first letter of the string. 
   capitalizeFirstLetter(string) {
     //console.log("capitalize")
-    string = string.toLowerCase();
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    if(string!=null){
+      string = string.toLowerCase();
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
   }
    
 }

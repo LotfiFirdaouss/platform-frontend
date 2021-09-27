@@ -57,9 +57,12 @@
                                 <label><strong>Société de stage : </strong></label>
                                 {{ capitalizeFirstLetter(report.societe_stage) }} <span *ngIf="report.secteur_societe != null">( {{ capitalizeFirstLetter(report.secteur_societe) }} )</span>
                             </div>
-                            <div>
-                                <label><strong>Ville de stage : </strong></label>
+                            <div *ngIf="report.ville_societe!=null">
+                                <label ><strong>Ville de stage : </strong></label>
                                 {{ capitalizeFirstLetter(report.ville_societe) }} <span *ngIf="report.pays_societe != null">( {{ capitalizeFirstLetter(report.pays_societe) }} )</span>
+                            </div>
+                            <div *ngIf="report.ville_societe==null && report.pays_societe != null">
+                                <label ><strong>Pays de stage : </strong></label><span > {{ capitalizeFirstLetter(report.pays_societe) }} </span>
                             </div>
                         </div>
                         <br>
