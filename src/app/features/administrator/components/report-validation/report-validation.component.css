@@ -308,3 +308,7 @@
 .send-request span {
   margin-left: 8px;
 }
+
+.form-area button.serach-btn2 {
+  background-image: linear-gradient(to right,#804b05, #f57b42);
+}

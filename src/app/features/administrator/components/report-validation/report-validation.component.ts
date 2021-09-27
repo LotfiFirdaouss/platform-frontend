@@ -37,6 +37,7 @@ export class ReportValidationComponent implements OnInit {
   indeterminate = false;
   setOfCheckedId = new Set<number>();
   listOfCurrentPageData: readonly Report[] = [];
+  hideSpinner=false;
 
 
   constructor(private reportService : ReportService,
@@ -51,6 +52,8 @@ export class ReportValidationComponent implements OnInit {
   }
 
   retrieveReports(): void {
+    this.hideSpinner=false;
+
     this.reportService.getAll()
       .subscribe(
         data => {
@@ -60,6 +63,7 @@ export class ReportValidationComponent implements OnInit {
               edit: false
             };
           });
+          this.hideSpinner=true;
         },
         error => {
           console.log(error);
@@ -135,11 +139,12 @@ export class ReportValidationComponent implements OnInit {
   }
 
   renitialiserFiltres(){
+    this.setOfCheckedId.clear();
     this.filterPromotion='';
     this.selectFiliere='';
     this.selectedReportType='';
     this.selectedValidatedAdmin='';
-    this.onCurrentPageDataChange(this.reports);
+    this.retrieveReports();
   }
 
   updateCheckedSet(id: number, checked: boolean): void {
@@ -193,7 +198,7 @@ export class ReportValidationComponent implements OnInit {
       this.reportService.update(report.id, {'valid_admin':true,'fk_etudiant':report.fk_etudiant.id,'stage_ou_projet':report.stage_ou_projet})
       .subscribe(
         response => {
-          this.retrieveReports();
+          this.renitialiserFiltres();     
         },
         error => {
           console.log(error);
@@ -228,16 +233,13 @@ export class ReportValidationComponent implements OnInit {
 
   applyFilters(){
     // this.retrieveReports();
-    // //this.setOfCheckedId.clear();
-    // // console.log(this.setOfCheckedId)
-    // // console.log(this.listOfCurrentPageData)
-    // console.log("promotion",this.filterPromotion)
-    // console.log("filiere",this.selectFiliere)
-    // console.log("report type",this.selectedReportType)
-    // console.log("valid admin",this.selectedValidatedAdmin)
-    // this.reports = this.allFiltersInPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.selectedValidatedAdmin,this.selectedReportType);
-    // console.log(this.reports)
-    // // console.log("filtered",filteredReports)
-    // this.onCurrentPageDataChange(this.reports);
+    this.setOfCheckedId.clear();
+    console.log("promotion",this.filterPromotion)
+    console.log("filiere",this.selectFiliere)
+    console.log("report type",this.selectedReportType)
+    console.log("valid admin",this.selectedValidatedAdmin)
+    this.reports = this.allFiltersInPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.selectedValidatedAdmin,this.selectedReportType);
+
   }
+
 }

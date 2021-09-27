@@ -6,10 +6,10 @@
       <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
   <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="styled-input multi" style="height: 60px;">
               <div id="select-type" class="type">
-                <select name="type" [(ngModel)]="selectedValidatedAdmin" (ngModelChange)="applyFilters()">
+                <select name="type" [(ngModel)]="selectedValidatedAdmin" >
                   <option value="V">V</option>
                   <option value="NV">NV</option>
                 </select>
@@ -27,11 +27,11 @@
                 </svg>
               </div>
                 <div>
-                    <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false" (ngModelChange)="applyFilters()">
+                    <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false" >
                     <label>Promotion</label>
                 </div>
                 <div id="select-type" class="type">
-                    <select name="type" [(ngModel)]="selectFiliere" (ngModelChange)="applyFilters()">
+                    <select name="type" [(ngModel)]="selectFiliere" >
                         <!-- <option value="Tout">Tout</option> -->
                         <option value="GI">GI</option>
                         <option value="GM">GM</option>
@@ -54,7 +54,7 @@
                     </svg>
                 </div>
                 <div id="select-type" class="type">
-                    <select name="type" [(ngModel)]="selectedReportType" (ngModelChange)="applyFilters()">
+                    <select name="type" [(ngModel)]="selectedReportType" >
                         <!-- <option value="Tout">Tout</option> -->
                         <option value="Initiation">Initiation</option>
                         <option value="PFA">PFA</option>
@@ -75,6 +75,9 @@
                   </div>
             </div>
         </div>
+        <div class="col-md-2 no-pad-left-10">
+            <button type="" class="primary-btn serach-btn serach-btn2" (click)="applyFilters()">Appliquer filtres</button>
+        </div>        
         <div class="col-md-2 no-pad-left-10">
             <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Renitialiser filtres</button>
         </div>
@@ -129,10 +132,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let report of reportTable.data 
-            | reportTypeFilter : selectedReportType 
-            | promotionFilter : filterPromotion 
-            | filiereFilter : selectFiliere
-            | adminValidated : selectedValidatedAdmin
             | paginate : { itemsPerPage: 10, currentPage: p } ; let i = index" [class.active]="i == currentIndex" (click)="setActiveReport(report, i)">
                 
 
@@ -325,6 +324,8 @@
           </tbody>
       </nz-table>
     </div>
+    <app-spinner class="mySpinnerClass" message="" [class.hidden]="hideSpinner"></app-spinner>
+
     <div  class="center">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
