@@ -99,6 +99,8 @@
           Valider Rapports
         </button>
         <span> {{ setOfCheckedId.size }} rapports selectionnées</span>
+        <br><small style="padding-top:0px;color:red;">*Notez bien qu'il faut <b>renitialiser</b> les filtres pour effectuer un nouveau filtrage.</small>  
+
       </div>
 
       <nz-table #reportTable [nzFrontPagination]="false" [nzData]="reports" 

@@ -146,7 +146,7 @@ export class ReportProfessorValidationComponent implements OnInit {
 
   applyFilters(){
     //to renitialize
-    // this.getProfessor(this.user_id); 
+    //this.getProfessor(this.user_id); 
     this.setOfCheckedId.clear(); 
     console.log("promotion",this.filterPromotion)
     console.log("filiere",this.selectFiliere)

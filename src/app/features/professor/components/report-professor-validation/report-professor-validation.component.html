@@ -1,10 +1,11 @@
 <div class="myContentClass container">
   <h2 class="card-subheading center" >Liste des rapports encadrés</h2><br>
-  <p class="card-heading"><small>Ci-dessous vous trouverez la liste des rapports <b>(validés par l'admin)</b> des étudiants que vous encadrez, selectionner et valider pour accepter les rapports.</small></p><hr>
+  <p class="card-heading"><small>Ci-dessous vous trouverez la liste des rapports <b>(validés par l'admin)</b> des étudiants que vous encadrez, selectionner et valider pour accepter les rapports. </small></p><hr>
  
+  <!-- Filters -->
   <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
     <div class="row">
-        <div class="col-md-8">
+      <div class="col-md-8">
             <div class="styled-input multi" style="height: 60px;">
               <div id="select-type" class="type">
                 <select name="type" [(ngModel)]="selectedValidatedProfessor" >
@@ -80,7 +81,10 @@
           Valider Rapports
         </button>
         <span> {{ setOfCheckedId.size }} rapports selectionés</span>
+        <br><small style="padding-top:0px;color:red;">*Notez bien qu'il faut <b>renitialiser</b> les filtres pour effectuer un nouveau filtrage.</small>  
+
       </div>
+
       <nz-table
         #rowSelectionTable
         nzShowPagination

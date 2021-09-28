@@ -250,7 +250,7 @@
   -moz-border-radius: 30px;
   border: none;
   font-size: 16px;
-  background-image: linear-gradient(to right,#14111a, #0066a5);
+  background-image: linear-gradient(to right,#2d263a, #0066a5);
   text-align: center;
   color: white;
   text-transform: uppercase;
@@ -265,7 +265,7 @@
 }
 
 .form-area button.serach-btn:hover {
-  background-image: linear-gradient(to right,#14111a, #013758);
+  background-image: linear-gradient(to right,#030203, #0066a5);
     -webkit-box-shadow: -2px -2px 4px -4px rgba(0, 0, 0, 0.02), 0 3px 9px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
     box-shadow: -2px -2px 4px -4px rgba(0, 0, 0, 0.02), 0 3px 9px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
 }
@@ -311,4 +311,10 @@
 
 .form-area button.serach-btn2 {
   background-image: linear-gradient(to right,#804b05, #f57b42);
+}
+
+.form-area button.serach-btn2:hover {
+  background-image: linear-gradient(to right,#5f3703, #f57b42);
+    -webkit-box-shadow: -2px -2px 4px -4px rgba(0, 0, 0, 0.02), 0 3px 9px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: -2px -2px 4px -4px rgba(0, 0, 0, 0.02), 0 3px 9px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.14);
 }
