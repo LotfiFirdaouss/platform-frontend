@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, OnInit } from '@angular/core';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
 import { DOCUMENT } from '@angular/common';
@@ -30,6 +30,16 @@ export class HeaderComponent implements OnInit{
     private token: TokenStorageService,
     @Inject(DOCUMENT) private document: Document,
     private location: Location) { }
+
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+    onScroll(event) {
+      var addedNav = <HTMLElement> this.document.getElementById("addedNav");
+      addedNav.classList.add("hideAdditionnalNav")
+      // console.log("Scroll Event", window.pageYOffset );
+      if(window.pageYOffset==0){
+        addedNav.classList.remove("hideAdditionnalNav");
+      }
+  }  
 
   ngOnInit(): void {
     // this.openNav();
