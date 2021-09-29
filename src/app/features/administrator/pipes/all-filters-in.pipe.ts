@@ -19,6 +19,7 @@ export class AllFiltersInPipe implements PipeTransform {
     //   return report.fk_etudiant.promotion == promotion;    });
 
       return reports.filter( report => { 
+        // console.log("heere")
 
         if( promotion && !filiere && !selectedReportType && !valid_admin ){
           return report.fk_etudiant.promotion == promotion
@@ -27,6 +28,7 @@ export class AllFiltersInPipe implements PipeTransform {
           return filiere==report.fk_etudiant.filiere
         }
         else if( selectedReportType && !filiere && !promotion && !valid_admin ){
+          //console.log(this.reportIsOfType(report, selectedReportType))
           return this.reportIsOfType(report, selectedReportType)
         }
         else if( valid_admin && !filiere && !promotion && !selectedReportType ){
@@ -70,6 +72,7 @@ export class AllFiltersInPipe implements PipeTransform {
           && this.reportValidatedOrNotByAdmin(report, valid_admin);
         }
         else if(promotion && filiere && selectedReportType && valid_admin){
+          // console.log("here2")
           return report.fk_etudiant.promotion == promotion && this.reportIsOfType(report, selectedReportType) && 
           filiere==report.fk_etudiant.filiere && this.reportValidatedOrNotByAdmin(report, valid_admin);
         }

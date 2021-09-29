@@ -4,6 +4,7 @@ import { TokenStorageService } from 'src/app/auth/services/token-storage.service
 import { Report } from 'src/app/features/report/models/report';
 import { ReportService } from 'src/app/features/report/services/report.service';
 import { Professor } from '../../models/professor';
+import { AllFiltersInProfessorValidationPipe } from '../../pipes/all-filters-in-professor-validation.pipe';
 import { ProfessorService } from '../../services/professor.service';
 
 @Component({
@@ -26,9 +27,19 @@ export class ReportProfessorValidationComponent implements OnInit {
   user_id=0;
   currentProfessor!: Professor;
 
+  hideSpinner=false;
+
+  filterPromotion="";
+  selectFiliere="";
+  dateFilter="";
+  selectedValidatedProfessor="";
+
+  p=1;
+
   constructor(private reportService: ReportService,
     private token: TokenStorageService,
-    private professorService : ProfessorService,) { }
+    private professorService : ProfessorService,
+    private allFiltersInProfessorValidationPipe: AllFiltersInProfessorValidationPipe) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();    
@@ -55,13 +66,14 @@ export class ReportProfessorValidationComponent implements OnInit {
   }
 
   retrieveReports(professor_id:number): void {
+    this.hideSpinner=false;
     this.reportService.getSupervizedReportsValidatedAdmin(professor_id)
       .subscribe(
         data => {
           this.reports = data;
           console.log(data);
           //this.hideSpinner();
-          //this.hideSpinner = true;
+          this.hideSpinner = true;
         },
         error => {
           console.log(error);
@@ -113,7 +125,7 @@ export class ReportProfessorValidationComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response)
-          this.getProfessor(this.user_id);        
+          this.renitialiserFiltres();     
         },
         error => {
           console.log(error);
@@ -130,6 +142,28 @@ export class ReportProfessorValidationComponent implements OnInit {
     //console.log("capitalize")
     string = string.toLowerCase();
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  applyFilters(){
+    //to renitialize
+    //this.getProfessor(this.user_id); 
+    this.setOfCheckedId.clear(); 
+    console.log("promotion",this.filterPromotion)
+    console.log("filiere",this.selectFiliere)
+    console.log("date",this.dateFilter)
+    console.log("valid admin",this.selectedValidatedProfessor)
+    this.reports = this.allFiltersInProfessorValidationPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.selectedValidatedProfessor,Number(this.dateFilter));
+    console.log("new reports",this.reports)
+  }
+
+  renitialiserFiltres(){
+    this.setOfCheckedId.clear();
+    this.filterPromotion='';
+    this.selectFiliere='';
+    this.dateFilter='';
+    this.selectedValidatedProfessor='';
+    // this.retrieveReports(); we use instead the following line
+    this.getProfessor(this.user_id); 
   }
 
 }

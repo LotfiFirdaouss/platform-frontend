@@ -63,6 +63,8 @@ export class AppComponent implements OnInit{
           id = "accueilBtnID";
         }else if( url == "/%C3%A0-propos"){
           id = "AproposBtnID";
+        }else if( url == "/web-masters"){
+          id = "webBtnID";
         }else if( url == "/contact"){
           id = "contactBtnID";
         }else if( url == "/register"){
