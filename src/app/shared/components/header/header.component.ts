@@ -31,15 +31,15 @@ export class HeaderComponent implements OnInit{
     @Inject(DOCUMENT) private document: Document,
     private location: Location) { }
 
-  @HostListener('window:scroll', ['$event']) // for window scroll events
-    onScroll(event) {
-      var addedNav = <HTMLElement> this.document.getElementById("addedNav");
-      addedNav.classList.add("hideAdditionnalNav")
-      // console.log("Scroll Event", window.pageYOffset );
-      if(window.pageYOffset==0){
-        addedNav.classList.remove("hideAdditionnalNav");
-      }
-  }  
+  // @HostListener('window:scroll', ['$event']) // for window scroll events
+  //   onScroll(event) {
+  //     var addedNav = <HTMLElement> this.document.getElementById("addedNav");
+  //     addedNav.classList.add("hideAdditionnalNav")
+  //     // console.log("Scroll Event", window.pageYOffset );
+  //     if(window.pageYOffset==0){
+  //       addedNav.classList.remove("hideAdditionnalNav");
+  //     }
+  // }  
 
   ngOnInit(): void {
     // this.openNav();
