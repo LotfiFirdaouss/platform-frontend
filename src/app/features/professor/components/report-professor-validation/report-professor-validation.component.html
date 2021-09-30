@@ -90,6 +90,7 @@
         nzShowPagination
         nzShowSizeChanger
         [nzFrontPagination]="false"
+        [nzScroll]="{ x: '2000px' }"
         [nzData]="reports"
         (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
         class="table custom-table"
@@ -103,11 +104,11 @@
             <th scope="col" nzWidth="35%">filière</th>
             <th scope="col" nzWidth="30%">Stage/Projet</th>
             <th scope="col" nzWidth="25%">Type rapp.</th>
-            <th scope="col" nzWidth="50%">Intitulé rapp.</th>
-            <th scope="col" nzWidth="40%">Date début</th>
-            <th scope="col" nzWidth="40%">Date fin</th>
+            <th scope="col" nzWidth="45%">Intitulé rapp.</th>
+            <th scope="col" nzWidth="25%">Date début</th>
+            <th scope="col" nzWidth="25%">Date fin</th>
             <th scope="col" nzWidth="35%">Société Stage</th>
-            <th scope="col" nzWidth="25%">Lien rapp.</th>
+            <th scope="col" nzWidth="50%">Lien rapp.</th>
 
             <!-- <th scope="col" nzWidth="35%">Secteur Société</th>
             <th scope="col" nzWidth="30%">Pays Soc.</th>

@@ -34,12 +34,18 @@ export class ReportDetailsComponent implements OnInit {
    resume_rapport:'',
    fk_encadrant_univ:null,
  };
+
   alljurys=[];
-  jury1=true;
-  jury2=true;
   jury3=false;
   jury4=false;
   addJury=true;
+
+  //Mot clé
+  allmots=[];
+  mot4=false;
+  mot5=false;
+  addmot=true;
+
  natures : Nature[] = [{'name':'stage','nature':true},{'name':'projet','nature':false}];
  types_rapport : String[] = ['Initiation','PFA','PFE']
  stageDisabled=false;
@@ -584,13 +590,13 @@ export class ReportDetailsComponent implements OnInit {
           //console.log(data.stage_ou_projet);
           if(!data.stage_ou_projet){
             //projet
-            console.log("projet")
+            //console.log("projet")
             this.stageDisabled=true;
           }else{
             //Stage
-            console.log("stage")
+            //console.log("stage")
             this.stageDisabled=false;
-            console.log(data.pays_societe)
+            //console.log(data.pays_societe)
             //to handle autre pays/ville
             if(this.currentReport.pays_societe!= "Maroc" && this.currentReport.pays_societe!="France" && this.currentReport.pays_societe!=""){
               this.autrePays_societe= this.currentReport.pays_societe?.toString();
@@ -601,23 +607,16 @@ export class ReportDetailsComponent implements OnInit {
               this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
             }            
           }
-          this.alljurys[0]=data.jurys[0];
-          this.alljurys[1]=data.jurys[1];
-          this.alljurys[2]=this.alljurys[3]=0;
-          if(data.jurys.length>=3){
-            this.alljurys[2]=data.jurys[2];
-            this.jury3=true;
-          }
-          if(data.jurys.length==4){
-            this.alljurys[3]=data.jurys[3];
-            this.jury4=true;
-            this.addJury=false;
-          }
+          //mots
+          this.getMots(data);
+
+          //jurys
+          this.getJurys(data);
           // console.log(this.currentReport.fk_encadrant_univ)
 
        },
        error => {
-         console.log(error);
+         //console.log(error);
        });
  }
 
@@ -652,31 +651,90 @@ export class ReportDetailsComponent implements OnInit {
   }else{
     data['fk_encadrant_univ']="";
   }
-  console.log("DATAAAAA",data)
+  //console.log("DATAAAAA",data)
 
   if(this.fileToUpload!=null){
-    console.log('with file')
+    //console.log('with file')
     data['fichier_rapport']=this.fileToUpload;
   }else{
-    console.log("with no file")
+    //console.log("with no file")
   }
-  console.log("data sent to update",data)
+  //console.log("data sent to update",data)
 
-   this.reportService.update(this.currentReport.id, data)
+  let arrayMot = this.mots();
+  //post the new words
+  this.reportService.postMotsClés(arrayMot);
+
+  this.reportService.update(this.currentReport.id, data)
      .subscribe(
        response => {
-        const data2 = {
-          fk_etudiant: this.currentReport.fk_etudiant.id,
-          jurys:this.Jurys(),
-        }
-        this.reportService.updateJurys(response.id,data2)
-          .subscribe(
-          response => {
-            //console.log(response);
-            this.Updated = true;
-            this.hideSpinner=true;
-          }
-        );
+         //console.log(response);
+         let idsmots=[];
+         this.reportService.getMotCle(arrayMot[0]).subscribe(
+           motcle1 => {
+             idsmots.push(motcle1.id);
+             this.reportService.getMotCle(arrayMot[1]).subscribe(
+               motcle2 => {
+                 idsmots.push(motcle2.id);
+                 this.reportService.getMotCle(arrayMot[2]).subscribe(
+                   motcle3 => {
+                     idsmots.push(motcle3.id);
+                     if(arrayMot.length>=4){
+                       this.reportService.getMotCle(arrayMot[3]).subscribe(
+                         motcle4 => {
+                           idsmots.push(motcle4.id);
+                           if(arrayMot.length==5){
+                             this.reportService.getMotCle(arrayMot[4]).subscribe(
+                               motcle5 => {
+                                 idsmots.push(motcle5.id);
+                                 const object = {
+                                   fk_etudiant: this.currentReport.fk_etudiant.id,
+                                   jurys:this.Jurys(),
+                                   mots:idsmots
+                                 }
+                                 this.reportService.updateMotsClesJury(response.id,object).subscribe(
+                                   response => {
+                                     //console.log(response);
+                                     this.Updated = true;
+                                     this.hideSpinner=true;
+                                 });
+                               }
+                             );
+                           }
+                           else {
+                            const object = {
+                              fk_etudiant: this.currentReport.fk_etudiant.id,
+                              jurys:this.Jurys(),
+                              mots:idsmots
+                            }
+                            this.reportService.updateMotsClesJury(response.id,object).subscribe(
+                              response => {
+                                //console.log(response);
+                                this.Updated = true;
+                                this.hideSpinner=true;
+                            });
+                           }
+                         }
+                       );
+                     }else{
+                      const object = {
+                        fk_etudiant: this.currentReport.fk_etudiant.id,
+                        jurys:this.Jurys(),
+                        mots:idsmots
+                      }
+                      this.reportService.updateMotsClesJury(response.id,object).subscribe(
+                        response => {
+                          //console.log(response);
+                          this.Updated = true;
+                          this.hideSpinner=true;
+                      });
+                     }
+                   }
+                 );
+               }
+             );
+           }
+         );
        },
        error => {
          console.log(error);
@@ -738,6 +796,66 @@ public Jurys(): Number[] {
   return array;
 }
 
+public addmots(){
+  if(this.mot4===false){
+    this.mot4=true;
+  }
+  else if(this.mot4===true){
+    this.mot5=true;
+    this.addmot=false;
+  }
+}
+
+public mots(): String[] {
+  let array=[];
+  for(var i = 0; i < 5; i++){ 
+    if (!!this.allmots[i]){
+      array.push(this.allmots[i])
+    } 
+  }
+  return array;
+}
+
+public getJurys(data:Report){
+  this.alljurys[0]=data.jurys[0];
+  this.alljurys[1]=data.jurys[1];
+  this.alljurys[2]=this.alljurys[3]=0;
+  if(data.jurys.length>=3){
+    this.alljurys[2]=data.jurys[2];
+    this.jury3=true;
+  }
+  if(data.jurys.length==4){
+    this.alljurys[3]=data.jurys[3];
+    this.jury4=true;
+    this.addJury=false;
+  }
+}
+
+public getMots(data:Report){
+  this.allmots[4]=this.allmots[3]='';
+  this.reportService.getMot(data.mots[0]).subscribe(
+    data => {this.allmots[0]=data.mot as string;}
+  );
+  this.reportService.getMot(data.mots[1]).subscribe(
+    data => {this.allmots[1]=data.mot as string;}
+  );
+  this.reportService.getMot(data.mots[2]).subscribe(
+    data => {this.allmots[2]=data.mot as string;}
+  );
+  if(data.mots.length>=4){
+    this.reportService.getMot(data.mots[3]).subscribe(
+      data => {this.allmots[3]=data.mot as string;}
+    );
+    this.mot4=true;
+  }
+  if(data.mots.length==5){
+    this.reportService.getMot(data.mots[4]).subscribe(
+      data => {this.allmots[4]=data.mot as string;}
+    );
+    this.mot5=true;
+    this.addmot=false;
+  }
+}
  
 
 }

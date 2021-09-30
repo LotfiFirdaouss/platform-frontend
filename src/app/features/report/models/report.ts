@@ -19,6 +19,7 @@ export class Report {
     type_rapport?:String;
     resume_rapport?:String;
     jurys?:Number[];
+    mots?:Number[];
     valid_admin?:boolean;
     fk_encadrant_univ?:any;
     valid_encadrant?:boolean;

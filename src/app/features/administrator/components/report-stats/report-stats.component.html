@@ -73,25 +73,25 @@
   <div style="padding: 0.4%;">
       <div #reportTable class="table-responsive custom-table-responsive">
       
-        <nz-table [nzFrontPagination]="false" [nzData]="reports" class="table custom-table" style="width: 100%;">
+        <nz-table [nzFrontPagination]="false" [nzScroll]="{ x: '3000px' }" [nzData]="reports" class="table custom-table" style="width: 100%;">
           
           <thead> 
             <tr> 
-              <th scope="col">Etudiant</th>
-              <th scope="col">Code étudiant</th>
-              <th scope="col">Promotion</th>
-              <th scope="col">Filière</th>
-              <th scope="col">Type rapp.</th>
-              <th scope="col">Stage/ Projet</th>
-              <th scope="col">Intitulé rapport</th>
-              <th scope="col">Date début</th>
-              <th scope="col">Date fin</th>
-              <th scope="col">Société stage</th>
-              <th scope="col">Rapport confidentiel</th>
-              <th scope="col">Lien rapport</th>
-              <th scope="col">Encadrant</th>
-              <th scope="col">V. Admin</th>
-              <th scope="col">V. Encadrant</th>
+              <th scope="col" nzWidth="35%">Etudiant</th>
+              <th scope="col" nzWidth="25%">Code étudiant</th>
+              <th scope="col" nzWidth="20%">Promotion</th>
+              <th scope="col" nzWidth="18%">Filière</th>
+              <th scope="col" nzWidth="25%">Type rapp.</th>
+              <th scope="col" nzWidth="25%">Stage/ Projet</th>
+              <th scope="col" nzWidth="45%">Intitulé rapport</th>
+              <th scope="col" nzWidth="25%">Date début</th>
+              <th scope="col" nzWidth="25%">Date fin</th>
+              <th scope="col" nzWidth="35%">Société stage</th>
+              <th scope="col" nzWidth="35%">Rapport confidentiel</th>
+              <th scope="col" nzWidth="55%">Lien rapport</th>
+              <th scope="col" nzWidth="25%">Encadrant</th>
+              <th scope="col" nzWidth="25%">V. Admin</th>
+              <th scope="col" nzWidth="25%">V. Encadrant</th>
             </tr>
           </thead>
 
