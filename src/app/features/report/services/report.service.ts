@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Report } from '../models/report';
 import { map } from 'rxjs/operators';
+import { MotCle } from '../models/mot-cle';
 
 const baseUrl = 'http://127.0.0.1:8080/api/rapports';
 
@@ -76,6 +77,9 @@ export class ReportService {
     return this.http.post(baseUrl, formData);
   }
 
+  updateMotsClesJury(id: any, data: any): Observable<any> {
+    return this.http.put(`${baseUrl}/${id}`, data);
+  }
   updateJurys(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
@@ -111,11 +115,11 @@ export class ReportService {
       formData.append('telephone_encadrant',data.telephone_encadrant);
     }
     if(data.fichier_rapport!=null){
-      console.log("heeere fichier rapport")
+      //console.log("heeere fichier rapport")
       formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
     }
     if(data.resume_rapport){
-      console.log("resume")
+      //console.log("resume")
       formData.append('resume_rapport',data.resume_rapport);
     }
     if(data.valid_admin!=null){
@@ -164,4 +168,26 @@ export class ReportService {
     var yyyy = today.getFullYear();
     return yyyy+'-'+mm+'-'+dd;
   }
+
+  postMotsClés(mots:String[]) {
+    for (const index in mots){
+      this.getMotCle(mots[index]).subscribe(
+        data => {
+          if(data.mot==''){
+            const mot ={mot:mots[index]};
+            this.http.post(`http://127.0.0.1:8080/api/motCles/`,mot).subscribe();
+          }  
+      });
+    }
+  }
+
+  getMotCle(mot:String): Observable<MotCle> {
+    return this.http.get<MotCle>(`http://127.0.0.1:8080/api/motCles/mot?mot=${mot}`);    
+  }
+
+  getMot(id: any): Observable<MotCle> {
+    return this.http.get<MotCle>(`http://127.0.0.1:8080/api/motCles/${id}`);
+  }
+
+
 }

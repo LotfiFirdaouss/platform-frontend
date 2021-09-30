@@ -20,8 +20,6 @@ export class AddReportComponent implements OnInit {
 
   //add jury
   alljurys=[,,0,0];
-  jury1=true;
-  jury2=true;
   jury3=false;
   jury4=false;
   addJury=true;
@@ -47,6 +45,12 @@ export class AddReportComponent implements OnInit {
     fk_encadrant_univ:null, 
   };
 
+  //Mot clé
+  allmots=[];
+  mot4=false;
+  mot5=false;
+  addmot=true;
+
   //to get value of student_id
   isLoggedIn = false;
   currentUser!: ReturnedUser;
@@ -58,7 +62,6 @@ export class AddReportComponent implements OnInit {
   types_rapport : String[] = ['Initiation','PFA','PFE']
   stageDisabled= false;
   fileToUpload: File | null = null;
-  professeurs : Professor[];
 
   //for cities and countries
   countryList: Array<any> = [
@@ -553,7 +556,6 @@ export class AddReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();
-    this.retrieveProfessor();
     //console.log(this.isLoggedIn);
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
@@ -569,7 +571,7 @@ export class AddReportComponent implements OnInit {
   retreiveProfessors(){
     this.professorService.getAll().subscribe(
       data => {
-        this.professeurs = data;
+        this.professors = data;
       },
       error => {
         console.log(error);
@@ -630,7 +632,7 @@ export class AddReportComponent implements OnInit {
       this.report.pays_societe = this.autrePays_societe;
       this.report.ville_societe = this.autreVille_societe;
     }
-    console.log("professeur",this.report.fk_encadrant_univ)
+    //console.log("professeur",this.report.fk_encadrant_univ)
     const data = {
       stage_ou_projet: this.report.stage_ou_projet,
       date_debut_stage: this.report.date_debut_stage,
@@ -656,23 +658,79 @@ export class AddReportComponent implements OnInit {
     }else{
       data['fk_encadrant_univ']="";
     }
+    let arrayMot = this.mots();
+    //post the new words
+    this.reportService.postMotsClés(arrayMot);
 
     this.reportService.create(data)
       .subscribe(
         response => {
-          //console.log(response);
-          const data2 = {
-            fk_etudiant: this.report.fk_etudiant,
-            jurys:this.Jurys(),
-          }
-          this.reportService.updateJurys(response.id,data2)
-            .subscribe(
-            response => {
-              //console.log(response);
-              this.submitted = true;
-              this.hideSpinner=true;
-            }
-          );
+            //console.log(response);
+            let idsmots=[];
+            this.reportService.getMotCle(arrayMot[0]).subscribe(
+              motcle1 => {
+                idsmots.push(motcle1.id);
+                this.reportService.getMotCle(arrayMot[1]).subscribe(
+                  motcle2 => {
+                    idsmots.push(motcle2.id);
+                    this.reportService.getMotCle(arrayMot[2]).subscribe(
+                      motcle3 => {
+                        idsmots.push(motcle3.id);
+                        if(arrayMot.length>=4){
+                          this.reportService.getMotCle(arrayMot[3]).subscribe(
+                            motcle4 => {
+                              idsmots.push(motcle4.id);
+                              if(arrayMot.length==5){
+                                this.reportService.getMotCle(arrayMot[4]).subscribe(
+                                  motcle5 => {
+                                    idsmots.push(motcle5.id);
+                                    const object = {
+                                      fk_etudiant: this.report.fk_etudiant,
+                                      jurys:this.Jurys(),
+                                      mots:idsmots
+                                    }
+                                    this.reportService.updateMotsClesJury(response.id,object).subscribe(
+                                      response => {
+                                        //console.log(response);
+                                        this.submitted = true;
+                                        this.hideSpinner=true;
+                                    });
+                                  }
+                                );
+                              }else{
+                                const object = {
+                                  fk_etudiant: this.report.fk_etudiant,
+                                  jurys:this.Jurys(),
+                                  mots:idsmots
+                                }
+                                this.reportService.updateMotsClesJury(response.id,object).subscribe(
+                                  response => {
+                                    //console.log(response);
+                                    this.submitted = true;
+                                    this.hideSpinner=true;
+                                });
+                               }
+                            }
+                          );
+                        }else{
+                          const object = {
+                            fk_etudiant: this.report.fk_etudiant,
+                            jurys:this.Jurys(),
+                            mots:idsmots
+                          }
+                          this.reportService.updateMotsClesJury(response.id,object).subscribe(
+                            response => {
+                              //console.log(response);
+                              this.submitted = true;
+                              this.hideSpinner=true;
+                          });
+                         }
+                      }
+                    );
+                  }
+                );
+              }
+            );        
         },
         error => {
           //console.log(error);
@@ -709,17 +767,13 @@ export class AddReportComponent implements OnInit {
   public CanAddReport(){
     this.myFormService.get(1).subscribe(
       data => {
-        console.log("form:",data)
+        //console.log("form:",data)
         this.DBreportForm = data;
         this.canAddReport = this.DBreportForm.active_status;
       },
       error => {
         console.log(error);
       });
-  }
-
-  public retrieveProfessor(): void {
-    this.professorService.getAll().subscribe( data => {this.professors = data;});
   }
 
   public addJurys(){
@@ -735,12 +789,32 @@ export class AddReportComponent implements OnInit {
   public Jurys(): Number[] {
     let array=[];
     for(var i = 0; i < 4; i++){ 
-      if (this.alljurys[i]!=0){
+      if (!!this.alljurys[i]){
         array.push(this.alljurys[i])
       } 
     }
     return array;
   }
 
+  public addmots(){
+    if(this.mot4===false){
+      this.mot4=true;
+    }
+    else if(this.mot4===true){
+      this.mot5=true;
+      this.addmot=false;
+    }
+  }
+
+  public mots(): String[] {
+    let array=[];
+    for(var i = 0; i < 5; i++){ 
+      if (!!this.allmots[i]){
+        array.push(this.allmots[i])
+      } 
+    }
+    return array;
+  }
+  
 
 }

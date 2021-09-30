@@ -292,6 +292,86 @@
                     </div>
                 </div>
                 <p></p>
+                <span > <I>Les mots clés :</I> </span><br>
+                <div class="row" style="margin-top: 25px; ">
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="allmots[0]" #mot1="ngModel" name="mot1"
+                            class="form-control" placeholder="Mot clé*" required maxlength="30" />
+                            <span class="unit">Mot clé : </span>
+                            <div *ngIf="mot1.errors && (mot1.dirty || mot1.touched)" class="alert alert-danger">
+                                <div [hidden]="!mot1.errors?.required">
+                                    Ce champs est requis.
+                                </div>
+                                <div [hidden]="!mot1.errors?.maxlength">
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="allmots[1]" #mot2="ngModel" name="mot2"
+                            class="form-control" placeholder="Mot clé*" required maxlength="30" />
+                            <span class="unit">Mot clé : </span>
+                            <div *ngIf="mot2.errors && (mot2.dirty || mot2.touched)" class="alert alert-danger">
+                                <div [hidden]="!mot2.errors?.required">
+                                    Ce champs est requis.
+                                </div>
+                                <div [hidden]="!mot2.errors?.maxlength">
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="allmots[2]" #mot3="ngModel" name="mot3"
+                            class="form-control" placeholder="Mot clé*" required maxlength="30" />
+                            <span class="unit">Mot clé : </span>
+                            <div *ngIf="mot3.errors && (mot3.dirty || mot3.touched)" class="alert alert-danger">
+                                <div [hidden]="!mot3.errors?.required">
+                                    Ce champs est requis.
+                                </div>
+                                <div [hidden]="!mot3.errors?.maxlength">
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" *ngIf="mot4">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="allmots[3]" #mot4="ngModel" name="mot4"
+                            class="form-control nature" placeholder="Mot clé"  maxlength="30" />
+                            <span class="unit">Mot clé : </span>
+                            <div *ngIf="mot4.errors && (mot4.dirty || mot4.touched)" class="alert alert-danger">
+                                <div [hidden]="!mot4.errors?.maxlength">
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" *ngIf="mot5">
+                        <div class="form-group input-box">
+                            <input type="text" [(ngModel)]="allmots[4]" #mot5="ngModel" name="mot5"
+                            class="form-control" placeholder="Mot clé"  maxlength="30" />
+                            <span class="unit">Mot clé : </span>
+                            <div *ngIf="mot5.errors && (mot5.dirty || mot5.touched)" class="alert alert-danger">
+                                <div [hidden]="!mot5.errors?.maxlength">
+                                    Ce champ ne peut pas comporter plus de 30 caractères.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" *ngIf="addmot">
+                      <div class="btnContact" (click)="addmots()">
+                        Ajouter un mot clé
+                      </div> 
+                    </div>
+                </div>
+                <p></p>
                 <span > <I>Résumé du rapport :</I> </span><br>
                 <div class="row" style="margin-top: 15px; ">
                     <div class="col">
@@ -325,7 +405,7 @@
                 <hr>
                 <span style="font-size:large;"> <I>Informations sur soutenance :</I> </span>
                 <div class="row" style="margin-top: 25px; ">
-                    <div class="col" *ngIf="jury1">
+                    <div class="col">
                         <div class="form-group input-box">
                             <select class="custom-select form-control" name="jury1" #jury1="ngModel"
                             [(ngModel)]="alljurys[0]" required>
@@ -342,7 +422,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col" *ngIf="jury2">
+                    <div class="col" >
                         <div class="form-group input-box">
                             <select class="custom-select form-control" name="jury2" #jury2="ngModel"
                             [(ngModel)]="alljurys[1]" required>
