@@ -79,3 +79,10 @@ body {
     color: #fff;
     cursor: pointer;
 }
+
+.center {
+  margin: auto;
+  width: 45%;
+  border: 1px #0076bd;;
+  padding: 10px;
+  }

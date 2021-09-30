@@ -1,5 +1,5 @@
 <div class="container myContentClass">
-  <h2 class="card-subheading center" >Liste des rapports</h2><br>
+  <h2 class="card-subheading center" >Liste des rapports assistés</h2><br>
   <p class="card-heading "><small>Ci-dessous vous trouverez la liste de tout les rapports de stages/projects dans vous étiez un membre de jury.</small></p><hr>    
     
     
@@ -68,7 +68,6 @@
       </div>
       
   </div>
-  <hr>
 
   <!-- LIST OF REPORTS -------------------------------------------------------------------------------------------------------------------------->  
   <div style="padding: 0.4%;">
@@ -107,11 +106,11 @@
               <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>
               <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
               <th scope="col"> {{ report.stage_ou_projet ? "Stage" : "Projet" }} </th>
-              <th scope="col"> {{ report.intitule_stage }} </th>
+              <td  class="classLink"><A routerLink="/rapport/info/{{ report.id }}">{{capitalizeFirstLetter(report.intitule_stage)}}</A></td>
               <th scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </th>
               <th scope="col" > {{ report.date_fin_stage | date: 'dd/MM/yyyy' }} </th>
               <th scope="col" > {{ report.societe_stage }} </th>
-              <th scope="col" class="classLink"> <a href="http://localhost:8080{{report.fichier_rapport.toString()}}"> {{report.fichier_rapport.toString().split('/')[2]}} </a> <p *ngIf="report.rapport_confidentiel" style="color:red; outline:none;"> rapport confidentiel </p></th>
+              <th scope="col" class="classLink"> <a href="http://localhost:8080{{report.fichier_rapport.toString()}}"> {{report.fichier_rapport.toString().split('/')[2]}} </a> <p *ngIf="report.rapport_confidentiel" style="color:red; outline:none;text-decoration: none;cursor: default;"> rapport confidentiel </p></th>
             </tr>
           </tbody>
 

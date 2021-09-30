@@ -2,57 +2,65 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <nav class="navbar sticky-top navbar-expand-lg ">
-      <div class="row">
-        
-        
-          <a class="col navbar-brand " *ngIf="!isLoggedIn" routerLink="/" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark2.png"  alt="Main logo"></a>
-          <div class="col" *ngIf="isLoggedIn">
-            <a class="navbar-brand " routerLink="/home" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark2.png"  alt="Main logo"  height="60" style="margin-left: 20px;"></a>
-          </div>
-          <div class="col" id="button">
-            <button style=" color:white; " class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars" style="padding-top: 25px;"></i></button>
-          </div>
-          
+  <!-- <div id="addedNav" *ngIf="!isLoggedIn" class="navbar row " style="display:default;padding-top:0px;padding-bottom:0px;height: 85px;background-color: #01274e ;" >
+    <a   class="col navbar-brand "  routerLink="/" id="logo" (click)="scrollCenter(0)"><img style="border-radius: 5px; background-color: rgba(255, 255, 255, 0.363);" src="assets\Img\MarocIcon4.png"  height="65px" ></a>
+    <div class="col"></div>
+    <a class="col navbar-brand " style="margin-right: -320px;"  routerLink="/" id="logo" (click)="scrollCenter(0)"><img style="border-radius: 5px; background-color: rgba(255, 255, 255, 0.363);" src="assets\Img\ensamIcon2.png" height="65px"></a>
+  </div> -->
 
-        <div class="col" style="position: absolute;right: 20px; top: 20px;" class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto w-100 justify-content-end">
+  <nav class="navbar sticky-top navbar-expand-lg " >
+    <div class="row">
 
-            <!-- shown in case not connected == !isLoggedIn -->
-              <li class="nav-item "  [class.hidden]="isLoggedIn">
-                <a class="nav-link Hactive" id="accueilBtnID" routerLink="/" (click)="scrollCenter(0)">Accueil <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item"  [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="AproposBtnID" routerLink="/à-propos" (click)="scrollCenter(0)" >À propos</a>
-              </li>  
-              <li class="nav-item"  [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="contactBtnID" routerLink="/contact" (click)="scrollCenter(0)" >Contact</a>
-              </li>
-              <li class="nav-item" [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="signupBtnID" routerLink="/register" (click)="scrollCenter(0)" >S'inscrire</a>
-              <li class="nav-item" [class.hidden]="isLoggedIn">
-                <a class="nav-link inactive" id="signinBtnID" routerLink="/login" (click)="scrollCenter(0)">Se connecter</a>
-              </li>
-
-
-            <!-- shown in case connected == isLoggedIn -->
-            
-              <!-- <li class="nav-item" [class.hidden]="!isLoggedIn">
-                <a class="nav-link Hactive" id="homeBtnID" routerLink="/home" (click)="scrollCenter(0)" >Accueil</a>
-              </li>
-              <li class="nav-item" [class.hidden]="!isLoggedIn">
-                <a class="nav-link inactive" id="profileBtnID" routerLink="/profile" (click)="scrollCenter(0)">Profil</a>
-              </li> -->
-              <li class="nav-item" [class.hidden]="!isLoggedIn">
-                <a class="nav-link inactive" id="logoutBtnID" routerLink="/" (click)="logout();">Déconnexion</a>
-              </li>
-
-          </ul>
+        <div class="col" *ngIf="!isLoggedIn">
+          <a class="navbar-brand "  routerLink="/" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark2.png"  alt="Main logo" style="height: 55px;"></a>
         </div>
+        <div class="col" *ngIf="isLoggedIn">
+          <a class="navbar-brand " routerLink="/home" id="logo" (click)="scrollCenter(0)"><img src="assets\Img\logoDark2.png"  alt="Main logo"  height="60" style="margin-left: 20px;"></a>
+        </div>
+        <div class="col" id="button">
+          <button style=" color:white; " class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars" style="padding-top: 25px;"></i></button>
+        </div>
+        <div class="col" style="position: absolute;right: 20px; top: 20px;" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
 
-      </div>
-    </nav>
+          <!-- shown in case not connected == !isLoggedIn -->
+            <li class="nav-item "  [class.hidden]="isLoggedIn">
+              <a class="nav-link Hactive" id="accueilBtnID" routerLink="/" (click)="scrollCenter(0)">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item"  [class.hidden]="isLoggedIn">
+              <a class="nav-link inactive" id="AproposBtnID" routerLink="/à-propos" (click)="scrollCenter(0)" >À propos</a>
+            </li>  
+            <li class="nav-item"  [class.hidden]="isLoggedIn">
+              <a class="nav-link inactive" id="contactBtnID" routerLink="/contact" (click)="scrollCenter(0)" >Contact</a>
+            </li>
+            <li class="nav-item"  [class.hidden]="isLoggedIn">
+              <a class="nav-link inactive" id="webBtnID" routerLink="/web-masters" (click)="scrollCenter(0)" >Webmasters</a>
+            </li>
+            <li class="nav-item" [class.hidden]="isLoggedIn">
+              <a class="nav-link inactive" id="signupBtnID" routerLink="/register" (click)="scrollCenter(0)" >S'inscrire</a>
+            <li class="nav-item" [class.hidden]="isLoggedIn">
+              <a class="nav-link inactive" id="signinBtnID" routerLink="/login" (click)="scrollCenter(0)">Se connecter</a>
+            </li>
+
+
+          <!-- shown in case connected == isLoggedIn -->
+          
+            <!-- <li class="nav-item" [class.hidden]="!isLoggedIn">
+              <a class="nav-link Hactive" id="homeBtnID" routerLink="/home" (click)="scrollCenter(0)" >Accueil</a>
+            </li>
+            <li class="nav-item" [class.hidden]="!isLoggedIn">
+              <a class="nav-link inactive" id="profileBtnID" routerLink="/profile" (click)="scrollCenter(0)">Profil</a>
+            </li> -->
+            <li class="nav-item" [class.hidden]="!isLoggedIn">
+              <a class="nav-link inactive" id="logoutBtnID" routerLink="/" (click)="logout();">Déconnexion</a>
+            </li>
+
+        </ul>
+        </div>
+        
+    </div>
+  </nav>
 
 </div>
 

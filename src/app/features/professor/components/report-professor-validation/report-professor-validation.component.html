@@ -1,7 +1,74 @@
 <div class="myContentClass container">
   <h2 class="card-subheading center" >Liste des rapports encadrés</h2><br>
-  <p class="card-heading"><small>Ci-dessous vous trouverez la liste des rapports <b>(validés par l'admin)</b> des étudiants que vous encadrez, selectionner et valider pour accepter les rapports.</small></p><hr>
+  <p class="card-heading"><small>Ci-dessous vous trouverez la liste des rapports <b>(validés par l'admin)</b> des étudiants que vous encadrez, selectionner et valider pour accepter les rapports. </small></p><hr>
  
+  <!-- Filters -->
+  <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
+    <div class="row">
+      <div class="col-md-8">
+            <div class="styled-input multi" style="height: 60px;">
+              <div id="select-type" class="type">
+                <select name="type" [(ngModel)]="selectedValidatedProfessor" >
+                  <option value="V">V</option>
+                  <option value="NV">NV</option>
+                </select>
+                <label>V / NV</label>
+                <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                            <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                    points="231.8 32.8 221 32.8 221 22"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+              </div>
+                <div>
+                    <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false" >
+                    <label>Promotion</label>
+                </div>
+                <div>
+                  <input type="text" [(ngModel)]="dateFilter" data-placeholder-focus="false" >
+                  <label>Année</label>
+              </div>
+                <div id="select-type" class="type">
+                    <select name="type" [(ngModel)]="selectFiliere" >
+                        <!-- <option value="Tout">Tout</option> -->
+                        <option value="GI">GI</option>
+                        <option value="GM">GM</option>
+                        <option value="GE">GE(ancienne)</option>
+                        <option value="GEM">GEM</option>
+                        <option value="IAGI">IAGI</option>
+                        <option value="MSEI">MSEI</option>
+                    </select>
+                    <label>Filière</label>
+                    <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                    <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                        points="231.8 32.8 221 32.8 221 22"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-2 no-pad-left-10">
+          <button type="" class="primary-btn serach-btn serach-btn2" (click)="applyFilters()">Appliquer filtres</button>
+      </div>  
+        <div class="col-md-2 no-pad-left-10">
+            <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Renitialiser filtres</button>
+        </div>
+
+    </div>
+  </div>
+  
   <div class="table-responsive custom-table-responsive" > 
 
     <div class="send-request">
@@ -14,11 +81,15 @@
           Valider Rapports
         </button>
         <span> {{ setOfCheckedId.size }} rapports selectionés</span>
+        <br><small style="padding-top:0px;color:red;">*Notez bien qu'il faut <b>renitialiser</b> les filtres pour effectuer un nouveau filtrage.</small>  
+
       </div>
+
       <nz-table
         #rowSelectionTable
         nzShowPagination
         nzShowSizeChanger
+        [nzFrontPagination]="false"
         [nzData]="reports"
         (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
         class="table custom-table"
@@ -30,22 +101,24 @@
             <th scope="col" nzWidth="35%">Code étudiant</th>
             <th scope="col" nzWidth="35%">promotion</th>
             <th scope="col" nzWidth="35%">filière</th>
-            <th scope="col" nzWidth="25%">Lien rapp.</th>
             <th scope="col" nzWidth="30%">Stage/Projet</th>
             <th scope="col" nzWidth="25%">Type rapp.</th>
             <th scope="col" nzWidth="50%">Intitulé rapp.</th>
             <th scope="col" nzWidth="40%">Date début</th>
             <th scope="col" nzWidth="40%">Date fin</th>
             <th scope="col" nzWidth="35%">Société Stage</th>
+            <th scope="col" nzWidth="25%">Lien rapp.</th>
+
             <!-- <th scope="col" nzWidth="35%">Secteur Société</th>
             <th scope="col" nzWidth="30%">Pays Soc.</th>
             <th scope="col" nzWidth="30%">Ville Soc.</th> -->
-            <th scope="col" nzWidth="30%">Confidentiel</th>
+            <!-- <th scope="col" nzWidth="30%">Confidentiel</th> -->
           </tr>
         </thead>
         <tbody>
           <!-- <tr *ngFor="let report of rowSelectionTable.reports"> -->
-          <tr *ngFor="let report of reports">
+          <tr *ngFor="let report of reports
+          | paginate : { itemsPerPage: 10, currentPage: p } ;">
             <td
               [nzChecked]="setOfCheckedId.has(report.id) || report.valid_encadrant" 
               [nzDisabled]="report.valid_encadrant"
@@ -55,12 +128,12 @@
             <th >{{report.fk_etudiant.code_etudiant}}</th>
             <th >{{report.fk_etudiant.promotion}}</th>
             <th >{{report.fk_etudiant.filiere}}</th>
-            <td class="classLink"><a target="_blank" href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> 
+            <!-- <td class="classLink"><a target="_blank" href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> 
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
                   <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
               </svg>
-          </a></td>
+          </a></td> -->
           <td>{{report.stage_ou_projet ? "Stage" : "Projet" }}</td>
           <td>{{report.type_rapport}}</td>
           <td routerLink="/rapport/info/{{ report.id }}" class="classLink"><A>{{capitalizeFirstLetter(report.intitule_stage)}}</A></td>
@@ -70,11 +143,17 @@
           <!-- <td>{{report.secteur_societe}}</td>
           <td>{{report.pays_societe}}</td>
           <td>{{report.ville_societe}}</td> -->
-          <td>{{report.rapport_confidentiel ? "oui" : "non"}}</td>
+          <th scope="col" class="classLink"> <a href="http://localhost:8080{{report.fichier_rapport.toString()}}"> {{report.fichier_rapport.toString().split('/')[2]}} </a> <p *ngIf="report.rapport_confidentiel" style="color:red; outline:none;text-decoration: none;cursor: default;"> rapport confidentiel </p></th>
+
+          <!-- <td>{{report.rapport_confidentiel ? "oui" : "non"}}</td> -->
 
           </tr>
         </tbody>
       </nz-table>
     </div>  
+    <app-spinner class="mySpinnerClass" message="" [class.hidden]="hideSpinner"></app-spinner>
+    <div  class="center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 
 </div>

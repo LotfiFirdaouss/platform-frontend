@@ -75,6 +75,8 @@ import { ReportValidationComponent } from '../features/administrator/components/
 import { AdminValidatedPipe } from '../features/administrator/pipes/admin-validated.pipe';
 import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in.pipe';
 import { ReportProfessorValidationComponent } from '../features/professor/components/report-professor-validation/report-professor-validation.component';
+import { AllFiltersInProfessorValidationPipe } from '../features/professor/pipes/all-filters-in-professor-validation.pipe';
+import { ProfessorValidatedPipe } from '../features/professor/pipes/professor-validated.pipe';
 
 @NgModule({
   declarations: [
@@ -148,6 +150,7 @@ import { ReportProfessorValidationComponent } from '../features/professor/compon
     PromotionFilterPipe,
     FiliereFilterPipe,
     AdminValidatedPipe,
+    ProfessorValidatedPipe,
 
     //insertion filters
     EtudiantFilterPipe,
@@ -232,7 +235,8 @@ import { ReportProfessorValidationComponent } from '../features/professor/compon
     // FiliereFilterPipe,
     // ReportTypeFilterPipe,
     // AdminValidatedPipe,
-    AllFiltersInPipe
+    AllFiltersInPipe,
+    AllFiltersInProfessorValidationPipe,
        
   ]
 })

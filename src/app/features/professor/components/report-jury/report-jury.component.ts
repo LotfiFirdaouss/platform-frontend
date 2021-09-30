@@ -71,4 +71,10 @@ export class ReportJuryComponent implements OnInit {
     this.dateFilter='';
   }
 
+  capitalizeFirstLetter(string) {
+    //console.log("capitalize")
+    string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 }

@@ -20,18 +20,22 @@ export class ReportService {
 
   //tt rapports validé par admin
   getAllReportValidatedAdmin(): Observable<Report[]> {
-    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
+    // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
+    return this.http.get<Report[]>(`${baseUrl}/adminValidated`);
   }
   
   //rapports validé par admin et supervizé par un professeur X
   getSupervizedReportsValidatedAdmin(fk_encadrant_univ: number): Observable<Report[]> {
-    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true && report.fk_encadrant_univ==fk_encadrant_univ)));
+    // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true && report.fk_encadrant_univ==fk_encadrant_univ)));
+    return this.http.get<Report[]>(`${baseUrl}/adminValidated?fk_encadrant_univ=${fk_encadrant_univ}`);
   }
   
   //rapports validé définitement par admin (et par encadrant si pfe)
   getAllReportValidated(): Observable<Report[]> {
-    return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => (report.valid_admin && report.type_rapport!='PFE') || 
-    (report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant))));
+    // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => (report.valid_admin && report.type_rapport!='PFE') || 
+    // (report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant))));
+    return this.http.get<Report[]>(`${baseUrl}/validated`);
+
   }
 
   get(id: any): Observable<Report> {
@@ -156,10 +160,6 @@ export class ReportService {
   findByStudent(fk_etudiant: any): Observable<Report[]> {
     return this.http.get<Report[]>(`${baseUrl}?etudiant=${fk_etudiant}`);
   }
-
-  // printReportsFile(filiere: any, promotion: any): Observable<Report[]> {
-  //   return this.http.get<Report[]>(`${baseUrl}?filiere=${filiere}&?promotion=${promotion}`);
-  // }
 
   getCurrentDate(): any {
     var today = new Date();

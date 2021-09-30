@@ -6,6 +6,7 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
 import { SharedModule } from '../shared/shared.module';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import { AProposPageComponent } from './components/a-propos-page/a-propos-page.component';
+import { WebMastersComponent } from './components/web-masters/web-masters.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { AProposPageComponent } from './components/a-propos-page/a-propos-page.c
     WelcomePageComponent,
     ContactPageComponent,
     AProposPageComponent,
+    WebMastersComponent,
   ],
   imports: [
     CommonModule,
