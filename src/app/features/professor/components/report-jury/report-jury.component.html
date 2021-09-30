@@ -73,18 +73,18 @@
   <div style="padding: 0.4%;">
       <div #reportTable class="table-responsive custom-table-responsive">
       
-        <nz-table [nzFrontPagination]="false" [nzData]="reports" [nzScroll]="{ x: '1500px' }" class="table custom-table" style="width: 100%;">
+        <nz-table [nzFrontPagination]="false" [nzData]="reports" [nzScroll]="{ x: '2000px' }" class="table custom-table" style="width: 100%;">
           
           <thead> 
-            <tr> 
-              <th scope="col" nzWidth="25%">Date</th>
+            <tr>
+              <th scope="col" nzWidth="25%">Date</th> 
+              <th scope="col" nzWidth="35%">Etudiant</th>
+              <th scope="col" nzWidth="25%">Code étudiant</th>              
               <th scope="col" nzWidth="25%">Promotion</th>
               <th scope="col" nzWidth="25%">Filière</th>
-              <th scope="col" nzWidth="25%">Type rapport</th>
-              <th scope="col" nzWidth="25%">Code étudiant</th>
-              <th scope="col" nzWidth="35%">Nom complet</th>
+              <th scope="col" nzWidth="25%">Type rapport</th>              
               <th scope="col" nzWidth="35%">Stage/ Projet</th>
-              <th scope="col" nzWidth="35%">Intitulé rapport</th>
+              <th scope="col" nzWidth="45%">Intitulé rapport</th>
               <th scope="col" nzWidth="25%">Date début</th>
               <th scope="col" nzWidth="25%">Date fin</th>
               <th scope="col" nzWidth="35%">Société stage</th>
@@ -100,11 +100,11 @@
             | dateFilterJury : dateFilter
             | paginate : { itemsPerPage: 10, currentPage: p } ;">
               <th scope="col"> {{ report.horodateur }} </th>
+              <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
+              <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>              
               <th scope="col"> {{ report.fk_etudiant.promotion }} </th>
               <th scope="col"> {{ report.fk_etudiant.filiere }} </th>
-              <th scope="col"> {{ report.type_rapport }} </th>
-              <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>
-              <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
+              <th scope="col"> {{ report.type_rapport }} </th>              
               <th scope="col"> {{ report.stage_ou_projet ? "Stage" : "Projet" }} </th>
               <td  class="classLink"><A routerLink="/rapport/info/{{ report.id }}">{{capitalizeFirstLetter(report.intitule_stage)}}</A></td>
               <th scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </th>
