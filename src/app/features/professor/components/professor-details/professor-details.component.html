@@ -38,7 +38,7 @@
     <nz-table #professorTable [nzFrontPagination]="false" [nzData]="professors" [nzScroll]="{ x: '1500px' }" class="table custom-table">
         <thead>
           <tr> 
-              <th scope="col" nzWidth="30%">Nom Et Prénom</th>
+              <th scope="col" nzWidth="30%">Professeur</th>
               <th scope="col" nzWidth="25%">Nom</th>
               <th scope="col" nzWidth="25%">Prénom</th>
               <th scope="col" nzWidth="20%">Département</th>
@@ -113,7 +113,7 @@
               <td nzRight >
                 <div>
                   <a (click)="saveEditProfessor(professor.id)" style="margin-right: 8px;">
-                    Modifier
+                    Enregistrer
                   </a>
                   <a (click)="cancelEditProfessor()">
                     Annuler
