@@ -117,14 +117,14 @@ export class ReportProfessorValidationComponent implements OnInit {
     console.log(requestData);
     requestData.map(report => {
       // report['valid_encadrant']=true;
-      this.reportService.update(report.id, {
+      this.reportService.updateMotsClesJury(report.id, {
         'valid_encadrant':true,
         'fk_etudiant':report.fk_etudiant.id,
         'stage_ou_projet':report.stage_ou_projet,
         'valid_admin':report.valid_admin})
       .subscribe(
         response => {
-          console.log(response)
+          console.log("professor validated report",response)
           this.renitialiserFiltres();     
         },
         error => {

@@ -38,6 +38,12 @@ export class ReportService {
 
   }
 
+    //rapports non validé
+    getAllReportnotValidated(): Observable<Report[]> {
+      // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
+      return this.http.get<Report[]>(`${baseUrl}/notValidated`);
+    }
+
   get(id: any): Observable<Report> {
     return this.http.get(`${baseUrl}/${id}`);
   }
