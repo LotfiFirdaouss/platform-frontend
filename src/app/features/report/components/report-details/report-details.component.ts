@@ -645,6 +645,7 @@ export class ReportDetailsComponent implements OnInit {
     type_rapport:this.currentReport.type_rapport,
     resume_rapport:this.currentReport.resume_rapport,
     valid_admin:this.currentReport.valid_admin,
+    valid_encadrant:this.currentReport.valid_encadrant,
   };
   if(this.currentReport.type_rapport=="PFE"){
     data['fk_encadrant_univ']=this.currentReport.fk_encadrant_univ;

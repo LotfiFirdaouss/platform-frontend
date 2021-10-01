@@ -90,8 +90,8 @@
               <th scope="col" nzWidth="35%">Rapport confidentiel</th>
               <th scope="col" nzWidth="55%">Lien rapport</th>
               <th scope="col" nzWidth="25%">Encadrant</th>
-              <th scope="col" nzWidth="25%">V. Admin</th>
-              <th scope="col" nzWidth="25%">V. Encadrant</th>
+              <!-- <th scope="col" nzWidth="25%">V. Admin</th>
+              <th scope="col" nzWidth="25%">V. Encadrant</th> -->
             </tr>
           </thead>
 
@@ -118,11 +118,11 @@
                   <span *ngIf="report.type_rapport=='PFE'"> <div *ngFor="let professor of professeurs"><div *ngIf="professor.id==report.fk_encadrant_univ">{{ professor.nom_prenom }} </div></div></span>
                   <span *ngIf="report.type_rapport!='PFE'"> -- </span>
               </th>
-              <th scope="col"> {{ report.valid_admin ? "V" : "NV" }} </th>
+              <!-- <th scope="col"> {{ report.valid_admin ? "V" : "NV" }} </th>
               <th scope="col">
                 <span *ngIf="report.type_rapport=='PFE'"> {{ report.valid_encadrant ? "V" : "NV" }} </span>
                 <span *ngIf="report.type_rapport!='PFE'"> -- </span>
-              </th>
+              </th> -->
             </tr>
           </tbody>
 

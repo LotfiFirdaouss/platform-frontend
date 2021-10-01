@@ -30,7 +30,7 @@ export class ReportValidationComponent implements OnInit {
   filterPromotion:'';
   selectFiliere:'';
   selectedReportType:"";
-  selectedValidatedAdmin:"";
+  filterCode:"";
 
   checked = false;
   loading = false;
@@ -54,7 +54,7 @@ export class ReportValidationComponent implements OnInit {
   retrieveReports(): void {
     this.hideSpinner=false;
 
-    this.reportService.getAll()
+    this.reportService.getAllReportnotValidated() 
       .subscribe(
         data => {
           this.reports = data;
@@ -92,7 +92,7 @@ export class ReportValidationComponent implements OnInit {
   }
 
   saveEditReport(id: string): void {
-    
+    // this.hideSpinner=false;
     const index = this.reports.findIndex(item => item.id === id);
     const data = { 
       fk_etudiant:this.reports[index].fk_etudiant.id,
@@ -105,8 +105,9 @@ export class ReportValidationComponent implements OnInit {
       // ville_societe:this.reports[index].ville_societe,
       // pays_societe:this.reports[index].pays_societe,
       rapport_confidentiel:Boolean(this.reports[index].rapport_confidentiel),
-      type_rapport:this.reports[index].type_rapport,
+      // type_rapport:this.reports[index].type_rapport,
       valid_admin:this.reports[index].valid_admin,
+      valid_encadrant:this.reports[index].valid_encadrant,
       // email_encadrant:this.reports[index].email_encadrant,
       // telephone_encadrant:this.reports[index].telephone_encadrant,
     };
@@ -121,10 +122,11 @@ export class ReportValidationComponent implements OnInit {
       data['pays_societe']=this.reports[index].pays_societe;
     }
 
-    console.log(data)
-    this.reportService.update(this.reports[index].id, data)
+    //console.log(data)
+    this.reportService.updateMotsClesJury(this.reports[index].id, data)
      .subscribe(
        response => {
+        console.log("updated report on modification:",response)
          this.retrieveReports();
        },
        error => {
@@ -143,7 +145,7 @@ export class ReportValidationComponent implements OnInit {
     this.filterPromotion='';
     this.selectFiliere='';
     this.selectedReportType='';
-    this.selectedValidatedAdmin='';
+    this.filterCode='';
     this.retrieveReports();
   }
 
@@ -189,16 +191,24 @@ export class ReportValidationComponent implements OnInit {
   }
 
   sendRequest(): void {
+    // this.hideSpinner=false;
     this.loading = true;
     const requestData = this.reports.filter(data => this.setOfCheckedId.has(data.id));
     //console.log(requestData);
     requestData.map(report => {
       report['valid_admin']=true;
       // console.log(report)
-      this.reportService.update(report.id, {'valid_admin':true,'fk_etudiant':report.fk_etudiant.id,'stage_ou_projet':report.stage_ou_projet})
-      .subscribe(
+      this.reportService.updateMotsClesJury(report.id, 
+        {
+          'valid_admin':true,
+          'fk_etudiant':report.fk_etudiant.id,
+          'stage_ou_projet':report.stage_ou_projet,
+          'valid_encadrant':report.valid_encadrant
+        })
+      .subscribe( 
         response => {
-          this.renitialiserFiltres();     
+          console.log("updated report on validation:",response)
+          this.renitialiserFiltres();  
         },
         error => {
           console.log(error);
@@ -232,13 +242,8 @@ export class ReportValidationComponent implements OnInit {
   // }
 
   applyFilters(){
-    // this.retrieveReports();
     this.setOfCheckedId.clear();
-    console.log("promotion",this.filterPromotion)
-    console.log("filiere",this.selectFiliere)
-    console.log("report type",this.selectedReportType)
-    console.log("valid admin",this.selectedValidatedAdmin)
-    this.reports = this.allFiltersInPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.selectedValidatedAdmin,this.selectedReportType);
+    this.reports = this.allFiltersInPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.filterCode,this.selectedReportType);
 
   }
 
