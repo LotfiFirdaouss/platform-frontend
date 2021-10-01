@@ -166,13 +166,13 @@
                         <i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span>
                         <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.horodateur}}  </time>
                         </div>
-
-                        <hr width="15%" align="left">
+                        <div class="postcard__bar"></div>
+                        <!-- <hr width="15%" align="left">  -->
                         <div> <small>
                             {{ report.resume_rapport }}</small>
                         </div>
 
-                        <div class="postcard__bar"></div>
+                        
                         <!-- <ul class="postcard__tagbox">
                             <li class="tag__item play blue">
                                     <a href="#"><i class="icon-tag mr-2"></i>report</a>
