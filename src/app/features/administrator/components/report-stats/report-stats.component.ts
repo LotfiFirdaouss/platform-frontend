@@ -22,6 +22,14 @@ export class ReportStatsComponent implements OnInit {
   filterPromotion:'';
   selectFiliere:'';
   selectedReportType:"";
+  StudentfilterText:'';
+  selectedConfidentiel;
+  StartDateReport?: any;
+  EndDateReport?: any;
+  selectedStageProjet:'';
+  VillePaysText:'';
+  SocieteText:'';
+  SecteurSocieteText:'';
    
   //For spinner
   hideSpinner = false;
@@ -74,6 +82,26 @@ export class ReportStatsComponent implements OnInit {
     this.filterPromotion='';
     this.selectFiliere='';
     this.selectedReportType='';
+    this.StudentfilterText='';
+    this.selectedStageProjet='';
+    this.selectedConfidentiel=false;
+    this.StartDateReport=null;
+    this.EndDateReport=null;
+    this.VillePaysText='';
+    this.SocieteText='';
+    this.SecteurSocieteText='';
+    //hide advanced search and stage filters
+    var advancedSearch =<HTMLDivElement> document.getElementsByName("advancedSearch")[0];
+    var arrowUp = <HTMLDivElement> document.getElementsByName("arrow-up")[0];
+    var arrowDown = <HTMLDivElement> document.getElementsByName("arrow-down")[0];
+    var StageFilters =<HTMLDivElement> document.getElementsByName("StageFilters")[0];
+
+    if( advancedSearch.classList.contains("visible")){
+      advancedSearch.classList.replace("visible","hidden");
+      StageFilters.classList.replace("visible","hidden");
+      arrowUp.classList.replace("visibleArrow","hidden");
+      arrowDown.classList.replace("hidden","visibleArrow");
+    }
   }
 
   capitalizeFirstLetter(string) {
@@ -81,5 +109,38 @@ export class ReportStatsComponent implements OnInit {
     string = string.toLowerCase();
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  ShowHideStageFilters(){
+    //  console.log(this.selectedStageProjet)
+    var StageFilters =<HTMLDivElement> document.getElementsByName("StageFilters")[0];
+    // console.log(StageFilters)
+    if( this.selectedStageProjet?.toString() == "stage"){
+      StageFilters.classList.replace("hidden","visible");
+    }else{
+      StageFilters.classList.replace("visible","hidden");
+    }
+  }
+
+  ShowHideAdvancedSearch(){
+    var advancedSearch =<HTMLDivElement> document.getElementsByName("advancedSearch")[0];
+    var StageFilters =<HTMLDivElement> document.getElementsByName("StageFilters")[0];
+    var arrowUp = <HTMLDivElement> document.getElementsByName("arrow-up")[0];
+    var arrowDown = <HTMLDivElement> document.getElementsByName("arrow-down")[0];
+    if( advancedSearch.classList.contains("hidden")){
+      advancedSearch.classList.replace("hidden","visible");
+      arrowUp.classList.replace("hidden","visibleArrow");
+      arrowDown.classList.replace("visibleArrow","hidden");
+      if( this.selectedStageProjet?.toString() == "stage"){
+        StageFilters.classList.replace("hidden","visible");
+      }
+    }else{
+      advancedSearch.classList.replace("visible","hidden");
+      StageFilters.classList.replace("visible","hidden");
+      arrowUp.classList.replace("visibleArrow","hidden");
+      arrowDown.classList.replace("hidden","visibleArrow");
+    }
+  }
+
+
 
 }
