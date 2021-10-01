@@ -54,9 +54,9 @@ export class ReportService {
     formData.append('ville_societe',data.ville_societe);
     formData.append('pays_societe',data.pays_societe);
     formData.append('details_add_societe',data.details_add_societe);
-    formData.append('encadrant',data.encadrant);
-    formData.append('email_encadrant',data.email_encadrant);
-    formData.append('telephone_encadrant',data.telephone_encadrant);
+    formData.append('parrain',data.parrain);
+    formData.append('email_parrain',data.email_parrain);
+    formData.append('telephone_parrain',data.telephone_parrain);
     formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
     formData.append('rapport_confidentiel',data.rapport_confidentiel);
     formData.append('fk_etudiant',data.fk_etudiant);
@@ -105,14 +105,14 @@ export class ReportService {
     if(data.pays_societe){
       formData.append('pays_societe',data.pays_societe);
     }
-    if(data.encadrant){
-      formData.append('encadrant',data.encadrant);
+    if(data.parrain){
+      formData.append('parrain',data.parrain);
     }
-    if(data.email_encadrant){
-      formData.append('email_encadrant',data.email_encadrant);
+    if(data.email_parrain){
+      formData.append('email_parrain',data.email_parrain);
     }
-    if(data.telephone_encadrant){
-      formData.append('telephone_encadrant',data.telephone_encadrant);
+    if(data.telephone_parrain){
+      formData.append('telephone_parrain',data.telephone_parrain);
     }
     if(data.fichier_rapport!=null){
       //console.log("heeere fichier rapport")

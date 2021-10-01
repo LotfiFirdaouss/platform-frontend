@@ -546,6 +546,7 @@ export class AddReportComponent implements OnInit {
     /* the form reference */
     @ViewChild('reportForm') reportForm: NgForm;
   professors?: Professor[];
+  professeurs?: Professor[];
 
 
   constructor(private reportService: ReportService,
@@ -572,6 +573,7 @@ export class AddReportComponent implements OnInit {
     this.professorService.getAll().subscribe(
       data => {
         this.professors = data;
+        this.professeurs=data;
       },
       error => {
         console.log(error);
