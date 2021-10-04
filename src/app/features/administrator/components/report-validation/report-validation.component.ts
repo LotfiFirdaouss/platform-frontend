@@ -66,7 +66,7 @@ export class ReportValidationComponent implements OnInit {
           this.hideSpinner=true;
         },
         error => {
-          console.log(error);
+          //console.log(error);
         });
   }
 
@@ -126,11 +126,11 @@ export class ReportValidationComponent implements OnInit {
     this.reportService.updateMotsClesJury(this.reports[index].id, data)
      .subscribe(
        response => {
-        console.log("updated report on modification:",response)
+        //console.log("updated report on modification:",response)
          this.retrieveReports();
        },
        error => {
-         console.log(error);
+        //console.log(error);
       });
   }
 
@@ -207,11 +207,11 @@ export class ReportValidationComponent implements OnInit {
         })
       .subscribe( 
         response => {
-          console.log("updated report on validation:",response)
+          //console.log("updated report on validation:",response)
           this.renitialiserFiltres();  
         },
         error => {
-          console.log(error);
+          //console.log(error);
        });
     })
     setTimeout(() => {

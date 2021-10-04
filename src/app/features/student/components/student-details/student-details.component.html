@@ -43,7 +43,7 @@
         <thead>
           <tr> 
               <th scope="col" nzWidth="25%">Code D'étudiant</th>
-              <th scope="col" nzWidth="30%">Nom Et Prénom</th>
+              <th scope="col" nzWidth="30%">Etudiant</th>
               <th scope="col" nzWidth="25%">Nom</th>
               <th scope="col" nzWidth="25%">Prénom</th>
               <th scope="col" nzWidth="20%">Filière</th>
@@ -81,7 +81,7 @@
                   <div [hidden]="!nom.errors" [(nzPopoverVisible)]=!hidden nz-popover nzPopoverContent="Ce champ est requis et il ne peut pas comporter plus de 10 caractères."></div>
                 </div>
               </td>
-              <td><a href="/profile-etudiant/"{{student.id}} >{{student.nom_prenom}}</a></td>
+              <td><a href="/profile-etudiant/{{student.id}}" >{{student.nom_prenom}}</a></td>
               <td>
                 <input type="text" nz-input [(ngModel)]="student.nom" required #nom="ngModel" name="nom" maxlength="200"/>
                 <div *ngIf="nom.errors && (nom.dirty || nom.touched)">
@@ -128,7 +128,7 @@
               <td nzRight >
                 <div>
                   <a (click)="saveEditStudent(student.id)" style="margin-right: 8px;">
-                    Modifier
+                    Enregistrer
                   </a>
                   <a (click)="cancelEditStudent()">
                     Annuler
