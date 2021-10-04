@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Professor } from 'src/app/features/professor/models/professor';
 import { ProfessorService } from 'src/app/features/professor/services/professor.service';
+import { MotCle } from '../../models/mot-cle';
 import { Nature } from '../../models/nature.model';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
@@ -834,25 +835,15 @@ public getJurys(data:Report){
 
 public getMots(data:Report){
   this.allmots[4]=this.allmots[3]='';
-  this.reportService.getMot(data.mots[0]).subscribe(
-    data => {this.allmots[0]=data.mot as string;}
-  );
-  this.reportService.getMot(data.mots[1]).subscribe(
-    data => {this.allmots[1]=data.mot as string;}
-  );
-  this.reportService.getMot(data.mots[2]).subscribe(
-    data => {this.allmots[2]=data.mot as string;}
-  );
+  this.allmots[0]=data.mots[0].mot ;
+  this.allmots[1]=data.mots[1].mot;
+  this.allmots[2]=data.mots[2].mot;
   if(data.mots.length>=4){
-    this.reportService.getMot(data.mots[3]).subscribe(
-      data => {this.allmots[3]=data.mot as string;}
-    );
+    this.allmots[3]=data.mots[3].mot;
     this.mot4=true;
   }
   if(data.mots.length==5){
-    this.reportService.getMot(data.mots[4]).subscribe(
-      data => {this.allmots[4]=data.mot as string;}
-    );
+    this.allmots[4]=data.mots[4].mot;
     this.mot5=true;
     this.addmot=false;
   }
