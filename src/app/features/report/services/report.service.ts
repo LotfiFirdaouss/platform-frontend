@@ -37,12 +37,17 @@ export class ReportService {
     return this.http.get<Report[]>(`${baseUrl}/validated`);
 
   }
+  
+  //get reports validated first then filtered using year(horodateur) and major(filiere)
+  getAllReportValidatedAndFiltered(year: number, filiere: string): Observable<Report[]> {
+    return this.http.get<Report[]>(`${baseUrl}/validatedFiltered?year=${year}&filiere=${filiere}`);
+  }
 
-    //rapports non validé
-    getAllReportnotValidated(): Observable<Report[]> {
-      // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
-      return this.http.get<Report[]>(`${baseUrl}/notValidated`);
-    }
+  //rapports non validé
+  getAllReportnotValidated(): Observable<Report[]> {
+    // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
+    return this.http.get<Report[]>(`${baseUrl}/notValidated`);
+  }
 
   get(id: any): Observable<Report> {
     return this.http.get(`${baseUrl}/${id}`);
