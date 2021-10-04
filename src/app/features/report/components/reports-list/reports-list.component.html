@@ -5,7 +5,10 @@
     <div class="wrap" >
         <div class="search">
             <div style="width: 100%;" class="input-box">
-                <input style="padding-left: 100px;" type="text" class="searchTerm" [(ngModel)]="filterAnneeParDefaut" data-placeholder-focus="false">
+                <!-- <input style="padding-left: 100px;" type="text" class="searchTerm" [(ngModel)]="filterAnneeParDefaut" data-placeholder-focus="false"> -->
+                <select style="padding-left: 100px;" class="searchTerm" name="type" [(ngModel)]="filterAnneeParDefaut">
+                    <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+                </select>
                 <span class="unit" >Année* : </span>
             </div>
             <div style="width: 100%;" class="input-box">
@@ -17,6 +20,7 @@
                     <option value="GEM">GEM</option>
                     <option value="IAGI">IAGI</option>
                     <option value="MSEI">MSEI</option>
+                    <option value="Tout">Tout</option>
                 </select>
                 <span class="unit" >Filiere* : </span>
             </div>
@@ -73,7 +77,7 @@
     <hr> -->
 
     <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
-    <div class="advanced" style="margin-bottom: 10px; margin-top: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Recherches Avancées </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
+    <div class="advanced" style="margin-bottom: 10px; margin-top: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Filtres Avancées </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
 
     <div name="advancedSearch" class="hidden">
     <!-- First line of filters -->

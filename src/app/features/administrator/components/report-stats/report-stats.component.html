@@ -5,7 +5,10 @@
   <div class="wrap" >
     <div class="search">
         <div style="width: 100%;" class="input-box">
-            <input style="padding-left: 100px;" type="text" class="searchTerm" [(ngModel)]="filterAnneeParDefaut" data-placeholder-focus="false">
+            <!-- <input style="padding-left: 100px;" type="text" class="searchTerm" [(ngModel)]="filterAnneeParDefaut" data-placeholder-focus="false"> -->
+            <select style="padding-left: 100px; " class="searchTerm" name="type" [(ngModel)]="filterAnneeParDefaut">
+                <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+            </select>
             <span class="unit" >Année* : </span>
         </div>
         <div style="width: 100%;" class="input-box">
@@ -17,6 +20,7 @@
                 <option value="GEM">GEM</option>
                 <option value="IAGI">IAGI</option>
                 <option value="MSEI">MSEI</option>
+                <option value="Tout">Tout</option>
             </select>
             <span class="unit" >Filiere* : </span>
         </div>
@@ -36,7 +40,7 @@
     </div>
  </div>
 
- <div class="advanced" style="margin-bottom: 10px; margin-top: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Recherches Avancées </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
+ <div class="advanced" style="margin-bottom: 10px; margin-top: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Filtres Avancées </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
 
 
   <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -206,28 +210,28 @@
 
           <tbody>
             <tr *ngFor="let report of reports 
-    | reportFilter : filterText | stageProjetFilter : selectedStageProjet | confidentielFilter : selectedConfidentiel
-    | reportTypeFilter : selectedReportType | dateRangeFilter : StartDateReport:EndDateReport | studentFilter : StudentfilterText
-    | villePaysFilter : VillePaysText | societeFilter : SocieteText | secteurSocieteFilter : SecteurSocieteText
-    | promotionFilter : filterPromotion
-            | paginate : { itemsPerPage: 10, currentPage: p } ;">
-              <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
-              <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>
-              <th scope="col"> {{ report.fk_etudiant.promotion }} </th>
-              <th scope="col"> {{ report.fk_etudiant.filiere }} </th>
-              <th scope="col"> {{ report.type_rapport }} </th>
-              <th scope="col"> {{ report.stage_ou_projet ? "Stage" : "Projet" }} </th>
+            | reportFilter : filterText | stageProjetFilter : selectedStageProjet | confidentielFilter : selectedConfidentiel
+            | reportTypeFilter : selectedReportType | dateRangeFilter : StartDateReport:EndDateReport | studentFilter : StudentfilterText
+            | villePaysFilter : VillePaysText | societeFilter : SocieteText | secteurSocieteFilter : SecteurSocieteText
+            | promotionFilter : filterPromotion
+            | paginate : { itemsPerPage: 50, currentPage: p } ;">
+              <td scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </td>
+              <td scope="col" > {{ report.fk_etudiant.code_etudiant }} </td>
+              <td scope="col"> {{ report.fk_etudiant.promotion }} </td>
+              <td scope="col"> {{ report.fk_etudiant.filiere }} </td>
+              <td scope="col"> {{ report.type_rapport }} </td>
+              <td scope="col"> {{ report.stage_ou_projet ? "Stage" : "Projet" }} </td>
               <td routerLink="/rapport/info/{{ report.id }}" class="classLink"><A>{{capitalizeFirstLetter(report.intitule_stage)}}</A></td>
-              <th scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </th>
-              <th scope="col" > {{ report.date_fin_stage | date: 'dd/MM/yyyy' }} </th>
-              <th scope="col" > {{ report.societe_stage }} </th>
-              <th scope="col"> {{ report.rapport_confidentiel ? "oui" : "non" }} </th>
+              <td scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </td>
+              <td scope="col" > {{ report.date_fin_stage | date: 'dd/MM/yyyy' }} </td>
+              <td scope="col" > {{ report.societe_stage }} </td>
+              <td scope="col"> {{ report.rapport_confidentiel ? "oui" : "non" }} </td>
               <!-- <th scope="col" class="classLink"> <a href="{{ report.fichier_rapport.toString().split('&')[0] }}"> {{ report.fichier_rapport.toString().split('&')[0] }} </a></th> -->
-              <th scope="col" class="classLink"> <a href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> http://localhost:8080{{ report.fichier_rapport.toString() }} </a></th>
-              <th scope="col">
+              <td scope="col" class="classLink"> <a href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> http://localhost:8080{{ report.fichier_rapport.toString() }} </a></td>
+              <td scope="col">
                   <span *ngIf="report.type_rapport=='PFE'"> <div *ngFor="let professor of professeurs"><div *ngIf="professor.id==report.fk_encadrant_univ">{{ professor.nom_prenom }} </div></div></span>
                   <span *ngIf="report.type_rapport!='PFE'"> -- </span>
-              </th>
+              </td>
             </tr>
           </tbody>
 

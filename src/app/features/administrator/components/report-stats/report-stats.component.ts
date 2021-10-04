@@ -44,15 +44,28 @@ export class ReportStatsComponent implements OnInit {
 
   professeurs?:Professor[];
 
+  years=[];
+
   constructor(
     private reportService: ReportService,
     private exportService: ExportService,
     private professorService: ProfessorService) { }
 
   ngOnInit(): void {
+    this.fillYears();
     this.retrieveReports();
     this.retrieveProfesseurs();
   }
+
+  fillYears(){
+    let year=2019;
+    let range = this.filterAnneeParDefaut - year + 2;
+    for(var counter:number = 1; counter<range; counter++){
+       this.years.push(year);
+       year++;
+   }
+   this.years.push("Tout")
+ }
 
   retrieveReports(): void {
     this.reportService.getAllReportValidatedAndFiltered(this.filterAnneeParDefaut,this.selectFiliereParDefaut) 

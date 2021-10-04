@@ -50,6 +50,8 @@ export class ReportsListComponent implements OnInit {
 
    //For spinner
    hideSpinner = false;
+
+   years=[];
    
    
    constructor(private reportService: ReportService,
@@ -59,6 +61,7 @@ export class ReportsListComponent implements OnInit {
    
    ngOnInit(): void {
     //this.showSpinner();
+    this.fillYears();
     
     this.isLoggedIn = !!this.token.getToken();    
     var user_id;
@@ -81,6 +84,16 @@ export class ReportsListComponent implements OnInit {
     }
 
    }
+
+   fillYears(){
+     let year=2019;
+     let range = this.filterAnneeParDefaut - year + 2;
+     for(var counter:number = 1; counter<range; counter++){
+        this.years.push(year);
+        year++;
+    }
+    this.years.push("Tout")
+  }
 
   getStudent(id_user: number): void {
     this.studentService.findByUser(id_user)
