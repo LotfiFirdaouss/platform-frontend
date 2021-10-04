@@ -162,7 +162,7 @@
                 
                 <div class="postcard__subtitle small">
                 <i class="icon-user mr-2"></i><span class="classLink"><a routerLink="//profile-etudiant/{{insertion.fk_etudiant.id}}" style="margin-right:20px;">{{ insertion.fk_etudiant.prenom }} {{ insertion.fk_etudiant.nom }}</a></span>
-                <time *ngIf="insertion.date_integration != null"><i class="icon-calendar mr-2"></i> {{ insertion.date_integration | date: 'dd/MM/yyyy'}}</time>
+                <time><i class="icon-calendar mr-2"></i> {{ insertion.horodateur | date: 'dd/MM/yyyy'}}</time>
                 </div>
                 <div class="postcard__bar"></div>
             </div>

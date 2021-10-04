@@ -1,5 +1,6 @@
 export class Insertion {
     id?:any;
+    horodateur?:any;
     cursus_post_ensam?:String;
     univ?:String;
     pays?:String;    
