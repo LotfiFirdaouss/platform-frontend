@@ -78,6 +78,7 @@ import { ReportProfessorValidationComponent } from '../features/professor/compon
 import { AllFiltersInProfessorValidationPipe } from '../features/professor/pipes/all-filters-in-professor-validation.pipe';
 import { ProfessorValidatedPipe } from '../features/professor/pipes/professor-validated.pipe';
 import { TextSizePipe } from '../features/report/pipes/text-size.pipe';
+import { MotCleFilterPipe } from '../features/report/pipes/mot-cle-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -138,6 +139,7 @@ import { TextSizePipe } from '../features/report/pipes/text-size.pipe';
     ProfileComponent,
 
     //Report filters
+    MotCleFilterPipe,
     ReportFilterPipe,
     StageProjetFilterPipe,
     ConfidentielFilterPipe,
