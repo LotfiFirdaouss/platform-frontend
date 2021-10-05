@@ -15,7 +15,7 @@
     <div  *ngFor="let report of reports; let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
-        <article class="postcard light blue" style="height: 230px; margin: 0%;" >
+        <article class="postcard light blue" style="height: 250px; margin: 0%;" >
             <!-- <a class="postcard__img_link" href="#">
                 <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
             </a> -->
@@ -35,7 +35,7 @@
                         <div class="postcard__bar"></div>
                         <!-- <hr width="15%" align="left">  -->
                         <div> <small>
-                            {{ report.resume_rapport }}</small>
+                            {{ report.resume_rapport | textSize:120 }}</small>
                         </div>
 
                         <div class="postcard__tagbox" >
