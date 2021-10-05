@@ -83,7 +83,7 @@ export class ReportStudentComponent implements OnInit {
        .subscribe(
          data => {
            this.reports = data;
-           console.log(data);
+           //console.log(data);
            this.hideSpinner = true;
          },
          error => {

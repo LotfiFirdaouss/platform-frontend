@@ -15,7 +15,7 @@
     <div  *ngFor="let report of reports; let i = index"
         [class.active]="i == currentIndex"
         (click)="setActiveReport(report, i)" style="padding: 0.4%;">
-        <article class="postcard light blue" style="height: 200px; margin: 0%;" >
+        <article class="postcard light blue" style="height: 230px; margin: 0%;" >
             <!-- <a class="postcard__img_link" href="#">
                 <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
             </a> -->
@@ -29,15 +29,32 @@
                         
                         <div class="postcard__subtitle small">
                         <span *ngIf="!isStudentOwner"><i class="icon-user mr-2 "></i><span class="classLink"><a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" style="margin-right:20px;">{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a></span></span>
-                        <time *ngIf="report.date_debut_stage && report.date_fin_stage"><i class="icon-calendar mr-2"></i> {{ report.horodateur  }}  </time>
+                        <time><i class="icon-calendar mr-2"></i> {{ report.horodateur  | date: 'dd/MM/yyyy'}}  </time>
                         </div>
 
-                        <hr width="15%" align="left">
+                        <div class="postcard__bar"></div>
+                        <!-- <hr width="15%" align="left">  -->
                         <div> <small>
                             {{ report.resume_rapport }}</small>
                         </div>
 
-                        <div class="postcard__bar"></div>
+                        <div class="postcard__tagbox" >
+                            <div class="tag__item play blue" *ngIf="!!report.mots[0].mot">
+                              <i class="icon-tag mr-2"></i> {{report.mots[0].mot}}
+                            </div>
+                            <div class="tag__item play blue" *ngIf="!!report.mots[1].mot">
+                              <i class="icon-tag mr-2"></i> {{report.mots[1].mot}}
+                            </div>
+                            <div class="tag__item play blue" *ngIf="!!report.mots[2].mot">
+                              <i class="icon-tag mr-2"></i> {{report.mots[2].mot}}
+                            </div>
+                            <div class="tag__item play blue" *ngIf="report.mots?.length >=4">
+                              <i class="icon-tag mr-2"></i> {{report.mots[3].mot}}
+                            </div>
+                            <div class="tag__item play blue" *ngIf="report.mots?.length ==5">
+                              <i class="icon-tag mr-2"></i> {{report.mots[4].mot}}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-6">

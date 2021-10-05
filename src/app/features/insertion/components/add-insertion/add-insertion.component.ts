@@ -560,6 +560,7 @@ export class AddInsertionComponent implements OnInit {
       this.insertion.ville = this.autreVille_societe;
     }
     const data = {
+      horodateur:this.getCurrentDate(),
       cursus_post_ensam: this.insertion.cursus_post_ensam,
       univ : this.insertion.univ,
       pays : this.insertion.pays,
@@ -582,6 +583,14 @@ export class AddInsertionComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  getCurrentDate(): any {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    return yyyy+'-'+mm+'-'+dd;
   }
 
 

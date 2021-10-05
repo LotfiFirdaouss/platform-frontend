@@ -41,7 +41,7 @@ export class ProfessorDetailsComponent implements OnInit {
           });
         },
         error => {
-          console.log(error);
+          //console.log(error);
         });
   }
   
@@ -107,7 +107,7 @@ export class ProfessorDetailsComponent implements OnInit {
          this.retrieveProfessor();
        },
        error => {
-         console.log(error);
+         //console.log(error);
       });
   }
 

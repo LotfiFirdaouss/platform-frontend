@@ -112,7 +112,7 @@
       </div>
 
       <nz-table #reportTable [nzFrontPagination]="false" [nzData]="reports" 
-      [nzScroll]="{ x: '1500px' }"
+      [nzScroll]="{ x: '2250px' }"
       (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
       class="table custom-table">
           <thead>
@@ -137,7 +137,7 @@
                 <th scope="col" nzWidth="30%">Tel parrain</th> -->
                 <th scope="col" nzWidth="30%">Confidentiel</th>
                 <!-- <th scope="col" nzWidth="25%">Valid</th> -->
-                <th scope="col" nzRight nzWidth="30%">Action</th>
+                <th scope="col" nzRight nzWidth="40%">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -310,7 +310,7 @@
                 <td nzRight >
                   <div>
                     <a (click)="saveEditReport(report.id)" style="margin-right: 8px;">
-                      Modifier
+                      Enregistrer
                     </a>
                     <a (click)="cancelEditReport()">
                       Annuler

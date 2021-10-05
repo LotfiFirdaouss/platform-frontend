@@ -42,7 +42,7 @@ export class StudentDetailsComponent implements OnInit {
           });
         },
         error => {
-          console.log(error);
+          //console.log(error);
         });
   }
   
@@ -59,6 +59,7 @@ export class StudentDetailsComponent implements OnInit {
 
   startEditStudent(id:number): void {
     this.edit[id].edit = true;
+    console.log(this.edit[id].edit);
   }
 
   cancelEditStudent(): void {    

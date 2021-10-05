@@ -130,12 +130,14 @@ export class ReportsListComponent implements OnInit {
        .subscribe(
          data => {
            this.reports = data;
-           console.log(data);
+           console.log(data)
+           //console.log(data);
            //this.hideSpinner();
+           //data.forEach(report=>{ this.getMots(report); })     
            this.hideSpinner = true;
          },
          error => {
-           console.log(error);
+           //console.log(error);
          });
   }
    
@@ -219,4 +221,14 @@ export class ReportsListComponent implements OnInit {
     this.retrieveReports();
   }
    
+
+  /*public getMots(report:Report){
+    this.allmots[report.id]={mots:[]};
+    for(const index in report.mots){
+      this.reportService.getMot(report.mots[index]).subscribe(
+        data => {this.allmots[report.id].mots.push(data.mot as string); console.log(this.allmots[report.id].mots); }
+      );
+    }
+    
+  }*/
 }
