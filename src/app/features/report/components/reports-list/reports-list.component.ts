@@ -32,6 +32,7 @@ export class ReportsListComponent implements OnInit {
    selectFiliereParDefaut="GI"; 
 
    //filter inputs
+   motFilter:'';
    filterText: '';
    filterPromotion:'';
    selectFiliere:'';
@@ -184,6 +185,7 @@ export class ReportsListComponent implements OnInit {
   }
 
   renitialiserFiltres(){
+    this.motFilter='';
     this.filterText= '';
     this.filterPromotion='';
     this.selectFiliere='';

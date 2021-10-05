@@ -28,7 +28,6 @@ export class ReportFilterPipe implements PipeTransform {
         return false;
       }
     }
-
     return true;
   }
 

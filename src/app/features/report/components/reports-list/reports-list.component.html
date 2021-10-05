@@ -32,166 +32,104 @@
         </div>
      </div>
 
-    <!-- Default filters -->
-        <!-- <div  id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="styled-input multi" style="height: 60px;">
-
-                    <div>
-                        <input type="text" [(ngModel)]="filterAnneeParDefaut" data-placeholder-focus="false">
-                        <label>Année*</label>
-                    </div>
-
-                    <div id="select-type" class="type">
-                        <select name="type" [(ngModel)]="selectFiliereParDefaut">
-                            <option value="GI">GI</option>
-                            <option value="GM">GM</option>
-                            <option value="GE">GE(ancienne)</option>
-                            <option value="GEM">GEM</option>
-                            <option value="IAGI">IAGI</option>
-                            <option value="MSEI">MSEI</option>
-                        </select>
-                        <label>Filière*</label>
-                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
-                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
-                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
-                                            points="231.8 32.8 221 32.8 221 22"></polyline>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-4 no-pad-left-10">
-                <button type="submit" class="primary-btn serach-btn" (click)="ApplyFilters()">Chercher</button>
-            </div>
-      
-    </div>
-    </div>
-    <hr> -->
-
     <!-- FILTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------->
     <div class="advanced" style="margin-bottom: 10px; margin-top: 10px;"><a (click)="ShowHideAdvancedSearch()"><small> Filtres Avancées </small><i name="arrow-down" class="visibleArrow fa fa-angle-down" ></i> <i name="arrow-up" class="hidden fa fa-angle-up"></i></a></div>
 
     <div name="advancedSearch" class="hidden">
-    <!-- First line of filters -->
-    <div id="header-search-people" class="form-area " novalidate="novalidate" autocomplete="off">
-        <div class="row">
-            <div class="col-md-10">
-                <div class="styled-input multi" style="height: 60px;">
-                    <div>
-                        <input type="text" [(ngModel)]="filterText" data-placeholder-focus="false">
-                        <label>Intitulé Stage</label>
-                    </div>
-                    <div>
-                        <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false">
-                        <label>Promotion</label>
-                    </div>
-                    <!-- <div id="select-type" class="type">
-                        <select name="type" [(ngModel)]="selectFiliere">
-                            <option value="GI">GI</option>
-                            <option value="GM">GM</option>
-                            <option value="GE">GE(ancienne)</option>
-                            <option value="GEM">GEM</option>
-                            <option value="IAGI">IAGI</option>
-                            <option value="MSEI">MSEI</option>
-                        </select>
-                        <label>Filière</label>
-                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
-                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
-                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
-                                            points="231.8 32.8 221 32.8 221 22"></polyline>
+        <!-- First line of filters -->
+        <div id="header-search-people" class="form-area " novalidate="novalidate" autocomplete="off">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="styled-input multi" style="height: 60px;">
+                        <div>
+                            <input type="text" [(ngModel)]="filterText" data-placeholder-focus="false">
+                            <label>Intitulé Stage</label>
+                        </div>
+                        <div>
+                            <input type="text" [(ngModel)]="motFilter" data-placeholder-focus="false">
+                            <label>Mot clé</label>
+                        </div>
+                        <div>
+                            <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false">
+                            <label>Promotion</label>
+                        </div>
+                        <div id="select-type" class="type">
+                            <select name="type" [(ngModel)]="selectedReportType">
+                                <!-- <option value="Tout">Tout</option> -->
+                                <option value="Initiation">Initiation</option>
+                                <option value="PFA">PFA</option>
+                                <option value="PFE">PFE</option>
+                            </select>
+                            <label>Type rapport</label>
+                            <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                        <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                            <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                                points="231.8 32.8 221 32.8 221 22"></polyline>
+                                        </g>
                                     </g>
                                 </g>
-                            </g>
-                        </svg>
-                    </div> -->
-                    <div id="select-type" class="type">
-                        <select name="type" [(ngModel)]="selectedReportType">
-                            <!-- <option value="Tout">Tout</option> -->
-                            <option value="Initiation">Initiation</option>
-                            <option value="PFA">PFA</option>
-                            <option value="PFE">PFE</option>
-                        </select>
-                        <label>Type rapport</label>
-                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
-                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
-                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
-                                            points="231.8 32.8 221 32.8 221 22"></polyline>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
+                            </svg>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-2 no-pad-left-10">
+                    <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Reinitialiser</button>
+                </div>
             </div>
-            <div class="col-md-2 no-pad-left-10">
-                <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Reinitialiser</button>
-            </div>
+            
         </div>
-        
-    </div>
 
-    <!-- Second line of filters -->
-    <div  id="header-search-people" class="form-area " novalidate="novalidate" autocomplete="off">
-        <div class="row">
-            <div class="col">
-                <div class="styled-input multi" style="height: 60px;">
-                    <div>
-                        <input type="text" [(ngModel)]="StudentfilterText" data-placeholder-focus="false">
-                        <label>Etudiant</label>
-                    </div>
-                    <div>
-                        <label>Rapp. confidentiel</label>
-                        <input style="margin-left: 30px; margin-top: 10px;" type="checkbox" [(ngModel)]="selectedConfidentiel" data-placeholder-focus="false">
-                    </div>
-                    <div>
-                        <label>Date début</label>
-                        <input type="date" name="dateDebut" #dateDebut="ngModel"
-                        pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
-                        [(ngModel)]="StartDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px; ">
-                    </div>
-                    <div>
-                        <label>Date fin</label>
-                        <input type="date" name="dateDebut" #dateDebut="ngModel"
-                        pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
-                        [(ngModel)]="EndDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px;">
-                    </div>
+        <!-- Second line of filters -->
+        <div  id="header-search-people" class="form-area " novalidate="novalidate" autocomplete="off">
+            <div class="row">
+                <div class="col">
+                    <div class="styled-input multi" style="height: 60px;">
+                        <div>
+                            <input type="text" [(ngModel)]="StudentfilterText" data-placeholder-focus="false">
+                            <label>Etudiant</label>
+                        </div>
+                        <div>
+                            <label>Rapp. confidentiel</label>
+                            <input style="margin-left: 30px; margin-top: 10px;" type="checkbox" [(ngModel)]="selectedConfidentiel" data-placeholder-focus="false">
+                        </div>
+                        <div>
+                            <label>Date début</label>
+                            <input type="date" name="dateDebut" #dateDebut="ngModel"
+                            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                            [(ngModel)]="StartDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px; ">
+                        </div>
+                        <div>
+                            <label>Date fin</label>
+                            <input type="date" name="dateDebut" #dateDebut="ngModel"
+                            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                            [(ngModel)]="EndDateReport" data-placeholder-focus="false" style="width: 45%; margin-left: 120px;">
+                        </div>
 
-                    <div id="select-type">
-                        <select (click)="ShowHideStageFilters()" name="type" [(ngModel)]="selectedStageProjet">
-                            <option value="stage">stage</option>
-                            <option value="projet">projet</option>
-                        </select>
-                        <label>Stage/Projet</label>
-                        <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
-                                    <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
-                                        <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
-                                            points="231.8 32.8 221 32.8 221 22"></polyline>
+                        <div id="select-type">
+                            <select (click)="ShowHideStageFilters()" name="type" [(ngModel)]="selectedStageProjet">
+                                <option value="stage">stage</option>
+                                <option value="projet">projet</option>
+                            </select>
+                            <label>Stage/Projet</label>
+                            <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                                        <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                            <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                                points="231.8 32.8 221 32.8 221 22"></polyline>
+                                        </g>
                                     </g>
                                 </g>
-                            </g>
-                        </svg>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </div>
 
@@ -225,6 +163,7 @@
     | reportTypeFilter : selectedReportType | dateRangeFilter : StartDateReport:EndDateReport | studentFilter : StudentfilterText
     | villePaysFilter : VillePaysText | societeFilter : SocieteText | secteurSocieteFilter : SecteurSocieteText
     | promotionFilter : filterPromotion | filiereFilter : selectFiliere
+    | motCleFilter : motFilter
     | paginate : { itemsPerPage: 6, currentPage: p } ;
     let i = index"
         [class.active]="i == currentIndex"
@@ -248,14 +187,14 @@
                             {{ report.resume_rapport }}</small>
                         </div>
 
-                        <div class="postcard__tagbox" >
-                            <div class="tag__item play blue" *ngIf="!!report.mots[0].mot">
+                        <div class="postcard__tagbox"  *ngIf="report.mots">
+                            <div class="tag__item play blue" *ngIf="!!report.mots[0]?.mot">
                               <i class="icon-tag mr-2"></i> {{report.mots[0].mot}}
                             </div>
-                            <div class="tag__item play blue" *ngIf="!!report.mots[1].mot">
+                            <div class="tag__item play blue" *ngIf="!!report.mots[1]?.mot">
                               <i class="icon-tag mr-2"></i> {{report.mots[1].mot}}
                             </div>
-                            <div class="tag__item play blue" *ngIf="!!report.mots[2].mot">
+                            <div class="tag__item play blue" *ngIf="!!report.mots[2]?.mot">
                               <i class="icon-tag mr-2"></i> {{report.mots[2].mot}}
                             </div>
                             <div class="tag__item play blue" *ngIf="report.mots?.length >=4">
