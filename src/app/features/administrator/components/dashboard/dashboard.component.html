@@ -36,22 +36,6 @@
       </div>
       <div nz-row style="margin-bottom:40px;">
         <div class="card" nz-col nzFlex="auto">
-          <div class="card-header"> Nombre des Stages par Société/Filière  </div>
-          <div class="card-body">
-            <nz-spin nzTip="Loading..." [nzSpinning]="loadingLineChart2"> 
-              <canvas baseChart width="700" height="300"
-                [datasets]="lineChartData2"
-                [labels]="lineChartLabels2"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors2"
-                [chartType]="lineChartType2"
-              ></canvas>
-            </nz-spin>
-          </div>
-        </div>
-      </div>
-      <div nz-row style="margin-bottom:40px;">
-        <div class="card" nz-col nzFlex="auto">
           <div class="card-header"> Nombre des stages par société  </div>
           <div class="card-body">
             <nz-spin nzTip="Loading..." [nzSpinning]="loadingLineChart1"> 
@@ -61,6 +45,22 @@
                 [options]="lineChartOptions"
                 [colors]="lineChartColors1"
                 [chartType]="lineChartType1"
+              ></canvas>
+            </nz-spin>
+          </div>
+        </div>
+      </div>
+      <div nz-row style="margin-bottom:40px;">
+        <div class="card" nz-col nzFlex="auto">
+          <div class="card-header"> Nombre des Stages par Société/Filière  </div>
+          <div class="card-body">
+            <nz-spin nzTip="Loading..." [nzSpinning]="loadingLineChart2"> 
+              <canvas baseChart width="700" height="300"
+                [datasets]="lineChartData2"
+                [labels]="lineChartLabels2"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors2"
+                [chartType]="lineChartType2"
               ></canvas>
             </nz-spin>
           </div>
