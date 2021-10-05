@@ -18,18 +18,23 @@ export class ReportStatsComponent implements OnInit {
   //list of reports
   reports?: Report[];
 
-  //filters
-  filterPromotion:'';
-  selectFiliere:'';
-  selectedReportType:"";
-  StudentfilterText:'';
-  selectedConfidentiel;
-  StartDateReport?: any;
-  EndDateReport?: any;
-  selectedStageProjet:'';
-  VillePaysText:'';
-  SocieteText:'';
-  SecteurSocieteText:'';
+  //default required filters
+  filterAnneeParDefaut=new Date().getFullYear();
+  selectFiliereParDefaut="GI"; 
+
+   //filter inputs
+   filterText: '';
+   filterPromotion:'';
+   selectFiliere:'';
+   selectedReportType:"";
+   StudentfilterText:'';
+   selectedConfidentiel;
+   StartDateReport?: any;
+   EndDateReport?: any;
+   selectedStageProjet:'';
+   VillePaysText:'';
+   SocieteText:'';
+   SecteurSocieteText:'';
    
   //For spinner
   hideSpinner = false;
@@ -39,18 +44,31 @@ export class ReportStatsComponent implements OnInit {
 
   professeurs?:Professor[];
 
+  years=[];
+
   constructor(
     private reportService: ReportService,
     private exportService: ExportService,
     private professorService: ProfessorService) { }
 
   ngOnInit(): void {
+    this.fillYears();
     this.retrieveReports();
     this.retrieveProfesseurs();
   }
 
+  fillYears(){
+    let year=2019;
+    let range = this.filterAnneeParDefaut - year + 2;
+    for(var counter:number = 1; counter<range; counter++){
+       this.years.push(year);
+       year++;
+   }
+   this.years.push("Tout")
+ }
+
   retrieveReports(): void {
-    this.reportService.getAllReportValidated() 
+    this.reportService.getAllReportValidatedAndFiltered(this.filterAnneeParDefaut,this.selectFiliereParDefaut) 
       .subscribe(
         data => {
           this.reports = data;
@@ -79,12 +97,13 @@ export class ReportStatsComponent implements OnInit {
   }
 
   renitialiserFiltres(){
+    this.filterText= '';
     this.filterPromotion='';
     this.selectFiliere='';
-    this.selectedReportType='';
     this.StudentfilterText='';
     this.selectedStageProjet='';
     this.selectedConfidentiel=false;
+    this.selectedReportType='';
     this.StartDateReport=null;
     this.EndDateReport=null;
     this.VillePaysText='';
@@ -102,12 +121,6 @@ export class ReportStatsComponent implements OnInit {
       arrowUp.classList.replace("visibleArrow","hidden");
       arrowDown.classList.replace("hidden","visibleArrow");
     }
-  }
-
-  capitalizeFirstLetter(string) {
-    //console.log("capitalize")
-    string = string.toLowerCase();
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   ShowHideStageFilters(){
@@ -141,6 +154,14 @@ export class ReportStatsComponent implements OnInit {
     }
   }
 
+  capitalizeFirstLetter(string) {
+    //console.log("capitalize")
+    string = string.toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
+  applyFilters(){
+    this.retrieveReports();
+  }
 
 }

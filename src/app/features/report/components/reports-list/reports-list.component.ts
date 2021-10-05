@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
+import { Professor } from 'src/app/features/professor/models/professor';
+import { ProfessorService } from 'src/app/features/professor/services/professor.service';
 import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
 import { Report } from '../../models/report';
@@ -22,12 +24,15 @@ export class ReportsListComponent implements OnInit {
    isAdministrator=false; 
    currentUser: ReturnedUser;
    currentStudent: Student;
+   currentProfessor: Professor;
    isStudent=0;
 
-   //Mot clé
-   //allmots:{ [key: string]: { mots: String[] }} = {};
+   //default required filters
+   filterAnneeParDefaut=new Date().getFullYear();
+   selectFiliereParDefaut="GI"; 
 
    //filter inputs
+   motFilter:'';
    filterText: '';
    filterPromotion:'';
    selectFiliere:'';
@@ -46,15 +51,19 @@ export class ReportsListComponent implements OnInit {
 
    //For spinner
    hideSpinner = false;
+
+   years=[];
    
    
    constructor(private reportService: ReportService,
     private token: TokenStorageService,
-    private studentService : StudentService,) { }
+    private studentService : StudentService,
+    private professorService : ProfessorService) { }
    
    ngOnInit(): void {
     //this.showSpinner();
-    this.retrieveReports();
+    this.fillYears();
+    
     this.isLoggedIn = !!this.token.getToken();    
     var user_id;
     if (this.isLoggedIn) {
@@ -64,12 +73,28 @@ export class ReportsListComponent implements OnInit {
       this.group = this.currentUser.groups[0];
       if( this.group == "Administrator"){
         this.isAdministrator = true;
+        this.retrieveReports();
+
         
       }else if( this.group == "Student" ){
-        this.getStudent(user_id);
+        this.getStudent(user_id) //retreive reports gets called inside the subscribe
+      }else if(this.group == "Professor"){
+        this.getProfessor(user_id);
+
       }
     }
+
    }
+
+   fillYears(){
+     let year=2019;
+     let range = this.filterAnneeParDefaut - year + 2;
+     for(var counter:number = 1; counter<range; counter++){
+        this.years.push(year);
+        year++;
+    }
+    this.years.push("Tout")
+  }
 
   getStudent(id_user: number): void {
     this.studentService.findByUser(id_user)
@@ -77,7 +102,22 @@ export class ReportsListComponent implements OnInit {
         data => {
           this.currentStudent = data[0];
           this.isStudent=data[0].id;
-          //console.log("Student object:", data[0])
+          this.selectFiliereParDefaut = this.currentStudent.filiere.toString();
+          this.retrieveReports();
+        },
+        error => {
+          console.log(error);
+        });
+  }
+  
+  getProfessor(id_user: number): void {
+    this.professorService.findByUser(id_user)
+      .subscribe(
+        data => {
+          this.currentProfessor = <Professor>data;
+          console.log(this.currentProfessor)
+          this.selectFiliereParDefaut = this.currentProfessor.departement.toString();
+          this.retrieveReports();
         },
         error => {
           console.log(error);
@@ -87,7 +127,7 @@ export class ReportsListComponent implements OnInit {
   retrieveReports(): void {
     //(report.valid_admin && report.type_rapport!='PFE')  OR
     //(report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant)
-     this.reportService.getAllReportValidated()
+     this.reportService.getAllReportValidatedAndFiltered(this.filterAnneeParDefaut,this.selectFiliereParDefaut)
        .subscribe(
          data => {
            this.reports = data;
@@ -145,6 +185,7 @@ export class ReportsListComponent implements OnInit {
   }
 
   renitialiserFiltres(){
+    this.motFilter='';
     this.filterText= '';
     this.filterPromotion='';
     this.selectFiliere='';
@@ -176,6 +217,10 @@ export class ReportsListComponent implements OnInit {
     //console.log("capitalize")
     string = string.toLowerCase();
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  ApplyFilters(){
+    this.retrieveReports();
   }
    
 
