@@ -166,16 +166,15 @@ export class DashboardComponent implements OnInit {
     this.lineChartData1 = [{ data:[], label: 'Stage par société'}];
 
     if(data.length!==0){
-      let distinctSocietes =[];
-      distinctSocietes = data.filter(
-        (thing, i, arr) => arr.findIndex(t => t.societe_stage === thing.societe_stage) === i
-      );
-      distinctSocietes.map(
+      const map = data.reduce((acc, e) => acc.set(e.societe_stage, (acc.get(e.societe_stage) || 0) + 1), new Map());
+      var mapAsc = [...map.entries()].sort((a,b) => b[1] - a[1]).slice(0,20);
+      
+      mapAsc.map(
         report_societe => {
-        this.lineChartLabels1.push(report_societe.societe_stage);
+        this.lineChartLabels1.push(report_societe[0]);
         this.lineChartData1.forEach(
           (element) => 
-            element.data.push(data.filter(report=>report.societe_stage===report_societe.societe_stage).length)
+            element.data.push(data.filter(report=>report.societe_stage===report_societe[0]).length)
         )}
       );
       this.lineChartColors1=[{ 
@@ -217,21 +216,21 @@ export class DashboardComponent implements OnInit {
     this.lineChartData2 = [{ data:[], label: ''}];
     this.lineChartLabels2 = [];
     if(data.length!==0){
-      let distinctSocietes =[];
       let distinctfilieres =[];
-      distinctfilieres = data.filter(
-        (thing, i, arr) => arr.findIndex(t => t.fk_etudiant.filiere === thing.fk_etudiant.filiere) === i
-      );
-      distinctSocietes = data.filter(
-        (thing, i, arr) => arr.findIndex(t => t.societe_stage === thing.societe_stage) === i
-      );
-      distinctSocietes.map(report_societe => {this.lineChartLabels2.push(report_societe.societe_stage);});
+      distinctfilieres = data.filter((thing, i, arr) => arr.findIndex(t => t.fk_etudiant.filiere === thing.fk_etudiant.filiere) === i);
+
+      const map = data.reduce((acc, e) => acc.set(e.societe_stage, (acc.get(e.societe_stage) || 0) + 1), new Map());
+      var mapAsc = [...map.entries()].sort((a,b) => b[1] - a[1]).slice(0,20);
+      
+      mapAsc.map(report_societe => {this.lineChartLabels2.push(report_societe[0]);});
+
+
       this.lineChartData2=[];
       distinctfilieres.map(
         report_filiere => { 
         let value=[];
-        distinctSocietes.map(report_societe => {
-          value.push(data.filter(report=>(report.societe_stage==report_societe.societe_stage)&&(report.fk_etudiant.filiere==report_filiere.fk_etudiant.filiere)).length)
+        mapAsc.map(report_societe => {
+          value.push(data.filter(report=>(report.societe_stage==report_societe[0])&&(report.fk_etudiant.filiere==report_filiere.fk_etudiant.filiere)).length)
         });
         this.lineChartData2.push({
           data:value,
@@ -285,16 +284,15 @@ export class DashboardComponent implements OnInit {
     this.barChartData = [{ data:[], label: 'Stage par ville'}];
 
     if(data.length!==0){
-      let distinctVille =[];
-      distinctVille = data.filter(
-        (thing, i, arr) => arr.findIndex(t => t.ville_societe === thing.ville_societe) === i
-      );
-      distinctVille.map(
+      const map = data.reduce((acc, e) => acc.set(e.ville_societe, (acc.get(e.ville_societe) || 0) + 1), new Map());
+      var mapAsc = [...map.entries()].sort((a,b) => b[1] - a[1]).slice(0,20);
+
+      mapAsc.map(
         report_ville => {
-        this.barChartLabels.push(report_ville.ville_societe);
+        this.barChartLabels.push(report_ville[0]);
         this.barChartData.forEach(
           (element) => 
-            element.data.push(data.filter(report=>report.ville_societe==report_ville.ville_societe).length)
+            element.data.push(data.filter(report=>report.ville_societe==report_ville[0]).length)
         )}
       );
       this.barChartColors=[{

@@ -77,6 +77,7 @@ import { AllFiltersInPipe } from '../features/administrator/pipes/all-filters-in
 import { ReportProfessorValidationComponent } from '../features/professor/components/report-professor-validation/report-professor-validation.component';
 import { AllFiltersInProfessorValidationPipe } from '../features/professor/pipes/all-filters-in-professor-validation.pipe';
 import { ProfessorValidatedPipe } from '../features/professor/pipes/professor-validated.pipe';
+import { TextSizePipe } from '../features/report/pipes/text-size.pipe';
 import { MotCleFilterPipe } from '../features/report/pipes/mot-cle-filter.pipe';
 
 @NgModule({
@@ -152,7 +153,8 @@ import { MotCleFilterPipe } from '../features/report/pipes/mot-cle-filter.pipe';
     PromotionFilterPipe,
     FiliereFilterPipe,
     AdminValidatedPipe,
-    ProfessorValidatedPipe,
+    ProfessorValidatedPipe,   
+    TextSizePipe,
 
     //insertion filters
     EtudiantFilterPipe,
