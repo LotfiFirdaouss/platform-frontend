@@ -13,6 +13,7 @@ import { AdminGuard } from './auth/guards/admin.guard';
 import { RequestResetComponent } from './auth/components/request-reset/request-reset.component';
 import { ResponseResetComponent } from './auth/components/response-reset/response-reset.component';
 import { WebMastersComponent } from './core/components/web-masters/web-masters.component';
+import { ProfileModifyComponent } from './auth/components/profile-modify/profile-modify.component';
 
 const routes: Routes = [
 
@@ -28,6 +29,7 @@ const routes: Routes = [
 
   //protected routes: connected
   { path :'profile' , component : ProfileComponent, canActivate : [AuthGuard]},
+  { path :'modifier-profile' , component : ProfileModifyComponent, canActivate : [AuthGuard]},
   { path :'profile-etudiant/:id' , component : ProfileEtudiantComponent, canActivate : [AuthGuard]}, //id_etudiant
   
   { 

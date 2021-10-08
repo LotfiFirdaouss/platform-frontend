@@ -1,6 +1,6 @@
 export class Student {
     id?:any;
-    code_etudiant?:number;
+    code_etudiant?:String;
     nom_prenom?:String;
     nom?:String;
     prenom?:String;
