@@ -26,11 +26,15 @@ export class ReportValidationComponent implements OnInit {
   //for pagination
   p: number = 1;
 
-  //filters
-  filterPromotion:'';
-  selectFiliere:'';
-  selectedReportType:"";
-  filterCode:"";
+  //filters required
+  filterAnnee=new Date().getFullYear();
+  selectFiliere="GI";
+  selectedReportType="Initiation";
+  //filters normal
+  filterPromotion="";
+  filterCode="";
+  
+  years=[];
 
   checked = false;
   loading = false;
@@ -41,22 +45,35 @@ export class ReportValidationComponent implements OnInit {
 
 
   constructor(private reportService : ReportService,
-    // private promotionFilterPipe: PromotionFilterPipe,
-    // private filiereFilterPipe: FiliereFilterPipe,
-    // private reportTypeFilterPipe: ReportTypeFilterPipe,
-    // private adminValidatedPipe: AdminValidatedPipe
     private allFiltersInPipe: AllFiltersInPipe ) { }
 
   ngOnInit(): void {
+    this.fillYears();
     this.retrieveReports();
   }
 
   retrieveReports(): void {
     this.hideSpinner=false;
+    //constructing our array of arguments
+    let arr = [this.filterAnnee,this.selectFiliere,this.selectedReportType]
+    
+    if(this.filterPromotion=="" || this.filterPromotion==undefined){
+      this.filterPromotion="Tout";
+    }
+    if(this.filterCode=="" || this.filterCode==undefined){
+      this.filterCode="Tout"
+    }
 
-    this.reportService.getAllReportnotValidated() 
+    if(this.filterPromotion!="Tout" || this.filterCode!="Tout"){
+      arr.push(this.filterPromotion);
+      arr.push(this.filterCode);
+    }
+
+
+    this.reportService.getAllReportnotValidatedAndFiltered(arr) 
       .subscribe(
         data => {
+          // console.log(data)
           this.reports = data;
           this.reports.forEach(item => {
             this.edit[item.id]= {
@@ -140,14 +157,14 @@ export class ReportValidationComponent implements OnInit {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  renitialiserFiltres(){
-    this.setOfCheckedId.clear();
-    this.filterPromotion='';
-    this.selectFiliere='';
-    this.selectedReportType='';
-    this.filterCode='';
-    this.retrieveReports();
-  }
+  // renitialiserFiltres(){
+  //   this.setOfCheckedId.clear();
+  //   this.filterPromotion='';
+  //   this.selectFiliere='';
+  //   this.selectedReportType='';
+  //   this.filterCode='';
+  //   this.retrieveReports();
+  // }
 
   updateCheckedSet(id: number, checked: boolean): void {
     //console.log("updaaate:",id,checked)
@@ -208,7 +225,7 @@ export class ReportValidationComponent implements OnInit {
       .subscribe( 
         response => {
           //console.log("updated report on validation:",response)
-          this.renitialiserFiltres();  
+          this.applyFilters();
         },
         error => {
           //console.log(error);
@@ -221,30 +238,19 @@ export class ReportValidationComponent implements OnInit {
     }, 1000);
   }
 
-  // onKeyPromotion(){
-  //   console.log("promotion",this.filterPromotion)
-  //   this.onCurrentPageDataChange(this.promotionFilterPipe.transform(this.reports,this.filterPromotion));
-  // }
-  
-  // changeFiliere(){
-  //   console.log("filiere",this.selectFiliere)
-  //   this.onCurrentPageDataChange(this.filiereFilterPipe.transform(this.reports,this.selectFiliere));
-  // }
-  
-  // changeReportType(){
-  //   console.log("report type",this.selectedReportType)
-  //   this.onCurrentPageDataChange(this.reportTypeFilterPipe.transform(this.reports,this.selectedReportType));
-  // }
-  
-  // changeValid(){
-  //   console.log("valid admin",this.selectedValidatedAdmin)
-  //   this.onCurrentPageDataChange(this.adminValidatedPipe.transform(this.reports,this.selectedValidatedAdmin));
-  // }
-
   applyFilters(){
     this.setOfCheckedId.clear();
-    this.reports = this.allFiltersInPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.filterCode,this.selectedReportType);
-
+    this.retrieveReports();
   }
+
+  fillYears(){
+    let year=2019;
+    let range = this.filterAnnee - year + 2;
+    for(var counter:number = 1; counter<range; counter++){
+       this.years.push(year);
+       year++;
+   }
+   this.years.push("Tout")
+ }
 
 }

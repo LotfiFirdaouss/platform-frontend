@@ -90,6 +90,8 @@ export class AppComponent implements OnInit{
           this.getStudentUser(this.currentUser.id, url);
         }else if( url == "/profile"){
           id = "profileId";
+        }else if( url == "/modifier-profile"){
+          id = "profileId";
         }else if( url == "/admin/gestionForm"){
           id = "formId";
         }else if( url == "/admin/stats" ){

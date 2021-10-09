@@ -127,7 +127,7 @@ export class ReportsListComponent implements OnInit {
   retrieveReports(): void {
     //(report.valid_admin && report.type_rapport!='PFE')  OR
     //(report.type_rapport=='PFE' && report.valid_admin && report.valid_encadrant)
-     this.reportService.getAllReportValidatedAndFiltered(this.filterAnneeParDefaut,this.selectFiliereParDefaut)
+     this.reportService.getAllReportValidatedAndFiltered(this.filterAnneeParDefaut,this.selectFiliereParDefaut,"Tout")
        .subscribe(
          data => {
            this.reports = data;

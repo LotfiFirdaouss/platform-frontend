@@ -116,3 +116,96 @@
   }
   
   [data-aos][data-aos-delay="100"],body[data-aos-duration="1000"] [data-aos]{transition-duration:1s}[data-aos][data-aos][data-aos-delay="1000"],body[data-aos^=fade][data-aos^=fade].aos-animate{opacity:1;transform:translateZ(0)}[data-aos=fade-up]{transform:translate3d(0,100px,0)}[data-aos^=zoom][data-aos^=zoom]{opacity:0;transition-property:opacity,transform}[data-aos^=zoom][data-aos^=zoom].aos-animate{opacity:1;transform:translateZ(0) scale(1)}[data-aos=zoom-in]{transform:scale(.6)}[data-aos=zoom-in-up]{transform:translate3d(0,100px,0)}
+
+  .sed_testimonial_section {
+    padding: 6rem 0rem;
+  }
+  
+  .testi_person_img_icon {
+    margin-top: 2rem;
+  }
+  
+  .testi_person_img_icon ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: right;
+  }
+  
+  .testi_person_img_icon ul li {
+    display: inline-block;
+    border: 3px solid transparent;
+    border-radius: 11px;
+    cursor: pointer;
+  }
+  
+  .testi_person_img_icon ul li img {
+    width: 66px;
+    height: 66px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .change_contet_test:nth-child(1) {
+    display: block;
+  }
+  
+  .change_contet_test {
+    display: none;
+  }
+  
+  .test_user_review_content h1 {
+    font-family: "Work-Sans-SemiBold";
+    font-size: 24px;
+    font-weight: 600;
+    text-align: right;
+    color: #000000;
+    text-transform: uppercase;
+  }
+  
+  .test_user_review_content p {
+    font-size: 14px;
+    text-align: right;
+    color: #000000;
+  }
+  
+  .bottom_line_yello {
+    border-bottom: 2px solid #fddf59;
+    padding-bottom: 2rem;
+  }
+  
+  .img_peroson_fullsize {
+    text-align: right;
+  }
+  
+  .active_user {
+    position: relative;
+    border: 3px solid #fddf59 !important;
+    border-radius: 11px;
+  }
+  
+  .active_user:after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #fddf59;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
+    border-radius: 50%;
+    bottom: -8px;
+  }
+  
+  .p_b_80 {
+    padding-bottom: 80px;
+  }
+  
+  .sed_testimonial_section {
+    padding-bottom: 4rem;
+  }
+  
+  .img_peroson_fullsize {
+    position: relative;
+  }
+  

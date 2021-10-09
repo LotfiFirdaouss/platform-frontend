@@ -217,7 +217,7 @@
             | reportTypeFilter : selectedReportType | dateRangeFilter : StartDateReport:EndDateReport | studentFilter : StudentfilterText
             | villePaysFilter : VillePaysText | societeFilter : SocieteText | secteurSocieteFilter : SecteurSocieteText
             | promotionFilter : filterPromotion
-            | paginate : { itemsPerPage: 50, currentPage: p } ;">
+            | paginate : { itemsPerPage: 200, currentPage: p } ;">
               <td scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </td>
               <td scope="col" > {{ report.fk_etudiant.code_etudiant }} </td>
               <td scope="col"> {{ report.fk_etudiant.promotion }} </td>

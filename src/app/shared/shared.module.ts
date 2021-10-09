@@ -79,6 +79,7 @@ import { AllFiltersInProfessorValidationPipe } from '../features/professor/pipes
 import { ProfessorValidatedPipe } from '../features/professor/pipes/professor-validated.pipe';
 import { TextSizePipe } from '../features/report/pipes/text-size.pipe';
 import { MotCleFilterPipe } from '../features/report/pipes/mot-cle-filter.pipe';
+import { ProfileModifyComponent } from '../auth/components/profile-modify/profile-modify.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { MotCleFilterPipe } from '../features/report/pipes/mot-cle-filter.pipe';
     ResponseResetComponent,
     RegisterComponent,
     ProfileComponent,
+    ProfileModifyComponent,
 
     //Report filters
     MotCleFilterPipe,

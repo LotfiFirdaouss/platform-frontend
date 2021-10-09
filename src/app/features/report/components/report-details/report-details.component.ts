@@ -835,14 +835,14 @@ public getJurys(data:Report){
 
 public getMots(data:Report){
   this.allmots[4]=this.allmots[3]='';
-  this.allmots[0]=data.mots[0].mot ;
-  this.allmots[1]=data.mots[1].mot;
-  this.allmots[2]=data.mots[2].mot;
-  if(data.mots.length>=4){
+  this.allmots[0]=data.mots[0]?.mot ;
+  this.allmots[1]=data.mots[1]?.mot;
+  this.allmots[2]=data.mots[2]?.mot;
+  if(data.mots?.length>=4){
     this.allmots[3]=data.mots[3].mot;
     this.mot4=true;
   }
-  if(data.mots.length==5){
+  if(data.mots?.length==5){
     this.allmots[4]=data.mots[4].mot;
     this.mot5=true;
     this.addmot=false;

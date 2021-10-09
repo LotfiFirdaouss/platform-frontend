@@ -68,7 +68,7 @@ export class ReportStatsComponent implements OnInit {
  }
 
   retrieveReports(): void {
-    this.reportService.getAllReportValidatedAndFiltered(this.filterAnneeParDefaut,this.selectFiliereParDefaut) 
+    this.reportService.getAllReportValidatedAndFiltered(this.filterAnneeParDefaut,this.selectFiliereParDefaut,"Tout") 
       .subscribe(
         data => {
           this.reports = data;

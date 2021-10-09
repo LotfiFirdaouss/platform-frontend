@@ -99,7 +99,7 @@
             | filiereFilter : selectFiliere 
             | dateFilterJury : dateFilter
             | paginate : { itemsPerPage: 10, currentPage: p } ;">
-              <th scope="col"> {{ report.horodateur }} </th>
+              <th scope="col"> {{ report.horodateur | date: 'dd/MM/yyyy' }} </th>
               <th scope="col" class="classLink"> <a routerLink="/profile-etudiant/{{report.fk_etudiant.id}}" >{{ report.fk_etudiant.prenom }} {{ report.fk_etudiant.nom }}</a> </th>
               <th scope="col" > {{ report.fk_etudiant.code_etudiant }} </th>              
               <th scope="col"> {{ report.fk_etudiant.promotion }} </th>
