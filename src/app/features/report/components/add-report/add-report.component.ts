@@ -664,7 +664,7 @@ export class AddReportComponent implements OnInit {
     //post the new words
     this.reportService.postMotsClés(arrayMot);
 
-    this.reportService.create(data)
+    this.reportService.create(data,this.currentStudent)
       .subscribe(
         response => {
             //console.log(response);
@@ -735,7 +735,7 @@ export class AddReportComponent implements OnInit {
             );        
         },
         error => {
-          //console.log(error);
+          console.log(error);
         });
   }
 
