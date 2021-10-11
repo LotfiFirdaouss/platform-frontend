@@ -147,7 +147,7 @@
                     <div class="col">
                         <div class="form-group input-box">
                             
-                            <select class="custom-select form-control" id="pays" name="pays" [required]="!stageDisabled && otherCountryHidden"
+                            <select class="custom-select form-control" id="pays" name="pays" [required]="!stageDisabled"
                              (change)="changeCountry($event.target.value)" [(ngModel)]="report.pays_societe" [disabled]="stageDisabled">
                              <option *ngFor="let count of countryList">{{count.name}}</option>
                             </select>
@@ -159,7 +159,7 @@
                     <div class="col">
                         <div class="form-group input-box">
 
-                            <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled && otherCityHidden"
+                            <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled"
                             [(ngModel)]="report.ville_societe" [disabled]="stageDisabled">
                                 <option *ngFor="let city of cities">{{city}}</option>
                             </select>
@@ -169,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col">
                         <div class="form-group input-box">
                             <div id="otherCountry" [class.hidden]="otherCountryHidden">
@@ -207,7 +207,7 @@
                         </div>
                     </div>        
 
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col">
                         <div class="form-group input-box">
