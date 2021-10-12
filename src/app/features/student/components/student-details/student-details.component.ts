@@ -21,17 +21,33 @@ export class StudentDetailsComponent implements OnInit {
   filterPromotion:'';
   selectFiliere:'';
 
+  filterAnneeParDefaut=new Date().getFullYear();
+  years=[];
+
+
   //for pagination
   p: number = 1;
 
   constructor(private studentService : StudentService) { }
 
   ngOnInit(): void {
+    this.fillYears();
+
     this.retrieveStudents();
   }
 
+  fillYears(){
+    let year=2019;
+    let range = this.filterAnneeParDefaut - year + 2;
+    for(var counter:number = 1; counter<range; counter++){
+       this.years.push(year);
+       year++;
+   }
+   this.years.push("Tout")
+ }
+
   retrieveStudents(): void {
-    this.studentService.getAll()
+    this.studentService.getCurrentStudents(<any>this.filterAnneeParDefaut) 
       .subscribe(
         data => {
           this.students = data;
@@ -44,6 +60,10 @@ export class StudentDetailsComponent implements OnInit {
         error => {
           //console.log(error);
         });
+  }
+
+  ApplyFilters(){
+    this.retrieveStudents();
   }
   
   setActiveStudent(student: Student, index: number): void {

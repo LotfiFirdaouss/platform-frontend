@@ -14,6 +14,9 @@ import { RequestResetComponent } from './auth/components/request-reset/request-r
 import { ResponseResetComponent } from './auth/components/response-reset/response-reset.component';
 import { WebMastersComponent } from './core/components/web-masters/web-masters.component';
 import { ProfileModifyComponent } from './auth/components/profile-modify/profile-modify.component';
+import { ProfileModifyProfessorComponent } from './auth/components/profile-modify-professor/profile-modify-professor.component';
+import { ProfGuard } from './auth/guards/prof.guard';
+import { StudGuard } from './auth/guards/stud.guard';
 
 const routes: Routes = [
 
@@ -29,7 +32,8 @@ const routes: Routes = [
 
   //protected routes: connected
   { path :'profile' , component : ProfileComponent, canActivate : [AuthGuard]},
-  { path :'modifier-profile' , component : ProfileModifyComponent, canActivate : [AuthGuard]},
+  { path :'modifier-profile' , component : ProfileModifyComponent, canActivate : [AuthGuard,StudGuard]},
+  { path :'modifier-profile-prof' , component : ProfileModifyProfessorComponent, canActivate : [AuthGuard,ProfGuard]},
   { path :'profile-etudiant/:id' , component : ProfileEtudiantComponent, canActivate : [AuthGuard]}, //id_etudiant
   
   { 
