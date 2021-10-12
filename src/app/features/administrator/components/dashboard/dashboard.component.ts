@@ -13,8 +13,15 @@ import { DashboardService } from '../../services/dashboard.service';
 export class DashboardComponent implements OnInit {
 
   reports:Report[];
-  filterPromotionStage:'';
-  filterPromotionProjet:'';
+  promotions=[];
+  filterPromotionStage= new Date().getFullYear() ;
+  filterPromotionProjet=new Date().getFullYear() ;
+  years=[];
+  filterAnneeStage=new Date().getFullYear();
+  filterAnneeProjet=new Date().getFullYear();
+
+  loadingStage=true;
+  loadingProjet=true;
   
   //number of stageReport 
   stageReport:number;
@@ -105,21 +112,44 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.calculateStage();
     this.calculateProjet();
+    this.fillYears();
+  }
+
+  fillYears(){
+    let year=2019;
+    let rangeYear = this.filterAnneeStage - year + 2;
+    let rangePromotion = this.filterAnneeStage - year + 3;
+    for(var counter:number = 1; counter<rangeYear; counter++){
+       this.years.push(year);
+       year++;
+    }
+    year=2019;
+    for(var counter:number = 1; counter<rangePromotion; counter++){
+      this.promotions.push(year);
+      year++;
+    }
+    this.years.push("Tout");
+    this.promotions.push("Tout");
+
   }
 
   public calculateProjet(): void {
-    this.dashboardService.getAllReportProjet().subscribe(data => 
+    this.dashboardService.getAllReportProjetValidatedAndFiltered(this.filterAnneeProjet,''+this.filterPromotionProjet).subscribe(data => 
       {
-        this.reports=this.promotionFilter.transform(data,this.filterPromotionProjet);
+        this.reports=data;
         this.projetReport=this.reports.length;
         this.buildDoughnutPROJET(this.reports);
       });
   }
 
   public calculateStage(): void {
-    this.dashboardService.getAllReportStage().subscribe(data => 
+    this.loadingStage=true;
+    this.loadingProjet=true;
+    this.dashboardService.getAllReportStageValidatedAndFiltered(this.filterAnneeStage,''+this.filterPromotionStage).subscribe(data => 
       {
-        this.reports=this.promotionFilter.transform(data,this.filterPromotionStage);
+        this.loadingStage=false;
+        this.loadingProjet=false;
+        this.reports=data;
         this.stageReport=this.reports.length;
         this.buildLineChart1(this.reports);
         this.buildDoughnut(this.reports);
@@ -128,16 +158,10 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  public renitialiserFiltres(): void {
-    this.filterPromotionStage='';
-    this.filterPromotionProjet='';
-    this.calculateStage();
-    this.calculateProjet();
-  }
-
   public buildDoughnutPROJET(data:Report[]) {
     this.doughnutPROJETChartLabels = [];
     this.doughnutPROJETChartData = [];
+    this.loadingDoughnutPROJET=false;
 
     if(data.length!==0){
       let distinctfilieres =[];
@@ -151,7 +175,7 @@ export class DashboardComponent implements OnInit {
           data.filter(report=>report.fk_etudiant.filiere == report_filiere.fk_etudiant.filiere).length)
         }
       );
-      this.loadingDoughnutPROJET=false;
+      
       this.doughnutPROJETChartColors=[
         {
           backgroundColor: ['#fd9518','#17f13b','#5397f8','#f117cd','#95d4f1','#fabbda'],
@@ -164,6 +188,8 @@ export class DashboardComponent implements OnInit {
   public buildLineChart1(data:Report[]): void {
     this.lineChartLabels1 = [];
     this.lineChartData1 = [{ data:[], label: 'Stage par société'}];
+
+    this.loadingLineChart1=false;
 
     if(data.length!==0){
       const map = data.reduce((acc, e) => acc.set(e.societe_stage, (acc.get(e.societe_stage) || 0) + 1), new Map());
@@ -191,6 +217,9 @@ export class DashboardComponent implements OnInit {
   public buildDoughnut(data:Report[]): void {
     this.doughnutChartLabels= [];
     this.doughnutChartData = [];
+
+    this.loadingDoughnut=false;
+
     if(data.length!==0){
       let distinctfilieres =[];
       distinctfilieres = data.filter(
@@ -215,6 +244,9 @@ export class DashboardComponent implements OnInit {
   public buildLineChart2(data:Report[]): void {
     this.lineChartData2 = [{ data:[], label: ''}];
     this.lineChartLabels2 = [];
+
+    this.loadingLineChart2=false;
+
     if(data.length!==0){
       let distinctfilieres =[];
       distinctfilieres = data.filter((thing, i, arr) => arr.findIndex(t => t.fk_etudiant.filiere === thing.fk_etudiant.filiere) === i);
@@ -282,6 +314,8 @@ export class DashboardComponent implements OnInit {
   public buildBarChart(data:Report[]): void {
     this.barChartLabels = [];
     this.barChartData = [{ data:[], label: 'Stage par ville'}];
+
+    this.loadingBarChart=false;
 
     if(data.length!==0){
       const map = data.reduce((acc, e) => acc.set(e.ville_societe, (acc.get(e.ville_societe) || 0) + 1), new Map());
