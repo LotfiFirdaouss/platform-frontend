@@ -9,20 +9,7 @@
             {{ currentUser.firstname }} {{ currentUser.lastname }}
             <span class="text-muted font-weight-normal" >@{{ currentUser.username }} </span>
         </h4>  
-        <div *ngIf=" currentStudent" class="text-muted mb-2" style="padding-left: 50px;">CODE apogée: 
-          <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" #code_etudiant="ngModel" name="code_etudiant" 
-            placeholder="Code d'étudiant*" required maxlength="10" [(ngModel)]="form.code_etudiant"> 
-            <div *ngIf="code_etudiant.errors && (code_etudiant.dirty || code_etudiant.touched)">
-              <div [hidden]="!code_etudiant.errors?.required" class="alert-validate" 
-                >Entrer votre code d'étudiant
-              </div>
-              <div [hidden]="!code_etudiant.errors?.maxlength" class="alert-validate" >
-                Ce champ ne peut pas comporter plus de 10 caractères.
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   
@@ -34,7 +21,7 @@
             <tr>
               <td>Role:</td>
               <td>
-                <span>Etudiant</span>
+                <span>Professeur</span>
             </td>
             </tr>
             <tr>
@@ -73,32 +60,18 @@
   
         <table class="table user-view-table m-0">
           <tbody>
-            <tr *ngIf=" currentStudent">
-              <td>Filiére:</td>
+            <tr *ngIf="currentProfessor">
+              <td>Département:</td>
               <td>
                 <div class="wrap-input100 validate-input">
-                  <select class="input100" type="text" name="filiere" placeholder="Filiére" [(ngModel)]="form.filiere" style=" border:0px; outline:0px;" pattern="^[A-Z]{0,4}$" #filiere="ngModel">
-                    <option *ngFor="let filiere of filieres" [ngValue]="filiere">
-                      {{ filiere }}
+                  <select class="input100" type="text" name="department" placeholder="Departement" [(ngModel)]="form.departement" style=" border:0px; outline:0px;" pattern="^[A-Z]{0,4}$" #department="ngModel">
+                    <option *ngFor="let departement of departements" [ngValue]="departement">
+                      {{ departement }}
                     </option>
                   </select>
-                  <div *ngIf="filiere.errors && (filiere.dirty || filiere.touched)">
-                    <div [hidden]="!filiere.errors?.pattern" class="alert-validate" 
-                      data-validate="Choisissez votre filière*"></div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr *ngIf=" currentStudent">
-              <td>Promotion:</td>
-              <td> 
-                <div class="wrap-input100">
-                  <input class="input100" type="text" name="promotion" placeholder="Promotion*" [(ngModel)]="form.promotion" #promotion="ngModel" required pattern="^20\d{2}$">
-                  <div *ngIf="promotion.errors && (promotion.dirty || promotion.touched)">
-                    <div [hidden]="!promotion.errors?.required" class="alert-validate" 
-                      >Entrer la promotion</div>
-                    <div [hidden]="!promotion.errors?.pattern" class="alert-validate" 
-                      >Entrer une date valide entre 2000 et 2099</div>
+                  <div *ngIf="department.errors && (department.dirty || department.touched)">
+                    <div [hidden]="!department.errors?.pattern" class="alert-validate" 
+                      data-validate="Choisissez votre départment*"></div>
                   </div>
                 </div>
               </td>

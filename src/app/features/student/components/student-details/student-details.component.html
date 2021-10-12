@@ -2,6 +2,24 @@
   <h2 class="card-subheading center" >Liste des étudiants</h2><br>
   <p class="card-heading"><small>Ci-dessous vous trouverez la liste de tout les étudiants.</small></p><hr>
 
+  <div class="wrap" >
+    <div class="search">
+        <div style="width: 100%;" class="input-box">
+            <!-- <input style="padding-left: 100px;" type="text" class="searchTerm" [(ngModel)]="filterAnneeParDefaut" data-placeholder-focus="false"> -->
+            <select style="padding-left: 300px;" class="searchTerm" name="type" [(ngModel)]="filterAnneeParDefaut">
+                <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+            </select>
+            <span class="unit" >Etudiants ensamiens de l'année* : </span>
+        </div>
+        <button type="submit" class="searchButton" (click)="ApplyFilters()">
+          <i class="fa fa-search"></i>
+        </button>
+    </div>
+ </div>
+ <p style="color: red;"><small> *Le filtre <b>année YYYY</b> retourne les étudiants inscrits dans la plateforme
+qui sont actuellement en cycle d'ingénieur dans l'année YYYY. </small></p>
+  
+<br>
   <!--filters -->
   <div class="form-area" novalidate="novalidate" autocomplete="off">
     <div class="row">

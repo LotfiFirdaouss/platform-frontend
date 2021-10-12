@@ -80,6 +80,7 @@ import { ProfessorValidatedPipe } from '../features/professor/pipes/professor-va
 import { TextSizePipe } from '../features/report/pipes/text-size.pipe';
 import { MotCleFilterPipe } from '../features/report/pipes/mot-cle-filter.pipe';
 import { ProfileModifyComponent } from '../auth/components/profile-modify/profile-modify.component';
+import { ProfileModifyProfessorComponent } from '../auth/components/profile-modify-professor/profile-modify-professor.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +140,7 @@ import { ProfileModifyComponent } from '../auth/components/profile-modify/profil
     RegisterComponent,
     ProfileComponent,
     ProfileModifyComponent,
+    ProfileModifyProfessorComponent,
 
     //Report filters
     MotCleFilterPipe,
