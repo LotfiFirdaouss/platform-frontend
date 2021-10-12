@@ -29,7 +29,7 @@ export class ReportsListComponent implements OnInit {
 
    //default required filters
    filterAnneeParDefaut=new Date().getFullYear();
-   selectFiliereParDefaut="GI"; 
+   selectFiliereParDefaut="GI";  
 
    //filter inputs
    motFilter:'';
