@@ -123,7 +123,7 @@ changeCountry(count) {
   var size = this.fileToUpload.size/1000;
     
   //setting the errors
-  size > 2000 ? this.fileSizeError=true : this.fileSizeError=false;
+  size > 40000 ? this.fileSizeError=true : this.fileSizeError=false;
   this.fileToUpload.type!="application/pdf" ? this.fileTypeError=true : this.fileTypeError=false;
 
   //setting the errors to be considered in form validation
@@ -139,6 +139,7 @@ changeCountry(count) {
      .subscribe(
        data => {
           this.currentReport = data;
+          console.log(this.currentReport)
           if(!data.stage_ou_projet){
             //projet
             this.stageDisabled=true;
