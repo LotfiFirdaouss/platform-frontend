@@ -202,7 +202,7 @@ changeCountry(count) {
   //post the new words
   this.reportService.postMotsClés(arrayMot);
 
-  this.reportService.update(this.currentReport.id, data)
+  this.reportService.update(this.currentReport.id, data, this.currentReport.fk_etudiant)
      .subscribe(
        response => {
          //console.log(response);

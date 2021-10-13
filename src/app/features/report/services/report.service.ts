@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Report } from '../models/report';
 import { map } from 'rxjs/operators';
 import { MotCle } from '../models/mot-cle';
+import { Student } from '../../student/models/student';
 
 const baseUrl = 'http://127.0.0.1:8080/api/rapports';
 
@@ -64,7 +65,7 @@ export class ReportService {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  create(data: any): Observable<any> {
+  create(data: any,student:Student): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('horodateur',this.getCurrentDate());
     formData.append('stage_ou_projet',data.stage_ou_projet);
@@ -79,7 +80,7 @@ export class ReportService {
     formData.append('parrain',data.parrain);
     formData.append('email_parrain',data.email_parrain);
     formData.append('telephone_parrain',data.telephone_parrain);
-    formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
+    formData.append('fichier_rapport',data.fichier_rapport,student.nom+'_'+student.prenom+'_'+data.type_rapport+'_'+student.promotion+'_'+student.filiere+'.pdf');
     formData.append('rapport_confidentiel',data.rapport_confidentiel);
     formData.append('fk_etudiant',data.fk_etudiant);
     formData.append('type_rapport',data.type_rapport);
@@ -102,11 +103,9 @@ export class ReportService {
   updateMotsClesJury(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
-  updateJurys(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
-  }
+  
 
-  update(id: any, data: any): Observable<any> {
+  update(id: any, data: any,student:Student): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('stage_ou_projet',data.stage_ou_projet);   
     if(data.date_debut_stage){
@@ -138,7 +137,7 @@ export class ReportService {
     }
     if(data.fichier_rapport!=null){
       //console.log("heeere fichier rapport")
-      formData.append('fichier_rapport',data.fichier_rapport,data.fichier_rapport.name);
+      formData.append('fichier_rapport',data.fichier_rapport,student.nom+'_'+student.prenom+'_'+data.type_rapport+'_'+student.promotion+'_'+student.filiere+'.pdf');
     }
     if(data.resume_rapport){
       //console.log("resume")

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
@@ -6,6 +6,8 @@ import { Student } from 'src/app/features/student/models/student';
 import { StudentService } from 'src/app/features/student/services/student.service';
 import { Report } from '../../models/report';
 import { ReportService } from '../../services/report.service';
+
+import jspdf from 'jspdf';    
 
 @Component({
    selector: 'app-report-student',
@@ -22,6 +24,11 @@ export class ReportStudentComponent implements OnInit {
    currentUser!: ReturnedUser;
    user_id: number;
    
+   //attestation
+   @ViewChild('myDiv',{static: false}) el!: ElementRef;
+   attestation=false;
+   date=new Date();
+
    currentStudent !: Student;
    isStudentOwner=false; 
    group:null;
@@ -104,5 +111,32 @@ export class ReportStudentComponent implements OnInit {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
   }
+
+  getCertificate(){
+    if(this.attestation==true){
+      this.attestation=false;
+    }
+    else {
+      this.attestation=true;
+    }    
+  }
+
+  pdf() {
+    //var data = document.getElementById('myDiv'); 
+    //data.style.display = 'block';
+    let pdf = new jspdf('p','pt', [794, 1160]);
+    pdf.html(this.el.nativeElement,{callback : (pdf) => {pdf.save('attestation_décharges.pdf')}});
+    /*html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('newPDF.pdf');
+    });*/
+    //data.style.display = 'none';
+  }
+  
    
 }

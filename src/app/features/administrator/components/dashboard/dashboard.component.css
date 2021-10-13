@@ -80,11 +80,11 @@ canvas {padding: 0%;color:white;margin: 0%;padding-top: 10px;}
 }
 
 
-.styled-input input:focus {
+.styled-input input:focus, .styled-input select:focus {
   outline: none;
 }
 
-.styled-input input{
+.styled-input input,.styled-input select{
   color: #4A4A4A;
   border: 0;
   width: 90%;
@@ -96,10 +96,21 @@ canvas {padding: 0%;color:white;margin: 0%;padding-top: 10px;}
   left: 7px;
 }
 
+.styled-input select {
+  width: 90%;
+  background: transparent;
+  border: 0;
+  position: relative;
+  z-index: 1;
+  left: 11px;
+}
+
+
+
 /* Focus Label */
 
 .styled-input input:focus ~ label,
-.styled-input #select-type label {
+.styled-input select:focus ~ label {
   font-size: 11px;
   letter-spacing: 1.56px;
   color: #4A3B8F;

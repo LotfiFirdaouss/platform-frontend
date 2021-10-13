@@ -5,7 +5,7 @@ import { Report } from '../../report/models/report';
 import { map } from 'rxjs/operators';
 
 
-const baseUrl = 'http://127.0.0.1:8080/api/rapports/type';
+const baseUrl = 'http://127.0.0.1:8080/api/rapports';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,13 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  getAllReportStage(): Observable<Report[]> {
-    return this.http.get<Report[]>(`${baseUrl}?type=True`);
+  getAllReportStageValidatedAndFiltered(year: number, promotion: string): Observable<Report[]> {
+    return this.http.get<Report[]>(`${baseUrl}/validatedFiltered?year=${year}&promotion=${promotion}&type=True`);
   }
-  getAllReportProjet(): Observable<Report[]> {
+  
+  getAllReportProjetValidatedAndFiltered(year: number, promotion: string): Observable<Report[]> {
     // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.stage_ou_projet===false && report.valid_admin===true)));
-    return this.http.get<Report[]>(`${baseUrl}?type=False`);
+    return this.http.get<Report[]>(`${baseUrl}/validatedFiltered?year=${year}&promotion=${promotion}&type=False`);
 
   }  
 

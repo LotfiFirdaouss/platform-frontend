@@ -26,6 +26,7 @@
     "country-state-city": "^3.0.1",
     "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
+    "jspdf": "^2.4.0",
     "ng-zorro-antd": "^11.4.2",
     "ng2-charts": "^2.2.3",
     "ngx-pagination": "^5.1.1",
