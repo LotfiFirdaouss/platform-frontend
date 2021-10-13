@@ -40,14 +40,25 @@ export class ReportService {
   }
   
   //get reports validated first then filtered using year(horodateur) and major(filiere)
-  getAllReportValidatedAndFiltered(year: number, filiere: string): Observable<Report[]> {
-    return this.http.get<Report[]>(`${baseUrl}/validatedFiltered?year=${year}&filiere=${filiere}`);
+  getAllReportValidatedAndFiltered(year: number, filiere: string,type_rapport:string): Observable<Report[]> {
+    return this.http.get<Report[]>(`${baseUrl}/validatedFiltered?year=${year}&filiere=${filiere}&type_rapport=${type_rapport}`);
   }
 
   //rapports non validé
-  getAllReportnotValidated(): Observable<Report[]> {
-    // return this.http.get<Report[]>(baseUrl).pipe(map(result =>result.filter(report => report.valid_admin===true)));
-    return this.http.get<Report[]>(`${baseUrl}/notValidated`);
+  getAllReportnotValidatedAndFiltered(arr: any[]): Observable<Report[]> {
+    console.log(arr)
+    let year =<number> arr[0];
+    let filiere = <string>arr[1];
+    let type_rapport =  <string>arr[2];
+    if(arr[3] != null && arr[4] != null){
+      console.log("ff")
+      let promotion= <number>arr[3];
+      let code=<string>arr[4];
+      console.log(`${baseUrl}/notValidatedFiltered?year=${year}&filiere=${filiere}&type_rapport=${type_rapport}&promotion=${promotion}&code=${code}`)
+      return this.http.get<Report[]>(`${baseUrl}/notValidatedFiltered?year=${year}&filiere=${filiere}&type_rapport=${type_rapport}&promotion=${promotion}&code=${code}`);
+    }else{
+      return this.http.get<Report[]>(`${baseUrl}/notValidatedFiltered?year=${year}&filiere=${filiere}&type_rapport=${type_rapport}`);
+    }
   }
 
   get(id: any): Observable<Report> {

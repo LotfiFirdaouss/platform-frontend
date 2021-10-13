@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  loginForm: FormGroup;
+  registerForm: FormGroup;
 
   form: any = {
     groupType: "3",
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     departement:'Choisissez votre departement*',
     telephone:null
   };
-  socialUser: SocialUser;
+  socialUser: SocialUser; 
   filieres=['Choisissez votre filière*','GI','GM','GEM','MSEI','IAGI'];
   departements=['Choisissez votre departement*','GI','GM','GE'];
   isSuccessful = false;
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     private professorService: ProfessorService) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required,Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@ensam-casa.ma$')]],
       password: ['', Validators.required]
     });    

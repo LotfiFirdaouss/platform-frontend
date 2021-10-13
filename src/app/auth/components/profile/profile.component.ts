@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   constructor(private token: TokenStorageService,
     private studentService : StudentService,
     private professorService : ProfessorService,
-    private router: Router) { }
+) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.token.getToken();    
@@ -34,19 +34,15 @@ export class ProfileComponent implements OnInit {
     if (this.isLoggedIn) {
       this.currentUser = this.token.getUser();
       user_id = this.currentUser.id;
-      //console.log("you are logged in under user id of :",user_id)
-      console.log("User object:",this.currentUser)
+
       this.group = this.currentUser.groups[0];
       if( this.group == "Administrator"){
         this.isAdministrator = true;
-        //console.log("you are admin")
       }else if( this.group == "Professor" ){
         this.isProfessor = true;
-        //console.log("you are professor")
         this.getProfessor(user_id);
       }else{
         this.isStudent = true;
-        //console.log("you are student")
         this.getStudent(user_id);
       }
     }
@@ -57,7 +53,6 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         data => {
           this.currentStudent = data[0];
-          console.log("Student object:", data[0])
         },
         error => {
           console.log(error);
@@ -69,7 +64,6 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         data => {
           this.currentProfessor = <Professor> data;
-          console.log("Professor object:", this.currentProfessor)
         },
         error => {
           console.log(error);

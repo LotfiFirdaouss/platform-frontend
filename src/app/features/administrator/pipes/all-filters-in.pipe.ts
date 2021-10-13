@@ -6,12 +6,11 @@ import { Report } from '../../report/models/report';
 })
 export class AllFiltersInPipe implements PipeTransform {
 
-  transform(reports: Report[], promotion: string,filiere: string,filterCode: String,selectedReportType: string): Report[] {
+  transform(reports: Report[], promotion: string,filterCode: String): Report[] {
     if (!reports) {
       return [];
     }
-    if (!promotion && !filiere && !filterCode && !selectedReportType) {
-      console.log("fff")
+    if (!promotion && !filterCode) {
       return reports;
     }
 
@@ -19,68 +18,18 @@ export class AllFiltersInPipe implements PipeTransform {
     //   return report.fk_etudiant.promotion == promotion;    });
 
       return reports.filter( report => { 
-        if( promotion && !filiere && !selectedReportType && !filterCode ){
+        if( promotion && !filterCode ){
           return report.fk_etudiant.promotion == promotion
         }
-        else if( filiere && !promotion && !selectedReportType && !filterCode){
-          return filiere==report.fk_etudiant.filiere
-        }
-        else if( selectedReportType && !filiere && !promotion && !filterCode ){
-          return this.reportIsOfType(report, selectedReportType)
-        }
-        else if( filterCode && !filiere && !promotion && !selectedReportType ){
+        else if( filterCode && !promotion){
+          console.log(report.fk_etudiant.code_etudiant == filterCode)
           return report.fk_etudiant.code_etudiant == filterCode; 
         }
-        else if(promotion && filiere && !selectedReportType && !filterCode){
-          return report.fk_etudiant.promotion == promotion && filiere==report.fk_etudiant.filiere;
-        }
-        else if(promotion && !filiere && selectedReportType && !filterCode){
-          return report.fk_etudiant.promotion == promotion && this.reportIsOfType(report, selectedReportType) ;
-        }
-        else if(promotion && !filiere && !selectedReportType && filterCode){
+        else if(promotion && filterCode){
           return report.fk_etudiant.promotion == promotion && report.fk_etudiant.code_etudiant == filterCode;
-        }
-        else if(!promotion && filiere && selectedReportType && !filterCode){
-          return filiere==report.fk_etudiant.filiere
-          && this.reportIsOfType(report, selectedReportType);
-        }
-        else if(!promotion && filiere && !selectedReportType && filterCode){
-          return filiere==report.fk_etudiant.filiere
-          && report.fk_etudiant.code_etudiant == filterCode; 
-        }
-        else if(!promotion && !filiere && selectedReportType && filterCode){
-          return this.reportIsOfType(report, selectedReportType) 
-          && report.fk_etudiant.code_etudiant == filterCode; 
-        }
-        else if(promotion && filiere && selectedReportType && !filterCode){
-          return report.fk_etudiant.promotion == promotion && filiere==report.fk_etudiant.filiere
-          && this.reportIsOfType(report, selectedReportType);
-        }
-        else if(promotion && filiere && !selectedReportType && filterCode){
-          return report.fk_etudiant.promotion == promotion && filiere==report.fk_etudiant.filiere
-          && report.fk_etudiant.code_etudiant == filterCode;
-        }
-        else if(promotion && !filiere && selectedReportType && filterCode){
-          return report.fk_etudiant.promotion == promotion && this.reportIsOfType(report, selectedReportType)
-          && report.fk_etudiant.code_etudiant == filterCode;
-        }
-        else if(!promotion && filiere && selectedReportType && filterCode){
-          return this.reportIsOfType(report, selectedReportType) && filiere==report.fk_etudiant.filiere
-          && report.fk_etudiant.code_etudiant == filterCode;
-        }
-        else if(promotion && filiere && selectedReportType && filterCode){
-          return report.fk_etudiant.promotion == promotion && this.reportIsOfType(report, selectedReportType) && 
-          filiere==report.fk_etudiant.filiere && report.fk_etudiant.code_etudiant == filterCode;
         }
       });
   }
 
-  private reportIsOfType(report : Report, selectedReportType){
-    //console.log(selectedReportType)
-    if( selectedReportType==report.type_rapport){
-      return true;
-    }
-    return false;
-  }
 
 }

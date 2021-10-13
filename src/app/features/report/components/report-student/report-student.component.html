@@ -39,13 +39,13 @@
                         </div>
 
                         <div class="postcard__tagbox" >
-                            <div class="tag__item play blue" *ngIf="!!report.mots[0].mot">
+                            <div class="tag__item play blue" *ngIf="!!report.mots[0]?.mot">
                               <i class="icon-tag mr-2"></i> {{report.mots[0].mot}}
                             </div>
-                            <div class="tag__item play blue" *ngIf="!!report.mots[1].mot">
+                            <div class="tag__item play blue" *ngIf="!!report.mots[1]?.mot">
                               <i class="icon-tag mr-2"></i> {{report.mots[1].mot}}
                             </div>
-                            <div class="tag__item play blue" *ngIf="!!report.mots[2].mot">
+                            <div class="tag__item play blue" *ngIf="!!report.mots[2]?.mot">
                               <i class="icon-tag mr-2"></i> {{report.mots[2].mot}}
                             </div>
                             <div class="tag__item play blue" *ngIf="report.mots?.length >=4">

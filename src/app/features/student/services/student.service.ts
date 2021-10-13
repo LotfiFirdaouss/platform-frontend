@@ -16,6 +16,10 @@ export class StudentService {
   getAll(): Observable<Student[]> {
     return this.http.get<Student[]>(baseUrl);
   }
+  
+  getCurrentStudents(promotion: string): Observable<Student[]> {
+    return this.http.get<Student[]>(`${baseUrl}?promotion=${promotion}`);
+  }
 
   get(id: any): Observable<Student> {
     return this.http.get(`${baseUrl}/${id}`);
