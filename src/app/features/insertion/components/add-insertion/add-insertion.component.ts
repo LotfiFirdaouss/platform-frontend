@@ -104,6 +104,18 @@ export class AddInsertionComponent implements OnInit {
         data => {
           this.currentStudent = data[0];
           this.insertion.fk_etudiant= this.currentStudent.id;
+          this.insertionService.findByStudent(this.currentStudent.id)
+          .subscribe(
+            data => {
+              // console.log(data[0])
+              if(data[0]){
+                console.log("you already added insertion")
+                this.canAddInsertion=false;
+              }
+            },
+            error => {
+              console.log(error);
+            });
         },
         error => {
           console.log(error);

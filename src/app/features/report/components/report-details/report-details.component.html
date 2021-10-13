@@ -241,7 +241,7 @@
                        <span class="unit">PDF du rapport: </span>
                        <div *ngIf="fileSizeError || fileTypeError" class="alert alert-danger">
                         <div [hidden]="!fileSizeError">
-                            Le fichier ne peut pas dépasser 50Mb ou 200pages.
+                            Le fichier ne peut pas dépasser 40MB.
                         </div>
                         <div [hidden]="!fileTypeError">
                             Le fichier doit avoir l'extension de (.pdf).
