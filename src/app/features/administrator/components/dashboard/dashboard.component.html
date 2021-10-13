@@ -1,24 +1,29 @@
 <div class="card-container">
   <nz-tabset nzType="card" >
     <nz-tab [nzTitle]="'Statistique sur stage'" >
+      <nz-spin nzTip="Loading..." [nzSpinning]="loadingStage"> 
+      <div nz-row nzJustify="space-between" style="margin-bottom:40px;" class=" form-area" >
+          <div class="styled-input" nz-col nzSpan="7">
+            <select name="annee" [(ngModel)]="filterAnneeStage">
+              <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+            </select>
+            <label>Année</label>          
+          </div>
+          <div class="styled-input" nz-col nzSpan="7">
+            <select name="promotion" [(ngModel)]="filterPromotionStage">
+              <option *ngFor="let promotion of promotions" value="{{promotion}}">{{promotion}}</option>
+            </select>
+            <label>Promotion</label>          
+          </div> 
+          <div class="no-pad-left-10" nz-col nzSpan="7">
+            <button type="submit" class="primary-btn serach-btn" (click)="calculateStage()">Appliquer</button>
+          </div>     
+      </div>
       <div nz-row nzJustify="space-between" style="margin-bottom:40px;">
         <div nz-col nzSpan="9" class="number">
           <span class="icon-report mr-3"></span>
           <h4>{{stageReport}} <br/> STAGE </h4>
         </div>
-        <div nz-col nzSpan="14" class="number form-area" >
-        <div nz-row nzJustify="space-between">
-          <div class="styled-input multi" nz-col nzSpan="11">
-            <input type="number" [(ngModel)]="filterPromotionStage" (ngModelChange)="calculateStage()"  data-placeholder-focus="false">
-            <label>Promotion</label>          
-          </div> 
-          <div class="no-pad-left-10" nz-col nzSpan="11">
-            <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Reinitialiser</button>
-          </div>
-        </div> 
-        </div>      
-      </div>
-      <div nz-row nzJustify="space-around" style="margin-bottom:40px;">
         <div class="card" nz-col nzSpan="11">
           <div class="card-header"> Nombre des Stages par Filière </div>
           <div class="card-body">
@@ -81,27 +86,33 @@
             </nz-spin>
           </div>
         </div>      
-      </div>        
+      </div> 
+      </nz-spin >       
     </nz-tab>
     <nz-tab [nzTitle]="'Statistique sur projet'">
-      <div nz-row nzJustify="space-between" style="margin-bottom:40px;">
+      <nz-spin nzTip="Loading..." [nzSpinning]="loadingProjet">
+      <div nz-row nzJustify="space-between" style="margin-bottom:40px;" class=" form-area" >
+          <div class="styled-input" nz-col nzSpan="7">
+            <select name="annee" [(ngModel)]="filterAnneeProjet">
+              <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+            </select>
+            <label>Année</label>          
+          </div>
+          <div class="styled-input" nz-col nzSpan="7">
+            <select name="promotion" [(ngModel)]="filterPromotionProjet">
+              <option *ngFor="let promotion of promotions" value="{{promotion}}">{{promotion}}</option>
+            </select>
+            <label>Promotion</label>          
+          </div> 
+          <div class="no-pad-left-10" nz-col nzSpan="7">
+            <button type="submit" class="primary-btn serach-btn" (click)="calculateProjet()">Appliquer</button>
+          </div>     
+      </div>
+      <div nz-row nzJustify="space-around" style="margin-bottom:40px;">
         <div nz-col nzSpan="9" class="number">
           <span class="icon-report mr-3"></span>
           <h4>{{projetReport}} <br/> PROJET </h4>
         </div>
-        <div nz-col nzSpan="14" class="number form-area" >
-        <div nz-row nzJustify="space-between">
-          <div class="styled-input multi" nz-col nzSpan="11">
-            <input type="number" [(ngModel)]="filterPromotionProjet" (ngModelChange)="calculateProjet()" data-placeholder-focus="false">
-            <label>Promotion</label>          
-          </div> 
-          <div class="no-pad-left-10" nz-col nzSpan="11">
-            <button type="submit" class="primary-btn serach-btn" (click)="renitialiserFiltres()">Reinitialiser</button>
-          </div>
-        </div> 
-        </div>      
-      </div>
-      <div nz-row nzJustify="space-around" style="margin-bottom:40px;">
         <div class="card" nz-col nzSpan="11">
           <div class="card-header"> Nombre des Stages par Filière </div>
           <div class="card-body">
@@ -117,6 +128,7 @@
           </div>
         </div>      
       </div>
+      </nz-spin>
     </nz-tab>
   </nz-tabset>
 </div>
