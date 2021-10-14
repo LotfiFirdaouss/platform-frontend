@@ -84,7 +84,7 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-6" *ngIf="(isStudentOwner || isAdministrator) && !report.valid_encadrant"></div>
+                            <div class="col-6" *ngIf="!(isStudentOwner || isAdministrator) || ((isStudentOwner || isAdministrator) && !report.valid_encadrant)"></div>
                             <div class="col-3" class="classLink" *ngIf="(isStudentOwner || isAdministrator) && !!report.valid_encadrant"><a (click)="getCertificate()" ><u>attestation de décharge</u> </a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
                             
                             <div class="col-3" class="classLink" *ngIf="isStudentOwner || isAdministrator" ><a href="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>
