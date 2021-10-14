@@ -84,8 +84,8 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-6" *ngIf="!report.valid_encadrant"></div>
-                            <div class="col-3" class="classLink" *ngIf="(isStudentOwner || isAdministrator) && !!report.valid_encadrant"><a (click)="getCertificate()" ><u>attestation de décharges</u> </a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            <div class="col-6" *ngIf="(isStudentOwner || isAdministrator) && !report.valid_encadrant"></div>
+                            <div class="col-3" class="classLink" *ngIf="(isStudentOwner || isAdministrator) && !!report.valid_encadrant"><a (click)="getCertificate()" ><u>attestation de décharge</u> </a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
                             
                             <div class="col-3" class="classLink" *ngIf="isStudentOwner || isAdministrator" ><a href="/rapport/{{ report.id }}" ><u>modifier</u> </a></div>
                             &nbsp;&nbsp;&nbsp;&nbsp;                           
@@ -113,7 +113,7 @@
 <!-- Attestation -->
 <div class="container myContentClass" *ngIf="!!attestation">
 <span *ngIf="isStudentOwner">
-        <h2 class="card-subheading center" >Attestation de décharges</h2><br>
+        <h2 class="card-subheading center" >Attestation de décharge</h2><br>
         <p class="card-heading"><small>Ci-dessous vous trouverez votre attestation de décharge.</small></p><hr>
 </span>
 <div class="row">
