@@ -157,8 +157,8 @@
                <div class="col">
                    <div class="form-group input-box">
                        
-                        <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled"
-                        [(ngModel)]="currentReport.ville_societe" [disabled]="stageDisabled">
+                        <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled && otherCityHidden"
+                        (change)="changeCity($event.target.value)" [(ngModel)]="currentReport.ville_societe" [disabled]="stageDisabled">
                             <option *ngFor="let city of cities">{{city}}</option>
                         </select>
                         <span class="unit" >Ville : </span>
@@ -167,6 +167,28 @@
                    </div>
                </div>
            </div>
+
+           <div class="row">
+<div class="col">
+                <div class="form-group input-box">
+                    <div id="otherCity" [class.hidden]="otherCityHidden">
+                        <input type="text" [(ngModel)]="autreVille_societe"
+                        class="form-control nature" name="autreVille_societe" placeholder="Ville*" [required]="!stageDisabled && !otherCityHidden" 
+                        [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
+                        <span class="unit">Autre ville : </span>
+                        <div *ngIf="autreVille_societe.errors && (autreVille_societe.dirty || autreVille_societe.touched)" class="alert alert-danger">
+                            <div [hidden]="!autrePays_societe.errors?.required">
+                                Le pays du stage est requis.
+                            </div>
+                            <div [hidden]="!autreVille_societe.errors?.maxlength">
+                                Ce champ ne peut pas comporter plus de 20 caractères.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+
+        </div>
 
            <div class="row">
                <div class="col">

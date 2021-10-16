@@ -4,18 +4,40 @@
         <span *ngIf='currentReport.stage_ou_projet'>stage:</span>
         <span *ngIf='!currentReport.stage_ou_projet'>projet:</span>
         <b> {{currentReport.intitule_stage}}</b></h3>  <br>
+
       <div *ngIf="currentReport.fichier_rapport != null">
-      <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden)" [src]="fileLink()" title="Appercue du rapport"
-      width="100%" height="360" frameborder="0" >  </iframe>
-      <div class="container" width="100%" height="360" frameborder="0"
-      style="border: slategrey solid; padding: 10%;" *ngIf="currentReport.rapport_confidentiel && !notHidden"> Ce rapport est confidentiel,merci de contacter le propriétaire par mail.</div>
+      
+        <div *ngIf="currentReport.type_rapport=='PFE'" id="container">
+          <div id="overlay" >
+          </div>
+          <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden)" [src]="fileLinkPFE()"  title="Appercue du rapport"
+          width="100%" height="500" frameborder="0" id="pdfFile">  </iframe>
+        </div>
+        
+        <div *ngIf="currentReport.type_rapport!='PFE'" id="container">
+          <div id="" >
+          </div>
+          <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden)" [src]="fileLink()" title="Appercue du rapport"
+           height="500" frameborder="0" id="pdfFile">  </iframe>
+        </div>
+
+        <!-- <div margin="300" *ngIf="currentReport.type_rapport!='PFE'">  
+          <iframe *ngIf="!currentReport.rapport_confidentiel || (currentReport.rapport_confidentiel && notHidden)" [src]="fileLink()" title="Appercue du rapport"
+           height="360" frameborder="0" id="pdfFile">  </iframe>
+        </div> -->
+
+        <div class="container" width="100%" height="360" frameborder="0"
+          style="border: slategrey solid; padding: 10%;" *ngIf="currentReport.rapport_confidentiel && !notHidden"> Ce rapport est confidentiel,merci de contacter le propriétaire par mail.
+        </div>
+      
       </div> 
+
       <div *ngIf="currentReport.fichier_rapport == null" 
       class="container" width="100%" height="360" frameborder="0"
       style="border: slategrey solid; padding: 10%;">
         Fichier de rapport non disponible !
       </div>
-      
+      <div style="margin-top: 500px;"> </div>
       <div class="table-responsive custom-table-responsive">
       
         <table class="table custom-table" style="width: 100%;">

@@ -186,26 +186,26 @@
   <div style="padding: 0.4%;">
       <div #reportTable class="table-responsive custom-table-responsive">
       
-        <nz-table [nzFrontPagination]="false" [nzScroll]="{ x: '3000px' }" [nzData]="reports" class="table custom-table" style="width: 100%;">
+        <nz-table [nzFrontPagination]="false" [nzData]="reports" class="table custom-table" style="width: 100%;">
           
           <thead> 
             <tr> 
-              <th scope="col" nzWidth="35%">Etudiant</th>
-              <th scope="col" nzWidth="25%">Code étudiant</th>
-              <th scope="col" nzWidth="20%">Promotion</th>
-              <th scope="col" nzWidth="18%">Filière</th>
-              <th scope="col" nzWidth="25%">Type rapp.</th>
-              <th scope="col" nzWidth="25%">Stage/ Projet</th>
-              <th scope="col" nzWidth="45%">Intitulé rapport</th>
-              <th scope="col" nzWidth="25%">Date début</th>
-              <th scope="col" nzWidth="25%">Date fin</th>
-              <th scope="col" nzWidth="35%">Société</th>
-              <th scope="col" nzWidth="25%">Secteur</th>
-              <th scope="col" nzWidth="25%">Ville</th>
-              <th scope="col" nzWidth="25%">Maroc</th>
-              <th scope="col" nzWidth="35%">Rapport confidentiel</th>
-              <th scope="col" nzWidth="55%">Lien rapport</th>
-              <th scope="col" nzWidth="25%">Encadrant</th>
+              <th scope="col" nzWidth="6%">Etudiant</th>
+              <th scope="col" nzWidth="6%">Code étudiant</th>
+              <th scope="col" nzWidth="6%">Promotion</th>
+              <th scope="col" nzWidth="5%">Filière</th>
+              <th scope="col" nzWidth="6%">Type rapp.</th>
+              <th scope="col" nzWidth="6%">Stage/ Projet</th>
+              <th scope="col" nzWidth="6%">Intitulé rapport</th>
+              <th scope="col" nzWidth="6%">Date début</th>
+              <th scope="col" nzWidth="6%">Date fin</th>
+              <th scope="col" nzWidth="6%">Société</th>
+              <th scope="col" nzWidth="6%">Secteur</th>
+              <th scope="col" nzWidth="6%">Ville</th>
+              <th scope="col" nzWidth="6%">Pays</th>
+              <th scope="col" nzWidth="6%">Rapport confidentiel</th>
+              <th scope="col" nzWidth="5%">Lien rapport</th>
+              <th scope="col" nzWidth="6%">Encadrant</th>
               <!-- <th scope="col" nzWidth="25%">V. Admin</th>
               <th scope="col" nzWidth="25%">V. Encadrant</th> -->
             </tr>
@@ -228,12 +228,14 @@
               <td scope="col" > {{ report.date_debut_stage | date: 'dd/MM/yyyy' }} </td>
               <td scope="col" > {{ report.date_fin_stage | date: 'dd/MM/yyyy' }} </td>
               <td scope="col" > {{ report.societe_stage }} </td>
+              <td scope="col" > {{ report.secteur_societe }} </td>
+              <td scope="col" > {{ report.ville_societe }} </td>
+              <td scope="col" > {{ report.pays_societe }} </td>
               <td scope="col"> {{ report.rapport_confidentiel ? "oui" : "non" }} </td>
               <!-- <th scope="col" class="classLink"> <a href="{{ report.fichier_rapport.toString().split('&')[0] }}"> {{ report.fichier_rapport.toString().split('&')[0] }} </a></th> -->
               <td scope="col" class="classLink"> <a href="http://localhost:8080{{ report.fichier_rapport.toString() }}"> http://localhost:8080{{ report.fichier_rapport.toString() }} </a></td>
               <td scope="col">
                   <span *ngIf="report.type_rapport=='PFE'"> <div *ngFor="let professor of professeurs"><div *ngIf="professor.id==report.fk_encadrant_univ">{{ professor.nom_prenom }} </div></div></span>
-                  <span *ngIf="report.type_rapport!='PFE'"> -- </span>
               </td>
             </tr>
           </tbody>

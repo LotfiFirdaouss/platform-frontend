@@ -46,9 +46,9 @@ export class InsertionDetailsComponent implements OnInit {
 
     cities: Array<any>;
     // autrePays_societe="";
-    // autreVille_societe="";
+    autreVille_societe="";
     // otherCountryHidden=true;
-    // otherCityHidden=true; 
+    otherCityHidden=true; 
 
   constructor(
     private insertionService: InsertionService,
@@ -76,6 +76,7 @@ export class InsertionDetailsComponent implements OnInit {
       for(let city of  City.getCitiesOfCountry(country.isoCode)){
         citiesOfCoutry.push(city.name);
       } 
+      citiesOfCoutry.push("Autre")
       this.countryList.push({
         "name":country.name,
         "cities":citiesOfCoutry
@@ -85,6 +86,15 @@ export class InsertionDetailsComponent implements OnInit {
 
   changeCountry(count) {
     this.cities = this.countryList.find(con => con.name == count).cities;
+  }
+
+  changeCity(city){
+    if(city =="Autre"){
+      this.currentInsertion.ville="Autre"
+      this.otherCityHidden=false;
+    }else{
+      this.otherCityHidden=true;
+    }
   }
 
   getStudent(id_user: number): void {
@@ -112,7 +122,11 @@ export class InsertionDetailsComponent implements OnInit {
           }
           this.cities = this.countryList.find(con => con.name == data.pays)?.cities;
           this.currentInsertion = data;
-
+          //to handle autre pays/ville
+          if(!this.cities.includes(this.currentInsertion.ville)){
+            this.autreVille_societe= this.currentInsertion.ville.toString();
+            this.changeCity("Autre");
+          }
           console.log(data);
         },
         error => {
@@ -123,10 +137,9 @@ export class InsertionDetailsComponent implements OnInit {
 
   updateInsertion(): void {
     this.hideSpinner=false;
-    // if(this.currentInsertion.pays=="Autre"){
-    //   this.currentInsertion.pays = this.autrePays_societe;
-    //   this.currentInsertion.ville = this.autreVille_societe;
-    // }
+    if(this.currentInsertion.ville=="Autre"){
+      this.currentInsertion.ville = this.autreVille_societe;
+    }
     this.insertionService.update(this.currentInsertion.id, this.currentInsertion)
       .subscribe(
         response => {

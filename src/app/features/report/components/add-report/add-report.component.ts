@@ -71,6 +71,9 @@ export class AddReportComponent implements OnInit {
 
   cities: Array<any>;
 
+  autreVille_societe="";
+  otherCityHidden=true; 
+
   //file validation
   fileSizeError=false;
   fileTypeError=false;
@@ -120,6 +123,7 @@ export class AddReportComponent implements OnInit {
       for(let city of  City.getCitiesOfCountry(country.isoCode)){
         citiesOfCoutry.push(city.name);
       } 
+      citiesOfCoutry.push("Autre")
       this.countryList.push({
         "name":country.name,
         "cities":citiesOfCoutry
@@ -155,6 +159,14 @@ export class AddReportComponent implements OnInit {
     this.cities = this.countryList.find(con => con.name == count).cities;
   }
 
+  changeCity(city){
+    if(city =="Autre"){
+      this.otherCityHidden=false;
+    }else{
+      this.otherCityHidden=true;
+    }
+  }
+
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
 
@@ -176,6 +188,9 @@ export class AddReportComponent implements OnInit {
 
   saveReport(): void {
     this.hideSpinner=false;
+    if(this.report.ville_societe=="Autre"){
+      this.report.ville_societe = this.autreVille_societe;
+    }
     const data = {
       stage_ou_projet: this.report.stage_ou_projet,
       date_debut_stage: this.report.date_debut_stage,

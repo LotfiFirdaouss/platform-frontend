@@ -61,10 +61,9 @@ export class ReportDetailsComponent implements OnInit {
    //for cities and countries
   countryList: Array<CountryCities>=[];
   cities: Array<any>;
-  // autrePays_societe="";
-  // autreVille_societe="";
-  // otherCountryHidden=true;
-  // otherCityHidden=true; 
+  autreVille_societe="";
+  otherCityHidden=true; 
+
   encadrant_univ="";
 
   //file validation
@@ -96,6 +95,7 @@ export class ReportDetailsComponent implements OnInit {
     for(let city of  City.getCitiesOfCountry(country.isoCode)){
       citiesOfCoutry.push(city.name);
     } 
+    citiesOfCoutry.push("Autre")
     this.countryList.push({
       "name":country.name,
       "cities":citiesOfCoutry
@@ -105,6 +105,15 @@ export class ReportDetailsComponent implements OnInit {
 
 changeCountry(count) {
   this.cities = this.countryList.find(con => con.name == count).cities;
+}
+
+changeCity(city){
+  if(city =="Autre"){
+    this.currentReport.ville_societe="Autre"
+    this.otherCityHidden=false;
+  }else{
+    this.otherCityHidden=true;
+  }
 }
 
  retreiveProfessors(){
@@ -147,7 +156,10 @@ changeCountry(count) {
             //Stage
             this.stageDisabled=false;
             this.cities = this.countryList.find(con => con.name == data.pays_societe)?.cities;
-                      
+            if(!this.cities.includes(this.currentReport.ville_societe)){
+              this.autreVille_societe= this.currentReport.ville_societe.toString();
+              this.changeCity("Autre");
+            }          
           }
           //mots
           this.getMots(data);
@@ -163,6 +175,9 @@ changeCountry(count) {
 
  updateReport(): void {
   this.hideSpinner=false;
+  if(this.currentReport.ville_societe=="Autre"){
+    this.currentReport.ville_societe = this.autreVille_societe;
+  }
   let data = {
     stage_ou_projet: this.currentReport.stage_ou_projet,
     date_debut_stage: this.currentReport.date_debut_stage,
