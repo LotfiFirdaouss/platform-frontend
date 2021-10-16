@@ -51,9 +51,9 @@ export class AddInsertionComponent implements OnInit {
 
     cities: Array<any>;
     // autrePays_societe="";
-    // autreVille_societe="";
+    autreVille_societe="";
     // otherCountryHidden=true;
-    // otherCityHidden=true; 
+    otherCityHidden=true; 
 
     hideSpinner=true;
 
@@ -89,6 +89,7 @@ export class AddInsertionComponent implements OnInit {
       for(let city of  City.getCitiesOfCountry(country.isoCode)){
         citiesOfCoutry.push(city.name);
       } 
+      citiesOfCoutry.push("Autre")
       this.countryList.push({
         "name":country.name,
         "cities":citiesOfCoutry
@@ -126,21 +127,22 @@ export class AddInsertionComponent implements OnInit {
     // console.log(count)
     // console.log(this.insertion.pays)
     this.cities = this.countryList.find(con => con.name == count).cities;
-    // if(count =="Autre"){
-    //   this.otherCountryHidden=false;
-    //   this.otherCityHidden=false;
-    // }else{
-    //   this.otherCountryHidden=true;
-    //   this.otherCityHidden=true;
-    // }
+
+  }
+
+  changeCity(city){
+    if(city =="Autre"){
+      this.otherCityHidden=false;
+    }else{
+      this.otherCityHidden=true;
+    }
   }
 
   saveInsertion(): void {
     this.hideSpinner=false;
-    // if(this.insertion.pays=="Autre"){
-    //   this.insertion.pays = this.autrePays_societe;
-    //   this.insertion.ville = this.autreVille_societe;
-    // }
+    if(this.insertion.ville=="Autre"){
+      this.insertion.ville = this.autreVille_societe;
+    }
     const data = {
       horodateur:this.getCurrentDate(),
       cursus_post_ensam: this.insertion.cursus_post_ensam,

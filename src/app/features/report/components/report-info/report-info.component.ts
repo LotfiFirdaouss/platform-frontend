@@ -162,10 +162,24 @@ export class ReportInfoComponent implements OnInit {
      return this.affiches
    }
 
-   fileLink(){
+   fileLinkPFE(){    
      //return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentReport.fichier_rapport.toString());
-     var fileLink= this.currentReport.fichier_rapport.toString().split('&')[0];
+     var fileLink= this.currentReport.fichier_rapport.toString().split('&')[0]+"#zoom=100"+"&toolbar=0";
      return this.sanitizer.bypassSecurityTrustResourceUrl(fileLink);
+    }
+    
+    fileLink(){    
+     //return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentReport.fichier_rapport.toString());
+     var fileLink= this.currentReport.fichier_rapport.toString().split('&')[0]+"#zoom=100";
+     return this.sanitizer.bypassSecurityTrustResourceUrl(fileLink);
+    }
+
+    scrollFunction(){
+      console.log("hi")
+      var pdf = document.getElementById("pdfFile");
+      console.log(pdf.scrollLeft)
+      pdf.scrollLeft+=200;
+      console.log("hh",pdf.scrollLeft)
     }
    
 }

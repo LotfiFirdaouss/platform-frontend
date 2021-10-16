@@ -209,8 +209,8 @@
               </div>
               <div class="col">
                   <div class="form-group input-box">
-                      <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled"
-                      [(ngModel)]="insertion.ville" [disabled]="stageDisabled">
+                      <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled  && otherCityHidden"
+                      (change)="changeCity($event.target.value)" [(ngModel)]="insertion.ville" [disabled]="stageDisabled">
                           <option *ngFor="let city of cities">{{city}}</option>
                       </select>
                       <span class="unit" >Ville : </span>
@@ -221,8 +221,8 @@
               
             </div>
 
-            <!-- <div class="row">
-              <div class="col">
+            <div class="row">
+              <!-- <div class="col">
                   <div class="form-group input-box">
                       <div id="otherCountry" [class.hidden]="otherCountryHidden">
                           <input type="text" [(ngModel)]="autrePays_societe"
@@ -239,7 +239,7 @@
                           </div>
                       </div>
                   </div>
-              </div> 
+              </div>  -->
               <div class="col">
                   <div class="form-group input-box">
                       <div id="otherCity" [class.hidden]="otherCityHidden">
@@ -258,7 +258,7 @@
                       </div>
                   </div>
               </div>    
-            </div> -->
+            </div>
 
             <div class="row" style="margin-top: 25px; display: none;">
               <div class="col">
