@@ -214,8 +214,8 @@
           </div>
           <div class="col">
               <div class="form-group input-box">                  
-                  <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled"
-                  [(ngModel)]="currentInsertion.ville" [disabled]="stageDisabled">
+                  <select class="custom-select form-control" id="ville" name="ville" [required]="!stageDisabled && otherCityHidden"
+                  (change)="changeCity($event.target.value)" [(ngModel)]="currentInsertion.ville" [disabled]="stageDisabled">
                       <option *ngFor="let city of cities">{{city}}</option>
                   </select>
                   <span class="unit" >Ville d'étude/boulot: </span>
@@ -225,8 +225,8 @@
           
         </div>
 
-        <!-- <div class="row">
-          <div class="col">
+        <div class="row">
+          <!-- <div class="col">
               <div class="form-group input-box">
                   <div id="otherCountry" [class.hidden]="otherCountryHidden">
                       <input type="text" [(ngModel)]="autrePays_societe"
@@ -243,10 +243,10 @@
                       </div>
                   </div>
               </div>
-          </div> 
+          </div>  -->
           <div class="col">
               <div class="form-group input-box">
-                  <div id="otherCity" [class.hidden]="otherCityHidden">
+                  <div id="otherCity" [class.hidden]="otherCityHidden"> 
                       <input type="text" [(ngModel)]="autreVille_societe"
                       class="form-control nature" name="autreVille_societe" placeholder="Ville*" [required]="!stageDisabled && !otherCityHidden" 
                       [maxlength]="stageDisabled ? false : 20" [disabled]="stageDisabled"/>
@@ -263,7 +263,7 @@
               </div>
           </div>        
 
-      </div> -->
+      </div>
 
         <div class="row" style="margin-top: 25px;display: none;">
           <div class="col">
