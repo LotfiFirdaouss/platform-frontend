@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
     if(groupType=="3"){
       this.authService.register({'groups': groups , 'username': username,'first_name': this.socialUser.firstName,'last_name': this.socialUser.lastName, 'password': password, 'email':this.socialUser.email}).subscribe(
       data => {
-        this.registerStudentByEmail(this.socialUser.email,this.socialUser.lastName,this.socialUser.firstName,this.form.code_etudiant,this.form.email_perso,this.socialUser.email,this.form.filiere,this.form.promotion,this.form.telephone,data.user.id);                
+        this.registerStudentByEmail(this.socialUser.email,this.socialUser.lastName+' '+this.socialUser.firstName,this.socialUser.lastName,this.socialUser.firstName,this.form.code_etudiant,this.form.email_perso,this.socialUser.email,this.form.filiere,this.form.promotion,this.form.telephone,data.user.id);                
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
@@ -117,9 +117,10 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  public createStudent(n,p,ce,epe,epr,f,pr,t,fk) {
+  public createStudent(np,n,p,ce,epe,epr,f,pr,t,fk) {
     const student = {
       nom: n,
+      nom_prenom:np,
       prenom: p,
       code_etudiant: ce,
       email_perso: epe,
@@ -132,9 +133,10 @@ export class RegisterComponent implements OnInit {
     this.studentService.create(student).subscribe();
   }
 
-  public updateStudent(id,n,p,ce,epe,epr,f,pr,t,fk) {
+  public updateStudent(id,np,n,p,ce,epe,epr,f,pr,t,fk) {
     const student = {
       nom: n,
+      nom_prenom:np,
       prenom: p,
       code_etudiant: ce,
       email_perso: epe,
@@ -147,9 +149,10 @@ export class RegisterComponent implements OnInit {
     this.studentService.update(id, student).subscribe();
   }
 
-  public updateProfessor(id,n,p,epe,epr,d,t,fk) {
+  public updateProfessor(id,np,n,p,epe,epr,d,t,fk) {
     const professor = {
       nom: n,
+      nom_prenom:np,
       prenom: p,
       email_perso: epe,
       email_pro: epr,
@@ -160,13 +163,13 @@ export class RegisterComponent implements OnInit {
     this.professorService.update(id,professor).subscribe();
   }
 
-  public registerStudentByEmail(email,n,p,ce,epe,epr,f,pr,t,fk): any {
+  public registerStudentByEmail(email,np,n,p,ce,epe,epr,f,pr,t,fk): any {
     this.studentService.findStudentByEmail(email).subscribe(items => { 
         if (items.id){
-          this.updateStudent(items.id,n,p,ce,epe,epr,f,pr,t,fk)
+          this.updateStudent(items.id,np,n,p,ce,epe,epr,f,pr,t,fk)
         }
         else {
-          this.createStudent(n,p,ce,epe,epr,f,pr,t,fk);
+          this.createStudent(np,n,p,ce,epe,epr,f,pr,t,fk);
         }
       });
   }
@@ -176,7 +179,7 @@ export class RegisterComponent implements OnInit {
         if (items.id){
           this.authService.register({'groups': G , 'username': U,'first_name': this.socialUser.firstName,'last_name': this.socialUser.lastName, 'password': P, 'email':this.socialUser.email}).subscribe(
             data => {
-              this.updateProfessor(items.id,this.socialUser.lastName,this.socialUser.firstName,this.form.email_perso,this.socialUser.email,this.form.departement,this.form.telephone,data.user.id);             
+              this.updateProfessor(items.id,this.socialUser.lastName+' '+this.socialUser.firstName,this.socialUser.lastName,this.socialUser.firstName,this.form.email_perso,this.socialUser.email,this.form.departement,this.form.telephone,data.user.id);             
               this.isSuccessful = true;
               this.isSignUpFailed = false;
             },
