@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ReturnedUser } from 'src/app/auth/models/returned-user';
 import { TokenStorageService } from 'src/app/auth/services/token-storage.service';
 import { Report } from 'src/app/features/report/models/report';
@@ -6,6 +6,8 @@ import { ReportService } from 'src/app/features/report/services/report.service';
 import { Professor } from '../../models/professor';
 import { AllFiltersInProfessorValidationPipe } from '../../pipes/all-filters-in-professor-validation.pipe';
 import { ProfessorService } from '../../services/professor.service';
+
+import jspdf from 'jspdf';  
 
 @Component({
   selector: 'app-report-professor-validation',
@@ -22,6 +24,13 @@ export class ReportProfessorValidationComponent implements OnInit {
   setOfCheckedId = new Set<number>();
   reports ?:Report[];
 
+  //attestation
+  @ViewChild('myDiv',{static: false}) el!: ElementRef;
+  attestation=false;
+  date=new Date();
+  currentReport?: Report;
+   currentIndex = -1;
+
   currentUser!: ReturnedUser;
   isLoggedIn = false;
   user_id=0;
@@ -31,8 +40,9 @@ export class ReportProfessorValidationComponent implements OnInit {
 
   filterPromotion="";
   selectFiliere="";
-  dateFilter="";
   selectedValidatedProfessor="";
+  years=[];
+  filterAnnee=new Date().getFullYear();
 
   p=1;
 
@@ -49,7 +59,17 @@ export class ReportProfessorValidationComponent implements OnInit {
       console.log("User object:",this.currentUser);
       this.getProfessor(this.user_id);
     }  
-    
+    this.fillYears();
+  }
+
+  fillYears(){
+    let year=2019;
+    let rangeYear = this.filterAnnee - year + 2;
+    for(var counter:number = 1; counter<rangeYear; counter++){
+       this.years.push(year);
+       year++;
+    }
+    this.years.push("Tout");
   }
 
   getProfessor(id_user: number): void {
@@ -67,7 +87,7 @@ export class ReportProfessorValidationComponent implements OnInit {
 
   retrieveReports(professor_id:number): void {
     this.hideSpinner=false;
-    this.reportService.getSupervizedReportsValidatedAdmin(professor_id)
+    this.reportService.getSupervizedReportsValidatedAdmin(professor_id,this.filterAnnee)
       .subscribe(
         data => {
           this.reports = data;
@@ -150,20 +170,51 @@ export class ReportProfessorValidationComponent implements OnInit {
     this.setOfCheckedId.clear(); 
     console.log("promotion",this.filterPromotion)
     console.log("filiere",this.selectFiliere)
-    console.log("date",this.dateFilter)
+    console.log("date",this.filterAnnee)
     console.log("valid admin",this.selectedValidatedProfessor)
-    this.reports = this.allFiltersInProfessorValidationPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.selectedValidatedProfessor,Number(this.dateFilter));
-    console.log("new reports",this.reports)
+    this.reports = this.allFiltersInProfessorValidationPipe.transform(this.reports,this.filterPromotion,this.selectFiliere,this.selectedValidatedProfessor,this.filterAnnee);
+    //console.log("new reports",this.reports)
   }
 
   renitialiserFiltres(){
     this.setOfCheckedId.clear();
     this.filterPromotion='';
     this.selectFiliere='';
-    this.dateFilter='';
+    this.filterAnnee=new Date().getFullYear();
     this.selectedValidatedProfessor='';
     // this.retrieveReports(); we use instead the following line
     this.getProfessor(this.user_id); 
+  }
+
+  setActiveReport(report: Report, index: number): void {
+    this.currentReport = report;
+    this.currentIndex = index;
+ }
+
+  getCertificate(){
+    if(this.attestation==true){
+      this.attestation=false;
+    }
+    else {
+      this.attestation=true;
+    }    
+  }
+
+  pdf() {
+    //var data = document.getElementById('myDiv'); 
+    //data.style.display = 'block';
+    let pdf = new jspdf('p','pt', [794, 1160]);
+    pdf.html(this.el.nativeElement,{callback : (pdf) => {pdf.save('attestation_décharges.pdf')}});
+    /*html2canvas(data).then(canvas => {
+      var imgWidth = 208;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4');
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('newPDF.pdf');
+    });*/
+    //data.style.display = 'none';
   }
 
 }
