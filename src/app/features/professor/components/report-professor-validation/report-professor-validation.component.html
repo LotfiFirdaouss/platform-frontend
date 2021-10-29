@@ -1,13 +1,31 @@
 <div class="myContentClass container" *ngIf="!attestation">
-  <h2 class="card-subheading center" >Liste des rapports encadrés</h2><br>
-  <p class="card-heading"><small>Cette rubrique contient la version final des rapports de stage que vous avez encadré, merci
-     de vérifier les modifications apportés par l'étudiant avant de valider son rapport</small></p><hr>
+  <h2 class="card-subheading text-center" >Liste des rapports encadrés</h2><br>
+  <p class="card-heading "><small>Cette rubrique contient la version final des rapports de stage que vous avez encadré, merci
+     de vérifier les modifications apportés par l'étudiant avant de valider son rapport de stage</small></p><hr>
  
   <!-- Filters -->
   <div id="header-search-people" class="form-area" novalidate="novalidate" autocomplete="off">
     <div class="row">
       <div class="col-md-8">
+            
             <div class="styled-input multi" style="height: 60px;">
+              <div id="select-type" class="type">
+                <select name="type" [(ngModel)]="filterAnnee" >
+                  <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+                </select>
+                <label>Année*</label>
+                <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
+                            <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
+                                <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
+                                    points="231.8 32.8 221 32.8 221 22"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+              </div>
               <div id="select-type" class="type">
                 <select name="type" [(ngModel)]="selectedValidatedProfessor" >
                   <option value="V">V</option>
@@ -30,23 +48,7 @@
                     <input type="text" [(ngModel)]="filterPromotion" data-placeholder-focus="false" >
                     <label>Promotion</label>
               </div>
-              <div id="select-type" class="type">
-                <select name="type" [(ngModel)]="filterAnnee" >
-                  <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
-                </select>
-                <label>Année</label>
-                <svg class="chevron-down" width="17px" height="10px" viewBox="0 0 17 10" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <g id="UI-Elements-Forms" transform="translate(-840.000000, -753.000000)" stroke="#4A4A4A" stroke-width="0.9">
-                            <g id="Done-Copy-2" transform="translate(622.000000, 727.000000)">
-                                <polyline id="Rectangle-16" transform="translate(226.400000, 27.400000) rotate(-45.000000) translate(-226.400000, -27.400000) "
-                                    points="231.8 32.8 221 32.8 221 22"></polyline>
-                            </g>
-                        </g>
-                    </g>
-                </svg>
-              </div>
+
                 <div id="select-type" class="type">
                     <select name="type" [(ngModel)]="selectFiliere" >
                         <!-- <option value="Tout">Tout</option> -->
@@ -82,11 +84,14 @@
 
     </div>
   </div>
+  <small style="padding-top:0px;color:red;">*Notez bien qu'il faut <b>renitialiser</b> les filtres pour effectuer un nouveau filtrage.</small>
   
   <div > 
+    <hr>
     <div class="row">
 
         <div class="send-request col-md-8">
+          
           <button
           nz-button
           nzType="primary"
@@ -95,10 +100,10 @@
             Valider Rapports
           </button>
           <span> {{ setOfCheckedId.size }} rapports selectionés</span>
-          <br><small style="padding-top:0px;color:red;">*Notez bien qu'il faut <b>renitialiser</b> les filtres pour effectuer un nouveau filtrage.</small>  
+           
         </div>
         <div class="col-md-4">
-          <button type="submit" class="primary-btn serach-btn serach-btn2" (click)="getCertificate()">Attestation d'encadrement</button>
+          <button type="submit" style="height: 70%; background-image: linear-gradient(to right,#e5e1ec, #cedfe9); color: black; "  class="primary-btn serach-btn " (click)="getCertificate()">Attestation d'encadrement</button>
         </div>
       
     </div>
