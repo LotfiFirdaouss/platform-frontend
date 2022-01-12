@@ -134,8 +134,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public calculateProjet(): void {
+    this.loadingProjet=true;
     this.dashboardService.getAllReportProjetValidatedAndFiltered(this.filterAnneeProjet,''+this.filterPromotionProjet).subscribe(data => 
       {
+        this.loadingProjet=false;
         this.reports=data;
         this.projetReport=this.reports.length;
         this.buildDoughnutPROJET(this.reports);
@@ -143,12 +145,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public calculateStage(): void {
-    this.loadingStage=true;
-    this.loadingProjet=true;
+    this.loadingStage=true;    
     this.dashboardService.getAllReportStageValidatedAndFiltered(this.filterAnneeStage,''+this.filterPromotionStage).subscribe(data => 
       {
         this.loadingStage=false;
-        this.loadingProjet=false;
         this.reports=data;
         this.stageReport=this.reports.length;
         this.buildLineChart1(this.reports);

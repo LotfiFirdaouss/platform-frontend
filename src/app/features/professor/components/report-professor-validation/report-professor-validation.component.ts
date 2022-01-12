@@ -199,12 +199,13 @@ export class ReportProfessorValidationComponent implements OnInit {
       this.attestation=true;
     }    
   }
+  
 
   pdf() {
     //var data = document.getElementById('myDiv'); 
     //data.style.display = 'block';
     let pdf = new jspdf('p','pt', [794, 1160]);
-    pdf.html(this.el.nativeElement,{callback : (pdf) => {pdf.save('attestation_décharges.pdf')}});
+    pdf.html(this.el.nativeElement,{callback : (pdf) => {pdf.save('attestation_encadrement.pdf')}});
     /*html2canvas(data).then(canvas => {
       var imgWidth = 208;
       var imgHeight = canvas.height * imgWidth / canvas.width;
