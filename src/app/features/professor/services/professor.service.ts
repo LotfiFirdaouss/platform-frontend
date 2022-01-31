@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GlobalConstants } from 'src/app/shared/GlobalConstants';
 import { Report } from '../../report/models/report';
 import { Professor } from '../models/professor';
 
-const baseUrl = 'http://127.0.0.1:8080/api/professeurs';
+const baseUrl = GlobalConstants.backendApiURL+'api/professeurs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ProfessorService {
   }
 
   getReportJury(id: any): Observable<Report[]> {
-    return this.http.get<Report[]>(`http://127.0.0.1:8080/api/rapports/jury?jury=${id}`);
+    return this.http.get<Report[]>(GlobalConstants.backendApiURL+`api/rapports/jury?jury=${id}`);
   }
 
   create(data: any): Observable<any> {
@@ -51,7 +52,7 @@ export class ProfessorService {
   }
 
   deleteUser(fk_user: any): Observable<any> {
-    return this.http.delete(`http://127.0.0.1:8080/api/user/${fk_user}`);
+    return this.http.delete(GlobalConstants.backendApiURL+`api/user/${fk_user}`);
   }
 
 }

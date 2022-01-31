@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { GlobalConstants } from 'src/app/shared/GlobalConstants';
 
-const baseUrlFormReport = 'http://localhost:8080/api/forms';
+const baseUrlFormReport = GlobalConstants.backendApiURL+'api/forms';
 
 @Injectable({
   providedIn: 'root'

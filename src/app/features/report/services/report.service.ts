@@ -5,8 +5,9 @@ import { Report } from '../models/report';
 import { map } from 'rxjs/operators';
 import { MotCle } from '../models/mot-cle';
 import { Student } from '../../student/models/student';
+import { GlobalConstants } from 'src/app/shared/GlobalConstants';
 
-const baseUrl = 'http://127.0.0.1:8080/api/rapports';
+const baseUrl = GlobalConstants.backendApiURL+'api/rapports';
 
 @Injectable({
   providedIn: 'root'
@@ -196,18 +197,18 @@ export class ReportService {
         data => {
           if(data.mot==''){
             const mot ={mot:mots[index]};
-            this.http.post(`http://127.0.0.1:8080/api/motCles/`,mot).subscribe();
+            this.http.post(GlobalConstants.backendApiURL+`api/motCles/`,mot).subscribe();
           }  
       });
     }
   }
 
   getMotCle(mot:String): Observable<MotCle> {
-    return this.http.get<MotCle>(`http://127.0.0.1:8080/api/motCles/mot?mot=${mot}`);    
+    return this.http.get<MotCle>(GlobalConstants.backendApiURL+`api/motCles/mot?mot=${mot}`);    
   }
 
   getMot(id: any): Observable<MotCle> {
-    return this.http.get<MotCle>(`http://127.0.0.1:8080/api/motCles/${id}`);
+    return this.http.get<MotCle>(GlobalConstants.backendApiURL+`api/motCles/${id}`);
   }
 
 

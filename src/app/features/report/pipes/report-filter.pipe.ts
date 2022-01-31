@@ -34,7 +34,7 @@ export class ReportFilterPipe implements PipeTransform {
   private reportContainsFilterTerm(report: Report, filterTerm: string) {
     var value= false;
     value = report.intitule_stage?.toLocaleLowerCase().includes(filterTerm);
-    console.log("value: ",value)
+    //console.log("value: ",value)
     return value;
     }
 

@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Insertion } from '../models/insertion.model';
+import { GlobalConstants } from 'src/app/shared/GlobalConstants';
 
-const baseUrl = 'http://localhost:8080/api/insertions';
+const baseUrl = GlobalConstants.backendApiURL+'api/insertions';
  
 @Injectable({
   providedIn: 'root'

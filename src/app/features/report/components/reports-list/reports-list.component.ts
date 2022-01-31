@@ -115,7 +115,7 @@ export class ReportsListComponent implements OnInit {
       .subscribe(
         data => {
           this.currentProfessor = <Professor>data;
-          console.log(this.currentProfessor)
+          //console.log(this.currentProfessor)
           this.selectFiliereParDefaut = this.currentProfessor.departement.toString();
           this.retrieveReports();
         },
@@ -131,7 +131,7 @@ export class ReportsListComponent implements OnInit {
        .subscribe(
          data => {
            this.reports = data;
-           console.log(data)
+           //console.log(data)
            //console.log(data);
            //this.hideSpinner();
            //data.forEach(report=>{ this.getMots(report); })     

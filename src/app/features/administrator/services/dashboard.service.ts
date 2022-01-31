@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Report } from '../../report/models/report';
 import { map } from 'rxjs/operators';
+import { GlobalConstants } from 'src/app/shared/GlobalConstants';
 
 
-const baseUrl = 'http://127.0.0.1:8080/api/rapports';
+const baseUrl = GlobalConstants.backendApiURL+'api/rapports';
 
 @Injectable({
   providedIn: 'root'

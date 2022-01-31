@@ -168,7 +168,8 @@ export class ReportInfoComponent implements OnInit {
      return this.sanitizer.bypassSecurityTrustResourceUrl(fileLink);
     }
     
-    fileLink(){    
+    fileLink(){  
+      console.log(this.currentReport.fichier_rapport.toString())  
      //return this.sanitizer.bypassSecurityTrustResourceUrl(this.currentReport.fichier_rapport.toString());
      var fileLink= this.currentReport.fichier_rapport.toString().split('&')[0]+"#zoom=100";
      return this.sanitizer.bypassSecurityTrustResourceUrl(fileLink);

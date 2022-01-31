@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ResponseResetComponent } from './components/response-reset/response-reset.component';
 import { ProfileModifyComponent } from './components/profile-modify/profile-modify.component';
 import { ProfileModifyProfessorComponent } from './components/profile-modify-professor/profile-modify-professor.component';
+import { GlobalConstants } from '../shared/GlobalConstants';
 
 
 @NgModule({

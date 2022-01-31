@@ -81,6 +81,7 @@ import { TextSizePipe } from '../features/report/pipes/text-size.pipe';
 import { MotCleFilterPipe } from '../features/report/pipes/mot-cle-filter.pipe';
 import { ProfileModifyComponent } from '../auth/components/profile-modify/profile-modify.component';
 import { ProfileModifyProfessorComponent } from '../auth/components/profile-modify-professor/profile-modify-professor.component';
+import { GlobalConstants } from './GlobalConstants';
 
 @NgModule({
   declarations: [
@@ -233,7 +234,7 @@ import { ProfileModifyProfessorComponent } from '../auth/components/profile-modi
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
   ],
   providers: [
     ExportService,
